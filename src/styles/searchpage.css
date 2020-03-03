@@ -1,0 +1,13 @@
+.content {
+    margin: 2em 5em;
+}
+
+.card-body .row {
+    margin: 0.10em;
+}
+
+h5 {
+    padding: 0.5em 0;
+    margin: 1em 0em;
+    border-top: 2.5px solid black;
+}
