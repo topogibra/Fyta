@@ -6,6 +6,7 @@ function make_header($scripts, $styles)
 
     <head>
         <title>Fytá - Feel the Flower Power</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -36,7 +37,7 @@ function make_header($scripts, $styles)
                     <i class="fas fa-list"></i>
                 </div>
             </nav>
-            <nav class="navbar navbar-expand-lg navbar-light navbar-categories">
+            <nav class="navbar navbar-expand-sm navbar-light navbar-categories">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#categoriesNavbar" aria-controls="categoriesNavbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -58,14 +59,14 @@ function make_header($scripts, $styles)
                             <a class="nav-link" href="#">Deals</a>
                         </li>
                     </ul>
-                    <div class="input-group w-auto mt-1 rounded-pill border border-dark">
-                        <span class="input-group-append bg-white">
-                            <button class="btn border border-right-0" type="button">
-                                <i class="fas fa-search form-control-feedback"></i>
-                            </button>
-                        </span>
-                        <input class="form-control border-left-0">
-                    </div>
+                </div>
+                <div class="input-group w-auto mt-1 rounded-pill border border-dark">
+                    <span class="input-group-append bg-white">
+                        <button class="btn border border-right-0" type="button">
+                            <i class="fas fa-search form-control-feedback"></i>
+                        </button>
+                    </span>
+                    <input class="form-control border-left-0">
                 </div>
             </nav>
         </div>
