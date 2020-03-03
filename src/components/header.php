@@ -13,6 +13,7 @@ function make_header($scripts, $styles)
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/ac3e82986f.js" crossorigin="anonymous"></script>
         <link href="../styles/style.css" rel="stylesheet">
+        <script src="../js/navbar.js" type="module"></script>
         <?php foreach ($scripts as $script) { ?>
             <script src=<?= $script ?> type="module"></script>
         <?php } ?>
@@ -22,24 +23,24 @@ function make_header($scripts, $styles)
     </head>
 
     <body>
-        <div class="navbar-wrapper">
+        <nav class="navbar-wrapper navbar navbar-expand-md">
             <a class="navbar-brand" href="#">
                 <img src="../assets/logo.png" alt="Company Logo">
             </a>
             <nav class="navbar navbar-expand-lg navbar-light navbar-icons">
-                <div>
+                <div class="user">
                     <i class="far fa-user"></i>
                 </div>
-                <div>
+                <div class="star">
                     <i class="far fa-star"></i>
                 </div>
-                <div>
-                    <i class="fas fa-list"></i>
+                <div class="cart">
+                    <i class="fas fa-shopping-basket"></i>
                 </div>
             </nav>
-            <nav class="navbar navbar-expand-sm navbar-light navbar-categories">
+            <nav class="navbar navbar-expand-md navbar-light navbar-categories">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#categoriesNavbar" aria-controls="categoriesNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon fas"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="categoriesNavbar">
                     <ul class="navbar-nav mt-2 mt-lg-0 mr-lg-4">
@@ -60,14 +61,25 @@ function make_header($scripts, $styles)
                         </li>
                     </ul>
                 </div>
-                <div class="input-group w-auto mt-1 rounded-pill border border-dark">
-                    <span class="input-group-append bg-white">
-                        <button class="btn border border-right-0" type="button">
-                            <i class="fas fa-search form-control-feedback"></i>
-                        </button>
-                    </span>
-                    <input class="form-control border-left-0">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col user">
+                            <i class="far fa-user"></i>
+                        </div>
+                        <div class="col star">
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
                 </div>
             </nav>
-        </div>
+            <div class="input-group w-auto mt-1 rounded-pill border border-dark navbar-search">
+                <span class="input-group-append">
+                    <button class="btn border border-right-0" type="button">
+                        <i class="fas fa-search form-control-feedback"></i>
+                    </button>
+                </span>
+                <input class="form-control border-left-0">
+            </div>
+        </nav>
     <?php } ?>
