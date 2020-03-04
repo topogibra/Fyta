@@ -5,6 +5,24 @@
       make_header([], ["../styles/searchpage.css"]);
       ?>
 
+      <div class="title">
+        <div class="row">
+          <div class="col">
+            <h4>Search Page</h4>
+          </div>
+          <div class="col">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Options
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">By Popularity</a>
+                <a class="dropdown-item" href="#">By Price</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
       <div class="content">
@@ -80,10 +98,12 @@
                 </div>
               </li>
             </ul>
-            <h5>Price Range</h5>
-            <label for="customRange">4€ - 10€</label>
-            <input type="range" class="custom-range" min="0" max="5" id="customRange2">
 
+            <div class="price">
+              <h5>Price Range</h5>
+              <label for="customRange">4€ - 10€</label>
+              <input type="range" class="custom-range" min="0" max="5" id="customRange2">
+            </div>
           </div>
 
 

@@ -1,3 +1,4 @@
+@import url("palette.css");
 .content {
     margin: 2em 5em;
 }
@@ -6,8 +7,76 @@
     margin: 0.10em;
 }
 
-h5 {
+.col-lg-2 h5 {
     padding: 0.5em 0;
     margin: 1em 0em;
     border-top: 2.5px solid black;
+}
+
+.price label {
+    margin: 0em 5em 0.5em 5em;
+}
+
+.title {
+    justify-content: space-between;
+}
+
+.title {
+    margin: 2em 1em;
+}
+
+.title h4 {
+    margin: 1em 2.5em;
+    color: var(--green-color);
+}
+
+.title .row .col:nth-child(2) {
+    text-align: end;
+    margin-right: 8em;
+}
+
+.title .row .col:nth-child(1) {
+    margin-left: 4em;
+}
+
+.content>.row {
+    margin: 0em 3em;
+}
+
+.btn {
+    background-color: var(--white-color);
+    color: var(--black-color);
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active,
+.btn-secondary:not(:disabled):not(.disabled):active,
+.show>.btn-secondary.dropdown-toggle {
+    background-color: var(--white-color);
+    color: var(--black-color);
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active:focus,
+.btn-secondary:not(:disabled):not(.disabled):active:focus,
+.show>.btn-secondary.dropdown-toggle:focus {
+    box-shadow: none;
+}
+
+.btn-secondary.focus,
+.btn-secondary:focus {
+    background-color: var(--white-color);
+    color: var(--black-color);
+    box-shadow: none;
+}
+
+.btn-secondary.hover,
+.btn-secondary:hover {
+    background-color: var(--white-color);
+    color: var(--black-color);
+}
+
+@media (max-width: 800px) {
+    .title .row .col:nth-child(2) {
+        text-align: end;
+        margin-right: 8em;
+    }
 }
