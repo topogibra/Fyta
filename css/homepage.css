@@ -3,22 +3,23 @@
 /*banner*/
 
 #main-banner {
-    margin: 4em 11em;
-}
-
-#main-banner img {
-    height: 100%;
+    height: 40vh;
+    margin: 4em 16em;
+    background-image: url("../resources/images/plantas-interior-1.jpg");
+    background-clip: content-box;
+    background-position: 0 50%;
+    background-size: cover;
 }
 
 #main-banner p {
-    font-size: 7vw;
+    font-size: 10vmin;
     text-shadow: 0.2rem 0.2rem 0.2rem var(--green);
 }
 
 /* top_sold  */
 
 .top-sold {
-    margin: auto 16em;
+    margin: 0 12em 6em 12em;
 }
 
 .top-sold > h2 {
@@ -29,42 +30,56 @@
     text-decoration: none;
     align-self: center;
     color: var(--green);
-    font-size: 4vmin;
+    font-size: 1.2em;
 }
 
-.top-sold > .row img {
-    /* height: 100%; */
+.top-sold > .product > #product-image {
+    height: 100%;
     width: 100%;
 }
 
-.top-sold > .row > .item > span {
-    position: relative;
-    display: block;
-    text-align: center;
-    font-size: 2.5vmin;
-}
-
-.top-sold > .row > .item > #product-price {
+.top-sold > .product  > #product-price {
     color: var(--light-gray);
 }
 
 /* footer  */
 
-footer {
+footer.row {
+    margin: auto;
     margin-top: 2em;
     background-color: var(--green);
-    height:8vh;
+    height: 5rem;
+    width: 100%;
 }
 
 footer > #copyright {
     padding-left: 5rem;
-    align-self: center;
     color: var(--white);
 }
 
-footer > .row >a:not(:last-of-type) {
-    padding-right: 2em;
-    border-right: 0.2em solid var(--white);
+footer.row > div > a {
+    padding: 0 1em;
+    color: var(--white);
 }
 
+footer.row > div > a:nth-child(2)::before {
+    border-left: 1px solid white;
+    padding: 0 1em;
+    height: 1em;
+    content: "";
+}
+footer.row > div > a:nth-child(2)::after{
+    border-right: 1px solid white;
+    padding: 0 1em;
+    height: 1em;
+    content: "";
+}
 
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 5rem;
+}

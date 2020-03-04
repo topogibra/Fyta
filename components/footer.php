@@ -1,13 +1,15 @@
 <?php 
     function make_footer() { ?>
-            <footer class="row ">
-                <span id="copyright" class="align-self-left col-5 ">Copyright &copy; Fytá</span>
-                <div class="row justify-content-between ">
-                    <a class="col col-sm-2" href="#aboutus" id="aboutus">About Us</a>
-                    <a class="col col-sm-2" href="#faqs" id="faqs">FAQs</a>
-                    <a class="col col-sm-2" href="#contactus" id="contacts">Contact Us</a>
-                </div>
-            </footer>
+            </div>
+                <footer class="row ">
+                    <span id="copyright" class="align-self-center col-3 ">Copyright &copy; Fytá</span>
+                    <div class="nav align-self-center col-3 offset-md-2">
+                        <a class="nav-item" href="#aboutus" id="aboutus">About Us</a>
+                        <a class="nav-item" href="#faqs" id="faqs">FAQs</a>
+                        <a class="nav-item" href="#contactus" id="contacts">Contact Us</a>
+                    </div>
+                </footer>
+            </div>
         </body>
     </html>
 <?php } ?>

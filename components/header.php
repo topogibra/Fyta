@@ -12,4 +12,6 @@
                 <!-- <script src="../js/carousel.js"defer ></script> -->
             </head>
             <body>
+                <div id="page-content">
+                    <div id="content-wrap">
 <?php } ?>
