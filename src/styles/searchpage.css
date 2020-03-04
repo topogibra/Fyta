@@ -119,4 +119,9 @@
         background-color: var(--white-color);
         color: var(--black-color);
     }
+    .form-check {
+        text-align: left;
+        margin: 2em;
+        font-size: 1.25em;
+    }
 }

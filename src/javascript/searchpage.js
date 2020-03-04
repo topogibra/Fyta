@@ -1,5 +1,9 @@
 let order = document.getElementById('order');
 let filter = document.getElementById('filter');
+let pricerange = document.querySelector(".price input");
+let pricevalue = document.querySelector(".price label");
+
+
 
 let filtercontent = document.getElementsByClassName("col-lg-2");
 
@@ -19,3 +23,8 @@ window.addEventListener('resize', (event) => {
         filtercontent[0].style.display = "block";
     }
 })
+
+pricerange.addEventListener('input', function() {
+    pricevalue.innerHTML = pricerange.value + "€";
+
+}, false);

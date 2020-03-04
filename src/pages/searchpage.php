@@ -23,19 +23,41 @@
             </div>
 
             <div class="searchbuttons">
-              
-            <div id="order">
-            <button type="button" class="btn btn-outline-dark">Order by
-              <i class="fas fa-chevron-down"></i>
-            </button>
-            </div>
 
-            <div id="filter">
-            <button type="button" class="btn btn-outline-dark">Filters
-              <i class="fas fa-chevron-down"></i>
+              <div id="order">
+                <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalCenter">Order by
+                  <i class="fas fa-chevron-down"></i>
+                </button>
 
-            </button>
-            </div>
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                          <label class="form-check-label" for="exampleRadios1">
+                            By Price
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                          <label class="form-check-label" for="exampleRadios1">
+                            By Popularity
+                          </label>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="filter">
+                <button type="button" class="btn btn-outline-dark">Filters
+                  <i class="fas fa-chevron-down"></i>
+
+                </button>
+              </div>
             </div>
 
           </div>
@@ -119,8 +141,8 @@
 
             <div class="price">
               <h5>Price Range</h5>
-              <label for="customRange">4€ - 10€</label>
-              <input type="range" class="custom-range" min="0" max="5" id="customRange2">
+              <label for="customRange"></label>
+              <input type="range" class="custom-range" min="0" max="200" id="pricerange">
             </div>
           </div>
 
