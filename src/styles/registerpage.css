@@ -1,0 +1,14 @@
+#registerUserImg {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 6em;
+  height: 6em;
+}
+
+#registerBirthday {
+  margin-bottom: 1rem;
+}
+
+.row >.col-sm-6 > button{
+  height: 3rem;
+}
