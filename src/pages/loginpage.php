@@ -1,0 +1,41 @@
+<?php
+include_once("../components/header.php");
+include_once("../components/footer.php");
+
+make_header([], []);
+?>
+<div class="container-xl">
+  <form>
+    <div class="row justify-content-center">
+      <div class="col-sm-6">
+        <h1 class="text-center">Login</h1>
+      </div>
+    </div>
+    <div class="form-group row justify-content-center">
+      <div class="col-sm-6">
+        <label for="loginEmail">Email or Username</label>
+        <input type="text" name="loginEmail" id="loginEmail" class="form-control" placeholder="" aria-describedby="loginRegisterHelp">
+      </div>
+    </div>
+    <div class="form-group row justify-content-center">
+      <div class="col-sm-6">
+        <label for="loginPassword ">Password</label>
+        <input type="password" name="loginPassword" id="loginPassword" class="form-control" placeholder="" aria-describedby="loginRegisterHelp">
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-sm-6 ">
+        <button type="submit" class="btn btn-primary col-sm-12">Start Session</button>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-sm-3 ">
+        <small id="helpId" class="text-center text-muted">Don't have an account yet? <a href="../pages/registerpage.php">Register now</a>
+        </small>
+      </div>
+    </div>
+  </form>
+</div>
+<?php
+make_footer();
+?>
