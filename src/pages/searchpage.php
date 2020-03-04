@@ -2,7 +2,7 @@
       include_once('../components/footer.php');
       include_once('../components/header.php');
 
-      make_header([], ["../styles/searchpage.css"]);
+      make_header(["../javascript/searchpage.js"], ["../styles/searchpage.css"]);
       ?>
 
       <div class="title">
@@ -11,6 +11,7 @@
             <h4>Search Page</h4>
           </div>
           <div class="col">
+
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Options
@@ -20,6 +21,23 @@
                 <a class="dropdown-item" href="#">By Price</a>
               </div>
             </div>
+
+            <div class="searchbuttons">
+              
+            <div id="order">
+            <button type="button" class="btn btn-outline-dark">Order by
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            </div>
+
+            <div id="filter">
+            <button type="button" class="btn btn-outline-dark">Filters
+              <i class="fas fa-chevron-down"></i>
+
+            </button>
+            </div>
+            </div>
+
           </div>
         </div>
       </div>
