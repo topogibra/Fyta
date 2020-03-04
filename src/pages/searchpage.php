@@ -68,7 +68,7 @@
       <div class="content">
         <div class="row justify-content-between">
 
-          <div class="col-lg-2">
+          <div class="col-lg-3">
 
             <h5>Categories</h5>
             <ul class="list-group list-group-flush">
@@ -141,14 +141,10 @@
 
             <div class="price">
               <h5>Price Range</h5>
-              <label for="customRange"></label>
+              <label for="customRange">50€</label>
               <input type="range" class="custom-range" min="0" max="200" id="pricerange">
             </div>
           </div>
-
-
-
-
 
           <div class="col-lg-8">
             <div class="row row-cols-1 row-cols-md-3">
@@ -170,8 +166,36 @@
                 </div>
               <?php endforeach ?>
             </div>
+
+            <div class="row">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+
+
+            </div>
           </div>
+
+
+
         </div>
+
+
+
       </div>
 
 
