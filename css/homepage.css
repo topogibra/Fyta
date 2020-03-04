@@ -1,0 +1,70 @@
+@import url("pallette.css");
+
+/*banner*/
+
+#main-banner {
+    margin: 4em 11em;
+}
+
+#main-banner img {
+    height: 100%;
+}
+
+#main-banner p {
+    font-size: 7vw;
+    text-shadow: 0.2rem 0.2rem 0.2rem var(--green);
+}
+
+/* top_sold  */
+
+.top-sold {
+    margin: auto 16em;
+}
+
+.top-sold > h2 {
+    text-align: center;
+    margin-bottom: 2em;
+}
+.top-sold > h2 > a {
+    text-decoration: none;
+    align-self: center;
+    color: var(--green);
+    font-size: 4vmin;
+}
+
+.top-sold > .row img {
+    /* height: 100%; */
+    width: 100%;
+}
+
+.top-sold > .row > .item > span {
+    position: relative;
+    display: block;
+    text-align: center;
+    font-size: 2.5vmin;
+}
+
+.top-sold > .row > .item > #product-price {
+    color: var(--light-gray);
+}
+
+/* footer  */
+
+footer {
+    margin-top: 2em;
+    background-color: var(--green);
+    height:8vh;
+}
+
+footer > #copyright {
+    padding-left: 5rem;
+    align-self: center;
+    color: var(--white);
+}
+
+footer > .row >a:not(:last-of-type) {
+    padding-right: 2em;
+    border-right: 0.2em solid var(--white);
+}
+
+
