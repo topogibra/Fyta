@@ -1,0 +1,164 @@
+.row .dropdown .btn.btn-secondary{
+    background-color: #655f5f26;
+    border-color: transparent;
+    color: black;
+}
+
+.btn-success{
+    background-color: #567A4D;
+}
+
+.btn-outline-success{
+    color: black;
+    border-color: #567A4D;
+}
+
+#favorites-add {
+    color: #655f5f;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+.container-fluid.title .price{
+    color: #655f5f;
+    font-size: 1.7em;
+}
+
+.container-fluid.title h6{
+    display: inline-block;
+    font-size: inherit;
+}
+
+.container-fluid.title h3{
+    padding-left: 0;
+    color: #567A4D;
+}
+
+.col.review{
+    font-size: 1.5em;
+    color: #655f5f;
+}
+
+@media(min-width: 900px){
+    #purchase-buttons a {
+        margin-left: 0.4em;
+    }
+}
+
+.related-products h4.card-title{
+    display: inline-block;
+}
+
+div.related-products{
+    margin-top: 1.5em;
+}
+
+.row.product-section {
+    margin-top: 3em;
+}
+
+.row.product-section {
+    padding: 0 5em;
+}
+
+@media(max-width: 770px){
+
+    .row.product-section {
+        padding: 0 1em;
+    }
+
+    .related-products{
+        padding: 10%;
+    }
+}
+
+.row.product-section > .col-md {
+    padding-left: 0;
+}
+
+
+.card .card-text{
+    font-size: 1.2em;
+    color: #655f5f;
+}
+
+.card {
+    border: 0px;
+}
+
+.row.product-section > .row > .row {
+    align-items: center;
+}
+
+.row.product-section > .row > .row > i{
+    color: #567A4D;
+}
+
+.row.product-section h3 {
+    font-size: 1.8em;
+}
+
+.comment.row{
+    padding: 0 5em;
+    margin: 0.5em 0;
+}
+
+.row.product-section > .row {
+    width: 100%;
+}
+
+.comment > .container{
+    border-bottom: 1px solid #655f5f80;
+}
+.comment > .container > .row > .col-md-6 p{
+    margin-bottom: 0.1em;
+}
+.comment > .container > .row > .col-md-6 .name{
+    font-weight: bold;
+}
+
+.comment > .container > .row > .col-md-6 .date{
+    color: #655f5f;
+}
+
+.comment > .container > .row > .col-md-6 .review{
+    color: #567A4D;
+    display: inline-flex;
+    padding-left: 15px;
+}
+
+.comment > .container > .row > .col-md-3{
+    height: 3em;
+    width: 3em;
+    padding: 0;
+    flex-basis: auto;
+}
+
+.reviews-title,
+.reviews-title .row{
+    flex-wrap: nowrap;
+}
+
+.fa-star{
+    padding: 0 0.1em;
+}
+
+@media(max-width: 574px){
+    .comment > .container > .row {
+        justify-content: center;
+    }
+
+    .row.comment{
+        padding: 0 0.3em;
+    }
+
+    .comment > .container > .row > .col-md-3{
+        width: 5em;
+        height: 5em;
+    }
+    .comment > .container > .row > .col-md-6{
+        padding: 0;
+    }
+
+
+}
