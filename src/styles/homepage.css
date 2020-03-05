@@ -147,27 +147,28 @@ footer.row > div > a:nth-child(2)::after{
         margin-bottom: 1em;
     }
 
+}
+
+@media (max-width: 768px) {
     footer.row {
         height: 4em;
-        flex-flow: row-reverse wrap;
-        justify-content: center;
+        line-height: unset;
+        display: grid;
     }
 
     footer.row > #copyright, footer.row > .nav {
-        height: 50%;
         text-align: center;
         align-content: center;
         max-width: inherit;
+        width: 100%;
         margin: 0;
-        flex: 1;
-        display: flex;
         justify-content: center;
-        flex-direction: column-reverse;
+        align-items: center;
     }
 
     footer.row > #copyright {
         font-size: 0.8em ;
-        /* margin-top: auto; */
+        grid-row-start: 2;
     }
 
     footer.row > .nav {
