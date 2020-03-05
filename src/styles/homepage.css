@@ -24,6 +24,10 @@
 
 .top-sold > h2 {
     text-align: center;
+    margin-top: 4em;
+    padding-bottom: 1em;
+    font-size: 2.5em;
+
 }
 
 .top-sold > h2 > a {
@@ -47,6 +51,14 @@
     height: 300px;
     width: 300px;
     margin: auto;
+}
+
+.top-sold .product .product-name {
+    font-size: 1.8em;
+}
+
+.top-sold .product .product-price {
+    font-size: 1.5em;
 }
 
 
@@ -103,7 +115,7 @@ footer.row > div > a:nth-child(2)::after{
     }
 
     .top-sold > h2 > a {
-        font-size: 0.8em;
+        font-size: 1em;
     }
 
      .top-sold div.row {
