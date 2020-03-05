@@ -1,21 +1,21 @@
 @import url('pallette.css');
 
-.payment-details button {
+.payment-method button {
     border: 1px solid var(--gray);
     padding: 4px 2em;
 }
 
-.payment-details #back-btn {
+.payment-method #back-btn {
     background-color: var(--light-gray);
     color: var(--black);
 }
 
-.payment-details #next-btn {
+.payment-method #next-btn {
     background-color: var(--green);
     color: var(--white);
 }
 
-.payment-details h3 {
+.payment-method h3 {
     color: var(--green);
     padding-bottom: 2em;
 }
@@ -27,7 +27,7 @@
     border-color: var(--light-gray);
 }
 
-.payment-details {
+.payment-method {
     padding: 0 30em;
     margin-top: 4em;
 }
@@ -65,7 +65,7 @@
     color: var(--black);
 }
 
-.payment-details .buttons {
+.payment-method .buttons {
     padding-top: 5em;
 }
 
@@ -75,17 +75,17 @@
 
 
 @media (max-width: 1400px) {
-    .payment-details {
+    .payment-method {
         padding: 0 10em;
     }
 }
 
 @media (max-width: 768px) {
-    .payment-details {
+    .payment-method {
         padding: 0 4em;
     }
 
-    .payment-details .buttons {
+    .payment-method .buttons {
         justify-content: space-around;
     }
 
@@ -114,7 +114,7 @@
     }
 
 
-    .payment-details h3 {
+    .payment-method h3 {
         text-align: center;
         padding-bottom: 1em;
     }
@@ -122,21 +122,21 @@
 
 @media (max-width: 360px) {
 
-    .payment-details {
+    .payment-method {
         padding: 0 2em;
     }
-    .payment-details .buttons {
+    .payment-method .buttons {
         padding-top: 0;
         flex-wrap: nowrap;
         height: 75%;
         font-size: 1em;
     }
 
-    .payment-details #back-btn {
+    .payment-method #back-btn {
         margin-right: 1em;
     }
 
-    .payment-details .btn {
+    .payment-method .btn {
         height: 100%;
     }
 }

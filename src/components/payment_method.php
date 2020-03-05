@@ -1,7 +1,7 @@
 <?php
-    function payment_details() { ?>
-        <div class="payment-details container-fluid text-nowrap">
-            <h3>Payment Details</h3>
+    function payment_method() { ?>
+        <div class="payment-method container-fluid text-nowrap">
+            <h3>Payment Method</h3>
             <div class="row options">
                 <a href="#mb" class="col-6">
                     <div class="img-wrapper border">
