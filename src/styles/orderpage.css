@@ -113,10 +113,6 @@
         padding-top: 1em;
     }
 
-    .payment-details #back-btn {
-        background-color: var(--green);
-        color: var(--white);
-    }
 
     .payment-details h3 {
         text-align: center;
@@ -125,11 +121,22 @@
 }
 
 @media (max-width: 360px) {
+
+    .payment-details {
+        padding: 0 2em;
+    }
     .payment-details .buttons {
         padding-top: 0;
+        flex-wrap: nowrap;
+        height: 75%;
+        font-size: 1em;
     }
 
     .payment-details #back-btn {
-        margin-bottom: 1em;
+        margin-right: 1em;
+    }
+
+    .payment-details .btn {
+        height: 100%;
     }
 }
