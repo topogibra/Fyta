@@ -1,0 +1,115 @@
+body {
+    font-size: 1.5em;
+}
+
+.profile.container-fluid{
+    padding: 0 4em;
+}
+
+
+.account-sections {
+    padding-top: 10em;
+}
+
+h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.badge {
+    font-size: 1.2em;
+    background-color: transparent;
+    font-weight: 300;
+    display: block;
+    text-align: start;
+    padding: 1em 0;
+}
+
+.profile .col-md-9 {
+    margin-top: 3em;
+}
+
+.orders .row .col-md-2{
+    margin: auto;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.orders .row.header{
+    background-color: #ECECEC84;
+    color: #655F5F;
+}
+
+.orders .row:not(.header){
+    border-bottom: 1px solid #707070;
+    padding: 0.5em 0;
+}
+
+@media(max-width: 800px){
+    .account-sections{
+        padding-top: 0em;
+        order: 0;
+    }
+
+    .row.header{
+        display: none;
+    }
+
+    .account-sections > ul.list-group .list-group-item:last-child {
+        border-bottom-width: thin;
+    }
+
+    .orders .row .col-md-2.order{
+        order: 1;
+        text-align: start;
+    }
+
+    .orders .row:not(.header){
+        border-top: 1px solid #707070;
+        border-bottom:0;
+    }
+
+    .orders .row .col-md-2.date{
+        order: 2;
+        text-align: end;
+    }
+
+    .orders .row .col-md-2.re-order .fas{
+        margin-right: 1em;
+        display: inline-block;
+    }
+    .orders .row .col-md-2.re-order{
+        order: 4;
+        text-align: end;
+    }    
+
+    .orders .row .col-md-2.state{
+        order: 3;
+        text-align: start;
+    }
+
+    .orders .row .col-md-2.price {
+        display: none;
+    }
+    
+    .account-sections > ul.list-group .list-group-item {
+        padding: .75rem 0;
+        font-size: 0.8em;
+    }
+
+    .badge {
+        margin: 0 1.5em;
+    }
+
+    .account-sections > ul.list-group {
+        flex-direction: row;
+    }
+
+    h3 {
+        font-size: 1.7em;
+    }
+
+    .profile .col-md-9{
+        order: 1;
+    }
+}
