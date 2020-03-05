@@ -1,0 +1,176 @@
+@import url("pallette.css");
+
+/*banner*/
+
+#main-banner {
+    height: 40vh;
+    margin: 4em 16em;
+    background-image: url("../assets/plantas-interior-1.jpg");
+    background-clip: content-box;
+    background-position: 0 50%;
+    background-size: cover;
+}
+
+#main-banner p {
+    font-size: 10vmin;
+    text-shadow: 0.2rem 0.2rem 0.2rem var(--green);
+}
+
+/* top_sold  */
+
+.top-sold {
+    margin-top: 2em;
+}
+
+.top-sold > h2 {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.top-sold > h2 > a {
+    text-decoration: none;
+    align-self: center;
+    color: var(--green);
+    font-size: 1.2em;
+}
+
+.top-sold .row {
+    padding: 0 18em;
+}
+
+.top-sold .product  .img-wrapper  .product-image {
+    height: 100%;
+}
+
+.top-sold  .product  .img-wrapper {
+    height: 15em;
+}
+
+/* footer  */
+
+footer.row {
+    position: relative;
+    bottom: 0;
+    margin: auto;
+    margin-top: 2em;
+    background-color: var(--green);
+    height: 60px;
+    line-height: 60px;
+    width: 100%;
+}
+
+footer.row > #copyright {
+    padding-left: 5rem;
+    color: var(--white);
+}
+
+footer.row > div > a {
+    padding: 0 1em;
+    color: var(--white);
+
+}
+
+footer.row > div > a:nth-child(2)::before {
+    border-left: 1px solid white;
+    padding: 0 1em;
+    height: 1em;
+    content: "";
+}
+footer.row > div > a:nth-child(2)::after{
+    border-right: 1px solid white;
+    padding: 0 1em;
+    height: 1em;
+    content: "";
+}
+
+/* media queries */
+
+@media (max-width: 1400px){
+    
+    #main-banner p {
+        display: none;
+    }
+
+    #main-banner {
+        height: 30vh;
+        margin: 0 1em;
+        background-clip: unset;
+
+    }
+
+    .top-sold > h2 > a {
+        font-size: 0.8em;
+    }
+
+     .top-sold div.row {
+        padding: 0 4em;
+        height: auto;
+    }
+
+    footer.row {
+        height: 4em;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+     footer.row > #copyright, footer.row > .nav {
+        max-height: 100%;
+        align-self: normal !important;
+        padding: 0;
+    }
+
+    footer.row > #copyright {
+        margin-left: 5em;
+    }
+
+    footer.row > .nav {
+        flex-wrap: nowrap;
+        margin-left: 5em;
+    }
+
+    footer.row > .nav > #contacts {
+        padding-right: 0;
+    }
+
+}
+
+
+@media (max-width: 400px) {
+    .top-sold .row .img-wrapper {
+        padding-bottom: 1em;
+    }
+    .top-sold .row .card-body {
+        padding-top: 0;
+    }
+
+    .top-sold .row .product {
+        margin-bottom: 1em;
+    }
+
+    footer.row {
+        height: 4em;
+        flex-flow: row-reverse wrap;
+        justify-content: center;
+    }
+
+    footer.row > #copyright, footer.row > .nav {
+        height: 50%;
+        text-align: center;
+        align-content: center;
+        max-width: inherit;
+        margin: 0;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        flex-direction: column-reverse;
+    }
+
+    footer.row > #copyright {
+        font-size: 0.8em ;
+        /* margin-top: auto; */
+    }
+
+    footer.row > .nav {
+        font-size: 0.9em;
+    }
+}
