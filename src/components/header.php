@@ -23,63 +23,65 @@ function make_header($scripts, $styles)
     </head>
 
     <body>
-        <nav class="navbar-wrapper navbar navbar-expand-md">
-            <a class="navbar-brand" href="#">
-                <img src="../assets/logo.png" alt="Company Logo">
-            </a>
-            <nav class="navbar navbar-expand-lg navbar-light navbar-icons">
-                <div class="user">
-                    <i class="far fa-user"></i>
-                </div>
-                <div class="star">
-                    <i class="far fa-star"></i>
-                </div>
-                <div class="cart">
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-            </nav>
-            <nav class="navbar navbar-expand-md navbar-light navbar-categories">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#categoriesNavbar" aria-controls="categoriesNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon fas"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="categoriesNavbar">
-                    <ul class="navbar-nav mt-2 mt-lg-0 mr-lg-4">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Indoor</a>
-                        </li>
-                        <li class="nav-item  divider">
-                            <a class="nav-link" href="#">Outdoor</a>
-                        </li>
-                        <li class="nav-item  divider">
-                            <a class="nav-link" href="#">Vases</a>
-                        </li>
-                        <li class="nav-item  divider">
-                            <a class="nav-link" href="#">Tools</a>
-                        </li>
-                        <li class="nav-item  divider">
-                            <a class="nav-link" href="#">Deals</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col user">
+        <div id="page-container">
+            <div id="content-wrap">
+                <nav class="navbar-wrapper navbar navbar-expand-md">
+                    <a class="navbar-brand" href="#">
+                        <img src="../assets/logo.png" alt="Company Logo">
+                    </a>
+                    <nav class="navbar navbar-expand-lg navbar-light navbar-icons">
+                        <div class="user">
                             <i class="far fa-user"></i>
                         </div>
-                        <div class="col star">
+                        <div class="star">
                             <i class="far fa-star"></i>
                         </div>
+                        <div class="cart">
+                            <i class="fas fa-shopping-basket"></i>
+                        </div>
+                    </nav>
+                    <nav class="navbar navbar-expand-md navbar-light navbar-categories">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#categoriesNavbar" aria-controls="categoriesNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon fas"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="categoriesNavbar">
+                            <ul class="navbar-nav mt-2 mt-lg-0 mr-lg-4">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Indoor</a>
+                                </li>
+                                <li class="nav-item  divider">
+                                    <a class="nav-link" href="#">Outdoor</a>
+                                </li>
+                                <li class="nav-item  divider">
+                                    <a class="nav-link" href="#">Vases</a>
+                                </li>
+                                <li class="nav-item  divider">
+                                    <a class="nav-link" href="#">Tools</a>
+                                </li>
+                                <li class="nav-item  divider">
+                                    <a class="nav-link" href="#">Deals</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col user">
+                                    <i class="far fa-user"></i>
+                                </div>
+                                <div class="col star">
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                    <div class="input-group w-auto mt-1 rounded-pill border border-dark navbar-search">
+                        <span class="input-group-append">
+                            <button class="btn border border-right-0" type="button">
+                                <i class="fas fa-search form-control-feedback"></i>
+                            </button>
+                        </span>
+                        <input class="form-control border-left-0">
                     </div>
-                </div>
-            </nav>
-            <div class="input-group w-auto mt-1 rounded-pill border border-dark navbar-search">
-                <span class="input-group-append">
-                    <button class="btn border border-right-0" type="button">
-                        <i class="fas fa-search form-control-feedback"></i>
-                    </button>
-                </span>
-                <input class="form-control border-left-0">
-            </div>
-        </nav>
+                </nav>
     <?php } ?>
