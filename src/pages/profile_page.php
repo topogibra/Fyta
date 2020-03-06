@@ -27,21 +27,23 @@ make_header([], ['../styles/profile_page.css']);
                     </div>
                 </div>
                 <div class="row justify-content-between">
-                    <div class="col-md-2 col-sm-6 order">
+                    <div class="col-md-2 col-6 order">
                         125877
                     </div>
-                    <div class="col-md-2 col-sm-6 date">
+                    <div class="col-md-2 col-6 date">
                         Dec 24 2019
                     </div>
-                    <div class="col-md-2 col-sm-6 price">
+                    <div class="col-md-2 col-6 price">
                         23.45€
                     </div>
-                    <div class="col-md-2 col-sm-6 state">
+                    <div class="col-md-2 col-6 state">
                         Processed
                     </div>
-                    <div class="col-md-2 col-sm-6 re-order">
+                    <div class="col-md-2 col-6 re-order">
                         <i class="fas fa-plus-circle"></i>
-                        23.45€
+                        <span>
+                            23.45€
+                        </span>
                     </div>
                 </div>
                 <div class="row justify-content-between">
@@ -59,7 +61,9 @@ make_header([], ['../styles/profile_page.css']);
                     </div>
                     <div class="col-md-2 col-sm-6 re-order">
                         <i class="fas fa-plus-circle"></i>
-                        23.45€
+                        <span>
+                            23.45€
+                        </span>
                     </div>
                 </div>
             </div>

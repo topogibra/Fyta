@@ -1,28 +1,22 @@
-body {
-    font-size: 1.5em;
-}
-
-.profile.container-fluid{
-    padding: 0 4em;
-}
-
-
 .account-sections {
     padding-top: 10em;
 }
 
 h3 {
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: bold;
 }
 
 .badge {
-    font-size: 1.2em;
     background-color: transparent;
     font-weight: 300;
     display: block;
     text-align: start;
     padding: 1em 0;
+}
+
+.order {
+    text-decoration: underline;
 }
 
 .profile .col-md-9 {
@@ -45,10 +39,23 @@ h3 {
     padding: 0.5em 0;
 }
 
-@media(max-width: 800px){
+
+
+@media(min-width: 770px){
+    .profile.container-fluid{
+        font-size: 1.5em;
+        padding: 0 4em;
+    }
+
+    .re-order > span{
+        display: none;
+    }
+}
+@media(max-width: 770px){
     .account-sections{
         padding-top: 0em;
         order: 0;
+        margin: auto;
     }
 
     .row.header{
@@ -98,18 +105,37 @@ h3 {
     }
 
     .badge {
-        margin: 0 1.5em;
+        margin-right: 1.3em;
     }
 
     .account-sections > ul.list-group {
         flex-direction: row;
+        justify-content: center;
+        font-size: 1.6em;
+        overflow-x: scroll;
+        width: 100%;
     }
 
     h3 {
         font-size: 1.7em;
+        text-align: center;
     }
 
     .profile .col-md-9{
         order: 1;
+    }
+}
+
+@media(min-width: 1800px){
+    .profile.container-fluid{
+        font-size: 1.8em;
+    }
+
+    .badge{
+        font-size: 0.9em;
+    }
+
+    .fas.fa-plus-circle{
+        font-size: 1.3em;
     }
 }
