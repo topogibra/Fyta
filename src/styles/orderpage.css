@@ -5,9 +5,6 @@
     padding: 4px 2em;
 }
 
-.payment-method .buttons button:active{
-    color: aqua;
-}
 .payment-method #back-btn {
     background-color: var(--light-gray);
     color: var(--black);
