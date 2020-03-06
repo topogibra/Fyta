@@ -3,7 +3,7 @@
 /*banner*/
 
 #main-banner {
-    height: 40vh;
+    height: 50vh;
     margin: 4em 16em;
     background-image: url("../assets/plantas-interior-1.jpg");
     background-clip: content-box;
@@ -16,49 +16,47 @@
     text-shadow: 0.2rem 0.2rem 0.2rem var(--green);
 }
 
+
 /* top_sold  */
 
 .top-sold {
-    margin-top: 2em;
+    margin-top: 7%;
+    margin-bottom: 7%;
 }
 
-.top-sold > h2 {
+.top-sold>h2 {
     text-align: center;
-    margin-top: 4em;
     padding-bottom: 1em;
-    font-size: 2.5em;
-
 }
 
-.top-sold > h2 > a {
+.top-sold>h2>a {
     text-decoration: none;
     align-self: center;
     color: var(--green);
-    font-size: 1.2em;
+    font-size: 0.8em;
 }
 
-.top-sold .product  .img-wrapper  .product-image {
+.top-sold .product .img-wrapper .product-image {
     height: 100%;
     margin: auto;
 }
 
-
-.top-sold .row .card.product{
+.top-sold .row .card.product {
     width: 400px;
 }
 
-.top-sold  .product  .img-wrapper {
+.top-sold .product .img-wrapper {
     height: 300px;
     width: 300px;
     margin: auto;
 }
 
 .top-sold .product .product-name {
-    font-size: 1.8em;
+    font-size: 1.1em;
 }
 
 .top-sold .product .product-price {
-    font-size: 1.5em;
+    font-size: 1em;
 }
 
 
@@ -75,83 +73,68 @@ footer.row {
     width: 100%;
 }
 
-footer.row > #copyright {
+footer.row>#copyright {
     padding-left: 5rem;
     color: var(--white);
 }
 
-footer.row > div > a {
+footer.row>div>a {
     padding: 0 1em;
     color: var(--white);
-
 }
 
-footer.row > div > a:nth-child(2)::before {
+footer.row>div>a:nth-child(2)::before {
     border-left: 1px solid white;
     padding: 0 1em;
     height: 1em;
     content: "";
 }
-footer.row > div > a:nth-child(2)::after{
+
+footer.row>div>a:nth-child(2)::after {
     border-right: 1px solid white;
     padding: 0 1em;
     height: 1em;
     content: "";
 }
 
+
 /* media queries */
 
-@media (max-width: 1400px){
-    
+@media (max-width: 1440px) {
     #main-banner p {
         display: none;
     }
-
-    #main-banner {
-        height: 30vh;
-        margin: 0 1em;
-        background-clip: unset;
-
+    .top-sold>h2>a {
+        font-size: 0.75em;
     }
-
-    .top-sold > h2 > a {
-        font-size: 1em;
-    }
-
-     .top-sold div.row {
+    .top-sold div.row {
         padding: 0 4em;
     }
-
     footer.row {
         height: 4em;
         flex-direction: row;
         flex-wrap: wrap;
     }
-
-     footer.row > #copyright, footer.row > .nav {
+    footer.row>#copyright,
+    footer.row>.nav {
         max-height: 100%;
         align-self: normal !important;
         padding: 0;
     }
-
-    footer.row > #copyright {
+    footer.row>#copyright {
         margin-left: 5em;
     }
-
-    footer.row > .nav {
+    footer.row>.nav {
         flex-wrap: nowrap;
         margin-left: 5em;
     }
-
-    footer.row > .nav > #contacts {
+    footer.row>.nav>#contacts {
         padding-right: 0;
     }
-
 }
 
-
 @media (min-width: 425px) {
-    .top-sold > h2 {
+    .top-sold>h2 {
         margin-bottom: 1em;
     }
 }
@@ -162,11 +145,9 @@ footer.row > div > a:nth-child(2)::after{
         height: 10em;
         width: 10em;
     }
-    
     .top-sold .row .card-body {
         padding-top: 0;
     }
-
 }
 
 @media (max-width: 768px) {
@@ -175,8 +156,8 @@ footer.row > div > a:nth-child(2)::after{
         line-height: unset;
         display: grid;
     }
-
-    footer.row > #copyright, footer.row > .nav {
+    footer.row>#copyright,
+    footer.row>.nav {
         text-align: center;
         align-content: center;
         max-width: inherit;
@@ -185,37 +166,31 @@ footer.row > div > a:nth-child(2)::after{
         justify-content: center;
         align-items: center;
     }
-
-    footer.row > #copyright {
-        font-size: 0.8em ;
+    footer.row>#copyright {
+        font-size: 0.8em;
         grid-row-start: 2;
     }
-
-    footer.row > .nav {
+    footer.row>.nav {
         font-size: 0.9em;
     }
 }
 
-@media(max-width: 800px){
-    .top-sold .row .card.product{
+@media(max-width: 800px) {
+    .top-sold .row .card.product {
         flex-basis: 100%;
     }
 }
 
-
-@media(min-width: 1000px){
-
-    .top-sold .row .card.product{
+@media(min-width: 1000px) {
+    .top-sold .row .card.product {
         width: 200px;
         height: 200px;
     }
-
-    .top-sold  .product  .img-wrapper {
+    .top-sold .product .img-wrapper {
         height: 200px;
         width: 200px;
         margin: auto;
     }
-
     .top-sold .row {
         padding: 0 18em;
         justify-content: center;
