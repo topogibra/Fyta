@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="container summary">
-            <div class="row header">
+            <div class="row header justify-space-around">
                 <div class="col-md-5 col-sm-6 order-ref text-left">
                     <p class="order-id font-weight-bold text-nowrap">Order #125877</p>
                     <div class="order-placed row">
@@ -19,25 +19,25 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6 deliver-address">
-                    <p class="font-weight-bold text-nowrap">Deliver to:</p>
-                    <p class="order-recipient text-wrap">Ellie Black</p>
-                    <p class="order-address text-nowrap">Marcombe Dr NE, 334 3rd floor</p>
-                    <p class="order-location text-nowrap">Calgary, Canada</p>
+                    <p class="font-weight-bold ">Deliver to:</p>
+                    <p class="order-recipient">Ellie Black</p>
+                    <p class="order-address">Marcombe Dr NE, 334 3rd floor</p>
+                    <p class="order-location ">Calgary, Canada</p>
                 </div>
             </div>
             <div class="row order-list-item">
-                <div class="col-md-3">
+                <div class="col-md-3 col-xs-4">
                     <div class="img-wrapper">
                         <img class="product-image img-fluid border border-dark" src="../assets/vaso.jpg" alt="Vaso">
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 col-xs-2">
                     <p class="product-name">Vaso CRTF</p>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 col-xs-2">
                     <p class="product-price">20€</p>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 col-xs-4">
                     <div class="quantity-box">1</div>
                 </div>
             </div>
