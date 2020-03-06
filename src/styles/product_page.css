@@ -1,3 +1,14 @@
+@media(min-width: 1800px){
+    section.container-fluid{
+        font-size: 1.2em;
+    }
+
+    #reviews > .row.comment{
+        margin: 0 4em;
+    }
+}
+
+
 .row .dropdown .btn.btn-secondary{
     background-color: #655f5f26;
     border-color: transparent;
@@ -19,6 +30,12 @@
     cursor: pointer;
 }
 
+.view-reviews > a {
+    color: var(--gray);
+    font-size: 1.4em;
+    text-decoration: underline;
+}
+
 .container-fluid.title .price{
     color: #655f5f;
     font-size: 1.7em;
@@ -34,7 +51,7 @@
     color: #567A4D;
 }
 
-.col.review{
+.col-md-3.review{
     font-size: 1.5em;
     color: #655f5f;
 }
@@ -42,6 +59,10 @@
 @media(min-width: 900px){
     #purchase-buttons a {
         margin-left: 0.4em;
+    }
+
+    #content-wrap {
+        margin: 0 3em;
     }
 }
 
@@ -64,7 +85,7 @@ div.related-products{
 @media(max-width: 770px){
 
     .row.product-section {
-        padding: 0 1em;
+        padding: 0 3em;
     }
 
     .related-products{
@@ -107,6 +128,11 @@ div.related-products{
     width: 100%;
 }
 
+.row.product-section > .row > * {
+    flex-basis: auto;
+    width: auto;
+}
+
 .comment > .container{
     border-bottom: 1px solid #655f5f80;
 }
@@ -139,6 +165,11 @@ div.related-products{
     flex-wrap: nowrap;
 }
 
+.container-fluid.title .col-md-3 {
+    width: auto;
+    flex-basis: auto;
+}
+
 .fa-star{
     padding: 0 0.1em;
 }
@@ -159,6 +190,4 @@ div.related-products{
     .comment > .container > .row > .col-md-6{
         padding: 0;
     }
-
-
 }

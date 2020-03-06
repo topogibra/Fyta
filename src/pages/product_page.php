@@ -12,21 +12,26 @@ make_header(['../js/product_page.js'], ['../styles/product_page.css']);
         </div>
         <div class="col-md">
             <div class="container-fluid title">
-                <div class="row align-items-center justify-content-around">
-                    <h3 class="col">
+                <div class="row align-items ">
+                    <h3 class="col-md-3">
                         Bonsai CRT
                     </h3>
-                    <span class="col review">
+                    <span class="col-md-3 review">
                         <h6>4.8</h6>
                         <i class="far fa-star"></i>
+                    </span>
+                    <span class="col-md-3 view-reviews">
+                        <a href="#reviews">View Reviews</a>
                     </span>
 
                 </div>
                 <div class="row price">
                     35€
                 </div>
-                <div class="row">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non sodales quam. Etiam venenatis est ex, id gravida nulla hendrerit sit amet. Quisque vel nibh.
+                <div id="description" class="row">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non sodales quam. Etiam venenatis est ex, id gravida nulla hendrerit sit amet. Quisque vel nibh.
+                    </p>
                 </div>
                 <div class="row align-items-center">
                     <div class="col-md-1-12 pr-3">
@@ -92,9 +97,9 @@ make_header(['../js/product_page.js'], ['../styles/product_page.css']);
             </article>
         </div>
     </div>
-    <div class="row product-section">
+    <div id="reviews" class="row product-section">
         <span class="row reviews-title justify-content-start">
-            <h3 class="col-md-3">345 Reviews</h3>
+            <h3 class="col-md-4">345 Reviews</h3>
             <div class="col-md-1 row">
                 <i class=" fas fa-star"></i>
                 <i class=" fas fa-star"></i>
