@@ -1,4 +1,5 @@
-import { removeAll } from './utils.js'
+import buildProductRow from './product_row.js'
+import buildSections from './sections.js'
 
 function createOrderColumn(info, attribute){
     const column = document.createElement('div');
@@ -39,15 +40,9 @@ function buidOrderHistory(orders){
         ordersContainer.appendChild(orderRow);
     });
 
-    const header = document.createElement('h3');
-    header.textContent = "Order History";
-    
-    const contentContainer = document.querySelector('.profile > .row > .col-md-9');
-    removeAll(contentContainer);
-
-    contentContainer.appendChild(header);
-    contentContainer.appendChild(ordersContainer);
+    return ordersContainer;
 }
+
 
 const mockOrders = [
     {
@@ -64,4 +59,45 @@ const mockOrders = [
     }
 ];
 
-// buidOrderHistory(mockOrders);
+const mockItems = [
+    {
+        img: "../assets/orquideas.jpg",
+        name: "Orquídea Rosa",
+        price: "20€"
+    },
+    {
+        img: "../assets/orquideas.jpg",
+        name: "Orquídea Rosa",
+        price: "20€"
+    },
+    {
+        img: "../assets/orquideas.jpg",
+        name: "Orquídea Rosa",
+        price: "20€"
+    },
+    {
+        img: "../assets/orquideas.jpg",
+        name: "Orquídea Rosa",
+        price: "20€"
+    }
+];
+
+const userProfileSections = [
+    {
+        name: "Personal Information",
+        action: () => document.createElement('div')
+    },
+    {
+        name: "Order History",
+        action: () => buidOrderHistory(mockOrders)
+    },
+    {
+        name: "My Wishlist",
+        action: () => buildProductRow(mockItems)
+    },
+];
+
+
+buildSections(userProfileSections);
+
+
