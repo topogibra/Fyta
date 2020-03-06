@@ -1,3 +1,5 @@
+@import url("pallette.css");
+
 .input-group.rounded-pill {
     overflow: hidden;
 }
@@ -78,7 +80,7 @@
         padding: 0;
         overflow: hidden;
         color: white;
-        background-color: #567A4D;
+        background-color: var(--green);
         height: -webkit-fill-available;
     }
     .navbar-wrapper.click .navbar-light .navbar-toggler-icon {

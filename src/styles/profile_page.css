@@ -1,3 +1,5 @@
+@import url("pallette.css");
+
 .account-sections {
     padding-top: 10em;
 }
@@ -31,11 +33,11 @@ h3 {
 
 .orders .row.header{
     background-color: #ECECEC84;
-    color: #655F5F;
+    color: var(--dark-gray);
 }
 
 .orders .row:not(.header){
-    border-bottom: 1px solid #707070;
+    border-bottom: 1px solid var(--light-gray);
     padding: 0.5em 0;
 }
 
@@ -72,7 +74,7 @@ h3 {
     }
 
     .orders .row:not(.header){
-        border-top: 1px solid #707070;
+        border-top: 1px solid var(--light-gray);
         border-bottom:0;
     }
 

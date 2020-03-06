@@ -2,12 +2,12 @@
 include_once('../components/footer.php');
 include_once('../components/header.php');
 
-make_header([], ['../styles/profile_page.css']);
+make_header(['../js/profile_page.js'], ['../styles/profile_page.css']);
 ?>
 <div class="container-fluid profile">
     <div class="row">
         <div class="col-md-9">
-            <h3>Personal Information</h3>
+            <h3>Order History</h3>
             <div class="container orders">
                 <div class="row header">
                     <div class="col-md-2">
