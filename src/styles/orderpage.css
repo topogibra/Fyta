@@ -5,6 +5,9 @@
     padding: 4px 2em;
 }
 
+.payment-method .buttons button:active{
+    color: aqua;
+}
 .payment-method #back-btn {
     background-color: var(--light-gray);
     color: var(--black);
@@ -42,6 +45,11 @@
     padding-right: 0;
 
 }
+
+.options > a.col-6:link, .options > a.col-6:visited {
+    color: var(--green);
+}
+
 .options > .col-6:nth-child(2):before {
     content: "";
     border-left: 1px solid var(--light-gray);
@@ -77,6 +85,12 @@
 @media (max-width: 1400px) {
     .payment-method {
         padding: 0 10em;
+    }
+}
+
+@media (max-width: 1600px) and ( min-width: 1400px) {
+    .payment-method {
+        padding: 0 20em;
     }
 }
 
@@ -138,5 +152,20 @@
 
     .payment-method .btn {
         height: 100%;
+    }
+
+    .options >.col-6:nth-child(2) {
+        border-top:  0;
+        padding-top: 0;
+    }
+
+    .options > .col-6:nth-child(2) .img-wrapper{
+        border-top:  1px solid var(--light-gray);
+        padding-top: 1em;
+    }
+
+    .options > .col-6:nth-child(2) .img-wrapper .payment-img {
+        width: 100%;
+        height: auto;
     }
 }
