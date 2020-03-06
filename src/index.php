@@ -1,3 +1,3 @@
 <?php
-    header('Location: pages/orderpage.php');
+    header('Location: pages/checkout.php');
 ?>
