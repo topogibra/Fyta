@@ -39,6 +39,9 @@ make_checkoutprogress(); ?>
             <input type="text" class="form-control" id="Billing Address" placeholder="Billing Address">
         </div>
     </form>
+    <button type="button" id="next-btn" class="btn rounded-0 btn-lg shadow-none">Finish</button>
+
+
 </div>
 
 
