@@ -36,7 +36,7 @@ make_checkoutprogress(); ?>
 
 
         <div class="form-group">
-            <input type="text" class="form-control" id="Billing Address" placeholder="Delivery Address">
+            <input type="text" class="form-control" id="Billing Address" placeholder="Billing Address">
         </div>
     </form>
 </div>

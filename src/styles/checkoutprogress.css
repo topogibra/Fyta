@@ -89,6 +89,21 @@
         max-width: 30%;
     }
     .steps>.row {
-        margin: 2em 2em 2em 15%;
+        margin: 2em 2em 2em 22%;
+    }
+}
+
+@media (max-width: 425px) {
+    hr {
+        width: 20%;
+    }
+    .steps .row .col p:nth-child(2) {
+        display: none;
+    }
+    .steps .row .col {
+        max-width: 30%;
+    }
+    .steps>.row {
+        margin: 2em 2em 2em 22%;
     }
 }
