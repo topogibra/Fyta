@@ -62,11 +62,19 @@
 
 /* footer  */
 
-footer.row {
+#page-container {
     position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 120px ;
+}
+
+footer.row {
+    position: absolute;
     bottom: 0;
     margin: auto;
-    margin-top: 2em;
     background-color: var(--green);
     height: 60px;
     line-height: 60px;
