@@ -17,6 +17,12 @@
     color: var(--green);
 }
 
+.summary {
+    padding-bottom: 1em;
+    margin-bottom: 3em;
+    border-bottom: 2px solid var(--black);
+}
+
 
 /* Order Header */
 
@@ -69,6 +75,34 @@
     border: 1px solid var(--black);
 }
 
+/* Order Fee and Price */
+
+.summary .delivery-fee {
+    padding-right: 12em;
+    padding-top: 1em;
+}
+
+.summary .delivery-fee p {
+    padding-right: 1em;
+    margin-bottom: 0;
+    font-size: 1.2em;
+}
+
+.summary .order-total {
+    font-size: 1.5em;
+    padding-right: 8em;
+    padding-top: 0.5em;
+}
+
+.summary .order-total p {
+    padding-right: 0.8em;
+    margin-bottom: 0;
+}
+
+.summary .order-total .total {
+    color: var(--green);
+}
+
 @media (max-width: 1600px) {
     .order-summary {
         padding: 0 20em;
@@ -76,6 +110,16 @@
 
     .order-status {
         flex-wrap: nowrap;
+    }
+}
+
+@media (max-width: 1400px) {
+    .summary .delivery-fee {
+        padding-right: 9em;
+    }
+
+    .summary .order-total {
+        padding-right: 6em;
     }
 }
 
@@ -115,10 +159,6 @@
         padding: 1em 0;
     }
 
-    /* .order-list-item .col-md-3:nth-child(3) {
-        order: 4;
-    } */
-
     .order-list-item .col-md-3 p {
         font-size: 0.9em;
     }
@@ -132,6 +172,12 @@
         padding-left: 0;
         padding-right: 0;
     }
+
+    .summary .delivery-fee,
+    .summary .order-total {
+        padding-right: 0;
+    }
+
 }
 
 @media (max-width: 360px) {
