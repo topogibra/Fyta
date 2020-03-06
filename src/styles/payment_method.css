@@ -1,16 +1,17 @@
 @import url('pallette.css');
+/* Payment Method */
 
-.payment-method button {
+ button {
     border: 1px solid var(--gray);
     padding: 4px 2em;
 }
 
-.payment-method #back-btn {
+ #back-btn {
     background-color: var(--light-gray);
     color: var(--black);
 }
 
-.payment-method #next-btn {
+ #next-btn {
     background-color: var(--green);
     color: var(--white);
 }
@@ -136,18 +137,18 @@
     .payment-method {
         padding: 0 2em;
     }
-    .payment-method .buttons {
+    .buttons {
         padding-top: 0;
         flex-wrap: nowrap;
         height: 75%;
         font-size: 1em;
     }
 
-    .payment-method #back-btn {
+    #back-btn {
         margin-right: 1em;
     }
 
-    .payment-method .btn {
+    .btn {
         height: 100%;
     }
 
@@ -166,3 +167,4 @@
         height: auto;
     }
 }
+
