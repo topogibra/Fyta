@@ -35,7 +35,6 @@
         background-color: var(--green-color);
         color: var(--white-color);
         width: 20%;
-        justify-content: end;
     }
     
     @media (max-width: 1024px) {
@@ -51,6 +50,17 @@
     }
     
     @media (max-width: 768px) {
+        .flex-row-reverse {
+            flex-direction: row;
+            justify-content: center;
+        }
+        #next-btn {
+            width: 100%;
+        }
+        h3 {
+            margin: auto;
+            text-align: center;
+        }
         .form {
             margin: 2em 10%;
         }

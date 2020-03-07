@@ -6,7 +6,7 @@ include_once('../components/checkoutprogress.php');
 
 make_header([], ["../styles/orderdetails.css","../styles/checkoutprogress.css"]);
 
-make_checkoutprogress(); ?>
+make_checkoutprogress(1); ?>
 
 <h3>Order Details</h3>
 <div class="form">
@@ -38,10 +38,10 @@ make_checkoutprogress(); ?>
         <div class="form-group">
             <input type="text" class="form-control" id="Billing Address" placeholder="Billing Address">
         </div>
+        <div class="d-flex flex-row-reverse">
+        <button type="button" id="next-btn" class="btn rounded-0 btn-lg shadow-none">Finish</button>
+        </div>
     </form>
-    <button type="button" id="next-btn" class="btn rounded-0 btn-lg shadow-none">Finish</button>
-
-
 </div>
 
 
