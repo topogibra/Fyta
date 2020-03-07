@@ -18,7 +18,7 @@ make_header(['../js/manager_page.js'], ['../styles/profile_page.css']);
                         <p>Added on Aug 17 2016</p>
                     </div>
                     <span class="delete-button">
-                        <a  class="btn btn-secondary" href="#" role="button">
+                        <a class="btn btn-secondary" href="#" role="button">
                             <i class="fas fa-times"></i>
                         </a>
                     </span>
@@ -26,7 +26,26 @@ make_header(['../js/manager_page.js'], ['../styles/profile_page.css']);
             </div>
             <div class="row">
                 <div class="col mt-3 mb-3 center">
-                    <a class="btn btn-primary w-100 mt-3" id="add-manager" href="#" role="button">Add New Manager</a>
+                    <button class="btn btn-primary w-100 mt-3" id="add-manager" data-toggle="modal" data-target="#addManager" type="button">Add New Manager</button>
+                </div>
+                <div class="modal fade" id="addManager" tabindex="-1" role="dialog" aria-labelledby="addManagerLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="addManagerLabel">Add New Manager</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                ...
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

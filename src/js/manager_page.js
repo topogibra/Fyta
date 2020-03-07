@@ -184,13 +184,65 @@ function buildManagers(managers) {
     row.className = "row";
     const col = document.createElement('div');
     col.className = "col mt-3 mb-3 center";
-    const button = document.createElement('a');
+    const button = document.createElement('button');
     button.className = "btn btn-primary w-100 mt-3";
     button.id = "add-manager";
-    button.setAttribute('role', 'button');
+    button.type = "button"
+    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', 'addManager');
     button.textContent = "Add New Manager";
     col.appendChild(button);
     row.appendChild(col);
+
+    const modal = document.createElement('div');
+    modal.id = "addManager";
+    modal.className = "modal fade";
+    modal.tabIndex = -1;
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-labelledby', 'addManagerLabel');
+    modal.setAttribute('aria-hidden', 'true');
+    const dialog = document.createElement('div');
+    dialog.className = "modal-dialog";
+    dialog.setAttribute('role', 'document');
+    modal.appendChild(dialog);
+    const content = document.createElement('div');
+    content.className = "modal-content";
+    dialog.appendChild(content);
+    const header = document.createElement('div');
+    header.className = "modal-header";
+    content.appendChild(header);
+    const title = document.createElement('h5');
+    title.className = "modal-title";
+    title.id = "addManagerLabel";
+    title.textContent = "Add New Manager";
+    header.appendChild(title);
+    const closeButton = document.createElement('button');
+    closeButton.className = "close";
+    closeButton.setAttribute('type', 'button');
+    closeButton.setAttribute('data-dismiss', 'modal');
+    closeButton.setAttribute('aria-label', 'Close');
+    header.appendChild(closeButton);
+    const icon = document.createElement('i');
+    icon.className = "fas fa-times";
+    closeButton.appendChild(icon);
+
+    const body = document.createElement('div');
+    body.className = "modal-body";
+    body.textContent = "Meias";
+    content.appendChild(body);
+
+    const footer = document.createElement('div');
+    footer.className = "modal-footer";
+    const saveButton = document.createElement('button');
+    saveButton.className = "btn btn-primary";
+    saveButton.setAttribute('data-dismiss', 'modal');
+    saveButton.textContent = "Confirm";
+    footer.appendChild(saveButton);
+    content.appendChild(footer);
+
+    row.appendChild(modal);
+
+
 
     return [container, row];
 }

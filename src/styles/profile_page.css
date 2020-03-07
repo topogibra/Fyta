@@ -247,3 +247,10 @@ input.stock {
     height: 3.5em;
     margin-left: 0.3em;
 }
+
+.modal-title{
+    color: var(--green);
+    width: 100%;
+    text-align: center;
+}
+
