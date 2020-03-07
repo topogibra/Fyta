@@ -28,46 +28,46 @@
             <div class="row order-list-item">
                 <div class="col-md-3 col-xs-4">
                     <div class="img-wrapper">
-                        <img class="product-image img-fluid border border-dark" src="../assets/vaso.jpg" alt="Vaso">
+                        <img class="product-image img-fluid border border-dark" src="../assets/sativa_indoor.jpg" alt="Sativa Prime">
                     </div>
                 </div>
                 <div class="col-md-3 col-xs-2">
-                    <p class="product-name">Vaso CRTF</p>
+                    <p class="product-name">Sativa Prime</p>
                 </div>
                 <div class="col-md-3 col-xs-2">
-                    <p class="product-price">20€</p>
+                    <p class="product-price">12.60€</p>
                 </div>
                 <div class="col-md-3 col-xs-4">
+                    <div class="quantity-box">3</div>
+                </div>
+            </div>
+            <div class="row order-list-item">
+                <div class="col-md-3">
+                    <div class="img-wrapper">
+                        <img class="product-image img-fluid border border-dark" src="../assets/supreme_vase.jpg" alt="Supreme Bonsai Pot">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <p class="product-name ">Supreme Bonsai Pot</p>
+                </div>
+                <div class="col-md-3">
+                    <p class="product-price">40€</p>
+                </div>
+                <div class="col-md-3">
                     <div class="quantity-box">1</div>
                 </div>
             </div>
             <div class="row order-list-item">
                 <div class="col-md-3">
                     <div class="img-wrapper">
-                        <img class="product-image img-fluid border border-dark" src="../assets/vaso.jpg" alt="Vaso">
+                        <img class="product-image img-fluid border border-dark" src="../assets/watercan_tool.jpg" alt="Green Watercan 12l">
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <p class="product-name ">Vaso CRTF</p>
+                    <p class="product-name">Green Watercan 12l</p>
                 </div>
                 <div class="col-md-3">
-                    <p class="product-price">20€</p>
-                </div>
-                <div class="col-md-3">
-                    <div class="quantity-box">1</div>
-                </div>
-            </div>
-            <div class="row order-list-item">
-                <div class="col-md-3">
-                    <div class="img-wrapper">
-                        <img class="product-image img-fluid border border-dark" src="../assets/vaso.jpg" alt="Vaso">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <p class="product-name">Vaso CRTF</p>
-                </div>
-                <div class="col-md-3">
-                    <p class="product-price">20€</p>
+                    <p class="product-price">5€</p>
                 </div>
                 <div class="col-md-3">
                     <div class="quantity-box">1</div>
@@ -79,7 +79,7 @@
             </div>
             <div class="order-total row justify-content-end">
                 <p class="total text-right">Total Value:</p>
-                <p class="total-value text-right">60€</p>
+                <p class="total-value text-right">47.60€</p>
             </div>
         </div>
         <div class="row buttons lg-content-between sm-space-around">

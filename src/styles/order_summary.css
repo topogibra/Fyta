@@ -68,6 +68,11 @@
     width: 80px;
 }
 
+.row .col-md-3 .img-wrapper .product-image {
+    height: 100%;
+    width: 100%;
+}
+
 .row .col-md-3 .quantity-box {
     text-align: center;
     padding: 0 0.5em;
