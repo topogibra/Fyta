@@ -85,15 +85,15 @@ const mockItems = [
 const userProfileSections = [
     {
         name: "Personal Information",
-        action: () => document.createElement('div')
+        action: () => [document.createElement('div')]
     },
     {
         name: "Order History",
-        action: () => buidOrderHistory(mockOrders)
+        action: () => [buidOrderHistory(mockOrders)]
     },
     {
         name: "My Wishlist",
-        action: () => buildProductRow(mockItems)
+        action: () => [buildProductRow(mockItems)]
     },
 ];
 

@@ -16,7 +16,7 @@ export default function buildSections(sections){
             const header = document.createElement('h3');
             header.textContent = section.name;
             contentContainer.appendChild(header);
-            contentContainer.appendChild(section.action());
+            section.action().forEach(element => contentContainer.appendChild(element));
         });
         item.appendChild(reference);
         listGroup.appendChild(item);

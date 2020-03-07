@@ -9,9 +9,13 @@ h3 {
     font-weight: bold;
 }
 
-.btn-primary{
+#products-button,
+#products-button:focus,
+#products-button:active{
     background-color: var(--green);
     border-color: var(--green);
+    color: var(--white);
+    max-width: 10em;
 }
 
 .badge {
@@ -20,6 +24,10 @@ h3 {
     display: block;
     text-align: start;
     padding: 1em 0;
+}
+
+.fa-trash {
+    color: var(--green);
 }
 
 .order, .name {
@@ -57,6 +65,22 @@ h3 {
     .re-order > span{
         display: none;
     }
+
+    .stock-wrapper input.stock {
+        flex-basis: auto;
+        width: 3em;
+        max-width: fit-content;
+    }
+}
+
+
+input.stock {
+    text-align: center;
+    width: 100%;
+}
+
+.stock-wrapper, input {
+    padding: 0;
 }
 
 @media(max-width: 770px){
@@ -140,6 +164,20 @@ h3 {
     .delete, .name, .stock {
         order: 1;
     }
+
+    .profile.container-fluid .container .row .delete, 
+    .profile.container-fluid .container .row .name{
+        text-align: left;
+    }
+
+    .profile.container-fluid .container .row .stock,
+    .profile.container-fluid .container .row .price {
+        text-align: right;
+    }
+
+    input {
+        width: fit-content;
+    }
 }
 
 @media(min-width: 1800px){
@@ -154,4 +192,14 @@ h3 {
     .fas.fa-plus-circle{
         font-size: 1.3em;
     }
+}
+
+
+
+@media(max-width: 1260px){
+    .fa-plus-square,
+    .fa-minus-square {
+        display: none;
+    }
+
 }
