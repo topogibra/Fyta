@@ -9,13 +9,16 @@ h3 {
     font-weight: bold;
 }
 
-#products-button,
-#products-button:focus,
-#products-button:active{
-    background-color: var(--green);
-    border-color: var(--green);
-    color: var(--white);
-    max-width: 10em;
+.btn.btn-primary,
+.btn.btn-primary:focus
+.btn.btn-primary:active{
+    background-color: var(--green) !important;
+    border-color: var(--green) !important;
+    color: var(--white) !important;
+}
+
+.btn.btn-primary:not(#add-manager){
+    max-width: 10em !important;
 }
 
 .badge {
@@ -98,7 +101,7 @@ input.stock {
         border-bottom-width: thin;
     }
 
-    .orders .row .col-md-2.order{
+    .profile.container-fluid .container .row .order{
         order: 1;
         text-align: start;
     }
@@ -108,9 +111,19 @@ input.stock {
         border-bottom:0;
     }
 
-    .orders .row .col-md-2.date{
+    .profile.container-fluid .container .row .date{
         order: 2;
         text-align: end;
+    }
+
+    .profile.container-fluid .container .row .status{
+        order: 3;
+        text-align: left;
+    }
+
+    .profile.container-fluid .container .row .confirm{
+        order: 4;
+        text-align: right;
     }
 
     .orders .row .col-md-2.re-order .fas{
@@ -175,6 +188,8 @@ input.stock {
         text-align: right;
     }
 
+
+
     input {
         width: fit-content;
     }
@@ -202,4 +217,33 @@ input.stock {
         display: none;
     }
 
+}
+
+#managers > .row {
+    position: relative;
+}
+
+#managers .delete-button {
+    position: absolute;
+    right: 0;
+    top: 0.5rem;
+}
+
+#managers .delete-button .btn.btn-secondary {
+    padding: 0.01em 0.4em;
+    background-color: var(--white);
+    color: var(--red);
+    border-color: var(--black);
+    font-size: 1.3em;
+}
+
+#managers .description {
+    text-align: left;
+    margin-left: 1em;
+}
+
+#managers img {
+    width: 3.5em;
+    height: 3.5em;
+    margin-left: 0.3em;
 }

@@ -111,6 +111,90 @@ function buildStocks(products){
     return [container, row];
 }
 
+function buidlPendingOrders(orders) {
+    const container = document.createElement('div');
+    container.className = "container";
+    const header = document.createElement('div');
+    header.className = "row header";
+
+    ['Order #', 'Purchase Date', 'Pending Status', 'Confirm Status'].forEach(element => {
+        const heading = document.createElement('div');
+        heading.className = "col-md-2";
+        heading.textContent = element;
+        header.appendChild(heading);
+    });
+
+    container.appendChild(header);
+
+    orders.forEach(order => {
+        const row = document.createElement('div');
+        row.className = "row";
+        row.appendChild(createProductColumn(order.number, 'order'));
+        row.appendChild(createProductColumn(order.date, 'date'));
+        row.appendChild(createProductColumn(order.status, 'status'));
+        const col = createProductColumn('', 'confirm');
+        const button = document.createElement('a');
+        button.className = "btn btn-primary confirm-order";
+        button.textContent = "Confirm"
+        col.appendChild(button);
+        row.appendChild(col);
+        container.appendChild(row);
+    });
+
+    return container;
+}
+
+function buildManagers(managers) {
+    const container = document.createElement('div');
+    container.id = "managers"
+    container.className = "container";
+
+    managers.forEach(manager => {
+        const row = document.createElement('div');
+        row.className = "row";
+        const photo = document.createElement('div');
+        const img = document.createElement('img');
+        img.src = manager.photo;
+        photo.appendChild(img);
+        row.appendChild(photo);
+        
+        const description = document.createElement('div');
+        description.className = "col description";
+        const heading = document.createElement('h5');
+        const parapgrah = document.createElement('p');
+        heading.textContent = manager.name;
+        parapgrah.textContent = `Added on ${manager.date}`;
+        description.appendChild(heading);
+        description.appendChild(parapgrah);
+        row.appendChild(description);
+
+        const col = document.createElement('span');
+        col.className = "delete-button";
+        const button = document.createElement('a');
+        button.className = "btn btn-secondary";
+        const icon = document.createElement('i');
+        icon.className = "fas fa-times";
+        button.appendChild(icon);
+        col.appendChild(button);
+        row.appendChild(col);
+        container.appendChild(row);
+    });
+
+    const row = document.createElement('div');
+    row.className = "row";
+    const col = document.createElement('div');
+    col.className = "col mt-3 mb-3 center";
+    const button = document.createElement('a');
+    button.className = "btn btn-primary w-100 mt-3";
+    button.id = "add-manager";
+    button.setAttribute('role', 'button');
+    button.textContent = "Add New Manager";
+    col.appendChild(button);
+    row.appendChild(col);
+
+    return [container, row];
+}
+
 const mockProducts = [
     {
         name: 'Orquidea PW',
@@ -124,11 +208,45 @@ const mockProducts = [
     },
 ];
 
+const mockOrders = [
+    {
+        number: "125877",
+        date: "Dec 24 2019",
+        status: "Ready for Shipping" 
+    },
+    {
+        number: "125877",
+        date: "Dec 24 2019",
+        status: "Sent" 
+    },
+]
+
+const mockManagers = [
+    {
+        name: "Mohammad Faruque",
+        photo: "../assets/mohammad-faruque-AgYOuy8kA7M-unsplash.jpg",
+        date: "Aug 17 2016"
+    },
+    {
+        name: "Mohammad Faruque",
+        photo: "../assets/mohammad-faruque-AgYOuy8kA7M-unsplash.jpg",
+        date: "Aug 17 2016"
+    },
+]
+
 const managerProfileSections = [
     {
         name: "Stocks",
         action: () => buildStocks(mockProducts)
     },
+    {
+        name: "Pending Orders",
+        action: () => [buidlPendingOrders(mockOrders)]
+    },
+    {
+        name: "Managers",
+        action: () => buildManagers(mockManagers)
+    }
 ];
 
 
