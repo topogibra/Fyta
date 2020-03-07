@@ -9,6 +9,8 @@
   border-radius: 1;
   z-index: -1;
   position: relative;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .form-title {
@@ -50,12 +52,13 @@ button.btn-primary {
   box-shadow: none;
 }
 
-.registerSelect {
-
-}
-
 .registerBirthday{
   flex-wrap: nowrap;
+}
+
+.container-xl > *{
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 @media (min-width: 768px) {
