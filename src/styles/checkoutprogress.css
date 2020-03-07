@@ -1,4 +1,4 @@
-@import url("palette.css");
+@import url("pallette.css");
 .steps>.row {
     margin: 2em 2em 2em 13%;
     justify-content: center;
@@ -27,7 +27,7 @@
 }
 
 .steps .row .col p:nth-child(1) {
-    border: 2px solid var(--light-grey-color);
+    border: 2px solid var(--dark-gray);
 }
 
 .steps .row .col .row p:nth-child(1) {
