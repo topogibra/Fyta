@@ -1,6 +1,13 @@
 <?php
 
-function make_checkoutprogress() { ?>
+function make_checkoutprogress($number) { ?>
+
+<style>
+    .steps .row .col:nth-child(<?php echo $number ?>) p:nth-child(1) {
+    background-color: var(--light-grey-2-color);
+}
+</style>
+
 <div class="steps">
     <div class="row">
         <div class="col">

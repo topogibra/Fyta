@@ -26,10 +26,6 @@
     margin: 1.2em 0em 0em 0.75em;
 }
 
-.steps .row .col:nth-child(1) p:nth-child(1) {
-    background-color: var(--light-grey-2-color);
-}
-
 .steps .row .col p:nth-child(1) {
     border: 2px solid var(--light-grey-color);
 }
