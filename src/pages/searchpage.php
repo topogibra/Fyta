@@ -146,7 +146,7 @@
             </div>
           </div>
 
-          <div class="col-lg-8 ">
+          <div class="col-lg-8">
             <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2">
 
               <?php
@@ -154,7 +154,9 @@
               foreach ($images as $image) : ?>
                 <div class="col mb-4">
                   <div class="card">
+                    <div class="img-wrapper">
                     <img class="card-img-top" src=<?= "../assets/" . $image ?> alt="Card image cap">
+                    </div>
                     <div class="card-body">
                       <div class="row flex-nowrap justify-content-between">
                         <h5 class="card-title">Alfyta Vase white</h5>
