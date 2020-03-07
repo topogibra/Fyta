@@ -13,10 +13,10 @@ make_header(['../js/product_page.js'], ['../styles/product_page.css']);
         <div class="col-md">
             <div class="container-fluid title">
                 <div class="row align-items ">
-                    <h3 class="col-md-3">
+                    <h3 class="col-xs-1-12">
                         Bonsai CRT
                     </h3>
-                    <span class="col-md-3 review">
+                    <span class="col-xs-1-12 review">
                         <h6>4.8</h6>
                         <i class="far fa-star"></i>
                     </span>

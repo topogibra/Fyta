@@ -67,15 +67,6 @@
         font-size: 1.2em;
     }
 
-    #description{
-        min-height: 7em;
-        position: relative;
-    }
-
-    #description > p{
-        position: absolute;
-        bottom: 0;
-    }
 }
 
 @media (max-width: 767px) {
