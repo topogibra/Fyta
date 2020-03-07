@@ -1,4 +1,3 @@
-    @import url("palette.css");
     .content {
         margin: 2% 12%;
     }
@@ -11,8 +10,8 @@
         margin: 0.10em;
     }
     
-    .card-body i .fab,
-    .far {
+    .content .card-body i .fab,
+    .content .far {
         color: var(--green-color);
     }
     
@@ -39,6 +38,7 @@
     }
     
     .img-wrapper {
+        border: 1px solid var(--light-grey-color);
         height: 300px;
         width: 300px;
     }
@@ -69,6 +69,10 @@
     .btn {
         background-color: var(--white-color);
         color: var(--black-color);
+    }
+    
+    .content .list-group-item {
+        margin: 0% 10%;
     }
     
     .btn-secondary:not(:disabled):not(.disabled).active,
@@ -137,6 +141,12 @@
         }
     }
     
+    @media (max-width: 425px) {
+        .card-title h5 {
+            font-size: 0.75em;
+        }
+    }
+    
     @media (max-width: 375px) {
         .img-wrapper {
             height: 100px;
@@ -144,7 +154,7 @@
         }
     }
     
-    @media (max-width: 768px) {
+    @media (max-width: 1000px) {
         .col-lg-3 {
             margin: 1em auto 5em auto;
         }

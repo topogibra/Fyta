@@ -2,7 +2,7 @@
       include_once('../components/footer.php');
       include_once('../components/header.php');
 
-      make_header(["../javascript/searchpage.js"], ["../styles/searchpage.css"]);
+    make_header(["../javascript/searchpage.js"], ["../styles/searchpage.css", "../styles/palette.css"]);
       ?>
 
       <div class="title">
