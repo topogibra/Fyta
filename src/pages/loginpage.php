@@ -2,13 +2,13 @@
 include_once("../components/header.php");
 include_once("../components/footer.php");
 
-make_header([], []);
+make_header([], [ "../styles/loginpage.css"]);
 ?>
-<div class="container-xl">
+<div class="container">
   <form>
     <div class="row justify-content-center">
       <div class="col-sm-6">
-        <h1 class="text-center">Login</h1>
+        <h1 class="text-center form-title">Login</h1>
       </div>
     </div>
     <div class="form-group row justify-content-center">
@@ -25,7 +25,7 @@ make_header([], []);
     </div>
     <div class="row justify-content-center">
       <div class="col-sm-6 ">
-        <button type="submit" class="btn btn-primary col-sm-12">Start Session</button>
+        <button type="submit" class="btn btn-primary col-sm-12 next-btn">Start Session</button>
       </div>
     </div>
     <div class="row justify-content-center">
