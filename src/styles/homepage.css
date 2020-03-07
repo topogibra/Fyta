@@ -59,94 +59,6 @@
     font-size: 1em;
 }
 
-
-/* footer  */
-
-#page-container {
-    position: relative;
-    min-height: 100vh;
-}
-
-#content-wrap {
-    padding-bottom: 120px ;
-}
-
-footer.row {
-    position: absolute;
-    bottom: 0;
-    margin: auto;
-    background-color: var(--green);
-    height: 60px;
-    line-height: 60px;
-    width: 100%;
-}
-
-footer.row>#copyright {
-    padding-left: 5rem;
-    color: var(--white);
-}
-
-footer.row>div>a {
-    padding: 0 1em;
-    color: var(--white);
-}
-
-footer.row>div>a:nth-child(2)::before {
-    border-left: 1px solid white;
-    padding: 0 1em;
-    height: 1em;
-    content: "";
-}
-
-footer.row>div>a:nth-child(2)::after {
-    border-right: 1px solid white;
-    padding: 0 1em;
-    height: 1em;
-    content: "";
-}
-
-
-/* media queries */
-
-@media (max-width: 1440px) {
-    .top-sold {
-        margin-bottom: 10%;
-    }
-    #main-banner p {
-        display: none;
-    }
-    #main-banner {
-        margin: 0em 8%;
-    }
-    .top-sold>h2>a {
-        font-size: 0.75em;
-    }
-    .top-sold div.row {
-        padding: 0 4em;
-    }
-    footer.row {
-        height: 4em;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-    footer.row>#copyright,
-    footer.row>.nav {
-        max-height: 100%;
-        align-self: normal !important;
-        padding: 0;
-    }
-    footer.row>#copyright {
-        margin-left: 5em;
-    }
-    footer.row>.nav {
-        flex-wrap: nowrap;
-        margin-left: 5em;
-    }
-    footer.row>.nav>#contacts {
-        padding-right: 0;
-    }
-}
-
 @media (min-width: 425px) {
     .top-sold>h2 {
         margin-bottom: 1em;
@@ -161,31 +73,6 @@ footer.row>div>a:nth-child(2)::after {
     }
     .top-sold .row .card-body {
         padding-top: 0;
-    }
-}
-
-@media (max-width: 768px) {
-    footer.row {
-        height: 4em;
-        line-height: unset;
-        display: grid;
-    }
-    footer.row>#copyright,
-    footer.row>.nav {
-        text-align: center;
-        align-content: center;
-        max-width: inherit;
-        width: 100%;
-        margin: 0;
-        justify-content: center;
-        align-items: center;
-    }
-    footer.row>#copyright {
-        font-size: 0.8em;
-        grid-row-start: 2;
-    }
-    footer.row>.nav {
-        font-size: 0.9em;
     }
 }
 
