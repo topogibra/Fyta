@@ -1,12 +1,17 @@
 @import url("pallette.css");
 
 .account-sections {
-    padding-top: 10em;
+    padding-top: 5em;
 }
 
 h3 {
     font-size: 1.3em;
     font-weight: bold;
+}
+
+.btn-primary{
+    background-color: var(--green);
+    border-color: var(--green);
 }
 
 .badge {
@@ -17,7 +22,7 @@ h3 {
     padding: 1em 0;
 }
 
-.order {
+.order, .name {
     text-decoration: underline;
 }
 
@@ -25,18 +30,18 @@ h3 {
     margin-top: 3em;
 }
 
-.orders .row .col-md-2{
+.profile.container-fluid .container .row > *{
     margin: auto;
     text-align: center;
     font-size: 0.9em;
 }
 
-.orders .row.header{
+.row.header{
     background-color: #ECECEC84;
     color: var(--dark-gray);
 }
 
-.orders .row:not(.header){
+.profile.container-fluid .container .row:not(.header){
     border-bottom: 1px solid var(--light-gray);
     padding: 0.5em 0;
 }
@@ -53,6 +58,7 @@ h3 {
         display: none;
     }
 }
+
 @media(max-width: 770px){
     .account-sections{
         padding-top: 0em;
@@ -124,6 +130,14 @@ h3 {
     }
 
     .profile .col-md-9{
+        order: 1;
+    }
+
+    .price {
+        order: 2;
+    }
+
+    .delete, .name, .stock {
         order: 1;
     }
 }
