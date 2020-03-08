@@ -82,6 +82,25 @@ div.related-products{
     margin-top: 1.5em;
 }
 
+div.related-products img {
+    height: 300px;
+    width: 300px;
+}
+
+@media(max-width: 1200px) {
+    div.related-products img {
+        height: 200px;
+        width: 200px;
+    }
+}
+
+@media(max-width: 768px) {
+    div.related-products img {
+        height: 200px;
+        width: 200px;
+    }
+}
+
 .row.product-section {
     margin-top: 3em;
 }
