@@ -64,6 +64,15 @@ button.col-2 {
 }
 
 
+.shopCartEntry > * {
+  width: auto;
+}
+
+.shopCartProduct-total {
+  padding-right: 0;
+}
+
+
 @media(max-width: 576px) {
 
   .shopCartEntry{
@@ -79,7 +88,23 @@ button.col-2 {
     margin: 0;
   }
 
+  .shopCartProduct-total {
+    display: none;
+  }
+
+  .shopCartProduct-stock{
+    text-align: left!important;
+  }
+
+  .shopCartProduct-delete {
+    text-align: right;
+  }
+
   .shopCart-total{
     margin-right: 1.5rem;
+  }
+
+  .entry-info {
+    width: 70%;
   }
 }
