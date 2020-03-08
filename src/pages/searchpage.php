@@ -2,13 +2,18 @@
       include_once('../components/footer.php');
       include_once('../components/header.php');
 
-    make_header(["../javascript/searchpage.js"], ["../styles/searchpage.css", "../styles/pallette.css"]);
+      make_header(["../javascript/searchpage.js"], ["../styles/searchpage.css", "../styles/pallette.css"]);
       ?>
 
       <div class="title">
         <div class="row">
           <div class="col">
-            <h4>Search Page</h4>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Indoor Plants</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Flowering Plants</li>
+              </ol>
+            </nav>
           </div>
           <div class="col">
 
@@ -72,71 +77,32 @@
 
             <h5>Categories</h5>
             <ul class="list-group list-group-flush">
-
+            <?php
+              $categories = array("Anthuriums","Artificial", "Bulbs", "Gardenias","Orchids");
+              
+              foreach ($categories as $category ) : ?>
               <li class="list-group-item">
                 <div class="custom-control custom-checkbox">
                   <input type="checkbox" class="custom-control-input" id="customCheck1">
-                  <label class="custom-control-label" for="customCheck1">custom checkbox</label>
+                  <label class="custom-control-label" for="customCheck1"><?= $category ?></label>
                 </div>
               </li>
-              <li class="list-group-item">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck2">
-                  <label class="custom-control-label" for="customCheck2">custom checkbox</label>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck3">
-                  <label class="custom-control-label" for="customCheck3">custom checkbox</label>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck4">
-                  <label class="custom-control-label" for="customCheck4">custom checkbox</label>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck5">
-                  <label class="custom-control-label" for="customCheck5">custom checkbox</label>
-                </div>
-              </li>
+              <?php endforeach ?>
             </ul>
             <h5>Size</h5>
             <ul class="list-group list-group-flush">
-
+            <?php
+              $sizes = array("0kg-0.2kg","0.2kg-0.5kg", "0.5-1.5kg", "1.5kg-3kg",">3kg");
+              
+              foreach ($sizes as $size ) : ?>
+         
               <li class="list-group-item">
                 <div class="custom-control custom-checkbox">
                   <input type="checkbox" class="custom-control-input" id="customCheck1">
-                  <label class="custom-control-label" for="customCheck1">custom checkbox</label>
+                  <label class="custom-control-label" for="customCheck1"><?= $size ?></label>
                 </div>
               </li>
-              <li class="list-group-item">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck2">
-                  <label class="custom-control-label" for="customCheck2">custom checkbox</label>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck3">
-                  <label class="custom-control-label" for="customCheck3">custom checkbox</label>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck4">
-                  <label class="custom-control-label" for="customCheck4">custom checkbox</label>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck5">
-                  <label class="custom-control-label" for="customCheck5">custom checkbox</label>
-                </div>
-              </li>
+              <?php endforeach ?>
             </ul>
 
             <div class="price">
@@ -150,19 +116,22 @@
             <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2">
 
               <?php
-              $images = array("bomsai.jpg", "orquideas.jpg", "ramo.jpg", "vaso.jpg", "bomsai.jpg");
-              foreach ($images as $image) : ?>
+              $images = array("indoor_flower8.jpg", "orquideas.jpg", "indoor_flower6.jpeg", "indoor_flower3.jpg", "indoor_floer7.jpg");
+              $titles = array("Red Anthurium", "Junior Phalaenopsis Orchid", "Pink Gardenia", "Red and Yellow Artificial Flowers", "Hyacinth Bulbs");
+              $prices = array("30.24€", "15.54€", "36.14€", "6.99€", "20.99€");
+              
+              foreach ($images as $index => $image) : ?>
                 <div class="col mb-4">
                   <div class="card">
                     <div class="img-wrapper">
-                    <img class="card-img-top" src=<?= "../assets/" . $image ?> alt="Card image cap">
+                      <img class="card-img-top" src=<?= "../assets/" . $image ?> alt="Card image cap">
                     </div>
                     <div class="card-body">
                       <div class="row flex-nowrap justify-content-between">
-                        <h5 class="card-title">Alfyta Vase white</h5>
+                        <h5 class="card-title"><?= $titles[$index] ?></h5>
                         <i class="far fa-star" style="font-size: 1.5em;"></i>
                       </div>
-                      <p class="card-text">23.45€</p>
+                      <p class="card-text"><?= $prices[$index] ?></p>
                     </div>
                   </div>
                 </div>
@@ -170,25 +139,25 @@
             </div>
 
             <div class="pages">
-            <div class="row">
-              <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
+              <div class="row">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
 
 
             </div>
