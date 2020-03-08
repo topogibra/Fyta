@@ -25,7 +25,7 @@ function buidOrderHistory(orders){
 
     orders.forEach(order => {
         const orderRow = document.createElement('div');
-        orderRow.classList.add(...['row', 'justify-content-between']);
+        orderRow.classList.add(...['row', 'justify-content-between', 'table-entry']);
         orderRow.appendChild(createOrderColumn(order.number, 'order'));
         orderRow.appendChild(createOrderColumn(order.date, 'date'));
         orderRow.appendChild(createOrderColumn(order.price, 'price'));

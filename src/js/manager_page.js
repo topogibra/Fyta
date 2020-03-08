@@ -27,7 +27,7 @@ function buildStocks(products){
 
     products.forEach(product => {
         const row = document.createElement('div');
-        row.className = "row";
+        row.className = "row table-entry";
         row.appendChild(createProductColumn(product.name, 'name'));
         row.appendChild(createProductColumn(product.price, 'price'));
         row.appendChild(createProductColumn(product.stock, 'stock'));
@@ -42,9 +42,9 @@ function buildStocks(products){
     const row = document.createElement('div');
     row.className = "row";
     const col = document.createElement('div');
-    col.className = "col-2 ml-auto pr-0";
+    col.className = "col-md-4 col-12 ml-auto";
     const button = document.createElement('a');
-    button.className = "btn btn-primary w-100 mt-3 edit";
+    button.className = "btn btn-primary w-100 mt-3 p-1 edit";
     button.setAttribute('role', 'button');
     button.textContent = 'Edit';
     button.id = "products-button"
@@ -131,7 +131,7 @@ function buidlPendingOrders(orders) {
 
     orders.forEach(order => {
         const row = document.createElement('div');
-        row.className = "row";
+        row.className = "row table-entry";
         row.appendChild(createProductColumn(order.number, 'order'));
         row.appendChild(createProductColumn(order.date, 'date'));
         row.appendChild(createProductColumn(order.status, 'status'));
@@ -154,7 +154,7 @@ function buildManagers(managers) {
 
     managers.forEach(manager => {
         const row = document.createElement('div');
-        row.className = "row";
+        row.className = "row table-entry";
         const photo = document.createElement('div');
         const img = document.createElement('img');
         img.src = manager.photo;

@@ -4,6 +4,7 @@
     padding-top: 5em;
 }
 
+
 h3 {
     font-size: 1.3em;
     font-weight: bold;
@@ -18,7 +19,7 @@ h3 {
 }
 
 .btn.btn-primary:not(#add-manager){
-    max-width: 10em !important;
+    max-width: 10em;
 }
 
 .badge {
@@ -52,17 +53,16 @@ h3 {
     color: var(--dark-gray);
 }
 
-.profile.container-fluid .container .row:not(.header,.form-group){
+.table-entry{
     border-bottom: 1px solid var(--light-gray);
     padding: 0.5em 0;
 }
 
 
 
-@media(min-width: 770px){
+@media(min-width: 775px){
     .profile.container-fluid{
-        font-size: 1.5em;
-        padding: 0 4em;
+        padding: 0 8em;
     }
 
     .re-order > span{
@@ -86,7 +86,7 @@ input.stock {
     padding: 0;
 }
 
-@media(max-width: 770px){
+@media(max-width: 767px){
     .account-sections{
         padding-top: 0em;
         order: 0;
@@ -156,7 +156,7 @@ input.stock {
     .account-sections > ul.list-group {
         flex-direction: row;
         justify-content: center;
-        font-size: 1.6em;
+        font-size: 1.2em;
         overflow-x: scroll;
         width: 100%;
     }
@@ -188,7 +188,9 @@ input.stock {
         text-align: right;
     }
 
-
+    .btn.btn-primary:not(#add-manager){
+        max-width: 100%;
+    }
 
     input {
         width: fit-content;
@@ -196,10 +198,6 @@ input.stock {
 }
 
 @media(min-width: 1800px){
-    .profile.container-fluid{
-        font-size: 1.8em;
-    }
-
     .badge{
         font-size: 0.9em;
     }
@@ -215,6 +213,10 @@ input.stock {
     .fa-plus-square,
     .fa-minus-square {
         display: none;
+    }
+
+    form {
+        margin: 0 3em;
     }
 
 }
@@ -259,8 +261,9 @@ input.stock {
     text-align: center;
 }
 
-#save-changes div.col-md-4{
+#save-changes div.col-md-6{
     margin-right: 0;
+    text-align: right;
 }
 
 .modal-footer button {
