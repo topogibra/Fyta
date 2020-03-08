@@ -33,7 +33,7 @@ make_header([], ["../styles/registerpage.css"]); ?>
     </div>
     <!--  -->
     <div class="row form-group justify-content-center registerBirthday">
-      <div class="col-md-2 ">
+      <div class="col-sm-2 ">
         <select class="custom-select custom-select-sm registerinput registerSelect" name="registerDay" id="registerDay">
           <option selected class="text-muted optionplaceholder" hidden>Day</option>
           <option value="">1</option>
@@ -41,7 +41,7 @@ make_header([], ["../styles/registerpage.css"]); ?>
           <option value="">3</option>
         </select>
       </div>
-      <div class="col-md-2 ">
+      <div class="col-sm-2 ">
         <select class="custom-select custom-select-sm registerinput registerSelect" name="registerMonth" id="registerMonth">
           <option selected class="text-muted optionplaceholder" hidden>Month</option>
           <option value="">January</option>
@@ -49,7 +49,7 @@ make_header([], ["../styles/registerpage.css"]); ?>
           <option value="">December</option>
         </select>
       </div>
-      <div class="col-md-2 ">
+      <div class="col-sm-2 ">
         <select class="custom-select custom-select-sm registerinput registerSelect" name="registerYear" id="registerYear">
           <option selected class="text-muted optionplaceholder" hidden>Year</option>
           <option value="">1999</option>
