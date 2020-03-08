@@ -12,11 +12,11 @@ make_header([], ["../styles/shopping_cart_page.css"]); ?>
   <!--  -->
   <div class="row justify-content-center border-bottom shopCartEntry">
     <div class="col-sm-2 entry-img">
-      <img src="../assets/vaso.png" alt="" class="shopCartProduct-image">
+      <img src="../assets/tulipas.jpg" alt="" class="shopCartProduct-image">
     </div>
     <div class="col-sm-9 row justify-content-center entry-info">
       <div class=" col-sm-3 col-6 align-self-center shopCartProduct-name">
-        <p class="mb-0">Vaso CRTF</p>
+        <p class="mb-0">Rose Orchid</p>
       </div>
       <div class="col-sm-2 col-6 align-self-center shopCartProduct-per-price">
         <p class="mb-0 text-right">20€</p>
@@ -30,20 +30,20 @@ make_header([], ["../styles/shopping_cart_page.css"]); ?>
         <a href="" class="shopCartProduct-trash"><i class=" fas fa-trash"></i></a>
       </div>
       <div class="col-sm-2 col-6 align-self-center shopCartProduct-total">
-        <p class="mb-0 text-right">199.90€</p>
+        <p class="mb-0 text-right">200€</p>
       </div>
     </div>
   </div>
   <div class="row justify-content-center border-bottom shopCartEntry">
     <div class="col-sm-2 entry-img">
-      <img src="../assets/vaso.png" alt="" class="shopCartProduct-image">
+      <img src="../assets/sativa_indoor.jpg" alt="" class="shopCartProduct-image">
     </div>
     <div class="col-sm-9 row justify-content-center entry-info">
       <div class=" col-sm-3 col-6 align-self-center shopCartProduct-name">
-        <p class="mb-0">Vaso CRTF</p>
+        <p class="mb-0">Sativa Prime</p>
       </div>
       <div class="col-sm-2 col-6 align-self-center shopCartProduct-per-price">
-        <p class="mb-0 text-right">20€</p>
+        <p class="mb-0 text-right">4.20€</p>
       </div>
       <div class="col-sm-4 col-9 text-center align-self-center shopCartProduct-stock">
         <a href="" class="stock-minus"><i class="fas fa-minus"></i></a>
@@ -54,7 +54,7 @@ make_header([], ["../styles/shopping_cart_page.css"]); ?>
         <a href="" class="shopCartProduct-trash"><i class=" fas fa-trash"></i></a>
       </div>
       <div class="col-sm-2 col-6 align-self-center shopCartProduct-total">
-        <p class="mb-0 text-right">199.90€</p>
+        <p class="mb-0 text-right">42€</p>
       </div>
     </div>
   </div>
@@ -64,7 +64,7 @@ make_header([], ["../styles/shopping_cart_page.css"]); ?>
       <h4 class="shopCart-totaltext">Total Value:</h4>
     </div>
     <div class="col-sm-2 align-self-center">
-      <h5 class="text-right">400.00€</h5>
+      <h5 class="text-right">242€</h5>
     </div>
   </div>
   <div class="row" id="checkout">
@@ -74,4 +74,3 @@ make_header([], ["../styles/shopping_cart_page.css"]); ?>
 
 <?php
 make_footer();
-?>
