@@ -1,0 +1,70 @@
+@import url("pallette.css");
+
+#registerUserImg {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  width: 6em;
+  height: 6em;
+  border-color: var(--black);
+  border-radius: 1;
+  z-index: -1;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-title {
+  color: var(--green);
+  margin-bottom: 1rem;
+}
+
+#registerBirthday {
+  margin-bottom: 1rem;
+}
+
+#registerbutton{
+  height: 3rem;
+}
+
+.registerinput{
+  border-color: var(--white);
+  border-radius: 0;
+  border-bottom-color: 3px solid var(--gray);
+  background-color: var(--lighter-gray);
+}
+
+button.btn-primary, 
+button.btn-primary:focus, 
+button.btn-primary:active {
+  background-color: var(--green)!important;
+  color: var(--white)!important;
+  border-color: var(--white)!important;
+  border-radius: 0!important;
+}
+
+.form-group input,
+.form-control:focus {
+  border-color: var(--white);
+  border-radius: 0;
+  border-bottom-color: 3px solid var(--gray);
+  background-color: var(--lighter-gray);
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.registerBirthday{
+  flex-wrap: nowrap;
+}
+
+.container-xl > *{
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+@media (min-width: 768px) {
+  .registerSelect{
+    width: 100%;
+  }
+}
