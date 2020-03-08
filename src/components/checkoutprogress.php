@@ -4,7 +4,7 @@ function make_checkoutprogress($number) { ?>
 
 <style>
     .steps .row .col:nth-child(<?php echo $number ?>) p:nth-child(1) {
-    background-color: var(--lighter-gray);
+    background-color: var(--light-gray);
 }
 </style>
 
