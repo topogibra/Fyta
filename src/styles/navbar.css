@@ -250,9 +250,6 @@ footer.row>div>a:nth-child(2)::after {
     .top-sold {
         margin-bottom: 10%;
     }
-    #main-banner p {
-        display: none;
-    }
     #main-banner {
         margin: 0em 8%;
     }
