@@ -352,8 +352,8 @@ const mockProducts = [
 
 const mockOrders = [
     {
-        number: "125877",
-        date: "Dec 24 2019",
+        number: "125885",
+        date: "Feb 24 2020",
         status: "Ready for Shipping" 
     },
     {
@@ -365,9 +365,19 @@ const mockOrders = [
 
 const mockManagers = [
     {
-        name: "Mohammad Faruque",
-        photo: "../assets/mohammad-faruque-AgYOuy8kA7M-unsplash.jpg",
-        date: "Aug 17 2016"
+        name: "Sisay Jeremiah",
+        photo: "../assets/sisay_jeremiah_small.jpg",
+        date: "Nov 24 2019"
+    },
+    {
+        name: "Dannie Almir",
+        photo: "../assets/dannie_almir.jpg",
+        date: "Mar 8 2020"
+    },
+    {
+        name: "Suzana Constância",
+        photo: "../assets/suzana_constancia.jpg",
+        date: "Jan 1 2020"
     },
     {
         name: "Mohammad Faruque",
@@ -381,7 +391,7 @@ const managerProfileSections = [
         name: "Manager Information",
         action: () => buildPersonalInfo({
             username: "simone.biles",
-            email: "imgoat@gmail.com",
+            email: "simone.biles.the.goat@gmail.com",
             photo: "../assets/simone.jpeg"
         })    
     },
