@@ -1,0 +1,105 @@
+@import url("pallette.css");
+.steps>.row {
+    margin: 2em 2em 2em 13%;
+    justify-content: center;
+}
+
+.steps {
+    margin: auto;
+}
+
+.steps .row .col {
+    max-width: 20%;
+    padding: 0;
+}
+
+.steps .row .col .row {
+    margin: 0em;
+}
+
+.steps .row .col .row p {
+    margin: 0.2em;
+    font-size: 1em;
+}
+
+.steps .row .col .row hr {
+    margin: 1.2em 0em 0em 0.75em;
+}
+
+.steps .row .col p:nth-child(1) {
+    border: 2px solid var(--dark-gray);
+}
+
+.steps .row .col .row p:nth-child(1) {
+    padding: 0.05em 0.5em;
+}
+
+.steps .row .col .row p:nth-child(2) {
+    padding: 0.4em 0 0 0.5em;
+}
+
+@media (max-width: 1440px) {
+    .steps .row .col {
+        max-width: 25%;
+    }
+    .steps>.row {
+        margin: 2em 2em 2em 16%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .steps .row .col {
+        max-width: 30%;
+    }
+    .steps>.row {
+        margin: 2em 2em 2em 20%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .steps .row .col {
+        max-width: 30%;
+    }
+    .steps>.row {
+        margin: 2em 2em 2em 15%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .steps .row .col {
+        max-width: 30%;
+    }
+    .steps>.row {
+        margin: 2em 2em 2em 15%;
+    }
+}
+
+@media (max-width: 768px) {
+    hr {
+        width: 50%;
+    }
+    .steps .row .col p:nth-child(2) {
+        display: none;
+    }
+    .steps .row .col {
+        max-width: 30%;
+    }
+    .steps>.row {
+        margin: 2em 2em 2em 22%;
+    }
+}
+
+@media (max-width: 425px) {
+    hr {
+        width: 20%;
+    }
+    .steps .row .col p:nth-child(2) {
+        display: none;
+    }
+    .steps .row .col {
+        max-width: 30%;
+    }
+    .steps>.row {
+        margin: 2em 2em 2em 22%;
+    }
+}

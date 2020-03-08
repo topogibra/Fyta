@@ -185,6 +185,11 @@ footer.row>div>a:nth-child(2)::after {
     .top-sold .row .card.product {
         flex-basis: 100%;
     }
+
+    #main-banner {
+        height: 30vh;
+        background-clip: unset;
+    }
 }
 
 @media(min-width: 1000px) {
