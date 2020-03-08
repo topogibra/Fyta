@@ -1,6 +1,6 @@
 export default function buildProductRow(items){
     const container = document.createElement('div');
-    container.className = 'container-fluid';
+    container.className = 'container';
     const row = document.createElement('div');
     row.className = "row";
     container.appendChild(row);

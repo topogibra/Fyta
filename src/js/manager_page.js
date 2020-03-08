@@ -250,10 +250,11 @@ function buildManagers(managers) {
     content.appendChild(footer);
 
     row.appendChild(modal);
+    container.appendChild(row);
 
 
 
-    return [container, row];
+    return container;
 }
 
 const mockProducts = [
@@ -298,19 +299,19 @@ const mockManagers = [
 const managerProfileSections = [
     {
         name: "Manager Information",
-        action: () => [buildPersonalInfo({
+        action: () => buildPersonalInfo({
             username: "simone.biles",
             email: "imgoat@gmail.com",
             photo: "../assets/simone.jpeg"
-        })]
+        })    
     },
     {
         name: "Stocks",
-        action: () => [buildStocks(mockProducts)]
+        action: () => buildStocks(mockProducts)
     },
     {
         name: "Pending Orders",
-        action: () => [buidlPendingOrders(mockOrders)]
+        action: () => buidlPendingOrders(mockOrders)
     },
     {
         name: "Managers",

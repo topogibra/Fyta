@@ -112,10 +112,9 @@ export default function buildPersonalInfo(info, user) {
     const saveChangesCol = document.createElement('div');
     saveChangesCol.className = "col-md-6 col-12";
     saveChanges.appendChild(saveChangesCol);
-    const saveChangesButton = document.createElement('button');
-    saveChangesButton.type = "button";
-    saveChangesButton.className = "btn btn-primary col-sm-12";
-    saveChangesButton.id = "submitbutton";
+    const saveChangesButton = document.createElement('a');
+    saveChangesButton.role = "button";
+    saveChangesButton.className = "btn btn-primary w-100 mt-3 p-1 edit";
     saveChangesButton.textContent = "Save Changes";
     saveChangesCol.appendChild(saveChangesButton);
     form.appendChild(saveChanges);

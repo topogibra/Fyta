@@ -8,6 +8,7 @@
 h3 {
     font-size: 1.3em;
     font-weight: bold;
+    margin-bottom: 1em;
 }
 
 .btn.btn-primary,
@@ -247,6 +248,10 @@ input.stock {
 
 #managers .description h5 {
     font-size: 1.25em;
+}
+
+#managers > div:last-child > .col{
+    padding: 0;
 }
 
 #managers img {

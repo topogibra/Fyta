@@ -86,7 +86,7 @@ const mockItems = [
 const userProfileSections = [
     {
         name: "Personal Information",
-        action: () => [buildPersonalInfo({
+        action: () => buildPersonalInfo({
             username: 'mohammad.faruque',
             email: 'mohammad.faruque@gmail.com',
             address: 'Marcombe Dr NE, Calgary , Canada',
@@ -94,15 +94,15 @@ const userProfileSections = [
             month: 'July',
             year: '1998',
             photo: '../assets/mohammad-faruque-AgYOuy8kA7M-unsplash.jpg'
-        }, true)]
+        }, true)
     },
     {
         name: "Order History",
-        action: () => [buidOrderHistory(mockOrders)]
+        action: () => buidOrderHistory(mockOrders)
     },
     {
         name: "My Wishlist",
-        action: () => [buildProductRow(mockItems)]
+        action: () => buildProductRow(mockItems)
     },
 ];
 
