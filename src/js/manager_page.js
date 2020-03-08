@@ -1,4 +1,7 @@
-import buildSections from './sections.js'
+import buildSections from './sections.js';
+import buildPersonalInfo from './personal_info.js';
+import { buildPersonalInfoForm } from './personal_info.js';
+
 
 function createProductColumn(info, attribute) {
     const column = document.createElement('div');
@@ -189,13 +192,14 @@ function buildManagers(managers) {
     button.id = "add-manager";
     button.type = "button"
     button.setAttribute('data-toggle', 'modal');
-    button.setAttribute('data-target', 'addManager');
+    button.setAttribute('data-target', '#addManager');
     button.textContent = "Add New Manager";
     col.appendChild(button);
     row.appendChild(col);
 
     const modal = document.createElement('div');
     modal.id = "addManager";
+    modal.style.display = "none";
     modal.className = "modal fade";
     modal.tabIndex = -1;
     modal.setAttribute('role', 'dialog');
@@ -228,7 +232,11 @@ function buildManagers(managers) {
 
     const body = document.createElement('div');
     body.className = "modal-body";
-    body.textContent = "Meias";
+    body.appendChild(buildPersonalInfoForm({
+        username: "",
+        email: "",
+        photo: "../assets/user.png"
+    }))
     content.appendChild(body);
 
     const footer = document.createElement('div');
@@ -287,6 +295,14 @@ const mockManagers = [
 ]
 
 const managerProfileSections = [
+    {
+        name: "Manager Information",
+        action: () => [buildPersonalInfo({
+            username: "simone.biles",
+            email: "imgoat@gmail.com",
+            photo: "../assets/simone.jpeg"
+        })]
+    },
     {
         name: "Stocks",
         action: () => buildStocks(mockProducts)

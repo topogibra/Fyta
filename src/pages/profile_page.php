@@ -2,7 +2,7 @@
 include_once('../components/footer.php');
 include_once('../components/header.php');
 
-make_header(['../js/profile_page.js'], ['../styles/profile_page.css']);
+make_header(['../js/profile_page.js'], ['../styles/profile_page.css', '../styles/registerpage.css']);
 ?>
 <div class="container-fluid profile">
     <div class="row">

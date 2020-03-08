@@ -52,7 +52,7 @@ h3 {
     color: var(--dark-gray);
 }
 
-.profile.container-fluid .container .row:not(.header){
+.profile.container-fluid .container .row:not(.header,.form-group){
     border-bottom: 1px solid var(--light-gray);
     padding: 0.5em 0;
 }
@@ -240,6 +240,11 @@ input.stock {
 #managers .description {
     text-align: left;
     margin-left: 1em;
+    padding-top: 1em;
+}
+
+#managers .description h5 {
+    font-size: 1.25em;
 }
 
 #managers img {
@@ -254,3 +259,10 @@ input.stock {
     text-align: center;
 }
 
+#save-changes div.col-md-4{
+    margin-right: 0;
+}
+
+.modal-footer button {
+    width: 100%;
+}

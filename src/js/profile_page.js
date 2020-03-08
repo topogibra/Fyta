@@ -1,5 +1,6 @@
 import buildProductRow from './product_row.js'
 import buildSections from './sections.js'
+import buildPersonalInfo from './personal_info.js'
 
 function createOrderColumn(info, attribute){
     const column = document.createElement('div');
@@ -85,7 +86,15 @@ const mockItems = [
 const userProfileSections = [
     {
         name: "Personal Information",
-        action: () => [document.createElement('div')]
+        action: () => [buildPersonalInfo({
+            username: 'mohammad.faruque',
+            email: 'mohammad.faruque@gmail.com',
+            address: 'Marcombe Dr NE, Calgary , Canada',
+            day: '29',
+            month: 'July',
+            year: '1998',
+            photo: '../assets/mohammad-faruque-AgYOuy8kA7M-unsplash.jpg'
+        }, true)]
     },
     {
         name: "Order History",
