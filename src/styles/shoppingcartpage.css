@@ -3,7 +3,7 @@
 h1.text-center {
   margin-top: 1rem;
   margin-bottom: 2rem;
-  color:var(--green);
+  color: var(--green);
 }
 
 button.col-2 {
@@ -25,7 +25,7 @@ button.col-2 {
 
 .stock-plus {
   background-color: var(--green);
-  color:var(--white);
+  color: var(--white);
 }
 
 .stock-plus:hover {
@@ -38,33 +38,48 @@ button.col-2 {
   color: var(--white);
 }
 
-.stock-minus{
+.stock-minus {
   color: var(--green);
 }
 
-.shopCartProduct-trash{
-  color:var(--green);
+.shopCartProduct-trash {
+  color: var(--green);
 }
 
 .shopCartProduct-trash:hover {
   color: var(--green);
 }
 
-.shopCartProduct-image{
+.shopCartProduct-image {
   width: 80px;
   height: 80px;
 }
 
-.shopCart-total{
+.shopCart-total {
   margin-top: 1rem;
 }
 
 .shopCart-totaltext {
-  color:var(--green)
+  color: var(--green)
 }
 
-@media(min-width:--breakpoint-sm){
-  .shopCartProduct-image{
-    border: 10px solid red;
+
+@media(max-width: 576px) {
+
+  .shopCartEntry{
+    padding-top: 0rem;
+    margin: auto 0.30rem;
+  }
+
+  .shopCartProduct-name{
+    align-self: flex-start !important;
+  }
+  .container-xl{
+    padding:1rem;
+    margin: 0;
+  }
+
+  .shopCart-total{
+    margin-right: 1.5rem;
   }
 }
