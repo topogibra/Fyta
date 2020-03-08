@@ -52,8 +52,15 @@ img {
     margin: 4% 4% 0% 1%;
 }
 
-.title h4 {
-    margin: 1em 18%;
+.title .breadcrumb {
+    background-color: var(--white);
+    margin-left: 18%;
+    padding: 0;
+    font-size: 1.5em;
+}
+
+.title .breadcrumb li,
+.title .breadcrumb li a {
     color: var(--green);
 }
 

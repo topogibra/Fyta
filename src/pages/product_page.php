@@ -17,7 +17,7 @@ make_header(['../js/product_page.js'], ['../styles/product_page.css']);
                         Bonsai CRT
                     </h3>
                     <span class="col-xs-1-12 review">
-                        <h6>4.8</h6>
+                        <h6>4</h6>
                         <i class="far fa-star"></i>
                     </span>
                     <span class="col-md-3 view-reviews">
@@ -30,7 +30,10 @@ make_header(['../js/product_page.js'], ['../styles/product_page.css']);
                 </div>
                 <div id="description" class="row">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non sodales quam. Etiam venenatis est ex, id gravida nulla hendrerit sit amet. Quisque vel nibh.
+                        Have you ever thought of tending a plant? 
+                        Do you watch asian movies and feel like going into that rich culture? 
+                        Now you can have a piece of that by ordering one of our premium Bonsai CRT, 
+                        that will give your home a deep sense of oriental energy.
                     </p>
                 </div>
                 <div class="row align-items-center">
@@ -67,31 +70,31 @@ make_header(['../js/product_page.js'], ['../styles/product_page.css']);
         <h3>
             Related Products
         </h3>
-        <div class="row related-products">
-            <article class="col-md-4 col-sm-4">
-                <div class="card">
-                    <img class="card-img-top border border-dark" src="../assets/bonsai.jpg" alt="">
+        <div class="row related-products justify-content-center">
+            <article class="col-md-4 col-sm-12">
+                <div class="card align-items-center">
+                    <img class="card-img-top border border-dark" src="../assets/supreme_vase.jpg" alt="Supreme Bonsai Pot">
                     <div class="card-body row">
-                        <h4 class="card-title col">Bonsai CRT</h4>
-                        <p class="card-text">35€</p>
+                        <h4 class="card-title col">Supreme Bonsai Pot</h4>
+                        <p class="card-text">40€</p>
                     </div>
                 </div>
             </article>
-            <article class="col-md-4 col-sm-4">
-                <div class="card">
-                    <img class="card-img-top border border-dark" src="../assets/bonsai.jpg" alt="">
+            <article class="col-md-4 col-sm-12">
+                <div class="card align-items-center">
+                    <img class="card-img-top border border-dark" src="../assets/gloves_tool.jpg" alt="Blue Garden Gloves">
                     <div class="card-body row">
-                        <h4 class="card-title col">Bonsai CRT</h4>
-                        <p class="card-text">35€</p>
+                        <h4 class="card-title col">Blue Garden Gloves</h4>
+                        <p class="card-text">9€</p>
                     </div>
                 </div>
             </article>
-            <article class="col-md-4 col-sm-4">
-                <div class="card">
-                    <img class="card-img-top border border-dark" src="../assets/bonsai.jpg" alt="">
+            <article class="col-md-4 col-sm-12">
+                <div class="card align-items-center">
+                    <img class="card-img-top border border-dark" src="../assets/pondlilies_outdoor.jpg" alt="Pond White Lilies">
                     <div class="card-body row">
-                        <h4 class="card-title col">Bonsai CRT</h4>
-                        <p class="card-text">35€</p>
+                        <h4 class="card-title col">Pond White Lilies</h4>
+                        <p class="card-text">40€</p>
                     </div>
                 </div>
             </article>
@@ -104,41 +107,41 @@ make_header(['../js/product_page.js'], ['../styles/product_page.css']);
                 <i class=" fas fa-star"></i>
                 <i class=" fas fa-star"></i>
                 <i class=" fas fa-star"></i>
-                <i class=" far fa-star"></i>
+                <i class=" fas fa-star"></i>
                 <i class=" far fa-star"></i>
             </div>
         </span>
         <article class="row comment">
-            <div class="container">
+            <div class="container w-100">
                 <div class="row">
                     <div class="col-md-3 col-sm-4">
-                        <img class="w-100 h-100 rounded-circle border border-light" src="../assets/person.jpg">
+                        <img class="w-100 h-100 rounded-circle border border-light" src="../assets/frederique_cousteau.jpg">
                     </div>
                     <div class="col-md-6 col-sm-9">
-                        <p class="name">Mohammad Faruque</p>
+                        <p class="name">Frederique Cousteau</p>
                         <p class="date">2 days ago</p>
                         <div class="row review">
                             <i class="col fas fa-star"></i>
                             <i class="col fas fa-star"></i>
                             <i class="col fas fa-star"></i>
-                            <i class="col far fa-star"></i>
+                            <i class="col fas fa-star"></i>
                             <i class="col far fa-star"></i>
                         </div>
                     </div>
                 </div>
                 <p class="row">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non sodales quam. Etiam venenatis est ex, id gravida nulla hendrerit sit amet. Quisque vel nibh.
+                    This is a bonsai alright, but the premium bit makes me twitch my nose. It's not that high quality, but good for beginners.
                 </p>
             </div>
         </article>
         <article class="row comment">
-            <div class="container">
+            <div class="container w-100">
                 <div class="row">
                     <div class="col-md-3 col-sm-4">
-                        <img class="w-100 h-100 rounded-circle border border-light" src="../assets/person.jpg">
+                        <img class="w-100 h-100 rounded-circle border border-light" src="../assets/josh_miller.jpg">
                     </div>
                     <div class="col-md-6 col-sm-9">
-                        <p class="name">Mohammad Faruque</p>
+                        <p class="name">Josh Miller</p>
                         <p class="date">2 days ago</p>
                         <div class="row review">
                             <i class="col fas fa-star"></i>
@@ -150,30 +153,30 @@ make_header(['../js/product_page.js'], ['../styles/product_page.css']);
                     </div>
                 </div>
                 <p class="row">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non sodales quam. Etiam venenatis est ex, id gravida nulla hendrerit sit amet. Quisque vel nibh.
+                    I like this bonsai, but this is expensive! I'll never pay off my student loans at this rate... #stayoffwifiwhenhigh
                 </p>
             </div>
         </article>
         <article class="row comment">
-            <div class="container">
+            <div class="container w-100">
                 <div class="row">
                     <div class="col-md-3 col-sm-4">
-                        <img class="w-100 h-100 rounded-circle border border-light" src="../assets/person.jpg">
+                        <img class="w-100 h-100 rounded-circle border border-light" src="../assets/kelly_mahagan.jpg">
                     </div>
                     <div class="col-md-6 col-sm-9">
-                        <p class="name">Mohammad Faruque</p>
+                        <p class="name">Kelly Mahagan</p>
                         <p class="date">2 days ago</p>
                         <div class="row review">
                             <i class="col fas fa-star"></i>
                             <i class="col fas fa-star"></i>
                             <i class="col fas fa-star"></i>
-                            <i class="col far fa-star"></i>
-                            <i class="col far fa-star"></i>
+                            <i class="col fas fa-star"></i>
+                            <i class="col fas fa-star"></i>
                         </div>
                     </div>
                 </div>
                 <p class="row">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non sodales quam. Etiam venenatis est ex, id gravida nulla hendrerit sit amet. Quisque vel nibh.
+                    OMG, this bonsai is so F.A.B.U.L.O.U.S.! My dad thought this was a scam, but i totally convinced him to buy it and I couldn't love this more. Love you too daddy xoxo
                 </p>
             </div>
         </article>
