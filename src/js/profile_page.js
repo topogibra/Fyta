@@ -67,19 +67,19 @@ const mockItems = [
         price: "20€"
     },
     {
-        img: "../assets/orquideas.jpg",
-        name: "Orquídea Rosa",
-        price: "20€"
+        img: "../assets/bonsai2.jpg",
+        name: "Bonsai CRT",
+        price: "35€"
     },
     {
-        img: "../assets/orquideas.jpg",
-        name: "Orquídea Rosa",
-        price: "20€"
+        img: "../assets/tulipas.jpg",
+        name: "Orange Tulips",
+        price: "10€"
     },
     {
-        img: "../assets/orquideas.jpg",
-        name: "Orquídea Rosa",
-        price: "20€"
+        img: "../assets/vaso.jpg",
+        name: "XPR Vase",
+        price: "15€"
     }
 ];
 
