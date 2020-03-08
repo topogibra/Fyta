@@ -176,7 +176,7 @@ make_header(['../js/product_page.js'], ['../styles/product_page.css']);
                     </div>
                 </div>
                 <p class="row">
-                    OMG, this bonsai is so F.A.B.U.L.O.U.S.! My daddy thought this was a scam, but i totally convinced him to buy it and I couldn't love this more. Love you too daddy xoxo
+                    OMG, this bonsai is so F.A.B.U.L.O.U.S.! My dad thought this was a scam, but i totally convinced him to buy it and I couldn't love this more. Love you too daddy xoxo
                 </p>
             </div>
         </article>
