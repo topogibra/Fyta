@@ -161,6 +161,11 @@ footer.row>div>a:nth-child(2)::after {
 }
 
 @media (max-width: 768px) {
+    .top-sold .row .img-wrapper {
+        height: 200px;
+        width: 200px;
+    }
+    
     footer.row {
         height: 4em;
         line-height: unset;
