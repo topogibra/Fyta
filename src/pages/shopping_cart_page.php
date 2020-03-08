@@ -3,7 +3,7 @@ include_once('../components/footer.php');
 include_once('../components/header.php');
 
 make_header([], ["../styles/shopping_cart_page.css"]); ?>
-<div class="container-xl ">
+<div class="container">
   <div class="row justify-content-center">
     <div class="col-sm">
       <h1 class="text-center">Shopping Cart</h1>
@@ -66,6 +66,9 @@ make_header([], ["../styles/shopping_cart_page.css"]); ?>
     <div class="col-sm-2 align-self-center">
       <h5 class="text-right">400.00€</h5>
     </div>
+  </div>
+  <div class="row" id="checkout">
+    <button class="btn btn-primary ml-auto" type="submit">Checkout</button>
   </div>
 </div>
 
