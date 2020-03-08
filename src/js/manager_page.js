@@ -42,7 +42,7 @@ function buildStocks(products){
     const row = document.createElement('div');
     row.className = "row";
     const col = document.createElement('div');
-    col.className = "col-md-4 col-12 ml-auto";
+    col.className = "col-md-4 col-12 ml-auto mr-0 pr-0";
     const button = document.createElement('a');
     button.className = "btn btn-primary w-100 mt-3 p-1 edit";
     button.setAttribute('role', 'button');
@@ -50,6 +50,7 @@ function buildStocks(products){
     button.id = "products-button"
     col.appendChild(button);
     row.appendChild(col);
+    container.appendChild(row);
 
     const changeMode = (nodeCreation) => {
         ['name', 'price'].forEach(elementClass => {
@@ -111,7 +112,7 @@ function buildStocks(products){
         }
     });
 
-    return [container, row];
+    return container;
 }
 
 function buidlPendingOrders(orders) {
@@ -305,7 +306,7 @@ const managerProfileSections = [
     },
     {
         name: "Stocks",
-        action: () => buildStocks(mockProducts)
+        action: () => [buildStocks(mockProducts)]
     },
     {
         name: "Pending Orders",

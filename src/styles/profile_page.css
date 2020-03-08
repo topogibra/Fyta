@@ -74,6 +74,10 @@ h3 {
         width: 3em;
         max-width: fit-content;
     }
+    
+    .profile.container-fluid .col-md-9 .container {
+        padding: 0 10vw;
+    }
 }
 
 
@@ -213,10 +217,6 @@ input.stock {
     .fa-plus-square,
     .fa-minus-square {
         display: none;
-    }
-
-    form {
-        margin: 0 3em;
     }
 
 }
