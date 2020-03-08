@@ -259,14 +259,94 @@ function buildManagers(managers) {
 
 const mockProducts = [
     {
-        name: 'Orquidea PW',
+        name: 'Rose Orchid',
         price: '20€',
-        stock: '20'
+        stock: '43'
     },
     {
-        name: 'Orquidea PW',
-        price: '20€',
-        stock: '20'
+        name: 'XPR Vase',
+        price: '15€',
+        stock: '37'
+    },
+    {
+        name: 'Bonsai CRT',
+        price: '35€',
+        stock: '12'
+    },
+    {
+        name: 'Orange Tulips',
+        price: '10€',
+        stock: '134'
+    },
+    {
+        name: '"Meat" Rose',
+        price: '30€',
+        stock: '15'
+    },
+    {
+        name: 'Red Dahlias',
+        price: '13.99€',
+        stock: '29'
+    },
+    {
+        name: 'Sativa Prime',
+        price: '4.20€',
+        stock: '15'
+    },
+    {
+        name: 'Green Palm Tree',
+        price: '80€',
+        stock: '4'
+    },
+    {
+        name: 'Lavender Premium',
+        price: '25€',
+        stock: '48'
+    },
+    {
+        name: 'Pond White Lilies',
+        price: '40€',
+        stock: '126'
+    },
+    {
+        name: 'Sunny\'s Sunflowers',
+        price: '30€',
+        stock: '37'
+    },
+    {
+        name: 'Baby Blue Vase',
+        price: '10€',
+        stock: '798'
+    },
+    {
+        name: 'Ceramic Pot',
+        price: '30€',
+        stock: '37'
+    },
+    {
+        name: 'Supreme Bonsai Pot',
+        price: '40€',
+        stock: '3'
+    },
+    {
+        name: 'High-tech mower',
+        price: '69.99€',
+        stock: '30'
+    },
+    {
+        name: 'Blue Garden Gloves',
+        price: '9€',
+        stock: '547'
+    },
+    {
+        name: 'Electric Grass Cutter',
+        price: '27€',
+        stock: '12'
+    },
+    {
+        name: 'Green Watercan 12L',
+        price: '5€',
+        stock: '228'
     },
 ];
 
