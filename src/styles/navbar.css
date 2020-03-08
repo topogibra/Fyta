@@ -82,7 +82,7 @@
         padding: 0;
         overflow: hidden;
         color: white;
-        background-color: #567A4D;
+        background-color: var(--green);
     }
     .navbar-wrapper.click .navbar-light .navbar-toggler-icon {
         font-family: "Font Awesome 5 Pro";

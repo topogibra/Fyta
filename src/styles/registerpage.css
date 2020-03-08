@@ -1,13 +1,12 @@
 @import url("pallette.css");
 
-#registerUserImg {
+#user-img {
   margin-top: 1rem;
   margin-bottom: 2rem;
   width: 6em;
   height: 6em;
   border-color: var(--black);
   border-radius: 1;
-  z-index: -1;
   position: relative;
   margin-left: auto;
   margin-right: auto;
@@ -18,11 +17,11 @@
   margin-bottom: 1rem;
 }
 
-#registerBirthday {
+#birthday {
   margin-bottom: 1rem;
 }
 
-#registerbutton{
+#submitbutton{
   height: 3rem;
 }
 
@@ -54,7 +53,7 @@ button.btn-primary:active {
   box-shadow: none;
 }
 
-.registerBirthday{
+.birthday{
   flex-wrap: nowrap;
 }
 
