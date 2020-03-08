@@ -108,7 +108,8 @@ footer.row>div>a:nth-child(2)::after {
         display: none;
     }
     #main-banner {
-        margin: 0em 8%;
+        margin: 4em 8%;
+        height: 400px;
     }
     .top-sold>h2>a {
         font-size: 0.75em;
@@ -154,6 +155,9 @@ footer.row>div>a:nth-child(2)::after {
     .top-sold .row .card-body {
         padding-top: 0;
     }
+    div#main-banner {
+        height: 200px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -187,7 +191,8 @@ footer.row>div>a:nth-child(2)::after {
     }
 
     #main-banner {
-        height: 30vh;
+        height: 300px;
+        margin: 2em 8%;
         background-clip: unset;
     }
 }
