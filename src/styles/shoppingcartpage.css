@@ -1,0 +1,70 @@
+@import url("pallette.css");
+
+h1.text-center {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  color:var(--green);
+}
+
+button.col-2 {
+  margin-right: 1rem;
+}
+
+.shopCartEntry {
+  border-color: var(--lighter-gray);
+  border-width: 1rem;
+  border-radius: 0;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+
+.shopCartProduct-stock>a {
+  border: 1px solid var(--black);
+  padding: 0.20rem;
+}
+
+.stock-plus {
+  background-color: var(--green);
+  color:var(--white);
+}
+
+.stock-plus:hover {
+  color: var(--green);
+  background-color: var(--white);
+}
+
+.stock-minus:hover {
+  background-color: var(--green);
+  color: var(--white);
+}
+
+.stock-minus{
+  color: var(--green);
+}
+
+.shopCartProduct-trash{
+  color:var(--green);
+}
+
+.shopCartProduct-trash:hover {
+  color: var(--green);
+}
+
+.shopCartProduct-image{
+  width: 80px;
+  height: 80px;
+}
+
+.shopCart-total{
+  margin-top: 1rem;
+}
+
+.shopCart-totaltext {
+  color:var(--green)
+}
+
+@media(min-width:--breakpoint-sm){
+  .shopCartProduct-image{
+    border: 10px solid red;
+  }
+}
