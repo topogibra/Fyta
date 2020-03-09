@@ -82,7 +82,7 @@ function order_summary()
             <p class="text-right">Delivery:</p>
             <p class="fee text-right">FREE</p>
         </div>
-        <div class="order-total row justify-content-end">
+        <div class="order-total row justify-content-end ">
             <p class="total text-right">Total Value:</p>
             <p class="total-value text-right">47.60€</p>
         </div>

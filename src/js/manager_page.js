@@ -32,6 +32,7 @@ function buildStocks(products){
         const href = document.createElement('a');
         href.href = 'product_page.php';
         href.appendChild(name);
+        href.className = "col-md-2 col-6 name";
         row.appendChild(href);
         row.appendChild(createProductColumn(product.price, 'price'));
         row.appendChild(createProductColumn(product.stock, 'stock'));
@@ -139,6 +140,7 @@ function buidlPendingOrders(orders) {
         row.className = "row table-entry";
         const number = createProductColumn(order.number, 'order');
         const href = document.createElement('a');
+        href.className = "col-md-2 col-6 name";
         href.href = 'order_invoice.php';
         href.appendChild(number);
         row.appendChild(href);

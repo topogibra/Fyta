@@ -1,10 +1,14 @@
 @import url("pallette.css");
-.btn-primary, 
+.btn-primary,
 .btn-primary:focus,
 .btn-primary:active {
     background-color: var(--green) !important;
     color: var(--white) !important;
     border-color: var(--white) !important;
+}
+
+h1.form-title {
+    font-size: 1.5em;
 }
 
 input.form-control {

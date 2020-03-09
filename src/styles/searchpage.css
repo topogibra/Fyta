@@ -159,6 +159,12 @@ img {
         height: 100px;
         width: 100px;
     }
+    .card-body {
+        padding: 0;
+    }
+    .card-title a {
+        font-size: 0.75em;
+    }
 }
 
 @media (max-width: 1000px) {

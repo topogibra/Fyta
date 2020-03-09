@@ -5,9 +5,9 @@ include_once('../components/header.php');
 make_header(['../js/product_page.js'], ['../styles/product_page.css']);
 ?>
 
-<section class="container-fluid">
+<section class="container">
     <div class="row product-section">
-        <div class="col-md">
+        <div class="col-md product-img">
             <img class="border w-100 h-100" src="../assets/bonsai.jpg">
         </div>
         <div class="col-md">
@@ -70,7 +70,7 @@ make_header(['../js/product_page.js'], ['../styles/product_page.css']);
         <h3>
             Related Products
         </h3>
-        <div class="row related-products justify-content-center">
+        <div class="row related-products justify-content-between">
             <article class="col-md-4 col-sm-12">
                 <div class="card align-items-center">
                     <img class="card-img-top border border-dark" src="../assets/supreme_vase.jpg" alt="Supreme Bonsai Pot">

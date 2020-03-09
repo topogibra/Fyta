@@ -1,10 +1,13 @@
 @import url('pallette.css');
+
 /*Order Summary Header*/
+
 .order-summary {
     padding: 0 30em;
     margin-top: 4em;
 }
-.summary-header .order-status p{
+
+.summary-header .order-status p {
     margin-right: 1em;
     padding-top: 2em;
 }
@@ -31,14 +34,14 @@
 }
 
 .summary .header .order-id {
-    font-size: 1.5em;
+    font-size: 1.25em;
 }
 
 .summary .header .deliver-address {
     padding: 1em 0;
 }
 
-.summary .header .deliver-address > * {
+.summary .header .deliver-address>* {
     margin: 0;
 }
 
@@ -48,12 +51,12 @@
 
 
 /* Order List */
+
 .row .col-md-3 {
     margin: auto;
 }
 
-
-.order-list-item{
+.order-list-item {
     border-bottom: 1px solid var(--lighter-gray);
     padding: 1em 2em;
     flex-wrap: nowrap;
@@ -80,28 +83,15 @@
     border: 1px solid var(--black);
 }
 
+
 /* Order Fee and Price */
 
-.summary .delivery-fee {
-    padding-right: 12em;
-    padding-top: 1em;
-}
-
 .summary .delivery-fee p {
-    padding-right: 1em;
-    margin-bottom: 0;
     font-size: 1.2em;
 }
 
 .summary .order-total {
     font-size: 1.5em;
-    padding-right: 8em;
-    padding-top: 0.5em;
-}
-
-.summary .order-total p {
-    padding-right: 0.8em;
-    margin-bottom: 0;
 }
 
 .summary .order-total .total {
@@ -112,19 +102,8 @@
     .order-summary {
         padding: 0 20em;
     }
-
     .order-status {
         flex-wrap: nowrap;
-    }
-}
-
-@media (max-width: 1400px) {
-    .summary .delivery-fee {
-        padding-right: 9em;
-    }
-
-    .summary .order-total {
-        padding-right: 6em;
     }
 }
 
@@ -138,84 +117,66 @@
     .order-summary {
         padding: 0 4em;
     }
-
     .summary .header .order-id {
         font-size: 1.2em;
         margin-bottom: 0;
     }
-
     .summary-header .order-status {
         flex-basis: 100%;
         padding-top: 1em;
     }
-
 }
 
 @media (max-width: 600px) {
     .summary .header {
         flex-direction: column;
     }
-
     .summary .header .deliver-address {
         padding: 0.5em 1em;
     }
-
     .order-list-item {
         padding: 1em 0;
     }
-
     .order-list-item .col-md-3 p {
         font-size: 0.9em;
     }
-
     .order-list-item .col-md-3:nth-child(2),
     .order-list-item .col-md-3:nth-child(4) {
         flex-basis: 50%;
     }
-
     .summary {
         padding-left: 0;
         padding-right: 0;
     }
-
     .summary .delivery-fee,
     .summary .order-total {
         padding-right: 0;
     }
-
 }
 
 @media (max-width: 360px) {
     .order-summary {
         padding: 0 1em;
     }
-    
     .summary-header {
         flex-direction: column;
         align-items: center;
     }
-
     .summary-header .col-6 {
         padding: 0;
-
     }
-
     .summary-header h3.col-6 {
-        text-align: center;   
+        text-align: center;
         max-width: 100%;
     }
-
     .summary-header .order-status {
         justify-content: flex-end;
     }
-
     .summary-header .order-status p {
         padding-top: 1em;
     }
-
     .summary {
         padding-left: inherit;
         padding-right: inherit;
     }
-    
 }
