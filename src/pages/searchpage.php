@@ -77,32 +77,32 @@
 
             <h5>Categories</h5>
             <ul class="list-group list-group-flush">
-            <?php
-              $categories = array("Anthuriums","Artificial", "Bulbs", "Gardenias","Orchids");
-              
-              foreach ($categories as $category ) : ?>
-              <li class="list-group-item">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck1">
-                  <label class="custom-control-label" for="customCheck1"><?= $category ?></label>
-                </div>
-              </li>
+              <?php
+              $categories = array("Anthuriums", "Artificial", "Bulbs", "Gardenias", "Orchids");
+
+              foreach ($categories as $category) : ?>
+                <li class="list-group-item">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id=<?= $category ?>>
+                    <label class="custom-control-label" for=<?= $category ?>><?= $category ?></label>
+                  </div>
+                </li>
               <?php endforeach ?>
             </ul>
             <h5>Size</h5>
             <ul class="list-group list-group-flush">
-            <?php
-              $sizes = array("0kg-0.2kg","0.2kg-0.5kg", "0.5-1.5kg", "1.5kg-3kg",">3kg");
-              
-              foreach ($sizes as $size ) : ?>
-         
-              <li class="list-group-item">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customCheck1">
-                  <label class="custom-control-label" for="customCheck1"><?= $size ?></label>
-                </div>
-              </li>
-              <?php endforeach ?>
+              <?php
+              $sizes = array("0kg-0.2kg", "0.2kg-0.5kg", "0.5-1.5kg", "1.5kg-3kg", "&gt; 3kg");
+
+              foreach ($sizes as $size) { ?>
+
+                <li class="list-group-item">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id=<?=$size?> >
+                    <label class="custom-control-label" for=<?=$size?>> <?=$size?></label>
+                  </div>
+                </li>
+              <?php } ?>
             </ul>
 
             <div class="price">
@@ -119,16 +119,20 @@
               $images = array("indoor_flower8.jpg", "orquideas.jpg", "indoor_flower6.jpeg", "indoor_flower3.jpg", "indoor_floer7.jpg");
               $titles = array("Red Anthurium", "Junior Phalaenopsis Orchid", "Pink Gardenia", "Red and Yellow Artificial Flowers", "Hyacinth Bulbs");
               $prices = array("30.24€", "15.54€", "36.14€", "6.99€", "20.99€");
-              
+
               foreach ($images as $index => $image) : ?>
                 <div class="col mb-4">
                   <div class="card">
-                    <div class="img-wrapper">
+                    <a href="product_page.php" class="img-wrapper">
                       <img class="card-img-top" src=<?= "../assets/" . $image ?> alt="Card image cap">
-                    </div>
+                    </a>
                     <div class="card-body">
                       <div class="row flex-nowrap justify-content-between">
-                        <h5 class="card-title"><?= $titles[$index] ?></h5>
+                        <h5 class="card-title">
+                          <a href="product_page.php">
+                            <?= $titles[$index] ?>
+                          </a>
+                        </h5>
                         <i class="far fa-star" style="font-size: 1.5em;"></i>
                       </div>
                       <p class="card-text"><?= $prices[$index] ?></p>

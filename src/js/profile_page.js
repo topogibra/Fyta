@@ -26,7 +26,10 @@ function buidOrderHistory(orders){
     orders.forEach(order => {
         const orderRow = document.createElement('div');
         orderRow.classList.add(...['row', 'justify-content-between', 'table-entry']);
-        orderRow.appendChild(createOrderColumn(order.number, 'order'));
+        const number = createOrderColumn(order.number, 'order');
+        const href = document.createElement('a');
+        href.href = 'order_invoice.php';
+        orderRow.appendChild(href);
         orderRow.appendChild(createOrderColumn(order.date, 'date'));
         orderRow.appendChild(createOrderColumn(order.price, 'price'));
         orderRow.appendChild(createOrderColumn(order.state, 'state'));

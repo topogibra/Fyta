@@ -1,9 +1,10 @@
 @import url("pallette.css");
-button.btn-primary {
-    background-color: var(--green);
-    color: var(--white);
-    border-color: var(--white);
-    border-radius: 0;
+.btn-primary, 
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: var(--green) !important;
+    color: var(--white) !important;
+    border-color: var(--white) !important;
 }
 
 input.form-control {

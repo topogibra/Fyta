@@ -28,7 +28,11 @@ function buildStocks(products){
     products.forEach(product => {
         const row = document.createElement('div');
         row.className = "row table-entry";
-        row.appendChild(createProductColumn(product.name, 'name'));
+        const name = createProductColumn(product.name, 'name');
+        const href = document.createElement('a');
+        href.href = 'product_page.php';
+        href.appendChild(name);
+        row.appendChild(href);
         row.appendChild(createProductColumn(product.price, 'price'));
         row.appendChild(createProductColumn(product.stock, 'stock'));
         const col = createProductColumn('', 'delete');
@@ -133,7 +137,11 @@ function buidlPendingOrders(orders) {
     orders.forEach(order => {
         const row = document.createElement('div');
         row.className = "row table-entry";
-        row.appendChild(createProductColumn(order.number, 'order'));
+        const number = createProductColumn(order.number, 'order');
+        const href = document.createElement('a');
+        href.href = 'order_invoice.php';
+        href.appendChild(number);
+        row.appendChild(href);
         row.appendChild(createProductColumn(order.date, 'date'));
         row.appendChild(createProductColumn(order.status, 'status'));
         const col = createProductColumn('', 'confirm');

@@ -24,11 +24,11 @@
     top: 1em;
 }
 
-.navbar-icons div {
+.navbar-icons a {
     padding: 0.5em;
 }
 
-.navbar-icons div i {
+.navbar-icons a i {
     font-size: 1.5em;
 }
 
@@ -203,6 +203,10 @@
     padding-bottom: 120px ;
 }
 
+input[type="checkbox"]:checked {
+    background-color: var(--green);
+}
+
 footer.row {
     position: absolute;
     bottom: 0;
@@ -303,4 +307,12 @@ footer.row>div>a:nth-child(2)::after {
     footer.row>.nav {
         font-size: 0.9em;
     }
+}
+
+a {
+    color: inherit;
+}
+
+a:hover {
+    color: var(--green);
 }

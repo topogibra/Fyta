@@ -68,7 +68,7 @@ make_header([], ["../styles/registerpage.css"]); ?>
     <!--  -->
     <div class="row justify-content-center">
       <div class="col-sm-6 ">
-        <button type="submit" class="btn btn-primary col-sm-12" id="submitbutton">Register</button>
+        <a type="submit" href="profile_page.php" class="btn btn-primary col-sm-12" id="submitbutton">Register</a>
       </div>
     </div>
   </form>

@@ -26,19 +26,19 @@ function make_header($scripts, $styles)
         <div id="page-container">
             <div id="content-wrap">
                 <nav class="navbar-wrapper navbar navbar-expand-md">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="homepage.php">
                         <img src="../assets/logo.png" alt="Company Logo">
                     </a>
                     <nav class="navbar navbar-expand-lg navbar-light navbar-icons">
-                        <div class="user">
+                        <a href="profile_page.php" class="user">
                             <i class="far fa-user"></i>
-                        </div>
-                        <div class="star">
+                        </a>
+                        <a href="profile_page.php" class="star">
                             <i class="far fa-star"></i>
-                        </div>
-                        <div class="cart">
+                        </a>
+                        <a href="shopping_cart_page.php" class="cart">
                             <i class="fas fa-shopping-basket"></i>
-                        </div>
+                        </a>
                     </nav>
                     <nav class="navbar navbar-expand-md navbar-light navbar-categories">
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#categoriesNavbar" aria-controls="categoriesNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,19 +47,19 @@ function make_header($scripts, $styles)
                         <div class="collapse navbar-collapse" id="categoriesNavbar">
                             <ul class="navbar-nav mt-2 mt-lg-0 mr-lg-4">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Indoor</a>
+                                    <a class="nav-link" href="searchpage.php">Indoor</a>
                                 </li>
                                 <li class="nav-item  divider">
-                                    <a class="nav-link" href="#">Outdoor</a>
+                                    <a class="nav-link" href="searchpage.php">Outdoor</a>
                                 </li>
                                 <li class="nav-item  divider">
-                                    <a class="nav-link" href="#">Vases</a>
+                                    <a class="nav-link" href="searchpage.php">Vases</a>
                                 </li>
                                 <li class="nav-item  divider">
-                                    <a class="nav-link" href="#">Tools</a>
+                                    <a class="nav-link" href="searchpage.php">Tools</a>
                                 </li>
                                 <li class="nav-item  divider">
-                                    <a class="nav-link" href="#">Deals</a>
+                                    <a class="nav-link" href="searchpage.php">Deals</a>
                                 </li>
                             </ul>
                         </div>
@@ -77,11 +77,11 @@ function make_header($scripts, $styles)
                     </nav>
                     <div class="input-group w-auto mt-1 rounded-pill border border-dark navbar-search">
                         <span class="input-group-append">
-                            <button class="btn border border-right-0" type="button">
+                            <a class="btn border border-right-0" type="role" href="searchpage.php">
                                 <i class="fas fa-search form-control-feedback"></i>
-                            </button>
+                            </a>
                         </span>
                         <input class="form-control border-left-0">
                     </div>
                 </nav>
-    <?php } ?>
+            <?php } ?>

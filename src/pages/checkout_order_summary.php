@@ -20,8 +20,8 @@ make_checkoutprogress(3);?>
         </div>
 <?php order_summary(); ?>
         <div class="row buttons lg-content-between sm-space-around">
-                <button type="button" id="back-btn" class="btn rounded-0 btn-lg shadow-none">Back</button>
-                <button type="button" id="next-btn" class="btn rounded-0 btn-lg shadow-none">Finish</button>
+                <a href="checkout_payment.php" type="button" id="back-btn" class="btn rounded-0 btn-lg shadow-none">Back</a>
+                <a href="homepage.php" type="button" id="next-btn" class="btn rounded-0 btn-lg shadow-none">Finish</a>
         </div>
     </div>
 <?php    
