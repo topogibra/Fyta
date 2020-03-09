@@ -8,7 +8,7 @@ function top_deals()
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
                     <div class="img-wrapper">
                         <a href="product_page.php">
-                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/orquideas.jpg" alt="Rose Orchid">
+                            <img class="card-img-top product-image img-fluid border" src="../assets/orquideas.jpg" alt="Rose Orchid">
                         </a>
                     </div>
                     <div class="card-body text-center">
@@ -21,7 +21,7 @@ function top_deals()
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
                     <div class="img-wrapper">
                         <a href="product_page.php">
-                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/vaso.jpg" alt="XPR Vase">
+                            <img class="card-img-top product-image img-fluid border" src="../assets/vaso.jpg" alt="XPR Vase">
                         </a>
                     </div>
                     <div class="card-body text-center">
@@ -34,7 +34,7 @@ function top_deals()
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
                     <div class="img-wrapper">
                         <a href="product_page.php">
-                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/bonsai2.jpg" alt="Bonsai CRT">
+                            <img class="card-img-top product-image img-fluid border" src="../assets/bonsai2.jpg" alt="Bonsai CRT">
                         </a>
                     </div>
                     <div class="card-body text-center">
@@ -47,7 +47,7 @@ function top_deals()
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
                     <div class="img-wrapper">
                         <a href="product_page.php">
-                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/tulipas.jpg" alt="Orange Tulips">
+                            <img class="card-img-top product-image img-fluid border" src="../assets/tulipas.jpg" alt="Orange Tulips">
                         </a>
                     </div>
                     <div class="card-body text-center">
@@ -71,7 +71,7 @@ function top_indoor()
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
                     <div class="img-wrapper">
                         <a href="product_page.php">
-                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/meatrose_indoor.jpg" alt="Meat Rose">
+                            <img class="card-img-top product-image img-fluid border" src="../assets/meatrose_indoor.jpg" alt="Meat Rose">
                         </a>
                     </div>
                     <div class="card-body text-center">
@@ -84,7 +84,7 @@ function top_indoor()
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
                     <div class="img-wrapper">
                         <a href="product_page.php">
-                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/reddahlia_indoor.jpg" alt="Red Dahlias">
+                            <img class="card-img-top product-image img-fluid border" src="../assets/reddahlia_indoor.jpg" alt="Red Dahlias">
                         </a>
                     </div>
                     <div class="card-body text-center">
@@ -97,7 +97,7 @@ function top_indoor()
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
                     <div class="img-wrapper">
                         <a href="product_page.php">
-                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/pinktulips_indoor.jpg" alt="Pink Tulips">
+                            <img class="card-img-top product-image img-fluid border" src="../assets/pinktulips_indoor.jpg" alt="Pink Tulips">
                         </a>
                     </div>
                     <div class="card-body text-center">
@@ -110,7 +110,7 @@ function top_indoor()
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
                     <div class="img-wrapper">
                         <a href="product_page.php">
-                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/sativa_indoor.jpg" alt="Sativa Prime">
+                            <img class="card-img-top product-image img-fluid border" src="../assets/sativa_indoor.jpg" alt="Sativa Prime">
                         </a>
                     </div>
                     <div class="card-body text-center">
@@ -134,7 +134,7 @@ function top_outdoor()
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
                     <div class="img-wrapper">
                         <a href="product_page.php">
-                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/greenpalm_outdoor.jpg" alt="Green Palm Tree">
+                            <img class="card-img-top product-image img-fluid border" src="../assets/greenpalm_outdoor.jpg" alt="Green Palm Tree">
                         </a>
                     </div>
                     <div class="card-body text-center">
@@ -147,7 +147,7 @@ function top_outdoor()
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
                     <div class="img-wrapper">
                         <a href="product_page.php">
-                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/lavender_outdoor.jpg" alt="Lavender Premium">
+                            <img class="card-img-top product-image img-fluid border" src="../assets/lavender_outdoor.jpg" alt="Lavender Premium">
                         </a>
                     </div>
                     <div class="card-body text-center">
@@ -160,7 +160,7 @@ function top_outdoor()
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
                     <div class="img-wrapper">
                         <a href="product_page.php">
-                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/pondlilies_outdoor.jpg" alt="Pond White Lilies">
+                            <img class="card-img-top product-image img-fluid border" src="../assets/pondlilies_outdoor.jpg" alt="Pond White Lilies">
                         </a>
                     </div>
                     <div class="card-body text-center">
@@ -173,7 +173,7 @@ function top_outdoor()
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
                     <div class="img-wrapper">
                         <a href="product_page.php">
-                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/sunflower_outdoor.jpg" alt="Sunny's Sunflowers">
+                            <img class="card-img-top product-image img-fluid border" src="../assets/sunflower_outdoor.jpg" alt="Sunny's Sunflowers">
                         </a>
                     </div>
                     <div class="card-body text-center">
@@ -197,7 +197,7 @@ function top_vases()
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
                     <div class="img-wrapper">
                         <a href="product_page.php">
-                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/babyblue_vase.jpg" alt="Baby Blue Vase">
+                            <img class="card-img-top product-image img-fluid border" src="../assets/babyblue_vase.jpg" alt="Baby Blue Vase">
                         </a>
                     </div>
                     <div class="card-body text-center">
@@ -210,7 +210,7 @@ function top_vases()
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
                     <div class="img-wrapper">
                         <a href="product_page.php">
-                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/blackplastic_vase.jpg" alt="Black Vase">
+                            <img class="card-img-top product-image img-fluid border" src="../assets/blackplastic_vase.jpg" alt="Black Vase">
                         </a>
                     </div>
                     <div class="card-body text-center">
@@ -223,7 +223,7 @@ function top_vases()
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
                     <div class="img-wrapper">
                         <a href="product_page.php">
-                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/blueceramic_vase.jpg" alt="Ceramic Pot">
+                            <img class="card-img-top product-image img-fluid border" src="../assets/blueceramic_vase.jpg" alt="Ceramic Pot">
                         </a>
                     </div>
                     <div class="card-body text-center">
@@ -236,7 +236,7 @@ function top_vases()
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
                     <div class="img-wrapper">
                         <a href="product_page.php">
-                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/supreme_vase.jpg" alt="Supreme Bonsai Pot">
+                            <img class="card-img-top product-image img-fluid border" src="../assets/supreme_vase.jpg" alt="Supreme Bonsai Pot">
                         </a>
                     </div>
                     <div class="card-body text-center">
@@ -260,7 +260,7 @@ function top_tools()
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
                     <div class="img-wrapper">
                         <a href="product_page.php">
-                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/mower_tool.jpg" alt="High-tech mower">
+                            <img class="card-img-top product-image img-fluid border" src="../assets/mower_tool.jpg" alt="High-tech mower">
                         </a>
                     </div>
                     <div class="card-body text-center">
@@ -273,7 +273,7 @@ function top_tools()
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
                     <div class="img-wrapper">
                         <a href="product_page.php">
-                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/gloves_tool.jpg" alt="Blue Garden Gloves">
+                            <img class="card-img-top product-image img-fluid border" src="../assets/gloves_tool.jpg" alt="Blue Garden Gloves">
                         </a>
                     </div>
                     <div class="card-body text-center">
@@ -286,7 +286,7 @@ function top_tools()
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
                     <div class="img-wrapper">
                         <a href="product_page.php">
-                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/orangecut_tool.jpg" alt="Electric Grass Cutter">
+                            <img class="card-img-top product-image img-fluid border" src="../assets/orangecut_tool.jpg" alt="Electric Grass Cutter">
                         </a>
                     </div>
                     <div class="card-body text-center">
@@ -299,7 +299,7 @@ function top_tools()
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
                     <div class="img-wrapper">
                         <a href="product_page.php">
-                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/watercan_tool.jpg" alt="Green Watercan 12l">
+                            <img class="card-img-top product-image img-fluid border" src="../assets/watercan_tool.jpg" alt="Green Watercan 12l">
                         </a>
                     </div>
                     <div class="card-body text-center">

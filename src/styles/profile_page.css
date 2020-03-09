@@ -76,7 +76,7 @@ h3 {
         max-width: fit-content;
     }
     
-    .profile.container-fluid .col-md-9 .container {
+    .profile.container-fluid .col-md-9 > .container {
         padding: 0 10vw;
     }
 }
