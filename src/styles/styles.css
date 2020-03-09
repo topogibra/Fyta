@@ -1,4 +1,7 @@
 @import url("pallette.css");
+body {
+    font-family: var(--fonts);
+}
 
 .input-group.rounded-pill {
     overflow: hidden;
@@ -66,7 +69,6 @@
     .nav-link {
         font-size: 1.2em;
     }
-
 }
 
 @media (max-width: 767px) {
@@ -179,18 +181,18 @@
 }
 
 @media(min-width: 1800px) {
-    .nav-link {
-        font-size: 1.8em;
-        margin: 0 1em;
+    body {
+        font-size: 1.3em;
     }
     .navbar-brand img {
-        width: 10em;
-        height: 10em;
+        width: 8em;
+        height: 8em;
     }
-    .navbar-icons div i {
-        font-size: 2em;
+    footer {
+        font-size: 0.9em;
     }
 }
+
 
 /* footer  */
 
@@ -200,7 +202,7 @@
 }
 
 #content-wrap {
-    padding-bottom: 120px ;
+    padding-bottom: 120px;
 }
 
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before,
@@ -241,7 +243,6 @@ footer.row>div>a:nth-child(2)::after {
     height: 1em;
     content: "";
 }
-
 
 
 /* media queries */

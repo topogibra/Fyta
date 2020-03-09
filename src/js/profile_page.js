@@ -2,14 +2,14 @@ import buildProductRow from './product_row.js'
 import buildSections from './sections.js'
 import buildPersonalInfo from './personal_info.js'
 
-function createOrderColumn(info, attribute){
+function createOrderColumn(info, attribute) {
     const column = document.createElement('div');
     column.classList.add(...['col-md-2', 'col-6', attribute]);
     column.textContent = info;
     return column;
 }
 
-function buidOrderHistory(orders){
+function buidOrderHistory(orders) {
     const ordersContainer = document.createElement('div');
     ordersContainer.className = "container orders";
     const ordersHeader = document.createElement('div');
@@ -49,8 +49,7 @@ function buidOrderHistory(orders){
 }
 
 
-const mockOrders = [
-    {
+const mockOrders = [{
         number: 125877,
         date: "Dec 24 2019",
         price: "23.45€",
@@ -64,10 +63,9 @@ const mockOrders = [
     }
 ];
 
-const mockItems = [
-    {
+const mockItems = [{
         img: "../assets/orquideas.jpg",
-        name: "Orquídea Rosa",
+        name: "Rose Orchid",
         price: "20€"
     },
     {
@@ -87,8 +85,7 @@ const mockItems = [
     }
 ];
 
-const userProfileSections = [
-    {
+const userProfileSections = [{
         name: "Personal Information",
         action: () => buildPersonalInfo({
             username: 'mohammad.faruque',
@@ -113,7 +110,6 @@ const userProfileSections = [
 
 
 buildSections(userProfileSections);
-if (window.location.toString().search("#wishlist") != -1){
+if (window.location.toString().search("#wishlist") != -1) {
     document.querySelector('#wishlist').dispatchEvent(new Event('mousedown'));
 }
-
