@@ -33,7 +33,7 @@ function make_header($scripts, $styles)
                         <a href="profile_page.php" class="user">
                             <i class="far fa-user"></i>
                         </a>
-                        <a href="profile_page.php" class="star">
+                        <a href="profile_page.php#wishlist" class="star">
                             <i class="far fa-star"></i>
                         </a>
                         <a href="shopping_cart_page.php" class="cart">

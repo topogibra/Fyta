@@ -29,6 +29,7 @@ function buidOrderHistory(orders){
         const number = createOrderColumn(order.number, 'order');
         const href = document.createElement('a');
         href.href = 'order_invoice.php';
+        href.appendChild(number);
         orderRow.appendChild(href);
         orderRow.appendChild(createOrderColumn(order.date, 'date'));
         orderRow.appendChild(createOrderColumn(order.price, 'price'));
@@ -105,11 +106,14 @@ const userProfileSections = [
     },
     {
         name: "My Wishlist",
+        id: "wishlist",
         action: () => buildProductRow(mockItems)
     },
 ];
 
 
 buildSections(userProfileSections);
-
+if (window.location.toString().search("#wishlist") != -1){
+    document.querySelector('#wishlist').dispatchEvent(new Event('mousedown'));
+}
 

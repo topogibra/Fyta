@@ -1,131 +1,134 @@
-<?php 
-    function top_deals() { ?>
-        <div class="top-sold">
-            <h2 id="top-title"><a href="#deals">Top Deals</a></h2>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
-                        <div class="img-wrapper">
-                            <a href="product_page.php">
-                                <img class="card-img-top product-image img-fluid border border-dark" src="../assets/orquideas.jpg" alt="Rose Orchid">
-                            </a>
-                        </div>
-                        <div class="card-body text-center">
-                            <a href="product_page.php">
-                                <h5 class="card-title product-name text-dark">Rose Orchid</h5>
-                            </a>
-                            <p class="card-text product-price text-secondary">20€</p>
-                        </div>
+<?php
+function top_deals()
+{ ?>
+    <div class="top-sold">
+        <h2 id="top-title"><a href="searchpage.php">Top Deals</a></h2>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
+                    <div class="img-wrapper">
+                        <a href="product_page.php">
+                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/orquideas.jpg" alt="Rose Orchid">
+                        </a>
                     </div>
-                    <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
-                        <div class="img-wrapper">
-                            <a href="product_page.php">
-                                <img class="card-img-top product-image img-fluid border border-dark" src="../assets/vaso.jpg" alt="XPR Vase">
-                            </a>
-                        </div>
-                        <div class="card-body text-center">
-                            <a href="product_page.php">
-                                <h5 class="card-title product-name text-dark">XPR Vase</h5>
-                            </a>
-                            <p class="card-text product-price text-secondary">15€</p>
-                        </div>
+                    <div class="card-body text-center">
+                        <a href="product_page.php">
+                            <h5 class="card-title product-name text-dark">Rose Orchid</h5>
+                        </a>
+                        <p class="card-text product-price text-secondary">20€</p>
                     </div>
-                    <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
-                        <div class="img-wrapper">
-                            <a href="product_page.php">
-                                <img class="card-img-top product-image img-fluid border border-dark" src="../assets/bonsai2.jpg" alt="Bonsai CRT">
-                            </a>
-                        </div>
-                        <div class="card-body text-center">
-                            <a href="product_page.php">
-                                <h5 class="card-title product-name text-dark">Bonsai CRT</h5>
-                            </a>
-                            <p class="card-text product-price text-secondary">35€</p>
-                        </div>
+                </div>
+                <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
+                    <div class="img-wrapper">
+                        <a href="product_page.php">
+                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/vaso.jpg" alt="XPR Vase">
+                        </a>
                     </div>
-                    <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
-                        <div class="img-wrapper">
-                            <a href="product_page.php">
-                                <img class="card-img-top product-image img-fluid border border-dark" src="../assets/tulipas.jpg" alt="Orange Tulips">
-                            </a>
-                        </div>
-                        <div class="card-body text-center">
-                            <a href="product_page.php">
-                                <h5 class="card-title product-name text-dark">Orange Tulips</h5>
-                            </a>
-                            <p class="card-text product-price text-secondary">10€</p>
-                        </div>
+                    <div class="card-body text-center">
+                        <a href="product_page.php">
+                            <h5 class="card-title product-name text-dark">XPR Vase</h5>
+                        </a>
+                        <p class="card-text product-price text-secondary">15€</p>
+                    </div>
+                </div>
+                <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
+                    <div class="img-wrapper">
+                        <a href="product_page.php">
+                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/bonsai2.jpg" alt="Bonsai CRT">
+                        </a>
+                    </div>
+                    <div class="card-body text-center">
+                        <a href="product_page.php">
+                            <h5 class="card-title product-name text-dark">Bonsai CRT</h5>
+                        </a>
+                        <p class="card-text product-price text-secondary">35€</p>
+                    </div>
+                </div>
+                <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
+                    <div class="img-wrapper">
+                        <a href="product_page.php">
+                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/tulipas.jpg" alt="Orange Tulips">
+                        </a>
+                    </div>
+                    <div class="card-body text-center">
+                        <a href="product_page.php">
+                            <h5 class="card-title product-name text-dark">Orange Tulips</h5>
+                        </a>
+                        <p class="card-text product-price text-secondary">10€</p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 <?php }
 
-    function top_indoor() { ?>
-        <div class="top-sold">
-            <h2 id="top-title"><a href="#indoor">Indoor Plants</a></h2>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
-                        <div class="img-wrapper">
-                            <a href="product_page.php">
-                                <img class="card-img-top product-image img-fluid border border-dark" src="../assets/meatrose_indoor.jpg" alt="Meat Rose">
-                            </a>
-                        </div>
-                        <div class="card-body text-center">
-                            <a href="product_page.php">
-                                <h5 class="card-title product-name text-dark">"Meat" Rose</h5>
-                            </a>
-                            <p class="card-text product-price text-secondary">30€</p>
-                        </div>
-                    </div>
-                    <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
-                        <div class="img-wrapper">
-                            <a href="product_page.php">
-                                <img class="card-img-top product-image img-fluid border border-dark" src="../assets/reddahlia_indoor.jpg" alt="Red Dahlias">
+function top_indoor()
+{ ?>
+    <div class="top-sold">
+        <h2 id="top-title"><a href="searchpage.php">Indoor Plants</a></h2>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
+                    <div class="img-wrapper">
+                        <a href="product_page.php">
+                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/meatrose_indoor.jpg" alt="Meat Rose">
                         </a>
-                        </div>
-                        <div class="card-body text-center">
-                            <a href="product_page.php">
-                                <h5 class="card-title product-name text-dark">Red Dahlias</h5>
-                            </a>
-                            <p class="card-text product-price text-secondary">13.99€</p>
-                        </div>
                     </div>
-                    <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
-                        <div class="img-wrapper">
-                            <a href="product_page.php">
+                    <div class="card-body text-center">
+                        <a href="product_page.php">
+                            <h5 class="card-title product-name text-dark">"Meat" Rose</h5>
+                        </a>
+                        <p class="card-text product-price text-secondary">30€</p>
+                    </div>
+                </div>
+                <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
+                    <div class="img-wrapper">
+                        <a href="product_page.php">
+                            <img class="card-img-top product-image img-fluid border border-dark" src="../assets/reddahlia_indoor.jpg" alt="Red Dahlias">
+                        </a>
+                    </div>
+                    <div class="card-body text-center">
+                        <a href="product_page.php">
+                            <h5 class="card-title product-name text-dark">Red Dahlias</h5>
+                        </a>
+                        <p class="card-text product-price text-secondary">13.99€</p>
+                    </div>
+                </div>
+                <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
+                    <div class="img-wrapper">
+                        <a href="product_page.php">
                             <img class="card-img-top product-image img-fluid border border-dark" src="../assets/pinktulips_indoor.jpg" alt="Pink Tulips">
                         </a>
-                        </div>
-                        <div class="card-body text-center">
-                            <a href="product_page.php">
-                                <h5 class="card-title product-name text-dark">Pink Tulips</h5>
-                            </a>
-                            <p class="card-text product-price text-secondary">16.50€</p>
-                        </div>
                     </div>
-                    <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
-                        <div class="img-wrapper">
-                            <a href="product_page.php">
+                    <div class="card-body text-center">
+                        <a href="product_page.php">
+                            <h5 class="card-title product-name text-dark">Pink Tulips</h5>
+                        </a>
+                        <p class="card-text product-price text-secondary">16.50€</p>
+                    </div>
+                </div>
+                <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
+                    <div class="img-wrapper">
+                        <a href="product_page.php">
                             <img class="card-img-top product-image img-fluid border border-dark" src="../assets/sativa_indoor.jpg" alt="Sativa Prime">
                         </a>
-                        </div>
-                        <div class="card-body text-center">
-                            <a href="product_page.php">
-                                <h5 class="card-title product-name text-dark">Sativa Prime</h5>
-                            </a>
-                            <p class="card-text product-price text-secondary">4.20€</p>
-                        </div>
+                    </div>
+                    <div class="card-body text-center">
+                        <a href="product_page.php">
+                            <h5 class="card-title product-name text-dark">Sativa Prime</h5>
+                        </a>
+                        <p class="card-text product-price text-secondary">4.20€</p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 <?php }
 
-function top_outdoor() { ?>
+function top_outdoor()
+{ ?>
     <div class="top-sold">
-        <h2 id="top-title"><a href="#outdoor">Outdoor Plants</a></h2>
+        <h2 id="top-title"><a href="searchpage.php">Outdoor Plants</a></h2>
         <div class="container-fluid">
             <div class="row">
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
@@ -183,11 +186,12 @@ function top_outdoor() { ?>
             </div>
         </div>
     </div>
-<?php } 
+<?php }
 
-function top_vases() { ?>
+function top_vases()
+{ ?>
     <div class="top-sold">
-        <h2 id="top-title"><a href="#vases">Top Vases</a></h2>
+        <h2 id="top-title"><a href="searchpage.php">Top Vases</a></h2>
         <div class="container-fluid">
             <div class="row">
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
@@ -247,9 +251,10 @@ function top_vases() { ?>
     </div>
 <?php }
 
-function top_tools() { ?>
+function top_tools()
+{ ?>
     <div class="top-sold">
-        <h2 id="top-title"><a href="#tools">Top Tools</a></h2>
+        <h2 id="top-title"><a href="searchpage.php">Top Tools</a></h2>
         <div class="container-fluid">
             <div class="row">
                 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
