@@ -1,5 +1,4 @@
 @import url("pallette.css");
-
 body {
     font-family: var(--fonts);
 }
@@ -70,7 +69,6 @@ body {
     .nav-link {
         font-size: 1.2em;
     }
-
 }
 
 @media (max-width: 767px) {
@@ -185,17 +183,16 @@ body {
 @media(min-width: 1800px) {
     body {
         font-size: 1.3em;
-        margin: 0 1em;
     }
     .navbar-brand img {
         width: 8em;
         height: 8em;
     }
-
     footer {
         font-size: 0.9em;
     }
 }
+
 
 /* footer  */
 
@@ -205,7 +202,7 @@ body {
 }
 
 #content-wrap {
-    padding-bottom: 120px ;
+    padding-bottom: 120px;
 }
 
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before,
@@ -246,7 +243,6 @@ footer.row>div>a:nth-child(2)::after {
     height: 1em;
     content: "";
 }
-
 
 
 /* media queries */
