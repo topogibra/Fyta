@@ -1,7 +1,7 @@
 @import url('pallette.css');
 /* Payment Method */
 
- button {
+a.btn {
     border: 1px solid var(--gray);
     padding: 4px 2em;
 }

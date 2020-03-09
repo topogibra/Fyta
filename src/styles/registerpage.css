@@ -32,9 +32,9 @@
   background-color: var(--lighter-gray);
 }
 
-button.btn-primary, 
-button.btn-primary:focus, 
-button.btn-primary:active {
+.btn-primary, 
+.btn-primary:focus, 
+.btn-primary:active {
   background-color: var(--green)!important;
   color: var(--white)!important;
   border-color: var(--white)!important;

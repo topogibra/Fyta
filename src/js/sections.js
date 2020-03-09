@@ -10,6 +10,10 @@ export default function buildSections(sections){
         const reference = document.createElement('a');
         reference.className = "badge badge-light";
         reference.textContent = section.name;
+        if(section.id){
+            reference.id = section.id
+        }
+
         reference.addEventListener('mousedown', () => {
             removeAll(contentContainer);
 

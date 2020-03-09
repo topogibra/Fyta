@@ -33,7 +33,7 @@ function orderdetails()
                 <input type="text" class="form-control" id="billingaddress" placeholder="Billing Address">
             </div>
             <div class="d-flex flex-row-reverse">
-                <button type="button" id="next-btn" class="btn rounded-0 btn-lg shadow-none">Next</button>
+                <a role="button" href="checkout_payment.php" id="next-btn" class="btn rounded-0 btn-lg shadow-none">Next</a>
             </div>
         </form>
     </div>

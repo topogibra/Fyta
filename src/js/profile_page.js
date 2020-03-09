@@ -26,7 +26,11 @@ function buidOrderHistory(orders){
     orders.forEach(order => {
         const orderRow = document.createElement('div');
         orderRow.classList.add(...['row', 'justify-content-between', 'table-entry']);
-        orderRow.appendChild(createOrderColumn(order.number, 'order'));
+        const number = createOrderColumn(order.number, 'order');
+        const href = document.createElement('a');
+        href.href = 'order_invoice.php';
+        href.appendChild(number);
+        orderRow.appendChild(href);
         orderRow.appendChild(createOrderColumn(order.date, 'date'));
         orderRow.appendChild(createOrderColumn(order.price, 'price'));
         orderRow.appendChild(createOrderColumn(order.state, 'state'));
@@ -102,11 +106,14 @@ const userProfileSections = [
     },
     {
         name: "My Wishlist",
+        id: "wishlist",
         action: () => buildProductRow(mockItems)
     },
 ];
 
 
 buildSections(userProfileSections);
-
+if (window.location.toString().search("#wishlist") != -1){
+    document.querySelector('#wishlist').dispatchEvent(new Event('mousedown'));
+}
 

@@ -17,8 +17,8 @@
                 </a>
             </div>
             <div class="row buttons lg-content-between sm-space-around">
-                <button type="button" id="back-btn" class="btn rounded-0 btn-lg shadow-none">Back</button>
-                <button type="button" id="next-btn" class="btn rounded-0 btn-lg shadow-none">Next</button>
+                <a type="button" href="checkout_order_details.php" id="back-btn" class="btn rounded-0 btn-lg shadow-none">Back</a>
+                <a type="button" id="next-btn" href="checkout_order_summary.php" class="btn rounded-0 btn-lg shadow-none">Next</a>
             </div>
         </div>
 <?php } ?>

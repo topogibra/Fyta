@@ -68,7 +68,7 @@ make_header([], ["../styles/shopping_cart_page.css"]); ?>
     </div>
   </div>
   <div class="row" id="checkout">
-    <button class="btn btn-primary ml-auto" type="submit">Checkout</button>
+    <a type="role" href="checkout_order_details.php" class="btn btn-primary ml-auto" type="submit">Checkout</a>
   </div>
 </div>
 

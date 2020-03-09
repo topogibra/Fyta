@@ -50,10 +50,10 @@ make_header(['../js/product_page.js'], ['../styles/product_page.css']);
                         </div>
                     </div>
                     <div class="col-md-1-12 pr-3" id="purchase-buttons">
-                        <a name="" id="" class="btn btn-success pr-3" href="#" role="button">
+                        <a name="" id="" class="btn btn-success pr-3" href="shopping_cart_page.php" role="button">
                             Add To Basket
                         </a>
-                        <a name="" id="" class="btn btn-outline-success pr-3" href="#" role="button">
+                        <a name="" id="" class="btn btn-outline-success pr-3" href="checkout_order_details.php" role="button">
                             Buy now
                         </a>
                     </div>
