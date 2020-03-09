@@ -1,5 +1,9 @@
 @import url("pallette.css");
 
+body {
+    font-family: var(--fonts);
+}
+
 .input-group.rounded-pill {
     overflow: hidden;
 }
@@ -179,16 +183,17 @@
 }
 
 @media(min-width: 1800px) {
-    .nav-link {
-        font-size: 1.8em;
+    body {
+        font-size: 1.3em;
         margin: 0 1em;
     }
     .navbar-brand img {
-        width: 10em;
-        height: 10em;
+        width: 8em;
+        height: 8em;
     }
-    .navbar-icons div i {
-        font-size: 2em;
+
+    footer {
+        font-size: 0.9em;
     }
 }
 
