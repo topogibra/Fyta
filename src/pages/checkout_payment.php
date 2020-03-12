@@ -6,7 +6,7 @@
     include_once('../components/checkoutprogress.php');
 
 
-    make_header([], ['../styles/checkout_payment.css', '../styles/checkoutprogress.css']);
+    make_header([], ['../styles/payment_method.css', '../styles/checkoutprogress.css']);
     make_checkoutprogress(2);
     payment_method();
     make_footer();

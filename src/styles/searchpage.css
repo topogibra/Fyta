@@ -120,6 +120,13 @@ img {
     color: var(--green);
 }
 
+.min,
+.max,
+.min-input,
+.max-input {
+    text-align: center;
+}
+
 @media (max-width: 2000px) {
     .img-wrapper {
         height: 250px;

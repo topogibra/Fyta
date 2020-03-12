@@ -1,6 +1,6 @@
 <?php
     function payment_method() { ?>
-        <div class="payment-method container-fluid text-nowrap">
+        <div class="payment-method text-nowrap">
             <h3>Payment Method</h3>
             <div class="row options">
                 <a href="#mb" class="col-6">
