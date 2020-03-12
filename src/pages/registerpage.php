@@ -26,7 +26,7 @@ make_header([], ["../styles/registerpage.css"]); ?>
       </div>
     </div>
     <!--  -->
-    <div class="row justify-content-center">
+    <div class="row">
       <div class="col-sm-6">
         <h4 id="birthday">Birthday</h4>
       </div>

@@ -1,41 +1,51 @@
 @import url("pallette.css");
-
 .account-sections {
-    padding-top: 5em;
+    margin-top: 10%;
 }
 
-
 h3 {
-    font-size: 1.3em;
+    font-size: 1.25em;
     font-weight: bold;
     margin-bottom: 1em;
 }
 
-.btn.btn-primary,
-.btn.btn-primary:focus
-.btn.btn-primary:active{
-    background-color: var(--green) !important;
-    border-color: var(--green) !important;
-    color: var(--white) !important;
-}
-
-.btn.btn-primary:not(#add-manager){
-    max-width: 10em;
-}
-
 .badge {
     background-color: transparent;
-    font-weight: 300;
+    font-weight: 400;
     display: block;
     text-align: start;
     padding: 1em 0;
+    font-size: 1em;
 }
 
 .fa-trash {
     color: var(--green);
 }
 
-.order, .name {
+#save-changes div.col-md-6 {
+    text-align: right;
+}
+
+a.btn {
+    border: 1px solid var(--light-gray);
+}
+
+#savechanges,
+#add-manager {
+    background-color: var(--green);
+    color: var(--white);
+    font-size: 0.8em;
+    border: 1px solid var(--light-gray);
+}
+
+#add-manager {
+    margin-top: 2em;
+    width: 100%;
+    height: 4em;
+}
+
+.order,
+.name {
     text-decoration: underline;
 }
 
@@ -43,186 +53,27 @@ h3 {
     margin-top: 3em;
 }
 
-.profile.container-fluid .container .row > *{
-    margin: auto;
-    text-align: center;
-    font-size: 0.9em;
-}
-
-.row.header{
-    background-color: #ECECEC84;
+.row.header {
+    background-color: var(--light-gray);
     color: var(--dark-gray);
 }
 
-.table-entry{
+.table-entry {
     border-bottom: 1px solid var(--light-gray);
     padding: 0.5em 0;
 }
-
-
-
-@media(min-width: 775px){
-    .profile.container-fluid{
-        padding: 0 8em;
-    }
-
-    .re-order > span{
-        display: none;
-    }
-
-    .stock-wrapper input.stock {
-        flex-basis: auto;
-        width: 3em;
-        max-width: fit-content;
-    }
-    
-    .profile.container-fluid .col-md-9 > .container {
-        padding: 0 10vw;
-    }
-}
-
 
 input.stock {
     text-align: center;
     width: 100%;
 }
 
-.stock-wrapper, input {
+.stock-wrapper,
+input {
     padding: 0;
 }
 
-@media(max-width: 767px){
-    .account-sections{
-        padding-top: 0em;
-        order: 0;
-        margin: auto;
-    }
-
-    .row.header{
-        display: none;
-    }
-
-    .account-sections > ul.list-group .list-group-item:last-child {
-        border-bottom-width: thin;
-    }
-
-    .profile.container-fluid .container .row .order{
-        order: 1;
-        text-align: start;
-    }
-
-    .orders .row:not(.header){
-        border-top: 1px solid var(--light-gray);
-        border-bottom:0;
-    }
-
-    .profile.container-fluid .container .row .date{
-        order: 2;
-        text-align: end;
-    }
-
-    .profile.container-fluid .container .row .status{
-        order: 3;
-        text-align: left;
-    }
-
-    .profile.container-fluid .container .row .confirm{
-        order: 4;
-        text-align: right;
-    }
-
-    .orders .row .col-md-2.re-order .fas{
-        margin-right: 1em;
-        display: inline-block;
-    }
-    .orders .row .col-md-2.re-order{
-        order: 4;
-        text-align: end;
-    }    
-
-    .orders .row .col-md-2.state{
-        order: 3;
-        text-align: start;
-    }
-
-    .orders .row .col-md-2.price {
-        display: none;
-    }
-    
-    .account-sections > ul.list-group .list-group-item {
-        padding: .75rem 0;
-        font-size: 0.8em;
-    }
-
-    .badge {
-        margin-right: 1.3em;
-    }
-
-    .account-sections > ul.list-group {
-        flex-direction: row;
-        justify-content: center;
-        font-size: 1.2em;
-        overflow-x: scroll;
-        width: 100%;
-    }
-
-    h3 {
-        font-size: 1.7em;
-        text-align: center;
-    }
-
-    .profile .col-md-9{
-        order: 1;
-    }
-
-    .price {
-        order: 2;
-    }
-
-    .delete, .name, .stock {
-        order: 1;
-    }
-
-    .profile.container-fluid .container .row .delete, 
-    .profile.container-fluid .container .row .name{
-        text-align: left;
-    }
-
-    .profile.container-fluid .container .row .stock,
-    .profile.container-fluid .container .row .price {
-        text-align: right;
-    }
-
-    .btn.btn-primary:not(#add-manager){
-        max-width: 100%;
-    }
-
-    input {
-        width: fit-content;
-    }
-}
-
-@media(min-width: 1800px){
-    .badge{
-        font-size: 0.9em;
-    }
-
-    .fas.fa-plus-circle{
-        font-size: 1.3em;
-    }
-}
-
-
-
-@media(max-width: 1260px){
-    .fa-plus-square,
-    .fa-minus-square {
-        display: none;
-    }
-
-}
-
-#managers > .row {
+#managers>.row {
     position: relative;
 }
 
@@ -250,7 +101,7 @@ input.stock {
     font-size: 1.25em;
 }
 
-#managers > div:last-child > .col{
+#managers>div:last-child>.col {
     padding: 0;
 }
 
@@ -260,15 +111,10 @@ input.stock {
     margin-left: 0.3em;
 }
 
-.modal-title{
+.modal-title {
     color: var(--green);
     width: 100%;
     text-align: center;
-}
-
-#save-changes div.col-md-6{
-    margin-right: 0;
-    text-align: right;
 }
 
 .modal-footer button {
@@ -280,11 +126,136 @@ input.stock {
     height: 100%;
 }
 
-.img-wrapper > img {
+.img-wrapper>img {
     width: 100%;
     height: 100%;
 }
 
-.profile.container-fluid .container .row > .card.product {
+.profile .container .row>.card.product {
     margin-top: 0;
+}
+
+.profile {
+    padding: 0 8em;
+}
+
+.re-order>span {
+    display: none;
+}
+
+.stock-wrapper input.stock {
+    flex-basis: auto;
+    width: 3em;
+    max-width: fit-content;
+}
+
+.profile .col-md-9>.container {
+    padding-right: 5%;
+    padding-left: 2%;
+}
+
+@media(max-width: 767px) {
+    .account-sections {
+        padding-top: 0em;
+        order: 0;
+        margin: auto;
+    }
+    .row.header {
+        display: none;
+    }
+    .account-sections>ul.list-group .list-group-item:last-child {
+        border-bottom-width: thin;
+    }
+    .profile .container .row .order {
+        order: 1;
+        text-align: start;
+    }
+    .orders .row:not(.header) {
+        border-top: 1px solid var(--light-gray);
+        border-bottom: 0;
+    }
+    .profile .container .row .date {
+        order: 2;
+        text-align: end;
+    }
+    .profile .container .row .status {
+        order: 3;
+        text-align: left;
+    }
+    .profile .container .row .confirm {
+        order: 4;
+        text-align: right;
+    }
+    .orders .row .col-md-2.re-order .fas {
+        margin-right: 1em;
+        display: inline-block;
+    }
+    .orders .row .col-md-2.re-order {
+        order: 4;
+        text-align: end;
+    }
+    .orders .row .col-md-2.state {
+        order: 3;
+        text-align: start;
+    }
+    .orders .row .col-md-2.price {
+        display: none;
+    }
+    .account-sections>ul.list-group .list-group-item {
+        padding: .75rem 0;
+    }
+    .badge {
+        margin-right: 1.3em;
+    }
+    .account-sections>ul.list-group {
+        flex-direction: row;
+        justify-content: center;
+        overflow-x: scroll;
+        width: 100%;
+    }
+    h3 {
+        text-align: center;
+    }
+    .profile .col-md-9 {
+        order: 1;
+    }
+    .price {
+        order: 2;
+    }
+    .delete,
+    .name,
+    .stock {
+        order: 1;
+    }
+    .profile .container .row .delete,
+    .profile .container .row .name {
+        text-align: left;
+    }
+    .profile .container .row .stock,
+    .profile .container .row .price {
+        text-align: right;
+    }
+    .btn.btn-primary:not(#add-manager) {
+        max-width: 100%;
+    }
+    input {
+        width: fit-content;
+    }
+}
+
+@media(max-width: 425px) {
+    .profile {
+        padding: 0 2%;
+    }
+    #savechanges {
+        width: 100%;
+        font-size: 1em;
+    }
+}
+
+@media(max-width: 1260px) {
+    .fa-plus-square,
+    .fa-minus-square {
+        display: none;
+    }
 }

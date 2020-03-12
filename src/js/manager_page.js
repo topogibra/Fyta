@@ -10,7 +10,7 @@ function createProductColumn(info, attribute) {
     return column;
 }
 
-function buildStocks(products){
+function buildStocks(products) {
     const container = document.createElement('div');
     container.className = "container";
     const header = document.createElement('div');
@@ -62,9 +62,9 @@ function buildStocks(products){
             const elements = document.querySelectorAll(`.${elementClass}`);
             elements.forEach(element => element.replaceWith(nodeCreation(element)));
         });
-    } 
+    }
     col.addEventListener('mousedown', () => {
-        if(button.classList.contains('edit')){
+        if (button.classList.contains('edit')) {
             button.classList.remove('edit');
             button.classList.add('changes');
             button.textContent = "Save Changes"
@@ -74,7 +74,7 @@ function buildStocks(products){
                 node.type = 'text';
                 node.value = element.textContent;
                 return node;
-            }; 
+            };
             changeMode(generateInputNode);
             document.querySelectorAll('.stock').forEach(stock => {
                 const input = generateInputNode(stock);
@@ -85,8 +85,8 @@ function buildStocks(products){
                 const plus = document.createElement('i');
                 plus.className = "far fa-plus-square";
                 input.after(plus);
-                minus.addEventListener('mousedown', () => stock.value = Number(stock.value) - 1 );
-                plus.addEventListener('mousedown', () => stock.value = Number(stock.value) + 1 );
+                minus.addEventListener('mousedown', () => stock.value = Number(stock.value) - 1);
+                plus.addEventListener('mousedown', () => stock.value = Number(stock.value) + 1);
                 const wrapper = document.createElement('div');
                 wrapper.className = stock.className;
                 wrapper.classList.add('stock-wrapper')
@@ -171,7 +171,7 @@ function buildManagers(managers) {
         img.src = manager.photo;
         photo.appendChild(img);
         row.appendChild(photo);
-        
+
         const description = document.createElement('div');
         description.className = "col description";
         const heading = document.createElement('h5');
@@ -199,7 +199,7 @@ function buildManagers(managers) {
     const col = document.createElement('div');
     col.className = "col mt-3 mb-3 center";
     const button = document.createElement('button');
-    button.className = "btn btn-primary w-100 mt-3";
+    button.className = "btn rounded-0 btn-lg shadow-none";
     button.id = "add-manager";
     button.type = "button"
     button.setAttribute('data-toggle', 'modal');
@@ -267,8 +267,7 @@ function buildManagers(managers) {
     return container;
 }
 
-const mockProducts = [
-    {
+const mockProducts = [{
         name: 'Rose Orchid',
         price: '20€',
         stock: '43'
@@ -360,21 +359,19 @@ const mockProducts = [
     },
 ];
 
-const mockOrders = [
-    {
+const mockOrders = [{
         number: "125885",
         date: "Feb 24 2020",
-        status: "Ready for Shipping" 
+        status: "Ready for Shipping"
     },
     {
         number: "125877",
         date: "Dec 24 2019",
-        status: "Sent" 
+        status: "Sent"
     },
 ]
 
-const mockManagers = [
-    {
+const mockManagers = [{
         name: "Sisay Jeremiah",
         photo: "../assets/sisay_jeremiah_small.jpg",
         date: "Nov 24 2019"
@@ -396,14 +393,13 @@ const mockManagers = [
     },
 ]
 
-const managerProfileSections = [
-    {
+const managerProfileSections = [{
         name: "Manager Information",
         action: () => buildPersonalInfo({
             username: "simone.biles",
             email: "simone.biles.the.goat@gmail.com",
             photo: "../assets/simone.jpeg"
-        })    
+        })
     },
     {
         name: "Stocks",

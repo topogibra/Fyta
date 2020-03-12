@@ -17,8 +17,13 @@
     font-size: 1.5em;
 }
 
+.row .bd {
+    margin-left: 0;
+}
+
 #birthday {
     margin-bottom: 1rem;
+    font-size: 1.25em;
 }
 
 #submitbutton {

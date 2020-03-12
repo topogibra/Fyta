@@ -1,4 +1,4 @@
-export function buildPersonalInfoForm(info, user){
+export function buildPersonalInfoForm(info, user) {
     const container = document.createElement('div');
     container.className = "container";
 
@@ -35,17 +35,17 @@ export function buildPersonalInfoForm(info, user){
         const label = document.createElement('label');
         label.setAttribute('for', id);
         col.appendChild(label);
-        
+
     }
 
     buildInput('text', 'username', 'Username', info.username, personalInfoCol);
     buildInput('text', 'email', 'Email', info.email, personalInfoCol);
 
-    if(user) {
+    if (user) {
         buildInput('text', 'address', 'Address', info.address, personalInfoCol);
-    
+
         const birthdayHeader = document.createElement('div');
-        birthdayHeader.className = "row justify-content-center";
+        birthdayHeader.className = "row bd";
         form.appendChild(birthdayHeader);
         const birthdayCol = document.createElement('div');
         birthdayCol.className = "col-12";
@@ -54,8 +54,8 @@ export function buildPersonalInfoForm(info, user){
         heading.id = "birthday";
         heading.textContent = "Birthday";
         birthdayHeader.appendChild(heading);
-    
-    
+
+
         const birthdayInputs = document.createElement('div');
         birthdayInputs.className = "row form-group justify-content-center birthday";
         form.appendChild(birthdayInputs);
@@ -79,11 +79,11 @@ export function buildPersonalInfoForm(info, user){
             });
             birthdayInputs.appendChild(optionsCol);
         };
-    
+
         const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
         const years = ['2000', '1999', '1998', '1997', '1996', '1995', '1996'];
-    
-        buildSelectionColumn("day", Array.from({length: 31}).map((_, i) => String(i + 1)), info.day);
+
+        buildSelectionColumn("day", Array.from({ length: 31 }).map((_, i) => String(i + 1)), info.day);
         buildSelectionColumn("month", months, info.month);
         buildSelectionColumn("year", years, info.year);
     }
@@ -114,7 +114,8 @@ export default function buildPersonalInfo(info, user) {
     saveChanges.appendChild(saveChangesCol);
     const saveChangesButton = document.createElement('a');
     saveChangesButton.role = "button";
-    saveChangesButton.className = "btn btn-primary w-100 mt-3 p-1 edit";
+    saveChangesButton.className = "btn rounded-0 btn-lg shadow-none";
+    saveChangesButton.id = "savechanges";
     saveChangesButton.textContent = "Save Changes";
     saveChangesCol.appendChild(saveChangesButton);
     form.appendChild(saveChanges);
