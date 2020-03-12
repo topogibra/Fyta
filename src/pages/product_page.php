@@ -7,7 +7,7 @@ make_header(['../js/product_page.js'], ['../styles/product_page.css']);
 
 <section class="container">
     <div class="row product-section">
-        <div class="col-md product-img text-center">
+        <div class="col-md product-img ">
             <img class="border" src="../assets/bonsai.jpg">
         </div>
         <div class="col-md">

@@ -2,6 +2,10 @@
     padding: 0 7%;
 }
 
+.product-img {
+    text-align: center;
+}
+
 .container.title .review {
     color: var(--dark-gray);
 }
@@ -60,7 +64,7 @@
 }
 
 .row .related-products {
-    margin-top: 2em;
+    padding-top: 2em;
 }
 
 div.related-products img {
@@ -155,6 +159,16 @@ div.related-products img {
     width: 3em;
     padding: 0;
     flex-basis: auto;
+}
+
+@media(min-width: 1440px) {
+    .product-img img {
+        height: 450px;
+        width: 450px;
+    }
+    .container {
+        padding: 0;
+    }
 }
 
 @media(max-width: 1024px) {
