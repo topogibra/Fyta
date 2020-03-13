@@ -11,6 +11,17 @@
     margin-right: auto;
 }
 
+.form {
+    margin: 0 10%;
+}
+
+#submitbutton {
+    font-size: 1em;
+    background-color: var(--green);
+    color: var(--white);
+    width: 100%;
+}
+
 .form-title {
     color: var(--green);
     margin-bottom: 1rem;
@@ -67,8 +78,8 @@
     margin-right: 2rem;
 }
 
-@media (min-width: 768px) {
-    .registerSelect {
-        width: 100%;
+@media (max-width: 425px) {
+    .form {
+        margin: 0 5%;
     }
 }
