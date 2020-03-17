@@ -1,8 +1,8 @@
 -- Types
-CREATE TYPE ticket_type  ENUM (‘Payment Error’, ‘Faulty Delivery’, ‘Product Complaint’);
-CREATE TYPE ticket_status	ENUM(‘Opened’, ‘In Progress’, ‘Closed’);
-CREATE TYPE payment_method	ENUM(‘Stripe’, ‘Bank Transfer’);
-CREATE TYPE order_status	  ENUM(‘Awaiting Payment’, ‘Ready for Shipping’, ‘Processed’);
+CREATE TYPE ticket_type     AS ENUM ('Payment_Error', 'Faulty_Delivery', 'Product_Complaint');
+CREATE TYPE ticket_status	  AS ENUM('Opened', 'In_Progress', 'Closed');
+CREATE TYPE payment_method	AS ENUM('Stripe', 'Bank_Transfer');
+CREATE TYPE order_status	  AS ENUM('Awaiting_Payment', 'Ready_for_Shipping', 'Processed');
 
 -- Tables
 
@@ -21,8 +21,8 @@ CREATE TABLE product
   CONSTRAINT product_pk PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS order;
-CREATE TABLE order
+DROP TABLE IF EXISTS "order";
+CREATE TABLE "order"
 (
   id SERIAL,
   orderId NUMBER NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE product_order
   id_product INTEGER NOT NULL,
   id_order INTEGER NOT NULL,
   CONSTRAINT product_order_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE,
-  CONSTRAINT product_order_order_fk FOREIGN KEY (id_order) REFERENCES order(id) ON UPDATE CASCADE
+  CONSTRAINT product_order_order_fk FOREIGN KEY (id_order) REFERENCES "order"(id) ON UPDATE CASCADE
 );
 
 DROP TABLE IF EXISTS review;
@@ -54,7 +54,7 @@ CREATE TABLE review
   CONSTRAINT review_rating_check CHECK (rating>=1 AND rating<=5),
   CONSTRAINT review_pk PRIMARY KEY (id_product,id_order),
   CONSTRAINT review_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE,
-  CONSTRAINT review_order_fk FOREIGN KEY (id_order) REFERENCES order(id)
+  CONSTRAINT review_order_fk FOREIGN KEY (id_order) REFERENCES "order"(id)
 );
 
 DROP TABLE IF EXISTS order_history;
@@ -65,11 +65,11 @@ CREATE TABLE order_history
   id_order INTEGER NOT NULL,
   TYPE order_status NOT NULL,
   CONSTRAINT order_history_pk PRIMARY KEY (id),
-  CONSTRAINT order_history_order_pk FOREIGN KEY (id_order) REFERENCES order(id),
+  CONSTRAINT order_history_order_pk FOREIGN KEY (id_order) REFERENCES "order"(id)
 );
 
-DROP TABLE IF EXISTS user;
-CREATE TABLE user
+DROP TABLE IF EXISTS "user";
+CREATE TABLE "user"
 (
   id SERIAL,
   username TEXT NOT NULL,
@@ -88,7 +88,7 @@ CREATE TABLE customer
   id_user INTEGER NOT NULL,
   "address" TEXT NOT NULL,
   CONSTRAINT customer_pk PRIMARY KEY (id_user),
-  CONSTRAINT customer_user_fk FOREIGN KEY (id_user) REFERENCES user(id) ON UPDATE CASCADE
+  CONSTRAINT customer_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE
 );
 
 DROP TABLE IF EXISTS manager;
@@ -97,7 +97,7 @@ CREATE TABLE manager
   id_user INTEGER NOT NULL,
   created_at DATE DEFAULT now() NOT NULL,
   CONSTRAINT manager_pk PRIMARY KEY (id_user),
-  CONSTRAINT manager_user_fk FOREIGN KEY (id_user) REFERENCES user(id)
+  CONSTRAINT manager_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id)
 );
 
 DROP TABLE IF EXISTS wishlist;
@@ -219,7 +219,7 @@ CREATE TABLE ticket_message
   id_user INTEGER NOT NULL,
   CONSTRAINT ticket_message_pk PRIMARY KEY (id),
   CONSTRAINT ticket_message_ticket_fk FOREIGN KEY (id_ticket) REFERENCES ticket(id),
-  CONSTRAINT ticket_message_user_fk FOREIGN KEY (id_user) REFERENCES user(id)
+  CONSTRAINT ticket_message_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id)
 );
 
 DROP TABLE IF EXISTS ticket_history;
