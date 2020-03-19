@@ -8,7 +8,7 @@
         }
         
         .form {
-            margin: 0em 10%;
+            margin: 3% 25%;
         }
         
         .form small {
@@ -55,12 +55,18 @@
         
         @media (min-width: 1500px) {
             .form {
-                margin: 0em auto;
+                margin: 5% 18%;
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .form {
+                margin: 3% 20%;
             }
         }
         
         @media (max-width: 768px) {
             .form {
-                margin: 0em 10%;
+                margin: 3% 10%;
             }
         }

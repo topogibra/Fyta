@@ -66,10 +66,10 @@ make_header(['../js/product_page.js'], ['../styles/product_page.css']);
             </div>
         </div>
     </div>
+    <h3>
+        Related Products
+    </h3>
     <div class="row product-section">
-        <h3>
-            Related Products
-        </h3>
         <div class="row related-products justify-content-center">
             <article class="col-md-4 col-sm-12">
                 <div class="card align-items-center">

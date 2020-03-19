@@ -6,6 +6,9 @@
 h3 {
     font-size: 1.25em;
     font-weight: bold;
+}
+
+#day {
     margin-bottom: 1em;
 }
 
@@ -16,6 +19,11 @@ h3 {
     text-align: start;
     padding: 1em 0;
     font-size: 1em;
+}
+
+#password {
+    margin-bottom: 1em;
+    height: 3em;
 }
 
 .fa-trash {
@@ -32,6 +40,9 @@ a.btn {
 
 #savechanges,
 #add-manager {
+    width: 60%;
+    height: 3em;
+    text-align: center;
     background-color: var(--green);
     color: var(--white);
     font-size: 0.8em;
@@ -150,8 +161,15 @@ input {
 }
 
 .profile .col-md-9>.container {
-    padding-right: 5%;
-    padding-left: 2%;
+    padding: 5% 10%;
+}
+
+#products-button {
+    margin-top: 1em;
+    font-size: 1em;
+    background-color: var(--green);
+    color: var(--white);
+    width: 100%;
 }
 
 @media(max-width: 767px) {

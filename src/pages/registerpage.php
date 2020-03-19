@@ -19,9 +19,7 @@ make_header([], ["../styles/registerpage.css"]); ?>
     <div class="row form-group ">
       <div class="col">
         <input type="text" name="username" id="username" class="form-control registerinput" placeholder="Username" aria-describedby="helpUser">
-        <label for="password"></label>
         <input type="email" name="email" id="email" class="form-control registerinput" placeholder="Email" aria-describedby="helpId">
-        <label for="password"></label>
         <input type="text" name="address" id="address" class="form-control registerinput" placeholder="Address" aria-describedby="helpId">
       </div>
     </div>

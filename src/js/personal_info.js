@@ -31,11 +31,6 @@ export function buildPersonalInfoForm(info, user) {
         input.placeholder = placeholder;
         input.value = value;
         col.appendChild(input);
-
-        const label = document.createElement('label');
-        label.setAttribute('for', id);
-        col.appendChild(label);
-
     }
 
     buildInput('text', 'username', 'Username', info.username, personalInfoCol);

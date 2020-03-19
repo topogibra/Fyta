@@ -49,7 +49,7 @@ function buildStocks(products) {
     const col = document.createElement('div');
     col.className = "col-md-4 col-12 ml-auto mr-0 pr-0";
     const button = document.createElement('a');
-    button.className = "btn btn-primary w-100 mt-3 p-1 edit";
+    button.className = "btn rounded-0 btn-lg shadow-none";
     button.setAttribute('role', 'button');
     button.textContent = 'Edit';
     button.id = "products-button"
