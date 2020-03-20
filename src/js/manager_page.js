@@ -5,7 +5,7 @@ import { buildPersonalInfoForm } from './personal_info.js';
 
 function createProductColumn(info, attribute) {
     const column = document.createElement('div');
-    column.classList.add(...['col-md-2', 'col-6', attribute]);
+    column.classList.add(...['col-md-3', 'col-6', attribute]);
     column.textContent = info;
     return column;
 }
@@ -18,7 +18,7 @@ function buildStocks(products) {
 
     ['Product', 'Price', 'Stock', 'Delete'].forEach(element => {
         const heading = document.createElement('div');
-        heading.className = "col-md-2";
+        heading.className = "col-md-3";
         heading.textContent = element;
         header.appendChild(heading);
     });
@@ -32,7 +32,7 @@ function buildStocks(products) {
         const href = document.createElement('a');
         href.href = 'product_page.php';
         href.appendChild(name);
-        href.className = "col-md-2 col-6 name";
+        href.className = "col-md-3 col-6 name";
         row.appendChild(href);
         row.appendChild(createProductColumn(product.price, 'price'));
         row.appendChild(createProductColumn(product.stock, 'stock'));
@@ -128,7 +128,7 @@ function buidlPendingOrders(orders) {
 
     ['Order #', 'Purchase Date', 'Pending Status', 'Confirm Status'].forEach(element => {
         const heading = document.createElement('div');
-        heading.className = "col-md-2";
+        heading.className = "col-md-3";
         heading.textContent = element;
         header.appendChild(heading);
     });
@@ -140,7 +140,7 @@ function buidlPendingOrders(orders) {
         row.className = "row table-entry";
         const number = createProductColumn(order.number, 'order');
         const href = document.createElement('a');
-        href.className = "col-md-2 col-6 name";
+        href.className = "col-md-3 col-6 name";
         href.href = 'order_invoice.php';
         href.appendChild(number);
         row.appendChild(href);
