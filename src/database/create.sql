@@ -39,8 +39,10 @@ CREATE TABLE "order"
   delivery_address TEXT NOT NULL,
   order_date DATE DEFAULT now() NOT NULL,
   TYPE payment_method NOT NULL,
+  id_customer INTEGER NOT NULL
   CONSTRAINT order_pk PRIMARY KEY (id),
-  CONSTRAINT order_order_id_uk UNIQUE (order_id)
+  CONSTRAINT order_order_id_uk UNIQUE (order_id),
+  CONSTRAINT order_customer_fk FOREIGN KEY (id_customer) REFERENCES customer(id_customer) ON UPDATE CASCADE
 );
 DROP TABLE IF EXISTS product_order CASCADE;
 CREATE TABLE product_order
@@ -101,7 +103,7 @@ CREATE TABLE manager
   id_user INTEGER NOT NULL,
   created_at DATE DEFAULT now() NOT NULL,
   CONSTRAINT manager_pk PRIMARY KEY (id_user),
-  CONSTRAINT manager_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id)
+  CONSTRAINT manager_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE
 );
 DROP TABLE IF EXISTS wishlist CASCADE;
 CREATE TABLE wishlist
@@ -231,4 +233,13 @@ CREATE TABLE product_image
   CONSTRAINT product_image_pk PRIMARY KEY (id_image,id_product),
   CONSTRAINT product_image_image_fk FOREIGN KEY (id_image) REFERENCES "image"(id),
   CONSTRAINT product_image_product_fk FOREIGN KEY (id_product) REFERENCES product(id)
+);
+DROP TABLE IF EXISTS user_removal CASCADE;
+CREATE TABLE user_removal
+(
+  id SERIAL,
+  reason TEXT NOT NULL,
+  id_user INTEGER NOT NULL,
+  CONSTRAINT user_removal_pk PRIMARY KEY (id),
+  CONSTRAINT user_removal_user_fk FOREIGN KEY (id_user) REFERENCES user(id) ON UPDATE CASCADE
 );
