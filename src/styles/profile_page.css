@@ -146,6 +146,11 @@ input {
     margin-top: 0;
 }
 
+.profile .container .row > * {
+    margin: auto;
+    text-align: center;
+}
+
 .profile {
     padding: 0 8em;
 }
@@ -208,10 +213,6 @@ input {
         margin-right: 1em;
         display: inline-block;
     }
-    .orders .row .col-md-2.re-order {
-        order: 4;
-        text-align: end;
-    }
     .orders .row .col-md-2.state {
         order: 3;
         text-align: start;
@@ -261,6 +262,31 @@ input {
     }
 }
 
+@media(max-width: 992px){
+    .orders .row.header {
+        display: none;
+    }
+
+    .orders .price {
+        display: none;
+    }
+
+    .profile .container.orders .row .date {
+        order: 2;
+        text-align: end;
+    }
+
+    .orders .row .re-order {
+        order: 4;
+        text-align: end;
+    }
+
+    .orders .row .state{
+        order: 3;
+        text-align: left;
+    }
+}
+
 @media(max-width: 425px) {
     .profile {
         padding: 0 2%;
@@ -276,4 +302,9 @@ input {
     .fa-minus-square {
         display: none;
     }
+
+    .profile .container .row > * {
+        padding: 0
+    }
+
 }
