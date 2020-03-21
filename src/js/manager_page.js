@@ -10,6 +10,11 @@ function createProductColumn(info, attribute) {
     return column;
 }
 
+const stateStatus = {
+    'Ready for Shipping' : 'Confirm  Shipping',
+    'Awaiting Payment' : 'Awaiting Payment'
+}
+
 function buildStocks(products) {
     const container = document.createElement('div');
     container.className = "container";
@@ -149,7 +154,7 @@ function buidlPendingOrders(orders) {
         const col = createProductColumn('', 'confirm');
         const button = document.createElement('a');
         button.className = "btn btn-primary confirm-order";
-        button.textContent = "Confirm"
+        button.textContent = stateStatus[order.status];
         col.appendChild(button);
         row.appendChild(col);
         container.appendChild(row);
@@ -367,7 +372,7 @@ const mockOrders = [{
     {
         number: "125877",
         date: "Dec 24 2019",
-        status: "Sent"
+        status: "Awaiting Payment"
     },
 ]
 
