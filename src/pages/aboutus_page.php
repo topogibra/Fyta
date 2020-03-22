@@ -20,24 +20,24 @@ make_header([], ["../styles/aboutus.css"]); ?>
 
 <div class="d-flex flex-row flex-wrap cards justify-content-center">
     <div class="card" style="width: 18rem;">
-        <img src="../assets/world.png" class="card-img-top" alt="world">
+    <i class="fas fa-globe"></i>
         <div class="card-body">
             <h5 class="card-title">Worldwide Shipping</h5>
-            <p class="card-text"> Getting you desert roses from the Sahara to all the way to Los Angeles, there is no place we won't go to get you that plant that you really crave for</p>
+            <p class="card-text text-center"> Getting you desert roses from the Sahara to all the way to Los Angeles, there is no place we won't go to get you that plant that you really crave for</p>
         </div>
     </div>
     <div class="card" style="width: 18rem;">
-        <img src="../assets/quality.png" class="card-img-top" alt="quality">
+    <i class="fas fa-award"></i>
         <div class="card-body">
             <h5 class="card-title">Quality Certified</h5>
-            <p class="card-text"> Not only our customers rate us as the top, we are recognized by the GreenPlants Magazine as the Best Gardening Seller of 2020</p>
+            <p class="card-text  text-center"> Not only our customers rate us as the top, we are recognized by the GreenPlants Magazine as the Best Gardening Seller of 2020</p>
         </div>
     </div>
     <div class="card" style="width: 18rem;">
         <i class="fas fa-seedling"></i>
         <div class="card-body">
             <h5 class="card-title">Green Always</h5>
-            <p class="card-text">We make that our plants get the care they deserve and every product we use is eco-friendly</p>
+            <p class="card-text  text-center">We make that our plants get the care they deserve and every product we use is eco-friendly</p>
         </div>
     </div>
 </div>

@@ -14,13 +14,16 @@ h1 {
 }
 
 .card i {
-    font-size: 5em;
+    text-align: center;
+    font-size: 8em;
+    color: var(--green);
+}
+
+.cards .card h5 {
+    text-align: center;
 }
 
 @media(max-width: 768px) {
-    .cards .card h5 {
-        text-align: center;
-    }
     .abouttext {
         margin: 1em 2em;
     }
