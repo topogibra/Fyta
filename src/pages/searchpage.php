@@ -109,10 +109,10 @@
               <h5>Price Range</h5>
               <div class="row price-values">
                 <div class="col-5 min">
-                  <p>0€ </p>
+                  <p>1€ </p>
                 </div>
                 <div class="col-5 max">
-                  <p>50€</p>
+                  <p>100€</p>
                 </div>
               </div>
               <div class="row price-inputs">
