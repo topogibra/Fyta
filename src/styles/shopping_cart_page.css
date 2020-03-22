@@ -86,6 +86,12 @@ button.col-2 {
     padding-right: 0;
 }
 
+#checkout_btn {
+    width: 100%;
+    background-color: var(--green);
+    color: var(--white);
+}
+
 @media(max-width: 576px) {
     .shopCartEntry {
         padding-top: 0rem;
