@@ -4,7 +4,7 @@ include_once('../components/header.php');
 
 make_header(['../js/profile_page.js'], ['../styles/profile_page.css', '../styles/registerpage.css', '../styles/homepage.css']);
 ?>
-<div class="container-fluid profile">
+<div class="profile">
     <div class="row">
         <div class="col-md-9">
         </div>

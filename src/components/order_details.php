@@ -2,8 +2,8 @@
 function orderdetails()
 { ?>
 
-    <h3>Order Details</h3>
-    <div class="form">
+        <div class="form">
+            <h3>Order Details</h3>
         <form>
             <div class="form-group">
                 <input type="text" class="form-control" id="checkoutemail" placeholder="Email">
@@ -16,15 +16,10 @@ function orderdetails()
             </div>
             <h6>Billing Address </h6>
 
-            <div class="radios">
+            <div class="checkbox">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="addresses" id="sameradio" value="same">
-                    <label class="form-check-label" for="sameradio">Same as delivery</label>
-                </div>
-                <div class="form-check form-check-inline">
-
-                    <input class="form-check-input" type="radio" name="addresses" id="differentradio" value="different">
-                    <label class="form-check-label" for="differentradio">Different from delivery address</label>
+                    <input class="form-check-input" type="checkbox" name="addresses" id="checkout" value="same">
+                    <label class="form-check-label" for="sameradio">Different Billing Address </label>
                 </div>
             </div>
 
@@ -33,8 +28,9 @@ function orderdetails()
                 <input type="text" class="form-control" id="billingaddress" placeholder="Billing Address">
             </div>
             <div class="d-flex flex-row-reverse">
-                <a role="button" href="checkout_payment.php" id="next-btn" class="btn rounded-0 btn-lg shadow-none">Next</a>
+                <a href="checkout_payment.php" type="button" id="next-btn" class="btn rounded-0 btn-lg shadow-none">Next</a>
             </div>
         </form>
     </div>
+
 <?php } ?>

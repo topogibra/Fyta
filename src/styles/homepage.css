@@ -84,6 +84,14 @@
         height: 200px;
         width: 200px;
     }
+
+    .top-sold .row {
+        justify-content: center;
+    }
+    
+    .top-sold .row .product:not(:first-child) {
+        display: none;
+    }
     
     footer.row {
         height: 4em;

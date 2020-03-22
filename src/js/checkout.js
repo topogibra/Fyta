@@ -1,13 +1,12 @@
-let samedelivery = document.querySelector("#sameradio");
-let difdelivery = document.querySelector("#differentradio");
+let difdelivery = document.querySelector("#checkout");
 
 let billingaddress = document.querySelector("#billingaddress");
 
 
-samedelivery.addEventListener('click', (event) => {
-    billingaddress.style.display = 'none';
-})
-
 difdelivery.addEventListener('click', (event) => {
-    billingaddress.style.display = 'block';
+    if (difdelivery.checked) {
+        billingaddress.style.display = 'none';
+    } else {
+        billingaddress.style.display = 'block';
+    }
 })

@@ -98,8 +98,8 @@
 
                 <li class="list-group-item">
                   <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id=<?=$size?> >
-                    <label class="custom-control-label" for=<?=$size?>> <?=$size?></label>
+                    <input type="checkbox" class="custom-control-input" id=<?= $size ?>>
+                    <label class="custom-control-label" for=<?= $size ?>> <?= $size ?></label>
                   </div>
                 </li>
               <?php } ?>
@@ -107,8 +107,24 @@
 
             <div class="price">
               <h5>Price Range</h5>
-              <label for="customRange">50€</label>
-              <input type="range" class="custom-range" min="0" max="200" id="pricerange">
+              <div class="row price-values">
+                <div class="col-5 min">
+                  <p>0€ </p>
+                </div>
+                <div class="col-5 max">
+                  <p>50€</p>
+                </div>
+              </div>
+              <div class="row price-inputs">
+                <div class="col-5 min-input">
+                  <input type="number" class="form-control" id="min" placeholder="Min">
+                </div>
+                <div class="col-5 max-input">
+                  <input type="number" class="form-control" id="max" placeholder="Max">
+                </div>
+              </div>
+
+
             </div>
           </div>
 

@@ -10,7 +10,7 @@
     
 
 make_checkoutprogress(3);?>
-    <div class="order-summary container-fluid">
+    <div class="order-summary ">
         <div class="row summary-header">
             <h3 class="col-6 text-nowrap">Order Summary</h3>
             <div class="order-status col-6 row justify-content-center ">

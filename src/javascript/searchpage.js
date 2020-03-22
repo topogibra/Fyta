@@ -1,7 +1,17 @@
 let order = document.getElementById('order');
 let filter = document.getElementById('filter');
-let pricerange = document.querySelector(".price input");
-let pricevalue = document.querySelector(".price label");
+
+
+let priceinputmin = document.querySelector(".price .price-inputs .min-input input");
+let priceinputmax = document.querySelector(".price .price-inputs .max-input input");
+
+let pricevaluemin = document.querySelector(".price .price-values .min p");
+let pricevaluemax = document.querySelector(".price .price-values .max p");
+
+priceinputmin.value = 0;
+priceinputmax.value = 50;
+
+
 
 let filtericon = document.querySelector("#filter i")
 let filtercontent = document.getElementsByClassName("col-lg-3");
@@ -25,7 +35,19 @@ window.addEventListener('resize', (event) => {
     }
 })
 
-pricerange.addEventListener('input', function() {
-    pricevalue.innerHTML = pricerange.value + "€";
+priceinputmin.addEventListener('input', function() {
+
+    if (priceinputmin.valueAsNumber <= priceinputmax.valueAsNumber)
+        pricevaluemin.innerHTML = priceinputmin.value + "€";
+
+
+}, false);
+
+priceinputmax.addEventListener('input', function() {
+
+    if (priceinputmin.valueAsNumber <= priceinputmax.valueAsNumber)
+        pricevaluemax.innerHTML = priceinputmax.value + "€";
+
+
 
 }, false);

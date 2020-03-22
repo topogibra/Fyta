@@ -7,20 +7,20 @@ make_header(['../js/product_page.js'], ['../styles/product_page.css']);
 
 <section class="container">
     <div class="row product-section">
-        <div class="col-md product-img">
-            <img class="border w-100 h-100" src="../assets/bonsai.jpg">
+        <div class="col-md product-img ">
+            <img class="border" src="../assets/bonsai.jpg">
         </div>
         <div class="col-md">
-            <div class="container-fluid title">
-                <div class="row align-items ">
-                    <h3 class="col-xs-1-12">
+            <div class="container title">
+                <div class="row justify-content-between ">
+                    <h3 class="col-xs-1-12 col-5">
                         Bonsai CRT
                     </h3>
-                    <span class="col-xs-1-12 review">
-                        <h6>4</h6>
+                    <span class="col-xs-1-12  review">
+                        <h6>4.0</h6>
                         <i class="far fa-star"></i>
                     </span>
-                    <span class="col-md-3 view-reviews">
+                    <span class="col-5  view-reviews">
                         <a href="#reviews">View Reviews</a>
                     </span>
 
@@ -36,10 +36,10 @@ make_header(['../js/product_page.js'], ['../styles/product_page.css']);
                         that will give your home a deep sense of oriental energy.
                     </p>
                 </div>
-                <div class="row align-items-center">
+                <div class="row ">
                     <div class="col-md-1-12 pr-3">
                         <div class="dropdown show">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="numItems" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="btn btn-secondary dropdown-toggle " href="#" role="button" id="numItems" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 1
                             </a>
                             <div class="dropdown-menu" aria-labelledby="numItems">
@@ -50,10 +50,10 @@ make_header(['../js/product_page.js'], ['../styles/product_page.css']);
                         </div>
                     </div>
                     <div class="col-md-1-12 pr-3" id="purchase-buttons">
-                        <a name="" id="" class="btn btn-success pr-3" href="shopping_cart_page.php" role="button">
+                        <a name="" id="addbasket" class="btn btn-success pr-3 " href="shopping_cart_page.php" role="button">
                             Add To Basket
                         </a>
-                        <a name="" id="" class="btn btn-outline-success pr-3" href="checkout_order_details.php" role="button">
+                        <a name="" id="buynow" class="btn btn-light pr-3 " href="checkout_order_details.php" role="button">
                             Buy now
                         </a>
                     </div>
@@ -66,11 +66,11 @@ make_header(['../js/product_page.js'], ['../styles/product_page.css']);
             </div>
         </div>
     </div>
+    <h3>
+        Related Products
+    </h3>
     <div class="row product-section">
-        <h3>
-            Related Products
-        </h3>
-        <div class="row related-products justify-content-between">
+        <div class="row related-products justify-content-center">
             <article class="col-md-4 col-sm-12">
                 <div class="card align-items-center">
                     <img class="card-img-top border border-dark" src="../assets/supreme_vase.jpg" alt="Supreme Bonsai Pot">
@@ -91,19 +91,20 @@ make_header(['../js/product_page.js'], ['../styles/product_page.css']);
             </article>
             <article class="col-md-4 col-sm-12">
                 <div class="card align-items-center">
-                    <img class="card-img-top border border-dark" src="../assets/pondlilies_outdoor.jpg" alt="Pond White Lilies">
+                    <img class="card-img-top border border-dark " src="../assets/pondlilies_outdoor.jpg" alt="Pond White Lilies">
                     <div class="card-body row">
                         <h4 class="card-title col">Pond White Lilies</h4>
                         <p class="card-text">40€</p>
                     </div>
                 </div>
             </article>
+            
         </div>
     </div>
     <div id="reviews" class="row product-section">
-        <span class="row reviews-title justify-content-start">
-            <h3 class="col-md-4">345 Reviews</h3>
-            <div class="col-md-1 row">
+        <span class="row reviews-title">
+            <h3>345 Reviews</h3>
+            <div class="stars">
                 <i class=" fas fa-star"></i>
                 <i class=" fas fa-star"></i>
                 <i class=" fas fa-star"></i>

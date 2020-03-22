@@ -5,12 +5,17 @@ import { buildPersonalInfoForm } from './personal_info.js';
 
 function createProductColumn(info, attribute) {
     const column = document.createElement('div');
-    column.classList.add(...['col-md-2', 'col-6', attribute]);
+    column.classList.add(...['col-md-3', 'col-6', attribute]);
     column.textContent = info;
     return column;
 }
 
-function buildStocks(products){
+const stateStatus = {
+    'Ready for Shipping' : 'Confirm  Shipping',
+    'Awaiting Payment' : 'Awaiting Payment'
+}
+
+function buildStocks(products) {
     const container = document.createElement('div');
     container.className = "container";
     const header = document.createElement('div');
@@ -18,7 +23,7 @@ function buildStocks(products){
 
     ['Product', 'Price', 'Stock', 'Delete'].forEach(element => {
         const heading = document.createElement('div');
-        heading.className = "col-md-2";
+        heading.className = "col-md-3";
         heading.textContent = element;
         header.appendChild(heading);
     });
@@ -32,7 +37,7 @@ function buildStocks(products){
         const href = document.createElement('a');
         href.href = 'product_page.php';
         href.appendChild(name);
-        href.className = "col-md-2 col-6 name";
+        href.className = "col-md-3 col-6 name";
         row.appendChild(href);
         row.appendChild(createProductColumn(product.price, 'price'));
         row.appendChild(createProductColumn(product.stock, 'stock'));
@@ -49,7 +54,7 @@ function buildStocks(products){
     const col = document.createElement('div');
     col.className = "col-md-4 col-12 ml-auto mr-0 pr-0";
     const button = document.createElement('a');
-    button.className = "btn btn-primary w-100 mt-3 p-1 edit";
+    button.className = "btn rounded-0 btn-lg shadow-none";
     button.setAttribute('role', 'button');
     button.textContent = 'Edit';
     button.id = "products-button"
@@ -62,9 +67,9 @@ function buildStocks(products){
             const elements = document.querySelectorAll(`.${elementClass}`);
             elements.forEach(element => element.replaceWith(nodeCreation(element)));
         });
-    } 
+    }
     col.addEventListener('mousedown', () => {
-        if(button.classList.contains('edit')){
+        if (button.classList.contains('edit')) {
             button.classList.remove('edit');
             button.classList.add('changes');
             button.textContent = "Save Changes"
@@ -74,7 +79,7 @@ function buildStocks(products){
                 node.type = 'text';
                 node.value = element.textContent;
                 return node;
-            }; 
+            };
             changeMode(generateInputNode);
             document.querySelectorAll('.stock').forEach(stock => {
                 const input = generateInputNode(stock);
@@ -85,8 +90,8 @@ function buildStocks(products){
                 const plus = document.createElement('i');
                 plus.className = "far fa-plus-square";
                 input.after(plus);
-                minus.addEventListener('mousedown', () => stock.value = Number(stock.value) - 1 );
-                plus.addEventListener('mousedown', () => stock.value = Number(stock.value) + 1 );
+                minus.addEventListener('mousedown', () => stock.value = Number(stock.value) - 1);
+                plus.addEventListener('mousedown', () => stock.value = Number(stock.value) + 1);
                 const wrapper = document.createElement('div');
                 wrapper.className = stock.className;
                 wrapper.classList.add('stock-wrapper')
@@ -128,7 +133,7 @@ function buidlPendingOrders(orders) {
 
     ['Order #', 'Purchase Date', 'Pending Status', 'Confirm Status'].forEach(element => {
         const heading = document.createElement('div');
-        heading.className = "col-md-2";
+        heading.className = "col-md-3";
         heading.textContent = element;
         header.appendChild(heading);
     });
@@ -140,7 +145,7 @@ function buidlPendingOrders(orders) {
         row.className = "row table-entry";
         const number = createProductColumn(order.number, 'order');
         const href = document.createElement('a');
-        href.className = "col-md-2 col-6 name";
+        href.className = "col-md-3 col-6 name";
         href.href = 'order_invoice.php';
         href.appendChild(number);
         row.appendChild(href);
@@ -149,7 +154,7 @@ function buidlPendingOrders(orders) {
         const col = createProductColumn('', 'confirm');
         const button = document.createElement('a');
         button.className = "btn btn-primary confirm-order";
-        button.textContent = "Confirm"
+        button.textContent = stateStatus[order.status];
         col.appendChild(button);
         row.appendChild(col);
         container.appendChild(row);
@@ -171,7 +176,7 @@ function buildManagers(managers) {
         img.src = manager.photo;
         photo.appendChild(img);
         row.appendChild(photo);
-        
+
         const description = document.createElement('div');
         description.className = "col description";
         const heading = document.createElement('h5');
@@ -199,7 +204,7 @@ function buildManagers(managers) {
     const col = document.createElement('div');
     col.className = "col mt-3 mb-3 center";
     const button = document.createElement('button');
-    button.className = "btn btn-primary w-100 mt-3";
+    button.className = "btn rounded-0 btn-lg shadow-none";
     button.id = "add-manager";
     button.type = "button"
     button.setAttribute('data-toggle', 'modal');
@@ -267,8 +272,7 @@ function buildManagers(managers) {
     return container;
 }
 
-const mockProducts = [
-    {
+const mockProducts = [{
         name: 'Rose Orchid',
         price: '20€',
         stock: '43'
@@ -360,21 +364,19 @@ const mockProducts = [
     },
 ];
 
-const mockOrders = [
-    {
+const mockOrders = [{
         number: "125885",
         date: "Feb 24 2020",
-        status: "Ready for Shipping" 
+        status: "Ready for Shipping"
     },
     {
         number: "125877",
         date: "Dec 24 2019",
-        status: "Sent" 
+        status: "Awaiting Payment"
     },
 ]
 
-const mockManagers = [
-    {
+const mockManagers = [{
         name: "Sisay Jeremiah",
         photo: "../assets/sisay_jeremiah_small.jpg",
         date: "Nov 24 2019"
@@ -396,14 +398,13 @@ const mockManagers = [
     },
 ]
 
-const managerProfileSections = [
-    {
+const managerProfileSections = [{
         name: "Manager Information",
         action: () => buildPersonalInfo({
             username: "simone.biles",
             email: "simone.biles.the.goat@gmail.com",
             photo: "../assets/simone.jpeg"
-        })    
+        })
     },
     {
         name: "Stocks",
