@@ -23,8 +23,15 @@ h1 {
     text-align: center;
 }
 
+.cards .card .card-text {
+    font-size: 0.75em;
+}
+
 @media(max-width: 768px) {
     .abouttext {
         margin: 1em 2em;
+    }
+    .cards .card .card-text {
+        font-size: 1em;
     }
 }
