@@ -105,7 +105,7 @@ export default function buildPersonalInfo(info, user) {
     saveChanges.className = "row justify-content-end";
     saveChanges.id = "save-changes";
     const saveChangesCol = document.createElement('div');
-    saveChangesCol.className = "col-md-6 col-12";
+    saveChangesCol.className = "col-md-6 col-12 justify-content-end";
     saveChanges.appendChild(saveChangesCol);
     const saveChangesButton = document.createElement('a');
     saveChangesButton.role = "button";

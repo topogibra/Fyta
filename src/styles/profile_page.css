@@ -30,17 +30,13 @@ h3 {
     color: var(--green);
 }
 
-#save-changes div.col-md-6 {
-    text-align: right;
-}
-
 a.btn {
     border: 1px solid var(--light-gray);
 }
 
 #savechanges,
 #add-manager {
-    width: 60%;
+    width: 100%;
     height: 3em;
     text-align: center;
     background-color: var(--green);
@@ -146,8 +142,7 @@ input {
     margin-top: 0;
 }
 
-.profile .container .row > * {
-    margin: auto;
+.profile .container .row>* {
     text-align: center;
 }
 
@@ -262,26 +257,22 @@ input {
     }
 }
 
-@media(max-width: 992px){
+@media(max-width: 992px) {
     .orders .row.header {
         display: none;
     }
-
     .orders .price {
         display: none;
     }
-
     .profile .container.orders .row .date {
         order: 2;
         text-align: end;
     }
-
     .orders .row .re-order {
         order: 4;
         text-align: end;
     }
-
-    .orders .row .state{
+    .orders .row .state {
         order: 3;
         text-align: left;
     }
@@ -302,9 +293,7 @@ input {
     .fa-minus-square {
         display: none;
     }
-
-    .profile .container .row > * {
+    .profile .container .row>* {
         padding: 0
     }
-
 }
