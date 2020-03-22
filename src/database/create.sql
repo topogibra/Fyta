@@ -30,52 +30,6 @@ CREATE TABLE product
   CONSTRAINT product_views_check CHECK (views>=0),
   CONSTRAINT product_pk PRIMARY KEY (id)
 );
-DROP TABLE IF EXISTS "order" CASCADE;
-CREATE TABLE "order"
-(
-  id SERIAL,
-  order_id INTEGER NOT NULL,
-  billing_address TEXT NOT NULL,
-  delivery_address TEXT NOT NULL,
-  order_date DATE DEFAULT now() NOT NULL,
-  TYPE payment_method NOT NULL,
-  id_customer INTEGER NOT NULL
-  CONSTRAINT order_pk PRIMARY KEY (id),
-  CONSTRAINT order_order_id_uk UNIQUE (order_id),
-  CONSTRAINT order_customer_fk FOREIGN KEY (id_customer) REFERENCES customer(id_customer) ON UPDATE CASCADE
-);
-DROP TABLE IF EXISTS product_order CASCADE;
-CREATE TABLE product_order
-(
-  id_product INTEGER NOT NULL,
-  id_order INTEGER NOT NULL,
-  CONSTRAINT product_order_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE,
-  CONSTRAINT product_order_order_fk FOREIGN KEY (id_order) REFERENCES "order"(id) ON UPDATE CASCADE,
-  PRIMARY KEY(id_product, id_order)
-);
-DROP TABLE IF EXISTS review CASCADE;
-CREATE TABLE review
-(
-  id_product INTEGER NOT NULL,
-  id_order INTEGER NOT NULL,
-  "description" TEXT NOT NULL,
-  rating INTEGER NOT NULL,
-  review_date DATE DEFAULT now() NOT NULL,
-  CONSTRAINT review_rating_check CHECK (rating>=1 AND rating<=5),
-  CONSTRAINT review_pk PRIMARY KEY (id_product,id_order),
-  CONSTRAINT review_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE,
-  CONSTRAINT review_order_fk FOREIGN KEY (id_order) REFERENCES "order"(id)
-);
-DROP TABLE IF EXISTS order_history CASCADE;
-CREATE TABLE order_history
-(
-  id SERIAL,
-  date_begin DATE DEFAULT now() NOT NULL,
-  id_order INTEGER NOT NULL,
-  TYPE order_status NOT NULL,
-  CONSTRAINT order_history_pk PRIMARY KEY (id),
-  CONSTRAINT order_history_order_pk FOREIGN KEY (id_order) REFERENCES "order"(id)
-);
 DROP TABLE IF EXISTS "user" CASCADE;
 CREATE TABLE "user"
 (
@@ -104,6 +58,51 @@ CREATE TABLE manager
   created_at DATE DEFAULT now() NOT NULL,
   CONSTRAINT manager_pk PRIMARY KEY (id_user),
   CONSTRAINT manager_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE
+);
+DROP TABLE IF EXISTS "order" CASCADE;
+CREATE TABLE "order" (
+  id SERIAL,
+  order_id INTEGER NOT NULL,
+  billing_address TEXT,
+  delivery_address TEXT NOT NULL,
+  order_date DATE DEFAULT now() NOT NULL,
+  TYPE payment_method NOT NULL,
+  id_customer INTEGER NOT NULL,
+  CONSTRAINT order_pk PRIMARY KEY (id),
+  CONSTRAINT order_order_id_uk UNIQUE (order_id),
+  CONSTRAINT order_customer_fk FOREIGN KEY (id_customer) REFERENCES customer(id_user) ON UPDATE CASCADE
+);
+DROP TABLE IF EXISTS product_order CASCADE;
+CREATE TABLE product_order (
+  id_product INTEGER NOT NULL,
+  id_order INTEGER NOT NULL,
+  CONSTRAINT product_order_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE,
+  CONSTRAINT product_order_order_fk FOREIGN KEY (id_order) REFERENCES "order"(id) ON UPDATE CASCADE,
+  PRIMARY KEY(id_product, id_order)
+);
+DROP TABLE IF EXISTS review CASCADE;
+CREATE TABLE review (
+  id_product INTEGER NOT NULL,
+  id_order INTEGER NOT NULL,
+  "description" TEXT,
+  rating INTEGER NOT NULL,
+  review_date DATE DEFAULT now() NOT NULL,
+  CONSTRAINT review_rating_check CHECK (
+    rating >= 1
+    AND rating <= 5
+  ),
+  CONSTRAINT review_pk PRIMARY KEY (id_product, id_order),
+  CONSTRAINT review_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE,
+  CONSTRAINT review_order_fk FOREIGN KEY (id_order) REFERENCES "order"(id) ON UPDATE CASCADE
+);
+DROP TABLE IF EXISTS order_history CASCADE;
+CREATE TABLE order_history (
+  id SERIAL,
+  date_begin DATE DEFAULT now() NOT NULL,
+  id_order INTEGER NOT NULL,
+  TYPE order_status NOT NULL,
+  CONSTRAINT order_history_pk PRIMARY KEY (id),
+  CONSTRAINT order_history_order_pk FOREIGN KEY (id_order) REFERENCES "order"(id) ON UPDATE CASCADE
 );
 DROP TABLE IF EXISTS wishlist CASCADE;
 CREATE TABLE wishlist
@@ -184,8 +183,8 @@ CREATE TABLE product_tag
   id_tag  INTEGER NOT NULL,
   id_product INTEGER NOT NULL,
   CONSTRAINT product_tag_pk PRIMARY KEY (id_tag,id_product),
-  CONSTRAINT product_tag_tag_fk FOREIGN KEY (id_tag) REFERENCES tag(id),
-  CONSTRAINT product_tag_product_fk FOREIGN KEY (id_product) REFERENCES product(id)
+  CONSTRAINT product_tag_tag_fk FOREIGN KEY (id_tag) REFERENCES tag(id) ON UPDATE CASCADE,
+  CONSTRAINT product_tag_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE
 );
 DROP TABLE IF EXISTS ticket CASCADE;
 CREATE TABLE ticket
@@ -200,8 +199,8 @@ CREATE TABLE customer_ticket
   id_ticket INTEGER NOT NULL,
   id_customer INTEGER NOT NULL,
   CONSTRAINT customer_ticket_pk PRIMARY KEY (id_ticket,id_customer),
-  CONSTRAINT customer_ticket_ticket_fk FOREIGN KEY (id_ticket) REFERENCES ticket(id),
-  CONSTRAINT customer_ticket_customer_fk FOREIGN KEY (id_customer) REFERENCES customer(id_user)
+  CONSTRAINT customer_ticket_ticket_fk FOREIGN KEY (id_ticket) REFERENCES ticket(id) ON UPDATE CASCADE,
+  CONSTRAINT customer_ticket_customer_fk FOREIGN KEY (id_customer) REFERENCES customer(id_user) ON UPDATE CASCADE
 );
 DROP TABLE IF EXISTS ticket_message CASCADE;
 CREATE TABLE ticket_message
@@ -212,8 +211,8 @@ CREATE TABLE ticket_message
   id_ticket INTEGER NOT NULL,
   id_user INTEGER NOT NULL,
   CONSTRAINT ticket_message_pk PRIMARY KEY (id),
-  CONSTRAINT ticket_message_ticket_fk FOREIGN KEY (id_ticket) REFERENCES ticket(id),
-  CONSTRAINT ticket_message_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id)
+  CONSTRAINT ticket_message_ticket_fk FOREIGN KEY (id_ticket) REFERENCES ticket(id) ON UPDATE CASCADE,
+  CONSTRAINT ticket_message_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE
 );
 DROP TABLE IF EXISTS ticket_history CASCADE;
 CREATE TABLE ticket_history
@@ -223,7 +222,7 @@ CREATE TABLE ticket_history
   TYPE ticket_status NOT NULL,
   id_ticket INTEGER,
   CONSTRAINT ticket_history_pk PRIMARY KEY (id),
-  CONSTRAINT ticket_history_ticket_fk FOREIGN KEY (id_ticket) REFERENCES ticket(id)
+  CONSTRAINT ticket_history_ticket_fk FOREIGN KEY (id_ticket) REFERENCES ticket(id) ON UPDATE CASCADE
 );
 DROP TABLE IF EXISTS product_image CASCADE;
 CREATE TABLE product_image
@@ -231,8 +230,8 @@ CREATE TABLE product_image
   id_image INTEGER NOT NULL,
   id_product INTEGER NOT NULL,
   CONSTRAINT product_image_pk PRIMARY KEY (id_image,id_product),
-  CONSTRAINT product_image_image_fk FOREIGN KEY (id_image) REFERENCES "image"(id),
-  CONSTRAINT product_image_product_fk FOREIGN KEY (id_product) REFERENCES product(id)
+  CONSTRAINT product_image_image_fk FOREIGN KEY (id_image) REFERENCES "image"(id) ON UPDATE CASCADE,
+  CONSTRAINT product_image_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE
 );
 DROP TABLE IF EXISTS user_removal CASCADE;
 CREATE TABLE user_removal
@@ -241,5 +240,5 @@ CREATE TABLE user_removal
   reason TEXT NOT NULL,
   id_user INTEGER NOT NULL,
   CONSTRAINT user_removal_pk PRIMARY KEY (id),
-  CONSTRAINT user_removal_user_fk FOREIGN KEY (id_user) REFERENCES user(id) ON UPDATE CASCADE
+  CONSTRAINT user_removal_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE
 );
