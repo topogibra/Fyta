@@ -1,0 +1,42 @@
+@import url("pallette.css");
+h1 {
+    color: var(--green);
+    margin-top: 1em;
+}
+
+.abouttext p {
+    margin: 2em 0em 3em 0em;
+}
+
+.cards .card {
+    margin: 0em 2em;
+    border: none;
+}
+
+.row {
+    margin-right: 0em;
+    margin-left: 0;
+}
+
+.card i {
+    text-align: center;
+    font-size: 8em;
+    color: var(--green);
+}
+
+.cards .card h5 {
+    text-align: center;
+}
+
+.cards .card .card-text {
+    font-size: 0.75em;
+}
+
+@media(max-width: 768px) {
+    .abouttext {
+        margin: 1em 2em;
+    }
+    .cards .card .card-text {
+        font-size: 1em;
+    }
+}

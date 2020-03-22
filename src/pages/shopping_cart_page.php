@@ -67,9 +67,12 @@ make_header([], ["../styles/shopping_cart_page.css"]); ?>
       <h5 class="text-right">242€</h5>
     </div>
   </div>
-  <div class="row" id="checkout">
-    <a type="role" href="checkout_order_details.php" class="btn btn-primary ml-auto" type="submit">Checkout</a>
+  <div class="row justify-content-end" id="checkout">
+    <div class="col-sm-3">
+      <a type="role" href="checkout_order_details.php" class="btn rounded-0 btn-lg shadow-none" id="checkout_btn" type="submit">Checkout</a>
+    </div>
   </div>
+
 </div>
 
 <?php
