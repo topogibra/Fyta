@@ -116,7 +116,7 @@ CREATE TABLE customer_wishlist
 (
   id_customer INTEGER NOT NULL,
   id_wishlist INTEGER NOT NULL,
-  CONSTRAINT customer_wishlist_pk PRIMARY KEY (id_wishlist),
+  CONSTRAINT customer_wishlist_pk PRIMARY KEY (id_customer, id_wishlist),
   CONSTRAINT customer_wishlist_customer_fk FOREIGN KEY (id_customer) REFERENCES customer(id_user) ON UPDATE CASCADE,
   CONSTRAINT customer_wishlist_wishlist_fk FOREIGN KEY (id_wishlist) REFERENCES wishlist(id) ON UPDATE CASCADE
 );
