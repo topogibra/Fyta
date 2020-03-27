@@ -47,10 +47,10 @@ WHERE user.id = $id AND user.user_role = 'Customer'
 
 -- Order History collection based on user id (Order History page)
 --SELECT07
-SELECT shipping_id, order_status, order_history."date" AS "last_date"
+SELECT shipping_id, order_status, order_date
 FROM order,order_history
 WHERE order.id_user = $id AND order_history.id_order = order.id
-ORDER BY "last_date" DESC;
+ORDER BY order_date DESC;
 
 -- Wishilist and size retrieval based on user id(Wishlist page)
 --SELECT08
