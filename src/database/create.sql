@@ -42,9 +42,11 @@ DROP TABLE IF EXISTS product_order CASCADE;
 CREATE TABLE product_order (
   id_product INTEGER NOT NULL,
   id_order INTEGER NOT NULL,
+  quantity INTEGER NOT NULL,
   CONSTRAINT product_order_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE,
   CONSTRAINT product_order_order_fk FOREIGN KEY (id_order) REFERENCES "order"(id) ON UPDATE CASCADE,
-  PRIMARY KEY(id_product, id_order)
+  PRIMARY KEY(id_product, id_order),
+  CONSTRAINT quantity_check CHECK (quantity > 0)
 );
 DROP TABLE IF EXISTS review CASCADE;
 CREATE TABLE review (
