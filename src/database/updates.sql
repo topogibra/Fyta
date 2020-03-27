@@ -6,6 +6,11 @@ INSERT INTO  "image" (img, "description")
 INSERT INTO product ("name", "description", price, stock, views)
     VALUES($product_name, $product_description, $price, $stock, $views);
 
+-- Update a Product's Stock
+UPDATE product
+    SET stock = $stock
+    WHERE id = $id;
+
 -- Update a Product Price
 UPDATE product
     SET price = $price
@@ -16,12 +21,12 @@ INSERT INTO product_image (id_image, id_product)
     VALUES ($id_image, $id_product);
 
 -- Add a New Order
-INSERT INTO "order" (order_id, billing_address, delivery_address, order_date, payment_method, id_customer)
-    VALUES ($order_id, $billing_address, $delivery_address, $order_date, $payment_method, $id_customer);
+INSERT INTO "order" (shipping_id, billing_address, delivery_address, order_date, payment_method, id_user)
+    VALUES ($shipping_id, $billing_address, $delivery_address, $order_date, $payment_method, $id_user);
 
 -- Associate a Product to an Order
-INSERT INTO product_order (id_order, id_product)
-    VALUES ($id_order, $id_product);
+INSERT INTO product_order (id_order, id_product, quantity)
+    VALUES ($id_order, $id_product, $quantity);
 
 -- Update Order Status
 INSERT INTO order_history(date_begin, id_order, order_status)
@@ -68,6 +73,14 @@ INSERT INTO tag ("name") VALUES ($tag_name);
 -- Associate a product to a tag
 INSERT INTO product_tag (id_tag, id_product) 
     VALUES ($id_tag, $id_product);
+
+-- Delete a product
+DELETE FROM product
+    WHERE id = $id;
+
+-- Deassociate a product to a discount
+DELETE FROM product_tag
+    WHERE id_discount = $id_discount AND id_product = $id_product;
 
 -- Deassociate a product to a tag
 DELETE FROM product_tag
