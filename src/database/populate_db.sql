@@ -101,42 +101,6 @@ INSERT INTO "wishlist" (id,name,id_user) VALUES (9,' Orchids ',50),(64,' Acessor
 INSERT INTO "wishlist" (id,name,id_user) VALUES (65,'Flowers ',27),(33,'Flowers ',5),(95,'Flowers ',32),(69,' Acessories ',9),(58,' Acessories ',33),(42,' Small Vases',50),(67,' Small Vases',48),(96,'Flowers ',44),(17,' Acessories ',23),(76,' Orchids ',38);
 INSERT INTO "wishlist" (id,name,id_user) VALUES (26,' Acessories ',35),(6,'Flowers ',43),(1,' Orchids ',46),(11,' Small Vases',32),(12,' Orchids ',29),(80,'Flowers ',4),(83,'Flowers ',30),(2,' Orchids ',36),(75,' Orchids ',27),(87,' Acessories ',23);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 --R08
 INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (32,20),(25,32),(31,18),(65,21),(93,18),(45,26),(77,20),(1,5),(60,8),(59,14);
 INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (93,27),(15,24),(5,15),(55,21),(17,33),(24,4),(53,38),(34,3),(18,23),(23,31);
