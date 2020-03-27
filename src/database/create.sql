@@ -36,7 +36,7 @@ CREATE TABLE "order" (
   id_user INTEGER NOT NULL,
   CONSTRAINT order_pk PRIMARY KEY (id),
   CONSTRAINT order_order_id_uk UNIQUE (shipping_id),
-  CONSTRAINT order_customer_fk FOREIGN KEY (id_user) REFERENCES customer(id_user) ON UPDATE CASCADE
+  CONSTRAINT order_user_fk FOREIGN KEY (id_user) REFERENCES user(id_user) ON UPDATE CASCADE
 );
 DROP TABLE IF EXISTS product_order CASCADE;
 CREATE TABLE product_order (
@@ -66,7 +66,7 @@ CREATE TABLE review (
 DROP TABLE IF EXISTS order_history CASCADE;
 CREATE TABLE order_history (
   id SERIAL,
-  date_begin DATE DEFAULT now() NOT NULL,
+  "date" DATE DEFAULT now() NOT NULL,
   id_order INTEGER NOT NULL,
   TYPE order_status NOT NULL,
   CONSTRAINT order_history_pk PRIMARY KEY (id),
@@ -94,7 +94,7 @@ CREATE TABLE wishlist
   "name" TEXT NOT NULL,
   id_user INTEGER NOT NULL,
   CONSTRAINT wishlist_pk PRIMARY KEY (id),
-  CONSTRAINT wishlist_customer_fk FOREIGN KEY (id_user) REFERENCES user(id) ON UPDATE CASCADE 
+  CONSTRAINT wishlist_user_fk FOREIGN KEY (id_user) REFERENCES user(id) ON UPDATE CASCADE 
 );
 DROP TABLE IF EXISTS wishlist_product CASCADE;
 CREATE TABLE wishlist_product
@@ -112,7 +112,7 @@ CREATE TABLE shopping_cart
   id_product INTEGER NOT NULL,
   quantity INTEGER  NOT NULL,
   CONSTRAINT shopping_cart_pk PRIMARY KEY (id_user,id_product),
-  CONSTRAINT shopping_cart_customer_fk FOREIGN KEY (id_user) REFERENCES customer(id_user) ON UPDATE CASCADE,
+  CONSTRAINT shopping_cart_user_fk FOREIGN KEY (id_user) REFERENCES user(id_user) ON UPDATE CASCADE,
   CONSTRAINT shopping_cart_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE,
   CONSTRAINT shopping_cart_quantity_check CHECK (quantity > 0)
 );
@@ -169,7 +169,7 @@ CREATE TABLE ticket
   TYPE ticket_type NOT NULL,
   id_user INTEGER NOT NULL,
   CONSTRAINT ticket_pk PRIMARY KEY (id),
-  CONSTRAINT ticket_customer_fk FOREIGN KEY (id_user) REFERENCES user(id) ON UPDATE CASCADE
+  CONSTRAINT ticket_user_fk FOREIGN KEY (id_user) REFERENCES user(id) ON UPDATE CASCADE
 );
 DROP TABLE IF EXISTS ticket_message CASCADE;
 CREATE TABLE ticket_message
@@ -187,7 +187,7 @@ DROP TABLE IF EXISTS ticket_history CASCADE;
 CREATE TABLE ticket_history
 (
   id SERIAL,
-  date_begin DATE DEFAULT now() NOT NULL,
+  "date" DATE DEFAULT now() NOT NULL,
   TYPE ticket_status NOT NULL,
   id_ticket INTEGER,
   CONSTRAINT ticket_history_pk PRIMARY KEY (id),
