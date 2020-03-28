@@ -11,6 +11,14 @@ DROP TYPE IF EXISTS user_role CASCADE;
 CREATE TYPE user_role as ENUM('Customer', 'Manager');
 
 -- Tables
+DROP TABLE IF EXISTS "image" CASCADE;
+CREATE TABLE "image"
+(
+  id SERIAL,
+  path TEXT NOT NULL,
+  "description" TEXT NOT NULL,
+  CONSTRAINT image_pk PRIMARY KEY (id)
+);
 DROP TABLE IF EXISTS product CASCADE;
 CREATE TABLE product
 (
@@ -25,6 +33,21 @@ CREATE TABLE product
   CONSTRAINT product_views_check CHECK (views>=0),
   CONSTRAINT product_pk PRIMARY KEY (id)
 );
+DROP TABLE IF EXISTS "user" CASCADE;
+CREATE TABLE "user"
+(
+  id SERIAL,
+  username TEXT NOT NULL,
+  email TEXT NOT NULL,
+  password_hash TEXT NOT NULL,
+  "date" DATE NOT NULL,
+  id_image INTEGER NOT NULL,
+  user_role "user_role" NOT NULL,
+  CONSTRAINT user_pk PRIMARY KEY (id),
+  CONSTRAINT user_username_uk UNIQUE (username),
+  CONSTRAINT user_email_uk UNIQUE (email),
+  CONSTRAINT user_image_fk FOREIGN KEY (id_image) REFERENCES "image"(id) ON UPDATE CASCADE
+);
 DROP TABLE IF EXISTS "order" CASCADE;
 CREATE TABLE "order" (
   id SERIAL,
@@ -32,11 +55,11 @@ CREATE TABLE "order" (
   billing_address TEXT,
   delivery_address TEXT NOT NULL,
   order_date DATE DEFAULT now() NOT NULL,
-  TYPE payment_method NOT NULL,
+  payment_method "payment_method" NOT NULL,
   id_user INTEGER NOT NULL,
   CONSTRAINT order_pk PRIMARY KEY (id),
   CONSTRAINT order_order_id_uk UNIQUE (shipping_id),
-  CONSTRAINT order_user_fk FOREIGN KEY (id_user) REFERENCES user(id_user) ON UPDATE CASCADE
+  CONSTRAINT order_user_fk FOREIGN KEY (id_user) REFERENCES user(id) ON UPDATE CASCADE
 );
 DROP TABLE IF EXISTS product_order CASCADE;
 CREATE TABLE product_order (
@@ -68,24 +91,9 @@ CREATE TABLE order_history (
   id SERIAL,
   "date" DATE DEFAULT now() NOT NULL,
   id_order INTEGER NOT NULL,
-  TYPE order_status NOT NULL,
+  order_status "order_status" NOT NULL,
   CONSTRAINT order_history_pk PRIMARY KEY (id),
   CONSTRAINT order_history_order_pk FOREIGN KEY (id_order) REFERENCES "order"(id) ON UPDATE CASCADE
-);
-DROP TABLE IF EXISTS "user" CASCADE;
-CREATE TABLE "user"
-(
-  id SERIAL,
-  username TEXT NOT NULL,
-  email TEXT NOT NULL,
-  password_hash TEXT NOT NULL,
-  "date" DATE NOT NULL
-  id_image INTEGER NOT NULL,
-  TYPE user_role NOT NULL,
-  CONSTRAINT user_pk PRIMARY KEY (id),
-  CONSTRAINT user_username_uk UNIQUE (username),
-  CONSTRAINT user_email_uk UNIQUE (email),
-  CONSTRAINT user_image_fk FOREIGN KEY (id_image) REFERENCES "image"(id) ON UPDATE CASCADE
 );
 DROP TABLE IF EXISTS wishlist CASCADE;
 CREATE TABLE wishlist
@@ -94,7 +102,7 @@ CREATE TABLE wishlist
   "name" TEXT NOT NULL,
   id_user INTEGER NOT NULL,
   CONSTRAINT wishlist_pk PRIMARY KEY (id),
-  CONSTRAINT wishlist_user_fk FOREIGN KEY (id_user) REFERENCES user(id) ON UPDATE CASCADE 
+  CONSTRAINT wishlist_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE 
 );
 DROP TABLE IF EXISTS wishlist_product CASCADE;
 CREATE TABLE wishlist_product
@@ -112,7 +120,7 @@ CREATE TABLE shopping_cart
   id_product INTEGER NOT NULL,
   quantity INTEGER  NOT NULL,
   CONSTRAINT shopping_cart_pk PRIMARY KEY (id_user,id_product),
-  CONSTRAINT shopping_cart_user_fk FOREIGN KEY (id_user) REFERENCES user(id_user) ON UPDATE CASCADE,
+  CONSTRAINT shopping_cart_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE,
   CONSTRAINT shopping_cart_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE,
   CONSTRAINT shopping_cart_quantity_check CHECK (quantity > 0)
 );
@@ -166,7 +174,7 @@ DROP TABLE IF EXISTS ticket CASCADE;
 CREATE TABLE ticket
 (
   id INTEGER NOT NULL,
-  TYPE ticket_type NOT NULL,
+  ticket_type "ticket_type" NOT NULL,
   id_user INTEGER NOT NULL,
   CONSTRAINT ticket_pk PRIMARY KEY (id),
   CONSTRAINT ticket_user_fk FOREIGN KEY (id_user) REFERENCES user(id) ON UPDATE CASCADE
@@ -188,19 +196,12 @@ CREATE TABLE ticket_history
 (
   id SERIAL,
   "date" DATE DEFAULT now() NOT NULL,
-  TYPE ticket_status NOT NULL,
+  ticket_status "ticket_status" NOT NULL,
   id_ticket INTEGER,
   CONSTRAINT ticket_history_pk PRIMARY KEY (id),
   CONSTRAINT ticket_history_ticket_fk FOREIGN KEY (id_ticket) REFERENCES ticket(id) ON UPDATE CASCADE
 );
-DROP TABLE IF EXISTS "image" CASCADE;
-CREATE TABLE "image"
-(
-  id SERIAL,
-  path TEXT NOT NULL,
-  "description" TEXT NOT NULL,
-  CONSTRAINT image_pk PRIMARY KEY (id)
-);
+
 DROP TABLE IF EXISTS product_image CASCADE;
 CREATE TABLE product_image
 (
