@@ -477,16 +477,16 @@ INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (42,17),(30,36),(53
 INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (15,38),(75,3),(45,24),(60,24),(77,12),(48,28),(15,33),(69,34),(17,10),(20,15);
 
 --R09
-INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (43,70,10),(52,44,14),(1,38,17),(21,14,11),(90,68,15),(72,81,20),(24,35,19),(27,87,11),(24,8,7),(2,20,9);
-INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (87,6,9),(67,98,18),(21,12,12),(98,85,18),(98,49,20),(17,49,4),(25,13,8),(91,18,20),(29,36,14),(70,9,20);
-INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (25,35,12),(61,12,10),(96,60,5),(32,36,4),(61,96,1),(12,47,17),(27,55,7),(48,86,1),(26,88,9),(93,96,17);
-INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (19,55,8),(88,45,1),(63,1,1),(79,78,19),(73,84,6),(46,43,20),(50,93,10),(13,56,16),(22,24,18),(68,18,17);
-INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (20,65,3),(46,59,10),(95,3,16),(12,16,8),(65,17,10),(83,98,9),(54,87,9),(100,60,6),(59,37,17),(33,1,15);
-INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (17,95,8),(36,43,6),(44,18,6),(38,12,4),(80,25,15),(14,98,16),(48,82,8),(58,27,8),(20,50,1),(25,5,6);
-INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (57,68,11),(72,11,2),(75,51,20),(8,72,5),(47,72,3),(7,50,12),(41,33,1),(25,54,11),(87,1,10),(24,43,18);
-INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (39,75,2),(56,100,1),(2,16,11),(16,78,1),(46,14,3),(65,29,19),(5,97,10),(8,18,6),(45,36,11),(81,36,6);
-INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (77,56,8),(95,62,12),(38,83,6),(83,34,11),(90,30,1),(99,64,11),(8,52,16),(60,92,15),(79,98,15),(60,29,6);
-INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (7,72,3),(94,19,1),(85,96,14),(73,57,10),(87,35,20),(14,48,18),(84,55,4),(40,66,17),(32,73,14),(35,93,11);
+INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (43,70,10),(2,44,14),(1,38,17),(21,14,11),(40,68,15),(22,81,20),(24,35,19),(27,87,11),(24,8,7),(2,20,9);
+INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (37,6,9),(17,98,18),(21,12,12),(48,85,18),(48,49,20),(17,49,4),(25,13,8),(41,18,20),(29,36,14),(20,9,20);
+INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (25,35,12),(11,12,10),(46,60,5),(32,36,4),(11,96,1),(12,47,17),(27,55,7),(48,86,1),(26,88,9),(43,96,17);
+INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (19,55,8),(38,45,1),(13,1,1),(29,78,19),(23,84,6),(46,43,20),(50,93,10),(13,56,16),(22,24,18),(18,18,17);
+INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (20,65,3),(46,59,10),(45,3,16),(12,16,8),(15,17,10),(33,98,9),(4,87,9),(50,60,6),(9,37,17),(33,1,15);
+INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (17,95,8),(36,43,6),(44,18,6),(38,12,4),(30,25,15),(14,98,16),(48,82,8),(8,27,8),(20,50,1),(25,5,6);
+INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (7,68,11),(22,11,2),(25,51,20),(8,72,5),(47,72,3),(7,50,12),(41,33,1),(25,54,11),(37,1,10),(24,43,18);
+INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (39,75,2),(6,100,1),(2,16,11),(16,78,1),(46,14,3),(15,29,19),(5,97,10),(8,18,6),(45,36,11),(31,36,6);
+INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (27,56,8),(45,62,12),(38,83,6),(33,34,11),(40,30,1),(49,64,11),(8,52,16),(10,92,15),(29,98,15),(10,29,6);
+INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (7,72,3),(44,19,1),(35,96,14),(23,57,10),(37,35,20),(14,48,18),(34,55,4),(40,66,17),(32,73,14),(35,93,11);
 
 --R10
 INSERT INTO discount (id,"percentage",date_begin,date_end) VALUES (1,96,'2019-04-11','2019-12-21'),(2,88,'2020-02-25','2020-06-26'),(3,2,'2020-01-11','2020-02-02'),(4,88,'2019-08-03','2019-11-09');
@@ -535,14 +535,14 @@ INSERT INTO ticket (id,ticket_type,id_user) VALUES (1,'Faulty_Delivery',18),(2,'
 INSERT INTO ticket (id,ticket_type,id_user) VALUES (5,'Faulty_Delivery',9),(6,'Payment_Error',8),(7,'Payment_Error',8),(8,'Payment_Error',11);
 
 --R16
-INSERT INTO ticket_message (id,send_date,"message",id_ticket,id_user) VALUES (1,'2019-06-27 06:48:10','I cought the delivery man throwing my package at the door. It was a bonsai. I want my money back. NOW.',4,4);
-INSERT INTO ticket_message (id,send_date,"message",id_ticket,id_user) VALUES (2,'2020-09-27 20:36:10','Im waiting for my delivery for a thousand days now, just give me my money back...',5,11);
-INSERT INTO ticket_message (id,send_date,"message",id_ticket,id_user) VALUES (3,'2021-01-09 10:50:51','I got my orqid last wek and its already ded. Found later that u shud water it... y isnt on the package that shud water it???!!!',2,2);
-INSERT INTO ticket_message (id,send_date,"message",id_ticket,id_user) VALUES (4,'2020-10-28 10:13:18','My Plant arrived at my house wrapped in bubble-wrap. Who hired that packager?.. I demand imediate restitution of my money!',3,23);
-INSERT INTO ticket_message (id,send_date,"message",id_ticket,id_user) VALUES (5,'2019-05-28 11:09:46','My Plant came in a box. It was dead. WTH IS WRONG WITH YOU PEOPLE????',1,28);
-INSERT INTO ticket_message (id,send_date,"message",id_ticket,id_user) VALUES (6,'2020-01-12 08:32:52','My reference expired and paid after. Now it demands the payment again. HELL NO. Give me my order or give me back my money.',6,22);
-INSERT INTO ticket_message (id,send_date,"message",id_ticket,id_user) VALUES (7,'2019-10-16 11:28:11','Stripe is down. I dont trust bank references. Please fix this issue.',8,47);
-INSERT INTO ticket_message (id,send_date,"message",id_ticket,id_user) VALUES (8,'2020-09-19 16:00:17','Dude, I read sprite on phone and I like order a bunch of bottles, like, weird way of payment but ok, i guess you guys need it. But the order didnt ship it, then i realize it said stripe... Can i pay with bottles of soda now??? PS: Pls keep selling that sativa, the best i ever had bros!',7,12);
+INSERT INTO ticket_message (id,send_date,"message",id_ticket,id_user) VALUES (1,'2019-06-27 06:48:10','I cought the delivery man throwing my package at the door. It was a bonsai. I want my money back. NOW.',4,8);
+INSERT INTO ticket_message (id,send_date,"message",id_ticket,id_user) VALUES (2,'2020-09-27 20:36:10','Im waiting for my delivery for a thousand days now, just give me my money back...',5,9);
+INSERT INTO ticket_message (id,send_date,"message",id_ticket,id_user) VALUES (3,'2021-01-09 10:50:51','I got my orqid last wek and its already ded. Found later that u shud water it... y isnt on the package that shud water it???!!!',2,1);
+INSERT INTO ticket_message (id,send_date,"message",id_ticket,id_user) VALUES (4,'2020-10-28 10:13:18','My Plant arrived at my house wrapped in bubble-wrap. Who hired that packager?.. I demand imediate restitution of my money!',3,5);
+INSERT INTO ticket_message (id,send_date,"message",id_ticket,id_user) VALUES (5,'2019-05-28 11:09:46','My Plant came in a box. It was dead. WTH IS WRONG WITH YOU PEOPLE????',1,18);
+INSERT INTO ticket_message (id,send_date,"message",id_ticket,id_user) VALUES (6,'2020-01-12 08:32:52','My reference expired and paid after. Now it demands the payment again. HELL NO. Give me my order or give me back my money.',6,8);
+INSERT INTO ticket_message (id,send_date,"message",id_ticket,id_user) VALUES (7,'2019-10-16 11:28:11','Stripe is down. I dont trust bank references. Please fix this issue.',8,11);
+INSERT INTO ticket_message (id,send_date,"message",id_ticket,id_user) VALUES (8,'2020-09-19 16:00:17','Dude, I read sprite on phone and I like order a bunch of bottles, like, weird way of payment but ok, i guess you guys need it. But the order didnt ship it, then i realize it said stripe... Can i pay with bottles of soda now??? PS: Pls keep selling that sativa, the best i ever had bros!',7,8);
 
 --R17
 INSERT INTO ticket_history (id,"date",ticket_status,id_ticket) VALUES (1,'2019-06-24 23:00:54','In_Progress',5),(2,'2020-09-28 07:59:42','In_Progress',8);
