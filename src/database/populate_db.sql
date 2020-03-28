@@ -34,7 +34,7 @@ and represents purity, refinement and peace.',14.00,74,784),
                                                                     (9,'Aquilegia Spring Magic Blue',
 'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
 The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
-They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.'22.00,50,123),
+They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.',22.00,50,123),
                                                                     (10,'Climbing Rose New Dawn',
 'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
 silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
@@ -74,7 +74,7 @@ and represents purity, refinement and peace.',14.00,74,784),
                                                                     (19,'Aquilegia Spring Magic Blue',
 'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
 The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
-They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.'22.00,50,123),
+They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.',22.00,50,123),
                                                                     (20,'Climbing Rose New Dawn',
 'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
 silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
@@ -114,7 +114,7 @@ and represents purity, refinement and peace.',14.00,74,784),
                                                                     (29,'Aquilegia Spring Magic Blue',
 'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
 The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
-They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.'22.00,50,123),
+They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.',22.00,50,123),
                                                                     (30,'Climbing Rose New Dawn',
 'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
 silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
@@ -154,7 +154,7 @@ and represents purity, refinement and peace.',14.00,74,784),
                                                                     (39,'Aquilegia Spring Magic Blue',
 'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
 The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
-They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.'22.00,50,123),
+They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.',22.00,50,123),
                                                                     (40,'Climbing Rose New Dawn',
 'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
 silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
@@ -194,7 +194,7 @@ and represents purity, refinement and peace.',14.00,74,784),
                                                                     (49,'Aquilegia Spring Magic Blue',
 'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
 The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
-They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.'22.00,50,123),
+They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.',22.00,50,123),
                                                                     (50,'Climbing Rose New Dawn',
 'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
 silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
@@ -234,7 +234,7 @@ and represents purity, refinement and peace.',14.00,74,784),
                                                                     (59,'Aquilegia Spring Magic Blue',
 'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
 The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
-They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.'22.00,50,123),
+They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.',22.00,50,123),
                                                                     (60,'Climbing Rose New Dawn',
 'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
 silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
@@ -274,7 +274,7 @@ and represents purity, refinement and peace.',14.00,74,784),
                                                                     (69,'Aquilegia Spring Magic Blue',
 'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
 The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
-They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.'22.00,50,123),
+They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.',22.00,50,123),
                                                                     (70,'Climbing Rose New Dawn',
 'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
 silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
@@ -314,7 +314,7 @@ and represents purity, refinement and peace.',14.00,74,784),
                                                                     (79,'Aquilegia Spring Magic Blue',
 'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
 The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
-They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.'22.00,50,123),
+They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.',22.00,50,123),
                                                                     (80,'Climbing Rose New Dawn',
 'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
 silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
@@ -354,7 +354,7 @@ and represents purity, refinement and peace.',14.00,74,784),
                                                                     (89,'Aquilegia Spring Magic Blue',
 'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
 The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
-They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.'22.00,50,123),
+They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.',22.00,50,123),
                                                                     (90,'Climbing Rose New Dawn',
 'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
 silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
@@ -394,7 +394,7 @@ and represents purity, refinement and peace.',14.00,74,784),
                                                                     (99,'Aquilegia Spring Magic Blue',
 'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
 The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
-They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.'22.00,50,123),
+They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.',22.00,50,123),
                                                                     (100,'Climbing Rose New Dawn',
 'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
 silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  

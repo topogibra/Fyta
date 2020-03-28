@@ -59,7 +59,7 @@ CREATE TABLE "order" (
   id_user INTEGER NOT NULL,
   CONSTRAINT order_pk PRIMARY KEY (id),
   CONSTRAINT order_order_id_uk UNIQUE (shipping_id),
-  CONSTRAINT order_user_fk FOREIGN KEY (id_user) REFERENCES user(id) ON UPDATE CASCADE
+  CONSTRAINT order_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE
 );
 DROP TABLE IF EXISTS product_order CASCADE;
 CREATE TABLE product_order (
@@ -177,7 +177,7 @@ CREATE TABLE ticket
   ticket_type "ticket_type" NOT NULL,
   id_user INTEGER NOT NULL,
   CONSTRAINT ticket_pk PRIMARY KEY (id),
-  CONSTRAINT ticket_user_fk FOREIGN KEY (id_user) REFERENCES user(id) ON UPDATE CASCADE
+  CONSTRAINT ticket_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE
 );
 DROP TABLE IF EXISTS ticket_message CASCADE;
 CREATE TABLE ticket_message
