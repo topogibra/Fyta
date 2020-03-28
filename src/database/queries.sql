@@ -1,9 +1,9 @@
 -- Product query  of clASs bASed on Tag (Homepage)
 --SELECT01
 --nome,imagem,preco
-SELECT "name",price,"path" AS image_path, "image"."description" AS image_alt
+SELECT product."name",price,"path" AS image_path, "image"."description" AS image_alt,
 FROM product,tag,product_tag,product_image,"image"
-WHERE tag = $tag AND product.id = product_tag.id_product AND
+WHERE tag."name" = $tag_name AND product.id = product_tag.id_product AND
     tag.id = product_tag.id_tag AND product_image.id_product = product.id
     AND product_image.id_image = "image".id
 ORDER BY views DESC LIMIT 4;
@@ -12,28 +12,28 @@ ORDER BY views DESC LIMIT 4;
 --SELECT02
 SELECT "name",product."description" AS details,price,"path" AS image_path,"image"."description" AS image_alt
 FROM product, "image", product_image
-WHERE product.id = $id AND product_image.id_product = product.id 
+WHERE product.id = $product_id AND product_image.id_product = product.id 
     AND product_image.id_image = "image".id;
 
 -- Reviews retrival query bASed on product id (Product page)
 --SELECT03
 SELECT review."description" AS contents, rating, review_date, username, "path" AS image_path, "image"."description" AS image_alt 
-FROM review,product_order,order,user,"image"
-WHERE review.id_product = $id AND review.id_order = product_order.id_order
-    AND product_order.id_product = $id AND product_order.id_order = order.id
-    AND order.id_user = user.id AND user.id_image = "image".id
+FROM review,product_order,"order","user","image"
+WHERE review.id_product = $product_id AND review.id_order = product_order.id_order
+    AND product_order.id_product = $product_id AND product_order.id_order = "order".id
+    AND "order".id_user = "user".id AND "user".id_image = "image".id
 ORDER BY review_date DESC;
 
 -- Tags retrieve query (Search page)
 --SELECT04
 SELECT "name" AS tag
-FROM Tags
+FROM tag
 
 -- Products retrive query bASed on tag (Search page)
 --SELECT05
 SELECT product."name" AS product_name , price, "path" AS image_path, "image".description AS image_alt
 FROM product,tag,product_tag,product_image,"image"
-WHERE tag.id = $id AND product_tag.id_tag = $id
+WHERE tag.id = $tag_id AND product_tag.id_tag = $tag_id
     AND product_tag.id_product = product.id AND product_image.id_product = product.id
     AND product_image.id_image = image.id
 ORDER BY product_name;
@@ -41,23 +41,24 @@ ORDER BY product_name;
 -- Customer information retrieval query (Profile page)
 --SELECT06
 SELECT username, email, "date", "path" AS image_path, "description" AS image_alt
-FROM user,"image"
-WHERE email = $email AND password_hash = $pass_hash AND user.user_role = 'Customer'
-    user.id_image = "image".id;
+FROM "user","image"
+WHERE email = $email AND password_hash = $password_hash 
+	AND "user".user_role = 'Customer' AND "user".id_image = "image".id;
 
 -- Order History collection bASed on user id (Order History page)
 --SELECT07
 SELECT shipping_id, order_status, order_date
-FROM order,order_history
-WHERE order.id_user = $id AND order_history.id_order = order.id
+FROM "order",order_history
+WHERE "order".id_user = $user_id AND order_history.id_order = "order".id
 ORDER BY order_date DESC;
 
 -- Wishilist AND size retrieval bASed on user id(Wishlist page)
 --SELECT08
-SELECT "name", COUNT(id_product) AS size
+SELECT wishlist."name", COUNT(id_product) AS size
 FROM wishlist, wishlist_product
-WHERE wishlist.id_user = $id 
+WHERE wishlist.id_user = $user_id 
 AND wishlist_product.id_wishlist = wishlist.id
+GROUP BY wishlist."name"
 
 --Shopping cart bASed information bASed on user id(shopping cart page)
 --SELECT09
@@ -107,8 +108,13 @@ WHERE "order".id = order_history.id_order
 --Retrieve information FROM all the managers
 --SELECT14
 SELECT "image"."path" AS image_path, username, "date" AS created_at
+<<<<<<< HEAD
 FROM "image", "user"
 WHERE "image".id = "user".id_image;
 
 
 
+=======
+FROM "image", user
+WHERE "image".id = user.id_image
+>>>>>>> fc8e81b890c0cb374f7f31a291fc4a7e7702f8c3
