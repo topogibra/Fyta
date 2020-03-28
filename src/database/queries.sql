@@ -68,47 +68,47 @@ WHERE shopping_cart.id_user = $id AND
       "image".id = product_image.id_image AND
       product.id = shopping_cart.id_product;
 
-
 -- Product query for order summary
 --SELECT10.1
-SELECT "name",price,"path" AS image_path, "image"."description" AS image_alt
-FROM product,order,product_image,"image",product_order
+SELECT "name",price, "path" AS image_path, quantity
+FROM product, product_image,"image",product_order
 WHERE product.id = product_order.id_product 
-      AND product_order.id_order = order.id 
+      AND product_order.id_order = $id
       AND product_image.id_product = product.id
-      AND product_image.id_image = "image".id
-ORDER BY "name";
+      AND product_image.id_image = "image".id;
 
 -- Product query for order summary
 --SELECT10.2
-SELECT "address", username, order_status
-FROM user, order, order_history
-WHERE user.id = order.id_user 
-      AND order.id = order_history.id_order
+SELECT "order".delivery_address AS address, "order".order_date AS placed_at, username, order_status
+FROM "user", "order", order_history
+WHERE "order".id = $id
+	  AND "user".id = "order".id_user 
+      AND order_history.id_order = $id
 
 --Retrieve information for manager 
 --SELECT11
 SELECT username,email
-FROM user
-WHERE user.user_role = "Manager" AND user.id = $id
+FROM "user"
+WHERE "user".user_role = 'Manager' AND "user".id = 41 ;
+
 
 --Retrieve stock information about products
 --SELECT12
 SELECT "name" AS product_name, price, stock
-FROM product
+FROM product;
 
 --Retrieve pending orders
 --SELECT13
 SELECT shipping_id,order_date,order_status
-FROM order, order_history
-WHERE order.id = order_history.id_order
+FROM "order", order_history
+WHERE "order".id = order_history.id_order
+	  AND (order_status = 'Ready_for_Shipping' OR order_status = 'Awaiting_Payment');
 
 --Retrieve information FROM all the managers
 --SELECT14
 SELECT "image"."path" AS image_path, username, "date" AS created_at
-FROM "image", user
-WHERE "image".id = user.id_image
-
+FROM "image", "user"
+WHERE "image".id = "user".id_image;
 
 
 
