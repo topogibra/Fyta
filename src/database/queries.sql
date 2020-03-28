@@ -6,7 +6,7 @@ FROM product,tag,product_tag,product_image,"image"
 WHERE tag = $tag AND product.id = product_tag.id_product AND
     tag.id = product_tag.id_tag AND product_image.id_product = product.id
     AND product_image.id_image = "image".id
-ORDER BY "name";
+ORDER BY views DESC LIMIT 4;
 
 -- Product query bASed on id (Product page)
 --SELECT02
@@ -42,7 +42,7 @@ ORDER BY product_name;
 --SELECT06
 SELECT username, email, "date", "path" AS image_path, "description" AS image_alt
 FROM user,"image"
-WHERE user.id = $id AND user.user_role = 'Customer'
+WHERE email = $email AND password_hash = $pass_hash AND user.user_role = 'Customer'
     user.id_image = "image".id;
 
 -- Order History collection bASed on user id (Order History page)
