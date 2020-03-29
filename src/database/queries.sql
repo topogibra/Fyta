@@ -47,7 +47,7 @@ FROM product, tag, product_tag
 WHERE tag.id = $tag_id 
     AND product_tag.id_tag = $tag_id
     AND product_tag.id_product = product.id 
-ORDER BY product_name;
+ORDER BY views DESC;
 
 -- Customer information retrieval query (Profile page)
 --SELECT07
