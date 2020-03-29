@@ -76,7 +76,7 @@ WHERE wishlist.id_user = $user_id
 GROUP BY wishlist."name"
 
 --Shopping cart based information based on user id(shopping cart page)
---SELECT11
+--SELECT10
 SELECT product.name AS product_name, "image"."path" AS image_path, product.price AS product_price, quantity
 FROM shopping_cart, product, "image", product_image
 WHERE shopping_cart.id_user = $id AND 
@@ -105,7 +105,7 @@ WHERE "order".id = $id
 --SELECT13
 SELECT username,email
 FROM "user"
-WHERE "user".user_role = 'Manager' AND "user".id = 41 ;
+WHERE "user".user_role = 'Manager' AND "user".id = $id ;
 
 
 --Retrieve stock information about products
