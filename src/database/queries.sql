@@ -77,21 +77,17 @@ GROUP BY wishlist."name"
 
 --Shopping cart based information based on user id(shopping cart page)
 --SELECT10
-SELECT product.name AS product_name, "image"."path" AS image_path, product.price AS product_price, quantity
-FROM shopping_cart, product, "image", product_image
+SELECT product.name AS product_name, product.price AS product_price, quantity
+FROM shopping_cart, product
 WHERE shopping_cart.id_user = $id AND 
-      product_image.id_product = product.id AND
-      "image".id = product_image.id_image AND
       product.id = shopping_cart.id_product;
 
 -- Product query for order summary
 --SELECT11
-SELECT "name",price, "path" AS image_path, quantity
-FROM product, product_image,"image",product_order
+SELECT "name",price, quantity
+FROM product, product_order
 WHERE product.id = product_order.id_product 
-      AND product_order.id_order = $id
-      AND product_image.id_product = product.id
-      AND product_image.id_image = "image".id;
+      AND product_order.id_order = $id;
 
 -- Product query for order summary
 --SELECT12
@@ -111,7 +107,8 @@ WHERE "user".user_role = 'Manager' AND "user".id = $id ;
 --Retrieve stock information about products
 --SELECT14
 SELECT "name" AS product_name, price, stock
-FROM product;
+FROM product
+LIMIT 10 OFFSET 10*$i;
 
 --Retrieve pending orders
 --SELECT15
