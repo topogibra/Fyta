@@ -122,3 +122,20 @@ WHERE "order".id = order_history.id_order
 SELECT "image"."path" AS image_path, username, "date" AS created_at
 FROM "image", "user"
 WHERE "image".id = "user".id_image AND "user".user_role = 'Manager'
+
+--Retrieve discounts valid in a given date
+--SELECT17
+SELECT "percentage", "name" AS product_name
+FROM discount , product, "apply"
+WHERE 
+      discount.date_begin <= $"date"
+      AND discount.date_end >= $"date"
+      AND discount.id = apply.id_discount
+      AND product.id = apply.id_product;
+
+--Retrieve products based on a price range
+--SELECT18
+SELECT "name", product."description" AS details, price
+FROM product
+WHERE product.price > $price_min AND product.price < $price_max
+LIMIT 10 OFFSET 10*$i;
