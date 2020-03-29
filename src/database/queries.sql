@@ -10,7 +10,7 @@ ORDER BY views DESC LIMIT 4;
 
 -- Get all images from a product (General)
 --SELECT02
-SELECT "path" AS product_image_path, "image"."description" AS image_alt,
+SELECT "path" AS product_image_path, "image"."description" AS image_alt
 FROM product, product_image, "image"
 WHERE product.id = $id
     AND product_image.id_product = product.id
