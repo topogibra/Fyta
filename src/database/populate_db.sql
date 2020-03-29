@@ -437,13 +437,8 @@ INSERT INTO "order" (id,shipping_id,billing_address,delivery_address,order_date,
 --R03
 INSERT INTO product_order (id_product,id_order,quantity) VALUES (16,40,2),(71,44,7),(86,16,12),(54,79,8),(2,99,5),(84,41,16),(22,77,19),(53,3,19),(93,35,13),(70,42,15);
 INSERT INTO product_order (id_product,id_order,quantity) VALUES (4,92,13),(42,44,12),(87,70,3),(29,90,10),(87,68,4),(34,87,18),(83,13,1),(68,84,6),(43,38,7),(31,66,20);
-<<<<<<< HEAD
 INSERT INTO product_order (id_product,id_order,quantity) VALUES (22,98,19),(38,49,18),(57,77,14),(20,58,18),(59,55,6),(39,4,15),(52,38,15),(34,86,1),(98,38,8),(32,34,11);
 INSERT INTO product_order (id_product,id_order,quantity) VALUES (95,28,3),(75,31,3),(96,77,5),(91,66,7),(34,68,9),(36,55,19),(86,56,10),(52,14,12),(15,4,8),(48,36,8);
-=======
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (22,98,19),(38,49,18),(57,77,14),(20,58,18),(59,55,6),(39,4,15),(52,38,15),(34,86,1),(98,4,8),(32,34,11);
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (95,28,3),(75,31,3),(96,77,5),(91,66,7),(16,39,9),(36,55,19),(86,56,10),(52,14,12),(15,4,8),(48,36,8);
->>>>>>> fc8e81b890c0cb374f7f31a291fc4a7e7702f8c3
 INSERT INTO product_order (id_product,id_order,quantity) VALUES (13,40,3),(62,50,5),(46,77,11),(78,47,8),(99,40,7),(67,21,13),(28,33,18),(7,31,14),(16,84,7),(69,17,12);
 INSERT INTO product_order (id_product,id_order,quantity) VALUES (37,83,9),(56,49,18),(99,78,19),(40,68,3),(26,39,6),(97,9,9),(65,41,12),(72,90,3),(30,16,8),(12,52,5);
 INSERT INTO product_order (id_product,id_order,quantity) VALUES (20,93,19),(51,4,11),(59,13,9),(36,70,4),(85,82,12),(10,89,9),(90,43,12),(5,81,15),(48,78,18),(69,19,7);
