@@ -444,7 +444,7 @@ INSERT INTO product_order (id_product,id_order,quantity) VALUES (37,83,9),(56,49
 INSERT INTO product_order (id_product,id_order,quantity) VALUES (20,93,19),(51,4,11),(59,13,9),(36,70,4),(85,82,12),(10,89,9),(90,43,12),(5,81,15),(48,78,18),(69,19,7);
 INSERT INTO product_order (id_product,id_order,quantity) VALUES (74,38,7),(55,68,9),(42,40,2),(57,12,15),(49,25,11),(61,3,9),(27,31,12),(88,77,4),(29,35,6),(24,34,14);
 INSERT INTO product_order (id_product,id_order,quantity) VALUES (41,39,1),(1,39,6),(27,98,6),(83,50,11),(96,14,16),(30,8,14),(90,76,14),(3,87,20),(56,50,15),(69,57,6);
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (57,98,5),(24,75,19),(71,100,6),(100,96,7),(6,74,18),(15,64,18),(91,48,9),(87,85,7),(15,67,3),(16,34,2);
+INSERT INTO product_order (id_product,id_order,quantity) VALUES (57,98,5),(24,75,19),(71,100,6),(100,96,7),(6,74,18),(15,64,18),(91,48,9),(87,85,7),(15,67,3),(16,34,2), (16, 39, 1);
 
 --R04
 INSERT INTO review (id_product,id_order,description,rating,review_date) VALUES (16,40,'Loved this lovely plant! Very easy to take care',5,'2020-02-14 12:20:13'),(20,93,'Loved this lovely plant! Very easy to take care',5,'2017-07-05 08:41:18'),(20,58,'Really happy to try out this brand, great products and costumer support!',1,'2017-10-28 14:07:24'),(57,12,'Great product!',3,'2019-03-22 17:09:20');
