@@ -69,7 +69,7 @@ pretty fragrant flowers and edible fruit.These miniature trees are easy to care 
 they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
                                                                     (14,'Mini Phalaenopsis Purple',
 'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.'5,
+The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,50,450),
                                                                     (15,'Crassula perforata Giant Form',
 'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
 Jade plants make great housewarming gifts as they are often called the money plant 
@@ -109,7 +109,7 @@ pretty fragrant flowers and edible fruit.These miniature trees are easy to care 
 they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
                                                                     (24,'Mini Phalaenopsis Purple',
 'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.'5,
+The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,50,450),
                                                                     (25,'Crassula perforata Giant Form',
 'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
 Jade plants make great housewarming gifts as they are often called the money plant 
@@ -149,7 +149,7 @@ pretty fragrant flowers and edible fruit.These miniature trees are easy to care 
 they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
                                                                     (34,'Mini Phalaenopsis Purple',
 'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.'5,
+The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,50,450),
                                                                     (35,'Crassula perforata Giant Form',
 'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
 Jade plants make great housewarming gifts as they are often called the money plant 
@@ -189,7 +189,7 @@ pretty fragrant flowers and edible fruit.These miniature trees are easy to care 
 they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
                                                                     (44,'Mini Phalaenopsis Purple',
 'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.'5,
+The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,50,450),
                                                                     (45,'Crassula perforata Giant Form',
 'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
 Jade plants make great housewarming gifts as they are often called the money plant 
@@ -229,7 +229,7 @@ pretty fragrant flowers and edible fruit.These miniature trees are easy to care 
 they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
                                                                     (54,'Mini Phalaenopsis Purple',
 'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.'5,
+The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,50,450),
                                                                     (55,'Crassula perforata Giant Form',
 'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
 Jade plants make great housewarming gifts as they are often called the money plant 
@@ -269,7 +269,7 @@ pretty fragrant flowers and edible fruit.These miniature trees are easy to care 
 they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
                                                                     (64,'Mini Phalaenopsis Purple',
 'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.'5,
+The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,50,450),
                                                                     (65,'Crassula perforata Giant Form',
 'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
 Jade plants make great housewarming gifts as they are often called the money plant 
@@ -309,7 +309,7 @@ pretty fragrant flowers and edible fruit.These miniature trees are easy to care 
 they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
                                                                     (74,'Mini Phalaenopsis Purple',
 'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.'5,
+The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,50,450),
                                                                     (75,'Crassula perforata Giant Form',
 'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
 Jade plants make great housewarming gifts as they are often called the money plant 
@@ -349,7 +349,7 @@ pretty fragrant flowers and edible fruit.These miniature trees are easy to care 
 they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
                                                                     (84,'Mini Phalaenopsis Purple',
 'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.'5,
+The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,50,450),
                                                                     (85,'Crassula perforata Giant Form',
 'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
 Jade plants make great housewarming gifts as they are often called the money plant 
@@ -389,7 +389,7 @@ pretty fragrant flowers and edible fruit.These miniature trees are easy to care 
 they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
                                                                     (94,'Mini Phalaenopsis Purple',
 'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.'5,
+The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,50,450),
                                                                     (95,'Crassula perforata Giant Form',
 'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
 Jade plants make great housewarming gifts as they are often called the money plant 
