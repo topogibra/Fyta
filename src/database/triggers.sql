@@ -85,7 +85,7 @@ $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER discount_period
-    BEFORE INSERT OR UPDATE ON review
+    BEFORE INSERT OR UPDATE ON discount
     FOR EACH ROW
     EXECUTE PROCEDURE discount_period();
 
