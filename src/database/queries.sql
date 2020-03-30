@@ -55,7 +55,6 @@ SELECT username, email, "date",
     "path" AS image_path, "description" AS image_alt
 FROM "user","image"
 WHERE email = $email 
-    AND password_hash = $password_hash 
     AND "user".user_role = 'Customer' 
     AND "user".id_image = "image".id;
 
