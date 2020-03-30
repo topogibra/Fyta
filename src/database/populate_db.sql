@@ -18,34 +18,34 @@ INSERT INTO "image" (id,"path","description") VALUES (14,'../assets/sisay_jeremi
 INSERT INTO product (id,"name","description",price,stock,views) VALUES (1,'Erica carnea White',
 'This variety will provide you with white flowers and plenty of interest in your garden or on your patio long after other 
 flowers have faded and the garden takes on a somewhat barren look. Not as fussy with soil as their counterparts, 
-they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,20,100),
+they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,50,100),
                                                                    (2,'Amaryllis Floris Hekker',
 'Hippeastrum Amaryllis Floris Hekker is an excellent variety to help brighten up your home. It produces plenty of large 
 velvety-red blooms with deep dark red centres.It’s a great variety for an eye-catching display in your home or as a memorable
-gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,30,150),
+gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,50,150),
                                                                     (3,'Mini Lemon Tree',
 'This cold resistant Lemon tree is highly decorative providing year round interest with its glossy evergreen leaves, 
 pretty fragrant flowers and edible fruit.These miniature trees are easy to care for and ideal for on a sunny windowsill indoors, 
-they can also be moved outdoors once temperatures are above freezing. ',26.00,12,650),
+they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
                                                                     (4,'Mini Phalaenopsis Purple',
 'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,30,450),
+The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,50,450),
                                                                     (5,'Crassula perforata Giant Form',
 'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
 Jade plants make great housewarming gifts as they are often called the money plant 
-or dollar plant, because they were once thought to bring good luck to their owners.',14.00,25,451),
+or dollar plant, because they were once thought to bring good luck to their owners.',14.00,50,451),
                                                                     (6,'Aloes mitriformis fluorescent',
 'This dwarf version of Aloe has strong sturdy leaves arranged in rosettes with fine yellow-white serrations.
 It is useful for many skin conditions as it eases pain and reduces inflammation.
 Aloe also makes a great houseplant, it is very easy to grow and will thrive on any sunny windowsill 
-with the minimum of effort.',20.00,30,450),
+with the minimum of effort.',20.00,50,450),
                                                                     (7,'Gardenia jasminoides',
 'This beautiful plant is perfect for both indoors and out. The lovely rose-like flowers in ivory-white emit a heavy scent 
 perfuming your living room or patio. In the language of flowers gardenia signifies ‘secret love’ 
-and represents purity, refinement and peace.',14.00,74,784),
+and represents purity, refinement and peace.',14.00,50,784),
                                                                     (8,'Mini Apple Tree Malus Red Spur',
 'Harvest your own delicious apples from this fine self-fertile mini apple tree. It produces full sized tasty
- fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,8,364),
+ fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,50,364),
                                                                     (9,'Aquilegia Spring Magic Blue',
 'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
 The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
@@ -54,38 +54,38 @@ They are hardy, grow in sun or partial shade and are suitable for your herbaceou
 'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
 silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
 This vigorous climber flourishes in both sun or partial shade and its attractive dark green glossy foliage has 
-a good disease resistance.',65.00,100,1204);
+a good disease resistance.',65.00,50,1204);
 INSERT INTO product (id,"name","description",price,stock,views) VALUES (11,'Erica carnea White',
 'This variety will provide you with white flowers and plenty of interest in your garden or on your patio long after other 
 flowers have faded and the garden takes on a somewhat barren look. Not as fussy with soil as their counterparts, 
-they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,20,100),
+they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,50,100),
                                                                    (12,'Amaryllis Floris Hekker',
 'Hippeastrum Amaryllis Floris Hekker is an excellent variety to help brighten up your home. It produces plenty of large 
 velvety-red blooms with deep dark red centres.It’s a great variety for an eye-catching display in your home or as a memorable
-gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,30,150),
+gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,50,150),
                                                                     (13,'Mini Lemon Tree',
 'This cold resistant Lemon tree is highly decorative providing year round interest with its glossy evergreen leaves, 
 pretty fragrant flowers and edible fruit.These miniature trees are easy to care for and ideal for on a sunny windowsill indoors, 
-they can also be moved outdoors once temperatures are above freezing. ',26.00,12,650),
+they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
                                                                     (14,'Mini Phalaenopsis Purple',
 'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,30,450),
+The long lasting dark Purple flowers make them perfect as centrepieces.'5,
                                                                     (15,'Crassula perforata Giant Form',
 'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
 Jade plants make great housewarming gifts as they are often called the money plant 
-or dollar plant, because they were once thought to bring good luck to their owners.',14.00,25,451),
+or dollar plant, because they were once thought to bring good luck to their owners.',14.00,50,451),
                                                                     (16,'Aloes mitriformis fluorescent',
 'This dwarf version of Aloe has strong sturdy leaves arranged in rosettes with fine yellow-white serrations.
 It is useful for many skin conditions as it eases pain and reduces inflammation.
 Aloe also makes a great houseplant, it is very easy to grow and will thrive on any sunny windowsill 
-with the minimum of effort.',20.00,30,450),
+with the minimum of effort.',20.00,50,450),
                                                                     (17,'Gardenia jasminoides',
 'This beautiful plant is perfect for both indoors and out. The lovely rose-like flowers in ivory-white emit a heavy scent 
 perfuming your living room or patio. In the language of flowers gardenia signifies ‘secret love’ 
-and represents purity, refinement and peace.',14.00,74,784),
+and represents purity, refinement and peace.',14.00,50,784),
                                                                     (18,'Mini Apple Tree Malus Red Spur',
 'Harvest your own delicious apples from this fine self-fertile mini apple tree. It produces full sized tasty
- fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,8,364),
+ fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,50,364),
                                                                     (19,'Aquilegia Spring Magic Blue',
 'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
 The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
@@ -94,38 +94,38 @@ They are hardy, grow in sun or partial shade and are suitable for your herbaceou
 'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
 silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
 This vigorous climber flourishes in both sun or partial shade and its attractive dark green glossy foliage has 
-a good disease resistance.',65.00,100,1204);
+a good disease resistance.',65.00,50,1204);
 INSERT INTO product (id,"name","description",price,stock,views) VALUES (21,'Erica carnea White',
 'This variety will provide you with white flowers and plenty of interest in your garden or on your patio long after other 
 flowers have faded and the garden takes on a somewhat barren look. Not as fussy with soil as their counterparts, 
-they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,20,100),
+they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,50,100),
                                                                    (22,'Amaryllis Floris Hekker',
 'Hippeastrum Amaryllis Floris Hekker is an excellent variety to help brighten up your home. It produces plenty of large 
 velvety-red blooms with deep dark red centres.It’s a great variety for an eye-catching display in your home or as a memorable
-gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,30,150),
+gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,50,150),
                                                                     (23,'Mini Lemon Tree',
 'This cold resistant Lemon tree is highly decorative providing year round interest with its glossy evergreen leaves, 
 pretty fragrant flowers and edible fruit.These miniature trees are easy to care for and ideal for on a sunny windowsill indoors, 
-they can also be moved outdoors once temperatures are above freezing. ',26.00,12,650),
+they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
                                                                     (24,'Mini Phalaenopsis Purple',
 'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,30,450),
+The long lasting dark Purple flowers make them perfect as centrepieces.'5,
                                                                     (25,'Crassula perforata Giant Form',
 'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
 Jade plants make great housewarming gifts as they are often called the money plant 
-or dollar plant, because they were once thought to bring good luck to their owners.',14.00,25,451),
+or dollar plant, because they were once thought to bring good luck to their owners.',14.00,50,451),
                                                                     (26,'Aloes mitriformis fluorescent',
 'This dwarf version of Aloe has strong sturdy leaves arranged in rosettes with fine yellow-white serrations.
 It is useful for many skin conditions as it eases pain and reduces inflammation.
 Aloe also makes a great houseplant, it is very easy to grow and will thrive on any sunny windowsill 
-with the minimum of effort.',20.00,30,450),
+with the minimum of effort.',20.00,50,450),
                                                                     (27,'Gardenia jasminoides',
 'This beautiful plant is perfect for both indoors and out. The lovely rose-like flowers in ivory-white emit a heavy scent 
 perfuming your living room or patio. In the language of flowers gardenia signifies ‘secret love’ 
-and represents purity, refinement and peace.',14.00,74,784),
+and represents purity, refinement and peace.',14.00,50,784),
                                                                     (28,'Mini Apple Tree Malus Red Spur',
 'Harvest your own delicious apples from this fine self-fertile mini apple tree. It produces full sized tasty
- fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,8,364),
+ fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,50,364),
                                                                     (29,'Aquilegia Spring Magic Blue',
 'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
 The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
@@ -134,38 +134,38 @@ They are hardy, grow in sun or partial shade and are suitable for your herbaceou
 'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
 silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
 This vigorous climber flourishes in both sun or partial shade and its attractive dark green glossy foliage has 
-a good disease resistance.',65.00,100,1204);
+a good disease resistance.',65.00,50,1204);
 INSERT INTO product (id,"name","description",price,stock,views) VALUES (31,'Erica carnea White',
 'This variety will provide you with white flowers and plenty of interest in your garden or on your patio long after other 
 flowers have faded and the garden takes on a somewhat barren look. Not as fussy with soil as their counterparts, 
-they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,20,100),
+they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,50,100),
                                                                    (32,'Amaryllis Floris Hekker',
 'Hippeastrum Amaryllis Floris Hekker is an excellent variety to help brighten up your home. It produces plenty of large 
 velvety-red blooms with deep dark red centres.It’s a great variety for an eye-catching display in your home or as a memorable
-gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,30,150),
+gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,50,150),
                                                                     (33,'Mini Lemon Tree',
 'This cold resistant Lemon tree is highly decorative providing year round interest with its glossy evergreen leaves, 
 pretty fragrant flowers and edible fruit.These miniature trees are easy to care for and ideal for on a sunny windowsill indoors, 
-they can also be moved outdoors once temperatures are above freezing. ',26.00,12,650),
+they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
                                                                     (34,'Mini Phalaenopsis Purple',
 'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,30,450),
+The long lasting dark Purple flowers make them perfect as centrepieces.'5,
                                                                     (35,'Crassula perforata Giant Form',
 'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
 Jade plants make great housewarming gifts as they are often called the money plant 
-or dollar plant, because they were once thought to bring good luck to their owners.',14.00,25,451),
+or dollar plant, because they were once thought to bring good luck to their owners.',14.00,50,451),
                                                                     (36,'Aloes mitriformis fluorescent',
 'This dwarf version of Aloe has strong sturdy leaves arranged in rosettes with fine yellow-white serrations.
 It is useful for many skin conditions as it eases pain and reduces inflammation.
 Aloe also makes a great houseplant, it is very easy to grow and will thrive on any sunny windowsill 
-with the minimum of effort.',20.00,30,450),
+with the minimum of effort.',20.00,50,450),
                                                                     (37,'Gardenia jasminoides',
 'This beautiful plant is perfect for both indoors and out. The lovely rose-like flowers in ivory-white emit a heavy scent 
 perfuming your living room or patio. In the language of flowers gardenia signifies ‘secret love’ 
-and represents purity, refinement and peace.',14.00,74,784),
+and represents purity, refinement and peace.',14.00,50,784),
                                                                     (38,'Mini Apple Tree Malus Red Spur',
 'Harvest your own delicious apples from this fine self-fertile mini apple tree. It produces full sized tasty
- fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,8,364),
+ fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,50,364),
                                                                     (39,'Aquilegia Spring Magic Blue',
 'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
 The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
@@ -174,38 +174,38 @@ They are hardy, grow in sun or partial shade and are suitable for your herbaceou
 'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
 silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
 This vigorous climber flourishes in both sun or partial shade and its attractive dark green glossy foliage has 
-a good disease resistance.',65.00,100,1204);
+a good disease resistance.',65.00,50,1204);
 INSERT INTO product (id,"name","description",price,stock,views) VALUES (41,'Erica carnea White',
 'This variety will provide you with white flowers and plenty of interest in your garden or on your patio long after other 
 flowers have faded and the garden takes on a somewhat barren look. Not as fussy with soil as their counterparts, 
-they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,20,100),
+they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,50,100),
                                                                    (42,'Amaryllis Floris Hekker',
 'Hippeastrum Amaryllis Floris Hekker is an excellent variety to help brighten up your home. It produces plenty of large 
 velvety-red blooms with deep dark red centres.It’s a great variety for an eye-catching display in your home or as a memorable
-gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,30,150),
+gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,50,150),
                                                                     (43,'Mini Lemon Tree',
 'This cold resistant Lemon tree is highly decorative providing year round interest with its glossy evergreen leaves, 
 pretty fragrant flowers and edible fruit.These miniature trees are easy to care for and ideal for on a sunny windowsill indoors, 
-they can also be moved outdoors once temperatures are above freezing. ',26.00,12,650),
+they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
                                                                     (44,'Mini Phalaenopsis Purple',
 'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,30,450),
+The long lasting dark Purple flowers make them perfect as centrepieces.'5,
                                                                     (45,'Crassula perforata Giant Form',
 'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
 Jade plants make great housewarming gifts as they are often called the money plant 
-or dollar plant, because they were once thought to bring good luck to their owners.',14.00,25,451),
+or dollar plant, because they were once thought to bring good luck to their owners.',14.00,50,451),
                                                                     (46,'Aloes mitriformis fluorescent',
 'This dwarf version of Aloe has strong sturdy leaves arranged in rosettes with fine yellow-white serrations.
 It is useful for many skin conditions as it eases pain and reduces inflammation.
 Aloe also makes a great houseplant, it is very easy to grow and will thrive on any sunny windowsill 
-with the minimum of effort.',20.00,30,450),
+with the minimum of effort.',20.00,50,450),
                                                                     (47,'Gardenia jasminoides',
 'This beautiful plant is perfect for both indoors and out. The lovely rose-like flowers in ivory-white emit a heavy scent 
 perfuming your living room or patio. In the language of flowers gardenia signifies ‘secret love’ 
-and represents purity, refinement and peace.',14.00,74,784),
+and represents purity, refinement and peace.',14.00,50,784),
                                                                     (48,'Mini Apple Tree Malus Red Spur',
 'Harvest your own delicious apples from this fine self-fertile mini apple tree. It produces full sized tasty
- fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,8,364),
+ fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,50,364),
                                                                     (49,'Aquilegia Spring Magic Blue',
 'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
 The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
@@ -214,38 +214,38 @@ They are hardy, grow in sun or partial shade and are suitable for your herbaceou
 'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
 silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
 This vigorous climber flourishes in both sun or partial shade and its attractive dark green glossy foliage has 
-a good disease resistance.',65.00,100,1204);
+a good disease resistance.',65.00,50,1204);
 INSERT INTO product (id,"name","description",price,stock,views) VALUES (51,'Erica carnea White',
 'This variety will provide you with white flowers and plenty of interest in your garden or on your patio long after other 
 flowers have faded and the garden takes on a somewhat barren look. Not as fussy with soil as their counterparts, 
-they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,20,100),
+they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,50,100),
                                                                    (52,'Amaryllis Floris Hekker',
 'Hippeastrum Amaryllis Floris Hekker is an excellent variety to help brighten up your home. It produces plenty of large 
 velvety-red blooms with deep dark red centres.It’s a great variety for an eye-catching display in your home or as a memorable
-gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,30,150),
+gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,50,150),
                                                                     (53,'Mini Lemon Tree',
 'This cold resistant Lemon tree is highly decorative providing year round interest with its glossy evergreen leaves, 
 pretty fragrant flowers and edible fruit.These miniature trees are easy to care for and ideal for on a sunny windowsill indoors, 
-they can also be moved outdoors once temperatures are above freezing. ',26.00,12,650),
+they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
                                                                     (54,'Mini Phalaenopsis Purple',
 'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,30,450),
+The long lasting dark Purple flowers make them perfect as centrepieces.'5,
                                                                     (55,'Crassula perforata Giant Form',
 'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
 Jade plants make great housewarming gifts as they are often called the money plant 
-or dollar plant, because they were once thought to bring good luck to their owners.',14.00,25,451),
+or dollar plant, because they were once thought to bring good luck to their owners.',14.00,50,451),
                                                                     (56,'Aloes mitriformis fluorescent',
 'This dwarf version of Aloe has strong sturdy leaves arranged in rosettes with fine yellow-white serrations.
 It is useful for many skin conditions as it eases pain and reduces inflammation.
 Aloe also makes a great houseplant, it is very easy to grow and will thrive on any sunny windowsill 
-with the minimum of effort.',20.00,30,450),
+with the minimum of effort.',20.00,50,450),
                                                                     (57,'Gardenia jasminoides',
 'This beautiful plant is perfect for both indoors and out. The lovely rose-like flowers in ivory-white emit a heavy scent 
 perfuming your living room or patio. In the language of flowers gardenia signifies ‘secret love’ 
-and represents purity, refinement and peace.',14.00,74,784),
+and represents purity, refinement and peace.',14.00,50,784),
                                                                     (58,'Mini Apple Tree Malus Red Spur',
 'Harvest your own delicious apples from this fine self-fertile mini apple tree. It produces full sized tasty
- fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,8,364),
+ fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,50,364),
                                                                     (59,'Aquilegia Spring Magic Blue',
 'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
 The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
@@ -254,38 +254,38 @@ They are hardy, grow in sun or partial shade and are suitable for your herbaceou
 'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
 silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
 This vigorous climber flourishes in both sun or partial shade and its attractive dark green glossy foliage has 
-a good disease resistance.',65.00,100,1204);
+a good disease resistance.',65.00,50,1204);
 INSERT INTO product (id,"name","description",price,stock,views) VALUES (61,'Erica carnea White',
 'This variety will provide you with white flowers and plenty of interest in your garden or on your patio long after other 
 flowers have faded and the garden takes on a somewhat barren look. Not as fussy with soil as their counterparts, 
-they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,20,100),
+they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,50,100),
                                                                    (62,'Amaryllis Floris Hekker',
 'Hippeastrum Amaryllis Floris Hekker is an excellent variety to help brighten up your home. It produces plenty of large 
 velvety-red blooms with deep dark red centres.It’s a great variety for an eye-catching display in your home or as a memorable
-gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,30,150),
+gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,50,150),
                                                                     (63,'Mini Lemon Tree',
 'This cold resistant Lemon tree is highly decorative providing year round interest with its glossy evergreen leaves, 
 pretty fragrant flowers and edible fruit.These miniature trees are easy to care for and ideal for on a sunny windowsill indoors, 
-they can also be moved outdoors once temperatures are above freezing. ',26.00,12,650),
+they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
                                                                     (64,'Mini Phalaenopsis Purple',
 'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,30,450),
+The long lasting dark Purple flowers make them perfect as centrepieces.'5,
                                                                     (65,'Crassula perforata Giant Form',
 'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
 Jade plants make great housewarming gifts as they are often called the money plant 
-or dollar plant, because they were once thought to bring good luck to their owners.',14.00,25,451),
+or dollar plant, because they were once thought to bring good luck to their owners.',14.00,50,451),
                                                                     (66,'Aloes mitriformis fluorescent',
 'This dwarf version of Aloe has strong sturdy leaves arranged in rosettes with fine yellow-white serrations.
 It is useful for many skin conditions as it eases pain and reduces inflammation.
 Aloe also makes a great houseplant, it is very easy to grow and will thrive on any sunny windowsill 
-with the minimum of effort.',20.00,30,450),
+with the minimum of effort.',20.00,50,450),
                                                                     (67,'Gardenia jasminoides',
 'This beautiful plant is perfect for both indoors and out. The lovely rose-like flowers in ivory-white emit a heavy scent 
 perfuming your living room or patio. In the language of flowers gardenia signifies ‘secret love’ 
-and represents purity, refinement and peace.',14.00,74,784),
+and represents purity, refinement and peace.',14.00,50,784),
                                                                     (68,'Mini Apple Tree Malus Red Spur',
 'Harvest your own delicious apples from this fine self-fertile mini apple tree. It produces full sized tasty
- fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,8,364),
+ fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,50,364),
                                                                     (69,'Aquilegia Spring Magic Blue',
 'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
 The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
@@ -294,38 +294,38 @@ They are hardy, grow in sun or partial shade and are suitable for your herbaceou
 'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
 silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
 This vigorous climber flourishes in both sun or partial shade and its attractive dark green glossy foliage has 
-a good disease resistance.',65.00,100,1204);
+a good disease resistance.',65.00,50,1204);
 INSERT INTO product (id,"name","description",price,stock,views) VALUES (71,'Erica carnea White',
 'This variety will provide you with white flowers and plenty of interest in your garden or on your patio long after other 
 flowers have faded and the garden takes on a somewhat barren look. Not as fussy with soil as their counterparts, 
-they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,20,100),
+they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,50,100),
                                                                    (72,'Amaryllis Floris Hekker',
 'Hippeastrum Amaryllis Floris Hekker is an excellent variety to help brighten up your home. It produces plenty of large 
 velvety-red blooms with deep dark red centres.It’s a great variety for an eye-catching display in your home or as a memorable
-gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,30,150),
+gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,50,150),
                                                                     (73,'Mini Lemon Tree',
 'This cold resistant Lemon tree is highly decorative providing year round interest with its glossy evergreen leaves, 
 pretty fragrant flowers and edible fruit.These miniature trees are easy to care for and ideal for on a sunny windowsill indoors, 
-they can also be moved outdoors once temperatures are above freezing. ',26.00,12,650),
+they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
                                                                     (74,'Mini Phalaenopsis Purple',
 'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,30,450),
+The long lasting dark Purple flowers make them perfect as centrepieces.'5,
                                                                     (75,'Crassula perforata Giant Form',
 'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
 Jade plants make great housewarming gifts as they are often called the money plant 
-or dollar plant, because they were once thought to bring good luck to their owners.',14.00,25,451),
+or dollar plant, because they were once thought to bring good luck to their owners.',14.00,50,451),
                                                                     (76,'Aloes mitriformis fluorescent',
 'This dwarf version of Aloe has strong sturdy leaves arranged in rosettes with fine yellow-white serrations.
 It is useful for many skin conditions as it eases pain and reduces inflammation.
 Aloe also makes a great houseplant, it is very easy to grow and will thrive on any sunny windowsill 
-with the minimum of effort.',20.00,30,450),
+with the minimum of effort.',20.00,50,450),
                                                                     (77,'Gardenia jasminoides',
 'This beautiful plant is perfect for both indoors and out. The lovely rose-like flowers in ivory-white emit a heavy scent 
 perfuming your living room or patio. In the language of flowers gardenia signifies ‘secret love’ 
-and represents purity, refinement and peace.',14.00,74,784),
+and represents purity, refinement and peace.',14.00,50,784),
                                                                     (78,'Mini Apple Tree Malus Red Spur',
 'Harvest your own delicious apples from this fine self-fertile mini apple tree. It produces full sized tasty
- fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,8,364),
+ fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,50,364),
                                                                     (79,'Aquilegia Spring Magic Blue',
 'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
 The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
@@ -334,38 +334,38 @@ They are hardy, grow in sun or partial shade and are suitable for your herbaceou
 'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
 silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
 This vigorous climber flourishes in both sun or partial shade and its attractive dark green glossy foliage has 
-a good disease resistance.',65.00,100,1204);
+a good disease resistance.',65.00,50,1204);
 INSERT INTO product (id,"name","description",price,stock,views) VALUES (81,'Erica carnea White',
 'This variety will provide you with white flowers and plenty of interest in your garden or on your patio long after other 
 flowers have faded and the garden takes on a somewhat barren look. Not as fussy with soil as their counterparts, 
-they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,20,100),
+they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,50,100),
                                                                    (82,'Amaryllis Floris Hekker',
 'Hippeastrum Amaryllis Floris Hekker is an excellent variety to help brighten up your home. It produces plenty of large 
 velvety-red blooms with deep dark red centres.It’s a great variety for an eye-catching display in your home or as a memorable
-gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,30,150),
+gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,50,150),
                                                                     (83,'Mini Lemon Tree',
 'This cold resistant Lemon tree is highly decorative providing year round interest with its glossy evergreen leaves, 
 pretty fragrant flowers and edible fruit.These miniature trees are easy to care for and ideal for on a sunny windowsill indoors, 
-they can also be moved outdoors once temperatures are above freezing. ',26.00,12,650),
+they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
                                                                     (84,'Mini Phalaenopsis Purple',
 'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,30,450),
+The long lasting dark Purple flowers make them perfect as centrepieces.'5,
                                                                     (85,'Crassula perforata Giant Form',
 'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
 Jade plants make great housewarming gifts as they are often called the money plant 
-or dollar plant, because they were once thought to bring good luck to their owners.',14.00,25,451),
+or dollar plant, because they were once thought to bring good luck to their owners.',14.00,50,451),
                                                                     (86,'Aloes mitriformis fluorescent',
 'This dwarf version of Aloe has strong sturdy leaves arranged in rosettes with fine yellow-white serrations.
 It is useful for many skin conditions as it eases pain and reduces inflammation.
 Aloe also makes a great houseplant, it is very easy to grow and will thrive on any sunny windowsill 
-with the minimum of effort.',20.00,30,450),
+with the minimum of effort.',20.00,50,450),
                                                                     (87,'Gardenia jasminoides',
 'This beautiful plant is perfect for both indoors and out. The lovely rose-like flowers in ivory-white emit a heavy scent 
 perfuming your living room or patio. In the language of flowers gardenia signifies ‘secret love’ 
-and represents purity, refinement and peace.',14.00,74,784),
+and represents purity, refinement and peace.',14.00,50,784),
                                                                     (88,'Mini Apple Tree Malus Red Spur',
 'Harvest your own delicious apples from this fine self-fertile mini apple tree. It produces full sized tasty
- fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,8,364),
+ fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,50,364),
                                                                     (89,'Aquilegia Spring Magic Blue',
 'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
 The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
@@ -374,38 +374,38 @@ They are hardy, grow in sun or partial shade and are suitable for your herbaceou
 'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
 silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
 This vigorous climber flourishes in both sun or partial shade and its attractive dark green glossy foliage has 
-a good disease resistance.',65.00,100,1204);
+a good disease resistance.',65.00,50,1204);
 INSERT INTO product (id,"name","description",price,stock,views) VALUES (91,'Erica carnea White',
 'This variety will provide you with white flowers and plenty of interest in your garden or on your patio long after other 
 flowers have faded and the garden takes on a somewhat barren look. Not as fussy with soil as their counterparts, 
-they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,20,100),
+they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,50,100),
                                                                    (92,'Amaryllis Floris Hekker',
 'Hippeastrum Amaryllis Floris Hekker is an excellent variety to help brighten up your home. It produces plenty of large 
 velvety-red blooms with deep dark red centres.It’s a great variety for an eye-catching display in your home or as a memorable
-gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,30,150),
+gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,50,150),
                                                                     (93,'Mini Lemon Tree',
 'This cold resistant Lemon tree is highly decorative providing year round interest with its glossy evergreen leaves, 
 pretty fragrant flowers and edible fruit.These miniature trees are easy to care for and ideal for on a sunny windowsill indoors, 
-they can also be moved outdoors once temperatures are above freezing. ',26.00,12,650),
+they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
                                                                     (94,'Mini Phalaenopsis Purple',
 'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,30,450),
+The long lasting dark Purple flowers make them perfect as centrepieces.'5,
                                                                     (95,'Crassula perforata Giant Form',
 'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
 Jade plants make great housewarming gifts as they are often called the money plant 
-or dollar plant, because they were once thought to bring good luck to their owners.',14.00,25,451),
+or dollar plant, because they were once thought to bring good luck to their owners.',14.00,50,451),
                                                                     (96,'Aloes mitriformis fluorescent',
 'This dwarf version of Aloe has strong sturdy leaves arranged in rosettes with fine yellow-white serrations.
 It is useful for many skin conditions as it eases pain and reduces inflammation.
 Aloe also makes a great houseplant, it is very easy to grow and will thrive on any sunny windowsill 
-with the minimum of effort.',20.00,30,450),
+with the minimum of effort.',20.00,50,450),
                                                                     (97,'Gardenia jasminoides',
 'This beautiful plant is perfect for both indoors and out. The lovely rose-like flowers in ivory-white emit a heavy scent 
 perfuming your living room or patio. In the language of flowers gardenia signifies ‘secret love’ 
-and represents purity, refinement and peace.',14.00,74,784),
+and represents purity, refinement and peace.',14.00,50,784),
                                                                     (98,'Mini Apple Tree Malus Red Spur',
 'Harvest your own delicious apples from this fine self-fertile mini apple tree. It produces full sized tasty
- fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,8,364),
+ fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,50,364),
                                                                     (99,'Aquilegia Spring Magic Blue',
 'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
 The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
@@ -414,7 +414,7 @@ They are hardy, grow in sun or partial shade and are suitable for your herbaceou
 'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
 silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
 This vigorous climber flourishes in both sun or partial shade and its attractive dark green glossy foliage has 
-a good disease resistance.',65.00,100,1204);
+a good disease resistance.',65.00,50,1204);
 
 --R06
 INSERT INTO "user" (id,username,email,password_hash,date,id_image,user_role) VALUES (1,'Seal','sed.dictum@eusem.ca','MMJ88EPA9AU','2012-01-26 12:19:47',11,'Customer'),(2,'Navarro','senectus.et.netus@aarcu.com','JYG90CLM7NO','2016-09-14 16:03:25',13,'Manager'),(3,'Rosa','semper.tellus@scelerisquemollis.net','XUI45BHW4MC','2013-08-28 09:42:00',12,'Manager'),(4,'Wallace','sociis@vitaedolorDonec.org','TOJ48WCE2EY','2013-05-26 00:43:04',12,'Customer'),(5,'Cunningham','urna.Nunc@eterosProin.org','RCM39OSA1SP','2018-09-26 21:57:58',13,'Manager'),(6,'Flynn','eu.arcu.Morbi@temporaugueac.co.uk','RHM23ZHF5OX','2018-01-17 03:54:31',14,'Customer'),(7,'Brady','egestas@dolortempus.com','VLQ80YJN3NL','2019-10-17 17:33:41',14,'Customer'),(8,'Reynolds','ac@ipsumsodales.org','VMO93WZF7ZI','2012-07-15 11:28:45',12,'Manager'),(9,'Mccall','erat.in@ornare.co.uk','XYQ55JBT6US','2018-11-03 21:07:17',14,'Manager'),(10,'Morales','sagittis.augue.eu@blanditmattis.net','LUG55CNK2FF','2015-09-29 11:20:51',11,'Customer');
