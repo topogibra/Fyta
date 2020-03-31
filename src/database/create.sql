@@ -144,8 +144,8 @@ CREATE TABLE discount_code
   CONSTRAINT discount_code_discount_fk FOREIGN KEY (id_discount) REFERENCES discount(id) ON UPDATE CASCADE,
   CONSTRAINT discount_code_uk UNIQUE (code)
 );
-DROP TABLE IF EXISTS "apply" CASCADE;
-CREATE TABLE "apply"
+DROP TABLE IF EXISTS apply_discount CASCADE;
+CREATE TABLE apply_discount
 (
   id_product INTEGER NOT NULL,
   id_discount INTEGER NOT NULL,
@@ -305,8 +305,8 @@ DROP FUNCTION IF EXISTS discount_period() CASCADE;
 CREATE FUNCTION discount_period() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF EXISTS (SELECT * FROM discount, "apply", discount as new_discount WHERE "apply".id_discount = NEW.id OR
-    ("apply".id_discount = discount.id AND new_discount.date_begin >= discount.date_begin AND new_discount.date_begin <= discount.date_end) ) THEN
+    IF EXISTS (SELECT * FROM discount, apply_discount, discount as new_discount WHERE apply_discount.id_discount = NEW.id OR
+    (apply_discount.id_discount = discount.id AND new_discount.date_begin >= discount.date_begin AND new_discount.date_begin <= discount.date_end) ) THEN
         RAISE EXCEPTION 'Only one discount can only be applied to a product in a given period of time';
     END IF;
     RETURN NEW;
@@ -357,7 +357,10 @@ CREATE INDEX product_views_idx on product USING btree(views);
 
 
 --IDX05
-CREATE INDEX discount_date_idx on discount USING btree(date_begin);
+CREATE INDEX discount_date_start_idx on discount USING btree(date_begin);
+
+--IDX06
+CREATE INDEX discount_date_end_idx on discount USING btree(date_end);
 
 --Full-text Search Indice
 CREATE INDEX product_fts ON product USING GIN ((setweight(to_tsvector('english', COALESCE("name",'')), 'A') || setweight(to_tsvector('english', COALESCE("description")), 'B')));

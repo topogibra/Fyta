@@ -509,16 +509,16 @@ INSERT INTO discount_code (id_discount,code) VALUES (2,'Guy'),(4,'Yoshi'),(1,'Ca
 INSERT INTO discount_code (id_discount,code) VALUES (20,'Noelani'),(9,'Ralph'),(6,'Russell'),(7,'Nehru'),(10,'Salvador');
 
 --R12
-INSERT INTO "apply" (id_product,id_discount) VALUES (21,4),(10,1),(27,14),(44,3),(91,14);
-INSERT INTO "apply" (id_product,id_discount) VALUES (20,11),(95,8),(34,1),(55,11),(49,18);
-INSERT INTO "apply" (id_product,id_discount) VALUES (84,10),(96,17),(6,18),(20,9),(63,8);
-INSERT INTO "apply" (id_product,id_discount) VALUES (35,14),(26,20),(28,11),(26,6),(78,10);
-INSERT INTO "apply" (id_product,id_discount) VALUES (66,15),(64,17),(34,2),(18,11),(83,12);
-INSERT INTO "apply" (id_product,id_discount) VALUES (76,15),(82,11),(59,20),(91,16),(89,16);
-INSERT INTO "apply" (id_product,id_discount) VALUES (3,20),(30,10),(60,20),(39,4),(26,11);
-INSERT INTO "apply" (id_product,id_discount) VALUES (94,4),(99,8),(37,14),(25,7),(36,18);
-INSERT INTO "apply" (id_product,id_discount) VALUES (32,11),(89,15),(27,20),(51,18),(2,2);
-INSERT INTO "apply" (id_product,id_discount) VALUES (87,18),(46,8),(66,4),(82,7),(76,11);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (21,4),(10,1),(27,14),(44,3),(91,14);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (20,11),(95,8),(34,1),(55,11),(49,18);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (84,10),(96,17),(6,18),(20,9),(63,8);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (35,14),(26,20),(28,11),(26,6),(78,10);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (66,15),(64,17),(34,2),(18,11),(83,12);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (76,15),(82,11),(59,20),(91,16),(89,16);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (3,20),(30,10),(60,20),(39,4),(26,11);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (94,4),(99,8),(37,14),(25,7),(36,18);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (32,11),(89,15),(27,20),(51,18),(2,2);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (87,18),(46,8),(66,4),(82,7),(76,11);
 
 --R13
 INSERT INTO tag (id,"name") VALUES (1,'Winifred'),(2,'Aspen'),(3,'Audrey'),(4,'April');

@@ -64,7 +64,7 @@ UPDATE discount
     WHERE $id = id;
 
 -- Apply discount to a product
-INSERT INTO "apply" (id_product, id_discount)
+INSERT INTO apply_discount (id_product, id_discount)
     VALUES($id_product, $id_discount);
 
 -- Create a new tag

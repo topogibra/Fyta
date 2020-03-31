@@ -80,8 +80,8 @@ DROP FUNCTION IF EXISTS discount_period() CASCADE;
 CREATE FUNCTION discount_period() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF EXISTS (SELECT * FROM discount, "apply", discount as new_discount WHERE "apply".id_discount = NEW.id OR
-    ("apply".id_discount = discount.id AND new_discount.date_begin >= discount.date_begin AND new_discount.date_begin <= discount.date_end) ) THEN
+    IF EXISTS (SELECT * FROM discount, apply_discount, discount as new_discount WHERE apply_discount.id_discount = NEW.id OR
+    (apply_discount.id_discount = discount.id AND new_discount.date_begin >= discount.date_begin AND new_discount.date_begin <= discount.date_end) ) THEN
         RAISE EXCEPTION 'Only one discount can only be applied to a product in a given period of time';
     END IF;
     RETURN NEW;

@@ -33,12 +33,14 @@ WHERE review.id_product = $product_id
     AND product_order.id_order = "order".id
     AND "order".id_user = "user".id 
     AND "user".id_image = "image".id
-ORDER BY review_date DESC;
+ORDER BY review_date DESC
+LIMIT 10 OFFSET 10*$i;
 
 -- Tags retrieve query (Search page)
 --SELECT05
 SELECT "name" AS tag
 FROM tag
+LIMIT 10 OFFSET 10*$i;
 
 -- Products retrive query based on tag (Search page)
 --SELECT06
@@ -47,7 +49,8 @@ FROM product, tag, product_tag
 WHERE tag.id = $tag_id 
     AND product_tag.id_tag = $tag_id
     AND product_tag.id_product = product.id 
-ORDER BY views DESC;
+ORDER BY views DESC
+LIMIT 10 OFFSET 10*$i;
 
 -- Customer information retrieval query (Profile page)
 --SELECT07
@@ -58,15 +61,16 @@ WHERE email = $email
     AND "user".user_role = 'Customer' 
     AND "user".id_image = "image".id;
 
--- Order History collection bASed on user id (Order History page)
+-- Order History collection based on user id (Order History page)
 --SELECT08
 SELECT shipping_id, order_status, order_date
 FROM "order",order_history
 WHERE "order".id_user = $user_id 
     AND order_history.id_order = "order".id
-ORDER BY order_date DESC;
+ORDER BY order_date DESC
+LIMIT 10 OFFSET 10*$i;
 
--- Wishilist and size retrieval bASed on user id(Wishlist page)
+-- Wishilist and size retrieval based on user id(Wishlist page)
 --SELECT09
 SELECT wishlist."name", COUNT(id_product) AS size
 FROM wishlist, wishlist_product
@@ -79,7 +83,8 @@ GROUP BY wishlist."name"
 SELECT product.name AS product_name, product.price AS product_price, quantity
 FROM shopping_cart, product
 WHERE shopping_cart.id_user = $id AND 
-      product.id = shopping_cart.id_product;
+      product.id = shopping_cart.id_product
+LIMIT 10 OFFSET 10*$i;
 
 -- Product query for order summary
 --SELECT11
@@ -114,7 +119,8 @@ LIMIT 10 OFFSET 10*$i;
 SELECT shipping_id,order_date,order_status
 FROM "order", order_history
 WHERE "order".id = order_history.id_order
-	  AND (order_status = 'Ready_for_Shipping' OR order_status = 'Awaiting_Payment');
+	  AND (order_status = 'Ready_for_Shipping' OR order_status = 'Awaiting_Payment')
+LIMIT 10 OFFSET 10*$i;
 
 --Retrieve information FROM all the managers
 --SELECT16
@@ -125,12 +131,12 @@ WHERE "image".id = "user".id_image AND "user".user_role = 'Manager'
 --Retrieve discounts valid in a given date
 --SELECT17
 SELECT "percentage", "name" AS product_name
-FROM discount , product, "apply"
+FROM discount , product, apply_discount_discount
 WHERE 
       discount.date_begin <= $"date"
       AND discount.date_end >= $"date"
-      AND discount.id = apply.id_discount
-      AND product.id = apply.id_product;
+      AND discount.id = apply_discount.id_discount
+      AND product.id = apply_discount.id_product;
 
 --Retrieve products based on a price range
 --SELECT18
