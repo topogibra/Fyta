@@ -14,7 +14,8 @@ let pricevaluemax = document.querySelector(".price .price-values .max p");
 
 priceinputmin.value = 1;
 priceinputmax.value = 100;
-
+let priceinputminoldvalue = 1;
+let priceinputmaxoldvalue = 100;
 
 
 let filtericon = document.querySelector("#filter i")
@@ -39,30 +40,25 @@ window.addEventListener('resize', (event) => {
     }
 })
 
-priceinputmin.addEventListener('input', function() {
 
-    if (priceinputmin.valueAsNumber < priceinputmax.valueAsNumber)
-        pricevaluemin.innerHTML = priceinputmin.value + "€";
-    else {
-        priceinputmax.value = priceinputmax.valueAsNumber == 100 ? priceinputmax.valueAsNumber : priceinputmax.valueAsNumber + 1
-        priceinputmin.value = priceinputmax.valueAsNumber - 1
-        pricevaluemin.innerHTML = priceinputmin.value + "€";
-        pricevaluemax.innerHTML = priceinputmax.value + "€";
+function priceInputHandler() {
+
+    if(priceinputmin.valueAsNumber >= priceinputmax.valueAsNumber) {
+        if(priceinputmin.valueAsNumber == priceinputminoldvalue) {
+            priceinputmin.value = priceinputmin.valueAsNumber == 1 ? priceinputmin.valueAsNumber : priceinputmin.valueAsNumber - 1
+        }
+        else if(priceinputmax.valueAsNumber == priceinputmaxoldvalue) {
+            priceinputmax.value = priceinputmax.valueAsNumber == 100 ? priceinputmax.valueAsNumber : priceinputmax.valueAsNumber + 1
+        }
     }
+    pricevaluemin.innerHTML = priceinputmin.value + "€";
+    pricevaluemax.innerHTML = priceinputmax.value + "€";
+    priceinputminoldvalue = priceinputmin.valueAsNumber
+    priceinputmaxoldvalue = priceinputmax.valueAsNumber
+    
 
+}
 
-}, false);
+priceinputmin.addEventListener('input', priceInputHandler, false);
 
-priceinputmax.addEventListener('input', function() {
-
-    if (priceinputmin.valueAsNumber < priceinputmax.valueAsNumber)
-        pricevaluemax.innerHTML = priceinputmax.value + "€";
-    else {
-        priceinputmin.value = priceinputmin.valueAsNumber == 1 ? priceinputmin.valueAsNumber : priceinputmin.valueAsNumber - 1
-        priceinputmax.value = priceinputmin.valueAsNumber + 1
-        pricevaluemin.innerHTML = priceinputmin.value + "€";
-        pricevaluemax.innerHTML = priceinputmax.value + "€";
-    }
-
-
-}, false);
+priceinputmax.addEventListener('input', priceInputHandler, false);
