@@ -2,7 +2,7 @@
       include_once('../components/footer.php');
       include_once('../components/header.php');
 
-      make_header(["../javascript/searchpage.js"], ["../styles/searchpage.css", "../styles/pallette.css"]);
+      make_header(["../js/searchpage.js"], ["../styles/searchpage.css", "../styles/pallette.css"]);
       ?>
 
       <div class="title">
@@ -117,10 +117,10 @@
               </div>
               <div class="row price-inputs">
                 <div class="col-5 min-input">
-                  <input type="number" class="form-control" id="min" placeholder="Min">
+                  <input type="number" class="form-control" id="min" placeholder="Min" min="1" max="99">
                 </div>
                 <div class="col-5 max-input">
-                  <input type="number" class="form-control" id="max" placeholder="Max">
+                  <input type="number" class="form-control" id="max" placeholder="Max" min="2" max="100">
                 </div>
               </div>
 
