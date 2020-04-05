@@ -33,21 +33,12 @@ filter.addEventListener('click', (event) => {
     }
 })
 
-window.addEventListener('resize', (event) => {
-
-    if (window.screen.width > 800) {
-        filtercontent[0].style.display = "block";
-    }
-})
-
-
 function priceInputHandler() {
 
-    if(priceinputmin.valueAsNumber >= priceinputmax.valueAsNumber) {
-        if(priceinputmin.valueAsNumber == priceinputminoldvalue) {
+    if (priceinputmin.valueAsNumber >= priceinputmax.valueAsNumber) {
+        if (priceinputmin.valueAsNumber == priceinputminoldvalue) {
             priceinputmin.value = priceinputmin.valueAsNumber == 1 ? priceinputmin.valueAsNumber : priceinputmin.valueAsNumber - 1
-        }
-        else if(priceinputmax.valueAsNumber == priceinputmaxoldvalue) {
+        } else if (priceinputmax.valueAsNumber == priceinputmaxoldvalue) {
             priceinputmax.value = priceinputmax.valueAsNumber == 100 ? priceinputmax.valueAsNumber : priceinputmax.valueAsNumber + 1
         }
     }
@@ -55,7 +46,7 @@ function priceInputHandler() {
     pricevaluemax.innerHTML = priceinputmax.value + "€";
     priceinputminoldvalue = priceinputmin.valueAsNumber
     priceinputmaxoldvalue = priceinputmax.valueAsNumber
-    
+
 
 }
 
