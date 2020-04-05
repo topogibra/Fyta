@@ -1,18 +1,18 @@
 --R18
-INSERT INTO "image" (id,"path","description") VALUES (1,'../assets/orquideas.jpg','Rose Orchid');
-INSERT INTO "image" (id,"path","description") VALUES (2,'../assets/vaso.jpg','XPR Vase');
-INSERT INTO "image" (id,"path","description") VALUES (3,'../assets/bonsai2.jpg','Bonsai CRT');
-INSERT INTO "image" (id,"path","description") VALUES (4,'../assets/tulipas.jpg','Orange Tulips');
-INSERT INTO "image" (id,"path","description") VALUES (5,'../assets/meatrose_indoor.jpg','Meat Rose');
-INSERT INTO "image" (id,"path","description") VALUES (6,'../assets/reddahlia_indoor.jpg','Red Dahlias');
-INSERT INTO "image" (id,"path","description") VALUES (7,'../assets/pinktulips_indoor.jpg','Pink Tulips');
-INSERT INTO "image" (id,"path","description") VALUES (8,'../assets/sativa_indoor.jpg','Sativa Prime');
-INSERT INTO "image" (id,"path","description") VALUES (9,'../assets/greenpalm_outdoor.jpg','Green Palm Tree');
-INSERT INTO "image" (id,"path","description") VALUES (10,'../assets/lavender_outdoor.jpg','Lavender Premium');
-INSERT INTO "image" (id,"path","description") VALUES (11,'../assets/mohammad-faruque-AgYOuy8kA7M-unsplash.jpg','Mohammad Faruque');
-INSERT INTO "image" (id,"path","description") VALUES (12,'../assets/dannie_almir.jpg','Dannie Almir');
-INSERT INTO "image" (id,"path","description") VALUES (13,'../assets/simone.jpeg','Simone Biles');
-INSERT INTO "image" (id,"path","description") VALUES (14,'../assets/sisay_jeremiah_small.jpg','Sisay Jeremiah');
+INSERT INTO "image" (id,"path","description") VALUES (1,'orquideas.jpg','Rose Orchid');
+INSERT INTO "image" (id,"path","description") VALUES (2,'vaso.jpg','XPR Vase');
+INSERT INTO "image" (id,"path","description") VALUES (3,'bonsai2.jpg','Bonsai CRT');
+INSERT INTO "image" (id,"path","description") VALUES (4,'tulipas.jpg','Orange Tulips');
+INSERT INTO "image" (id,"path","description") VALUES (5,'meatrose_indoor.jpg','Meat Rose');
+INSERT INTO "image" (id,"path","description") VALUES (6,'reddahlia_indoor.jpg','Red Dahlias');
+INSERT INTO "image" (id,"path","description") VALUES (7,'pinktulips_indoor.jpg','Pink Tulips');
+INSERT INTO "image" (id,"path","description") VALUES (8,'sativa_indoor.jpg','Sativa Prime');
+INSERT INTO "image" (id,"path","description") VALUES (9,'greenpalm_outdoor.jpg','Green Palm Tree');
+INSERT INTO "image" (id,"path","description") VALUES (10,'lavender_outdoor.jpg','Lavender Premium');
+INSERT INTO "image" (id,"path","description") VALUES (11,'mohammad-faruque-AgYOuy8kA7M-unsplash.jpg','Mohammad Faruque');
+INSERT INTO "image" (id,"path","description") VALUES (12,'dannie_almir.jpg','Dannie Almir');
+INSERT INTO "image" (id,"path","description") VALUES (13,'simone.jpeg','Simone Biles');
+INSERT INTO "image" (id,"path","description") VALUES (14,'sisay_jeremiah_small.jpg','Sisay Jeremiah');
 
 --R01
 INSERT INTO product (id,"name","description",price,stock,views) VALUES (1,'Erica carnea White',
