@@ -15,7 +15,7 @@ WITH user_updated AS (
 )
 UPDATE "image"
 SET
-  "path" = $path
+  img_hash = $hash
 WHERE
   id_image = user_updated.id_image;
 COMMIT;
