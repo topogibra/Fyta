@@ -131,7 +131,7 @@ WHERE "image".id = "user".id_image AND "user".user_role = 'Manager'
 --Retrieve discounts valid in a given date
 --SELECT17
 SELECT "percentage", "name" AS product_name
-FROM discount , product, apply_discount_discount
+FROM discount , product, apply_discount
 WHERE 
       discount.date_begin <= $"date"
       AND discount.date_end >= $"date"
