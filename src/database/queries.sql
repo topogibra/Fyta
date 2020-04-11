@@ -101,21 +101,31 @@ WHERE "order".id = $id
 	  AND "user".id = "order".id_user 
       AND order_history.id_order = $id
 
---Retrieve information for manager 
+-- Full text search query based on search text 
 --SELECT13
+WITH product_search AS (SELECT  "name", product."description" AS details, price, ts_rank(setweight(to_tsvector('english', product."name"), 'A') ||
+                  setweight(to_tsvector('english', product."description"), 'B'),
+                  plainto_tsquery('english', $search)) AS ranking
+FROM product
+ORDER BY ranking DESC)
+SELECT * FROM product_search
+WHERE ranking > 0.5;
+
+--Retrieve information for manager 
+--SELECT14
 SELECT username,email
 FROM "user"
 WHERE "user".user_role = 'Manager' AND "user".id = $id ;
 
 
 --Retrieve stock information about products
---SELECT14
+--SELECT15
 SELECT "name" AS product_name, price, stock
 FROM product
 LIMIT 10 OFFSET 10*$i;
 
 --Retrieve pending orders
---SELECT15
+--SELECT16
 SELECT shipping_id,order_date,order_status
 FROM "order", order_history
 WHERE "order".id = order_history.id_order
@@ -123,13 +133,13 @@ WHERE "order".id = order_history.id_order
 LIMIT 10 OFFSET 10*$i;
 
 --Retrieve information FROM all the managers
---SELECT16
+--SELECT17
 SELECT "image"."path" AS image_path, username, "date" AS created_at
 FROM "image", "user"
 WHERE "image".id = "user".id_image AND "user".user_role = 'Manager'
 
 --Retrieve discounts valid in a given date
---SELECT17
+--SELECT18
 SELECT "percentage", "name" AS product_name
 FROM discount , product, apply_discount_discount
 WHERE 
@@ -139,7 +149,7 @@ WHERE
       AND product.id = apply_discount.id_product;
 
 --Retrieve products based on a price range
---SELECT18
+--SELECT19
 SELECT "name", product."description" AS details, price
 FROM product
 WHERE product.price > $price_min AND product.price < $price_max
