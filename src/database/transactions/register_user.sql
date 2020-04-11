@@ -3,8 +3,8 @@ SET TRANSACTION ISOLATION LEVEL REPEATABLE READ WRITE;
 
 --Insert User Image
 WITH img_ins AS (
-  INSERT INTO "image" ("path","description")
-  VALUES ($path, $description)
+  INSERT INTO "image" (img_hash,"description")
+  VALUES ($hash, $description)
   RETURNING id AS img_id
 )
 -- Insert User
