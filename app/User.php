@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'email', 'password',
     ];
 
     /**
@@ -27,13 +27,29 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password_hash'
     ];
 
-    /**
-     * The cards this user owns.
-     */
-     public function cards() {
-      return $this->hasMany('App\Card');
+    public function image()
+    {
+        return $this->hasOne('App\Image', 'id_image');
+    }
+
+
+    public function shoppingCart()
+    {
+        return $this->belongsToMany('App\Product', 'shopping_cart')->withPivot('quantity');
+    }
+
+
+    public function tickets()
+    {
+        return $this->hasMany('App\Ticket', 'id_user');
+    }
+
+
+    public function ticketMessage()
+    {
+        return $this->hasMany('App\TicketMessage', 'id_user');
     }
 }
