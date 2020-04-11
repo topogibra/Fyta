@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS "image" CASCADE;
 CREATE TABLE "image"
 (
   id SERIAL,
-  path TEXT NOT NULL,
+  img_hash TEXT NOT NULL,
   "description" TEXT NOT NULL,
   CONSTRAINT image_pk PRIMARY KEY (id)
 );

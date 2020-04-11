@@ -1,6 +1,6 @@
 -- Insert New Image
-INSERT INTO  "image" (img, "description")
-    VALUES($img, $img_description);
+INSERT INTO  "image" (img_hash, "description")
+    VALUES($hash, $img_description);
 
 -- Insert New Product
 INSERT INTO product ("name", "description", price, stock, views)

@@ -10,7 +10,7 @@ ORDER BY views DESC LIMIT 4;
 
 -- Get all images from a product (General)
 --SELECT02
-SELECT "path" AS product_image_path, "image"."description" AS image_alt
+SELECT img_hash AS product_image_hash, "image"."description" AS image_alt
 FROM product, product_image, "image"
 WHERE product.id = $id
     AND product_image.id_product = product.id
@@ -25,7 +25,7 @@ WHERE product.id = $product_id;
 -- Reviews retrival query based on product id (Product page)
 --SELECT04
 SELECT review."description" AS contents, rating, review_date, username, 
-    "path" AS image_path, "image"."description" AS image_alt 
+    img_hash AS image_hash, "image"."description" AS image_alt 
 FROM review,product_order,"order","user","image"
 WHERE review.id_product = $product_id 
     AND review.id_order = product_order.id_order
@@ -55,7 +55,7 @@ LIMIT 10 OFFSET 10*$i;
 -- Customer information retrieval query (Profile page)
 --SELECT07
 SELECT username, email, "date", 
-    "path" AS image_path, "description" AS image_alt
+    img_hash AS image_hash, "description" AS image_alt
 FROM "user","image"
 WHERE email = $email 
     AND "user".user_role = 'Customer' 
@@ -134,14 +134,14 @@ LIMIT 10 OFFSET 10*$i;
 
 --Retrieve information FROM all the managers
 --SELECT17
-SELECT "image"."path" AS image_path, username, "date" AS created_at
+SELECT "image".img_hash AS image_hash, username, "date" AS created_at
 FROM "image", "user"
 WHERE "image".id = "user".id_image AND "user".user_role = 'Manager'
 
 --Retrieve discounts valid in a given date
 --SELECT18
 SELECT "percentage", "name" AS product_name
-FROM discount , product, apply_discount_discount
+FROM discount , product, apply_discount
 WHERE 
       discount.date_begin <= $"date"
       AND discount.date_end >= $"date"
