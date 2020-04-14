@@ -1,9 +1,0 @@
-BEGIN TRANSACTION;
-SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
-
-UPDATE product
-SET price = $price,
-    stock = $stock
-WHERE id = $id; 
-
-COMMIT;
