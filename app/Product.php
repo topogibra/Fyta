@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     public $timestamps  = false;
+    protected $table = 'product';
 
 
     public function orders()
@@ -31,7 +32,7 @@ class Product extends Model
 
     public function images()
     {
-        return $this->belongsToMany('App\Image', 'product_image');
+        return $this->belongsToMany('App\Image', 'product_image', 'id_product', 'id_image');
     }
 
     public function tags()

@@ -241,3 +241,16 @@ h3 {
         padding-left: 0;
     }
 }
+
+.number-input input {
+    width: 7em;
+}
+
+#img {
+    display: none;
+}
+
+.btn-primary{
+    padding-right: 3em;
+    padding-left: 3em;
+}

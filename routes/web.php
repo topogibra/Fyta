@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Controllers\ProductController;
+
 Route::get('/', function(){
     return redirect('home');
 });
@@ -26,7 +28,8 @@ Route::get('manager', 'ProfileController@manager');
 Route::get('invoice', 'InvoiceController@invoice');
 Route::get('search', 'SearchController@render');
 Route::get('product', 'ProductController@render');
-
+Route::get('product/add', 'ProductController@add');
+Route::post('product', 'ProductController@create');
 
 
 // Cards
