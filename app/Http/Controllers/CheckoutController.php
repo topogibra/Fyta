@@ -7,6 +7,10 @@ use App\Order;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
+use App\Order;
+use App\Product;
+use Illuminate\Http\Request;
+
 class CheckoutController extends Controller{
     public function details()
     {
@@ -17,6 +21,35 @@ class CheckoutController extends Controller{
         $user = Auth::user();
         $output = str_replace(' ', '&nbsp;', $user->address);
         return view('pages.order_summary', [ 'email' => $user->email , 'address' => $output]);
+    }
+
+    public function saveDetails(Request $request)
+    {
+        $request->validate(['delivery' => 'required', 'billing' => 'nullable']);
+
+        if(count($request->session()->get('items', [])) == 0){
+            return response('No products in cart!', 400);
+        }
+
+        $order = new Order;
+        if($request->input('billing') != null){
+            $order->billing_address = $request->input('billing'); 
+        }
+
+
+        $order->delivery_address = $request->input('delivery');
+        $order->payment_method = 'Bank_Transfer';
+        $order->shipping_id = uniqid();
+        $order->id_user = 1; //TODO: Change this to ID of the authenticated user
+        $order->save();
+
+        foreach ($request->session()->get('items') as $product => $quantity){
+            $order->products()->attach($product, ['quantity' => $quantity]);
+        }
+
+
+
+        return redirect('/order-summary');
     }
 
     public function payment()

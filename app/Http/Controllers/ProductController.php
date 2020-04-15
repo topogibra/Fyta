@@ -88,7 +88,7 @@ class ProductController extends Controller
 
     public function buyNow(Request $request)
     {
-        $request->session()->put('items', [1]); //TODO: Add the actual id of the product
+        $request->session()->put('items', [1 => 1]); //TODO: Add the actual id of the product
         return redirect('checkout-details');
     }
 }

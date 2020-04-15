@@ -18,7 +18,8 @@ Route::get('/', function(){
 
 Route::get('home', 'HomeController@render');
 Route::get('about', 'AboutController@render');
-Route::get('checkout-details', 'CheckoutController@details'); //adicionar do user
+Route::get('checkout-details', 'CheckoutController@details');
+Route::post('checkout-details', 'CheckoutController@saveDetails');
 Route::get('payment-details', 'CheckoutController@payment');
 Route::get('order-summary/{order_id}', 'CheckoutController@summary');
 Route::get('cart', 'CheckoutController@cart');
@@ -28,6 +29,7 @@ Route::get('profile/order/{id}/invoice', 'InvoiceController@invoice');
 Route::get('order/{id}', 'InvoiceController@order');
 Route::get('search', 'SearchController@render');
 Route::get('product/add', 'ProductController@add');
+Route::get('product/buy', 'ProductController@buyNow');
 Route::post('product', 'ProductController@create');
 Route::get('product/{id}', 'ProductController@render');
 Route::get('profile/get','ProfileController@profile');
