@@ -21,7 +21,7 @@ CREATE TYPE user_role as ENUM('Customer', 'Manager');
 DROP TABLE IF EXISTS "image" CASCADE;
 CREATE TABLE "image" (
   id SERIAL,
-  img_hash TEXT NOT NULL,
+  img_name TEXT NOT NULL,
   "description" TEXT NOT NULL,
   CONSTRAINT image_pk PRIMARY KEY (id)
 );
@@ -338,20 +338,20 @@ CREATE INDEX product_fts ON product USING GIN (
 
 
 --R18
-INSERT INTO "image" (id,img_hash,"description") VALUES (1,'5e90792996541','Rose Orchid');
-INSERT INTO "image" (id,img_hash,"description") VALUES (2,'5e9079299654b','XPR Vase');
-INSERT INTO "image" (id,img_hash,"description") VALUES (3,'5e9079299654f','Bonsai CRT');
-INSERT INTO "image" (id,img_hash,"description") VALUES (4,'5e90792996540','Orange Tulips');
-INSERT INTO "image" (id,img_hash,"description") VALUES (5,'5e90792996551','Meat Rose');
-INSERT INTO "image" (id,img_hash,"description") VALUES (6,'5e90792996568','Red Dahlias');
-INSERT INTO "image" (id,img_hash,"description") VALUES (7,'5e9079299656a','Pink Tulips');
-INSERT INTO "image" (id,img_hash,"description") VALUES (8,'5e9079299656d','Sativa Prime');
-INSERT INTO "image" (id,img_hash,"description") VALUES (9,'5e9079299656e','Green Palm Tree');
-INSERT INTO "image" (id,img_hash,"description") VALUES (10,'5e90792996570','Lavender Premium');
-INSERT INTO "image" (id,img_hash,"description") VALUES (11,'5e90792996573','Mohammad Faruque');
-INSERT INTO "image" (id,img_hash,"description") VALUES (12,'5e90792996574','Dannie Almir');
-INSERT INTO "image" (id,img_hash,"description") VALUES (13,'5e90792996577','Simone Biles');
-INSERT INTO "image" (id,img_hash,"description") VALUES (14,'5e90792996579','Sisay Jeremiah');
+INSERT INTO "image" (id,img_name,"description") VALUES (1,'orquideas.jpg','Rose Orchid');
+INSERT INTO "image" (id,img_name,"description") VALUES (2,'vaso.jpg','XPR Vase');
+INSERT INTO "image" (id,img_name,"description") VALUES (3,'bonsai2.jpg','Bonsai CRT');
+INSERT INTO "image" (id,img_name,"description") VALUES (4,'tulipas.jpg','Orange Tulips');
+INSERT INTO "image" (id,img_name,"description") VALUES (5,'meatrose_indoor.jpg','Meat Rose');
+INSERT INTO "image" (id,img_name,"description") VALUES (6,'reddahlia_indoor.jpg','Red Dahlias');
+INSERT INTO "image" (id,img_name,"description") VALUES (7,'pinktulips_indoor.jpg','Pink Tulips');
+INSERT INTO "image" (id,img_name,"description") VALUES (8,'sativa_indoor.jpg','Sativa Prime');
+INSERT INTO "image" (id,img_name,"description") VALUES (9,'greenpalm_outdoor.jpg','Green Palm Tree');
+INSERT INTO "image" (id,img_name,"description") VALUES (10,'lavender_outdoor.jpg','Lavender Premium');
+INSERT INTO "image" (id,img_name,"description") VALUES (11,'mohammad-faruque-AgYOuy8kA7M-unsplash.jpg','Mohammad Faruque');
+INSERT INTO "image" (id,img_name,"description") VALUES (12,'dannie_almir.jpg','Dannie Almir');
+INSERT INTO "image" (id,img_name,"description") VALUES (13,'simone.jpeg','Simone Biles');
+INSERT INTO "image" (id,img_name,"description") VALUES (14,'sisay_jeremiah_small.jpg','Sisay Jeremiah');
 
 --R01
 INSERT INTO product (id,"name","description",price,stock,views) VALUES (1,'Erica carnea White',

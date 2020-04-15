@@ -8,6 +8,8 @@ class Review extends Model
 {
     public $timestamps  = false;
 
+    protected $table = 'review';
+
     public function product()
     {
         return $this->belongsTo('App\Product', 'id_product');

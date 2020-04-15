@@ -8,6 +8,8 @@ class Ticket extends Model
 {
     public $timestamps  = false;
 
+    protected $table = 'ticket';
+
     public function user()
     {
         return $this->belongsTo('App\User', 'id_user');

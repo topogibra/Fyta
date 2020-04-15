@@ -8,6 +8,8 @@ class TicketMessage extends Model
 {
     const CREATED_AT = 'sent_date';
 
+    protected $table = 'ticket_message';
+
     public function user()
     {
         return $this->belongsTo('App\User', 'id_user');
