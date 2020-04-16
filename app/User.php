@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\TicketMessage', 'id_user');
     }
+
+    public function getProfileInfo()
+    {
+        
+    }
 }

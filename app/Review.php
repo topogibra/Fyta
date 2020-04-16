@@ -26,6 +26,7 @@ class Review extends Model
         $reviews = DB::table('review')
                     ->select('id_order','description','rating as review','review_date as date')
                     ->where('id_product','=',$id)
+                    ->orderBy('date','desc')
                     ->get();
         
         if($reviews->isEmpty())
