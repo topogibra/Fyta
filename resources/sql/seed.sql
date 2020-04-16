@@ -754,7 +754,7 @@ They are hardy, grow in sun or partial shade and are suitable for your herbaceou
 'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
 silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
 This vigorous climber flourishes in both sun or partial shade and its attractive dark green glossy foliage has 
-a good disease resistance.',65.00,50,1204);
+a good disease resistance.',65.50,50,1204);
 
 --R06
 INSERT INTO "user" (username,email,password_hash,date,id_image,user_role) VALUES ('Seal','sed.dictum@eusem.ca','MMJ88EPA9AU','2015-01-26 12:19:47',11,'Customer'),('Navarro','senectus.et.netus@aarcu.com','JYG90CLM7NO','2016-02-14 16:03:25',13,'Customer'),('Rosa','semper.tellus@scelerisquemollis.net','XUI45BHW4MC','2018-10-28 09:42:00',12,'Customer'),('Wallace','sociis@vitaedolorDonec.org','TOJ48WCE2EY','2018-09-26 00:43:04',12,'Customer'),('Cunningham','urna.Nunc@eterosProin.org','RCM39OSA1SP','2018-09-26 21:57:58',13,'Manager'),('Flynn','eu.arcu.Morbi@temporaugueac.co.uk','RHM23ZHF5OX','2017-04-17 03:54:31',14,'Customer'),('Brady','egestas@dolortempus.com','VLQ80YJN3NL','2017-4-17 17:33:41',14,'Customer'),('Reynolds','ac@ipsumsodales.org','VMO93WZF7ZI','2016-06-15 11:28:45',12,'Customer'),('Mccall','erat.in@ornare.co.uk','XYQ55JBT6US','2016-5-19 21:07:17',14,'Customer'),('Morales','sagittis.augue.eu@blanditmattis.net','LUG55CNK2FF','2015-09-29 11:20:51',11,'Customer');

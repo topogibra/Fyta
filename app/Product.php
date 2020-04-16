@@ -50,7 +50,7 @@ class Product extends Model
                         ->orderByDesc('views')
                         ->limit(4);
         $product_imgs = DB::table('image')
-                            ->select('top_items.name','price','img_name as img','description as alt')
+                            ->select('top_items.id as id','top_items.name','price','img_name as img','description as alt')
                             ->join('product_image','product_image.id_image','=','image.id')
                             ->joinSub($top_items, 'top_items',function($join) {
                                 $join->on('top_items.id','=','product_image.id_product');
@@ -61,5 +61,17 @@ class Product extends Model
             $product->img = 'img/' . $product->img; 
         }
         return $product_imgs;
+    }
+
+    public static function getByID($id) 
+    {
+        $product_img = DB::table('product')
+                            ->select('product.name','price','product.description','img_name as img')
+                            ->join('product_image','product_image.id_product','=','product.id')
+                            ->join('image', 'image.id','=','product_image.id_image')
+                            ->where('product.id','=',$id)
+                            ->first();
+        $product_img->img = 'img/' . $product_img->img;
+        return $product_img;
     }
 }

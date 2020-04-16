@@ -1,6 +1,6 @@
 <div class="card product border-0 col-lg-3 col-md-6 col-sm-6">
     <div class="img-wrapper">
-        <a href="/product">
+        <a href="/product/{{ $item->id }}">
             <img class="card-img-top product-image img-fluid border" src={{asset($item->img)}} alt={{ $item->alt }}>
         </a>
     </div>
