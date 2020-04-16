@@ -1,6 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Product;
+use App\Image;
+use App\Order;
+
+//TODO:check if it is the right path
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller{
     public function details()
@@ -13,14 +19,43 @@ class CheckoutController extends Controller{
         return view('pages.payment_details');
     }
 
-    public function summary()
+    public function summary($order_id)
     {
-        return view('pages.checkout_details', ['order_number' => '125877', 'date' => 'Dec 24 2019', 'name' => 'Ellie Black', 'address' => 'Marcombe Dr NE, 334 3rd floor', 'location' => 'Calgary, Canada', 'sum' => '47.60€', 'delivery'=> 'FREE' ,'items' => [['img' => "img/sativa_indoor.jpg", 'name' => "Sativa Prime", 'price' => "4.20€", 'qty' => 3], ['img' => "img/supreme_vase.jpg", 'name' => "Supreme Bonsai Pot", 'price' => "40€", 'qty' => 1], ['img' => "img/watercan_tool.jpg", 'name' => "Green Watercan 12l", 'price' => "5€", 'qty' => 1]]]);
+        $products_image = Order::products()->belongsTo(Image::products(),'id_product');
+        
+        $products = $products_image 
+            ->select('name','price','quantity','img_hash')
+            ->where('order.id', '=', $order_id)
+            ->get();
+
+        $sum = 0;
+        foreach ($products as $p) {
+            $sum += $p->select('price') *  $p->select('quantity');
+        }
+
+        $order_info = Order::user()
+                        ->select('shipping_id','order_date','user.username','user.address')
+                        ->where('user_id', '=', 4)
+                        ->get();
+
+        //TODO: location; delivery tipe in db
+        return view('pages.checkout_details', [$order_info,'location' => 'Calgary, Canada', 'sum' => $sum , 'delivery'=> 'FREE' ,'items' => $products]);
     }
 
     public function cart()
     {
-        return view('pages.cart', ['items' => [['img' => "img/sativa_indoor.jpg", 'name' => "Sativa Prime", 'price' => 4.20, 'qty' => 3], ['img' => "img/supreme_vase.jpg", 'name' => "Supreme Bonsai Pot", 'price' => 40, 'qty' => 3]]]);
+        //TODO:
+        //$user_id = Auth::id();
+        $product_image = Product::shoppingCart()->belongsTo(Image::products(),'id_product');
+        
+        $shopping_cart = $product_image
+                                    ->select('name','price','quantity','img_hash')
+                                    ->where('user.id', '=', 2)
+                                    //->offset(10*$n_page)
+                                    //->limit(10)
+                                    ->get();
+
+        return view('pages.cart', ['items' => $shopping_cart]);
     }
 
 }
