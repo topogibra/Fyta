@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container">
-  <form>
+  <form method="POST" action="\login">
     <div class="form ">
       <div class="row ">
         <div class="col">
@@ -24,9 +24,7 @@
       </div>
       <div class="row ">
         <div class="col button">
-          <a class="btn rounded-0 btn-lg shadow-none" id="start" href="/profile">
-            Start Session
-          </a>
+          <input type="submit" class="btn rounded-0 btn-lg shadow-none" id="start" value="Start Session">
         </div>
       </div>
       <div class="row register-info justify-content-center">
@@ -36,6 +34,16 @@
           </small>
       </div>
     </div>
+    {{ csrf_field() }}
   </form>
 </div>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 @endsection

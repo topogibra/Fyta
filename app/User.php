@@ -11,7 +11,7 @@ class User extends Authenticatable
 
     // Don't add create and update timestamps in database.
     public $timestamps  = false;
-    
+
     protected $table = 'user';
 
     /**
@@ -52,5 +52,15 @@ class User extends Authenticatable
     public function ticketMessage()
     {
         return $this->hasMany('App\TicketMessage', 'id_user');
+    }
+
+    /**
+     * Get the password for the user.
+     *
+     * @return string
+     */
+    public function getAuthPassword()
+    {
+        return $this->password_hash;
     }
 }

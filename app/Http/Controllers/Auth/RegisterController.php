@@ -76,6 +76,7 @@ class RegisterController extends Controller
         // $user->address= $data['address'];
         $user->date= $data['birthday'];
         $user->user_role= 'Customer';
+        $user->save();
 
         // $file = Input::file('img');
         // $path = uniqid() . '.' . $file->getClientOriginalExtension();
