@@ -17,7 +17,7 @@ class ProductController extends Controller{
         $score = $feedback == null? 0 : $feedback->score;
         return view('pages.product', ['img' => $product->img, 'description' =>  $product->description, 
                                         'price' => $product->price, 'score' => $score, 'name' => $product->name, 
-                                        'related' => [['img' => 'img/supreme_vase.jpg', 'name' => 'Supreme Bonsai Pot', 'price' => '40€'], ['img' => 'img/gloves_tool.jpg', 'name' => 'Blue Garden Gloves', 'price' => '9€'], ['img' => 'img/pondlilies_outdoor.jpg', 'name' => 'Pond White Lilies', 'price' => '40€']], 
+                                        'related' => [['id' => 1, 'img' => 'img/supreme_vase.jpg', 'name' => 'Supreme Bonsai Pot', 'price' => '40€'], ['id' => 1, 'img' => 'img/gloves_tool.jpg', 'name' => 'Blue Garden Gloves', 'price' => '9€'], ['id' => 1, 'img' => 'img/pondlilies_outdoor.jpg', 'name' => 'Pond White Lilies', 'price' => '40€']], 
                                         'reviews' => $reviews]);
     }
 }

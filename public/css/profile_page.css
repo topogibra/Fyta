@@ -63,11 +63,13 @@ a.btn {
 .row.header {
     background-color: var(--light-gray);
     color: var(--dark-gray);
+    justify-content: space-between;
 }
 
 .table-entry {
     border-bottom: 1px solid var(--light-gray);
     padding: 0.5em 0;
+    align-items: center;
 }
 
 input.stock {
@@ -161,7 +163,7 @@ input {
 }
 
 .profile .col-md-9>.container {
-    padding: 5% 10%;
+    padding: 5% 5%;
 }
 
 #products-button {

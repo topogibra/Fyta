@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function(){
     return redirect('home');
 });
@@ -23,10 +24,10 @@ Route::get('order-summary/{order_id}', 'CheckoutController@summary');
 Route::get('cart', 'CheckoutController@cart');
 Route::get('profile', 'ProfileController@user');
 Route::get('manager', 'ProfileController@manager');
-Route::get('invoice/{order_id}', 'InvoiceController@invoice');
+Route::get('profile/order/{id}/invoice', 'InvoiceController@invoice');
 Route::get('search', 'SearchController@render');
 Route::get('product/{id}', 'ProductController@render');
-
+Route::get('profile/orders','ProfileController@orders');
 
 
 // Cards
