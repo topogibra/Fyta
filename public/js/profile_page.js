@@ -1,6 +1,8 @@
 import buildProductRow from './product_row.js'
 import buildSections from './sections.js'
 import buildPersonalInfo from './personal_info.js'
+import {fetchData} from './request.js'
+
 
 function createOrderColumn(info, attribute) {
     const column = document.createElement('div');
@@ -8,6 +10,7 @@ function createOrderColumn(info, attribute) {
     column.textContent = info;
     return column;
 }
+
 
 function buidOrderHistory(orders) {
     const ordersContainer = document.createElement('div');
@@ -26,15 +29,19 @@ function buidOrderHistory(orders) {
     orders.forEach(order => {
         const orderRow = document.createElement('div');
         orderRow.classList.add(...['row', 'justify-content-between', 'table-entry']);
-        const number = createOrderColumn(order.number, 'order');
+        const number = document.createElement('div')
+        number.classList.add(...['order'])
+        number.textContent = order.number
         const href = document.createElement('a');
         href.className = "col-lg-2 col-6";
-        href.href = '/invoice';
+        href.href = '/profile/order/' + order.id + '/invoice';
         href.appendChild(number);
         orderRow.appendChild(href);
-        orderRow.appendChild(createOrderColumn(order.date, 'date'));
-        orderRow.appendChild(createOrderColumn(order.price, 'price'));
-        orderRow.appendChild(createOrderColumn(order.state, 'state'));
+        const date = new Date(order.date);
+        const formattedDate = Intl.DateTimeFormat('en-GB').format(date)
+        orderRow.appendChild(createOrderColumn(formattedDate, 'date'));
+        orderRow.appendChild(createOrderColumn(order.price + '€', 'price'));
+        orderRow.appendChild(createOrderColumn(order.state.replace(/_/g," "), 'state'));
         const reOrder = createOrderColumn('', 're-order');
         const icon = document.createElement('div');
         icon.className = "btn btn-primary";
@@ -98,7 +105,10 @@ const userProfileSections = [{
     },
     {
         name: "Order History",
-        action: () => buidOrderHistory(mockOrders)
+        action: async () => { 
+            const data = await fetchData('/profile/orders');
+            return buidOrderHistory(data)
+        }
     },
     {
         name: "My Wishlist",

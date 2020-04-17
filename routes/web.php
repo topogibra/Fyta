@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function(){
     return redirect('home');
 });
@@ -26,7 +27,7 @@ Route::get('manager', 'ProfileController@manager');
 Route::get('invoice', 'InvoiceController@invoice');
 Route::get('search', 'SearchController@render');
 Route::get('product/{id}', 'ProductController@render');
-
+Route::get('profile/orders','ProfileController@orders');
 
 
 // Cards

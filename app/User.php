@@ -55,6 +55,11 @@ class User extends Authenticatable
         return $this->hasMany('App\TicketMessage', 'id_user');
     }
 
+    public function orders()
+    {
+        return $this->hasMany('App\Order','id_user');
+    }
+
     public function getProfileInfo()
     {
         
