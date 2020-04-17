@@ -9,11 +9,11 @@ use App\Order;
 
 class InvoiceController extends Controller{
     
-    public function invoice($order_id)
+    public function invoice($id)
     {
-        $products = Product::getOrderProducts($order_id);
-        $information = Order::getOrderInformation($order_id);
-        $status = Order::getOrderStatus($order_id);
+        $products = Product::getOrderProducts($id);
+        $information = Order::getOrderInformation($id);
+        $status = Order::getOrderStatus($id);
 
         $sum = 0;
         foreach($products as $product)
