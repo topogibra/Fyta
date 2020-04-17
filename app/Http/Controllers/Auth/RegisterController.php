@@ -76,8 +76,6 @@ class RegisterController extends Controller
         // $user->address= $data['address'];
         $user->date= $data['birthday'];
         $user->user_role= 'Customer';
-        $user->save();
-
 
         // $file = Input::file('img');
         // $path = uniqid() . '.' . $file->getClientOriginalExtension();
@@ -89,7 +87,6 @@ class RegisterController extends Controller
         // $img->save();
 
         // $user->image()->attach(11);
-
-        return redirect()->route('login');
+        return $user;
     }
 }
