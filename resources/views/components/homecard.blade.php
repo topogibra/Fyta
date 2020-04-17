@@ -5,7 +5,7 @@
         </a>
     </div>
     <div class="card-body text-center">
-        <a href="/product">
+        <a href="/product/{{ $item->id }}">
             <h5 class="card-title product-name text-dark">{{ $item->name }}</h5>
         </a>
         <p class="card-text product-price text-secondary">{{ $item->price }}€</p>
