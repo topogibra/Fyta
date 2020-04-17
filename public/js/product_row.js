@@ -34,5 +34,11 @@ export default function buildProductRow(items){
         card.appendChild(cardBody);
         row.appendChild(card);
     });
+
+    if(items.length == 0) {
+        row.className = "row justify-content-center"
+        row.textContent = 'No items in your wishlist yet.'
+    }
+    
     return container;
 }
