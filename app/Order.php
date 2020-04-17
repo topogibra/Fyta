@@ -47,5 +47,16 @@ class Order extends Model
         return $status;
     }
 
+    public static function getStatusOrders()
+    {
+        $status = DB::table('order_history')
+                        ->select('order_history.order_status','order.shipping_id','order.order_date')
+                        ->join('order', 'order.id', '=', 'order_history.id_order')
+                        ->get();
+
+        return $status;        
+    }
+
+
 
 }

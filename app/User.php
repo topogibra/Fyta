@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -65,4 +66,14 @@ class User extends Authenticatable
         return $this->hasMany('App\Wishlist','id_user');
     }
 
+    public static function getManagersInfo()
+    {
+        $managers = DB::table('user')
+                        ->select('user.username','user.date','image.img_name')
+                        ->join('image','image.id', '=','user.id_image')
+                        ->get();
+
+        return $managers;
+       
+    }
 }

@@ -119,4 +119,16 @@ class Product extends Model
         $product_img->img = 'img/' . $product_img->img;
         return $product_img;
     }
+
+    public static function getStockProducts() 
+    {
+        $products = DB::table('product')
+                            ->select('name','price','stock')
+                            ->limit(20) //TODO
+                            ->get();
+            
+        return $products;
+    }
+
+
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use DateTime;
 use Illuminate\Support\Facades\Date;
+use App\Product;
+use App\Order;
 
 class ProfileController extends Controller{
 
@@ -32,6 +34,41 @@ class ProfileController extends Controller{
         }, $orders);
 
         return $clean_orders;
+    }
+
+    public static function stocks() {
+        $products = Product::getStockProducts()->all();
+        $clean_products = array_map(function($product) {
+            $data = ['name'=> $product->name, 'price' => $product->price, 'stock' => $product->stock ];
+            return $data;
+        }, $products);
+
+        return $clean_products;
+    }
+
+    public static function pending() {
+        $allstatus = Order::getStatusOrders()->all();
+        $clean_status = array_map(function($status) {
+            $data = ['number' => $status->shipping_id, 'date' => $status->order_date];
+            $order_status = $status->order_status;
+            $order_status  =preg_replace("(_)"," ",$order_status);
+            $data['status'] = $order_status;
+            $order_status;
+            return $data;
+        }, $allstatus);
+
+        return $clean_status;
+    }
+
+    public static function managers() {
+        $managers = User::getManagersInfo()->all();
+        $clean_managers = array_map(function($manager) {
+            $data = ['name' => $manager->username, 'date' => $manager->date];
+            $data['photo'] = 'img/' . $manager->img_name;
+            return $data;
+        }, $managers);
+
+        return $clean_managers;
     }
     
     public function wishlist() {
