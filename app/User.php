@@ -11,6 +11,8 @@ class User extends Authenticatable
 
     // Don't add create and update timestamps in database.
     public $timestamps  = false;
+    
+    protected $table = 'user';
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password',
+        'username', 'email', 'password_hash', 'address', 'date', 'user_role', 'picture'
     ];
 
     /**
@@ -34,7 +36,6 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Image', 'id_image');
     }
-
 
     public function shoppingCart()
     {

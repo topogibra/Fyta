@@ -1,8 +1,8 @@
-@extends('layouts.app', ['scripts' => [], 'styles' => ['css/registerpage.css']])
+@extends('layouts.app', ['scripts' => ['js/register.js'], 'styles' => ['css/registerpage.css']])
 
 @section('content')
 <div class="container">
-  <form action="" class=".form form justify-content-center">
+  <form action="/register" method="POST" class=".form form justify-content-center" id='registerForm'>
     <div class="row ">
       <div class="col">
         <h1 class="text-center form-title">Register</h1>
@@ -28,29 +28,30 @@
       </div>
     </div>
     <!--  -->
+    <input name="birthday" type="hidden" value="" id="birthday"/>
     <div class="row form-group  birthday">
       <div class="col ">
         <select class="custom-select custom-select-sm registerinput registerSelect" name="day" id="day">
           <option selected class="text-muted optionplaceholder" hidden>Day</option>
-          <option value="">1</option>
-          <option value="">2</option>
-          <option value="">3</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
         </select>
       </div>
       <div class="col ">
         <select class="custom-select custom-select-sm registerinput registerSelect" name="month" id="month">
           <option selected class="text-muted optionplaceholder" hidden>Month</option>
-          <option value="">January</option>
-          <option value="">February</option>
-          <option value="">December</option>
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="12">December</option>
         </select>
       </div>
       <div class="col ">
         <select class="custom-select custom-select-sm registerinput registerSelect" name="year" id="year">
           <option selected class="text-muted optionplaceholder" hidden>Year</option>
-          <option value="">1999</option>
-          <option value="">2000</option>
-          <option value="">2001</option>
+          <option value="1999">1999</option>
+          <option value="2000">2000</option>
+          <option value="2001">2001</option>
         </select>
       </div>
 
@@ -64,9 +65,19 @@
     <!--  -->
     <div class="row ">
       <div class="col ">
-        <a type="submit" href="/profile" class="btn rounded-0 btn-lg shadow-none" id="submitbutton">Register</a>
+        <input type="submit" class="btn rounded-0 btn-lg shadow-none" id="submitbutton" value="Register">
       </div>
     </div>
+    {{ csrf_field() }}
   </form>
 </div>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 @endsection
