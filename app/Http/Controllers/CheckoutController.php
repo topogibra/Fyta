@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 use App\Product;
 use App\Order;
 
@@ -18,12 +19,11 @@ class CheckoutController extends Controller{
         return view('pages.payment_details');
     }
 
-    public function summary()
+    public function summary(Request $request, $order_id)
     {
-        //TODO:get real order id
-        $products = Product::getOrderProducts(43);
-        $information = Order::getOrderInformation(43);
-        $status = Order::getOrderStatus(43);
+        $products = Product::getOrderProducts($order_id);
+        $information = Order::getOrderInformation($order_id);
+        $status = Order::getOrderStatus($order_id);
         
         $sum = 0;
         foreach($products as $product)

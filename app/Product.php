@@ -102,7 +102,7 @@ class Product extends Model
             ->get();
 
             foreach($product_imgs as $product) {
-                $product->img = 'img/' . $product->img; 
+                $product->img = '../img/' . $product->img; 
                 }
 
         return $product_imgs;

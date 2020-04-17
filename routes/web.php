@@ -17,13 +17,13 @@ Route::get('/', function(){
 
 Route::get('home', 'HomeController@render');
 Route::get('about', 'AboutController@render');
-Route::get('checkout-details', 'CheckoutController@details');
+Route::get('checkout-details', 'CheckoutController@details'); //adicionar do user
 Route::get('payment-details', 'CheckoutController@payment');
-Route::get('order-summary', 'CheckoutController@summary');
+Route::get('order-summary/{order_id}', 'CheckoutController@summary');
 Route::get('cart', 'CheckoutController@cart');
 Route::get('profile', 'ProfileController@user');
 Route::get('manager', 'ProfileController@manager');
-Route::get('invoice', 'InvoiceController@invoice');
+Route::get('invoice/{order_id}', 'InvoiceController@invoice');
 Route::get('search', 'SearchController@render');
 Route::get('product/{id}', 'ProductController@render');
 
