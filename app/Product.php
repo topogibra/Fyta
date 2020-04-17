@@ -39,7 +39,7 @@ class Product extends Model
     {
         return $this->belongsToMany('App\Tag','product_tag','id_product','id_tag');
     }
-
+    
     public static function getTopByTag($tag)
     {
         $top_items = DB::table('product')
@@ -60,6 +60,51 @@ class Product extends Model
         foreach($product_imgs as $product) {
             $product->img = 'img/' . $product->img; 
         }
+        return $product_imgs;
+    }
+
+    public static function getShoppingCart($user_id)
+    {
+        $products = DB::table('shopping_cart')
+                        ->select('product.name','product.price','quantity','product.id')
+                        ->join('product','product.id', '=', 'id_product')
+                        ->where('id_user','=',$user_id);
+
+        $product_imgs = DB::table('image')
+                            ->select('products.id as id','products.name','quantity','products.price','img_name as img')
+                            ->join('product_image','product_image.id_image','=','image.id')
+                            ->joinSub($products, 'products',function($join) {
+                                $join->on('products.id','=','product_image.id_product');
+                            })
+                            ->get();
+
+        foreach($product_imgs as $product) {
+            $product->img = 'img/' . $product->img; 
+            }
+    
+        return $product_imgs;
+
+    }
+
+    public static function getOrderProducts($id_order)
+    {
+        $products = DB::table('product_order')
+            ->select('product.name','product.price','quantity','product.id as id_product')
+            ->join('product','product.id', '=', 'product_order.id_product')
+            ->where('product_order.id_order', '=',$id_order);
+    
+        $product_imgs = DB::table('image')
+            ->select('products.id_product','products.name','quantity','products.price','img_name as img')
+            ->join('product_image','product_image.id_image','=','image.id')
+            ->joinSub($products, 'products',function($join) {
+                $join->on('products.id_product','=','product_image.id_product');
+            })
+            ->get();
+
+            foreach($product_imgs as $product) {
+                $product->img = 'img/' . $product->img; 
+                }
+
         return $product_imgs;
     }
 

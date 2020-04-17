@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Product;
-use App\Image;
 use App\Order;
 
 //TODO:check if it is the right path
@@ -19,41 +18,28 @@ class CheckoutController extends Controller{
         return view('pages.payment_details');
     }
 
-    public function summary($order_id)
+    public function summary()
     {
-        $products_image = Order::products()->belongsTo(Image::products(),'id_product');
+        //TODO:get real order id
+        $products = Product::getOrderProducts(43);
+        $information = Order::getOrderInformation(43);
+        $status = Order::getOrderStatus(43);
         
-        $products = $products_image 
-            ->select('name','price','quantity','img_hash')
-            ->where('order.id', '=', $order_id)
-            ->get();
-
         $sum = 0;
-        foreach ($products as $p) {
-            $sum += $p->select('price') *  $p->select('quantity');
+        foreach($products as $product)
+        {
+            $sum += $product->quantity * $product->price;
         }
-
-        $order_info = Order::user()
-                        ->select('shipping_id','order_date','user.username','user.address')
-                        ->where('user_id', '=', 4)
-                        ->get();
-
-        //TODO: location; delivery tipe in db
-        return view('pages.checkout_details', [$order_info,'location' => 'Calgary, Canada', 'sum' => $sum , 'delivery'=> 'FREE' ,'items' => $products]);
+        // //TODO: location; delivery tipe in db
+        return view('pages.checkout_details', [ 'information' => $information, 'location' => 'Calgary, Canada', 'status'=> $status,'sum' => $sum , 'delivery'=> 'FREE' ,'items' => $products]);
     }
 
     public function cart()
     {
-        //TODO:
-        //$user_id = Auth::id();
-        $product_image = Product::shoppingCart()->belongsTo(Image::products(),'id_product');
+        // TODO:
+        // $user_id = Auth::id();
         
-        $shopping_cart = $product_image
-                                    ->select('name','price','quantity','img_hash')
-                                    ->where('user.id', '=', 2)
-                                    //->offset(10*$n_page)
-                                    //->limit(10)
-                                    ->get();
+        $shopping_cart = Product::getShoppingCart(48);
 
         return view('pages.cart', ['items' => $shopping_cart]);
     }

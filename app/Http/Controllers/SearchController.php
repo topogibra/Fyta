@@ -3,23 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
-use app\Product;
+use Illuminate\Database\Eloquent\Builder;
+use App\Product;
 
 class SearchController extends Controller{
-    public function render($tag_id,$n_page)
+    
+    public function render()
     {
-        $search_products = Product::tags()
-                            ->select('name','price')
-                            ->where('tag.id',$tag_id)
-                            ->orderByDesc('views')
-                            ->offset(10*$n_page)
-                            ->limit(10)
-                            ->get();
+        $search_products = Product::getTopByTag('Indoor');
 
         $tags = DB::table('tag')
-                ->select('name')
+                ->select('name', 'id')
+                ->limit(10)
                 ->get();
-
+            
         return view('pages.search', ['categories' => $tags, 'sizes' =>  array("0kg-0.2kg", "0.2kg-0.5kg", "0.5-1.5kg", "1.5kg-3kg", "&gt; 3kg"), 'items' => $search_products]);
     }
 

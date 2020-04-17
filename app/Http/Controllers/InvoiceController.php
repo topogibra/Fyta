@@ -1,26 +1,26 @@
 <?php
 
+namespace App;
 namespace App\Http\Controllers;
 
+use App\Product;
+use App\Order;
+
+
 class InvoiceController extends Controller{
-    public function invoice($order_id)
+    
+    public function invoice()
     {
-        $products_image = Order::products()->belongsTo(Image::products(),'id_product');
-        
-        $products = $products_image 
-            ->select('name','price','quantity','img_hash')
-            ->where('order.id', '=', $order_id)
-            ->get();
+        $products = Product::getOrderProducts(43);
+        $information = Order::getOrderInformation(43);
+        $status = Order::getOrderStatus(43);
 
         $sum = 0;
-        foreach ($products as $p) {
-            $sum += $p->select('price') *  $p->select('quantity');
+        foreach($products as $product)
+        {
+            $sum += $product->quantity * $product->price;
         }
 
-        $order_info = Order::user()
-                        ->select('shipping_id','order_date','user.username','user.address')
-                        ->where('user_id', '=', 4)
-                        ->get();
-        return view('pages.invoice', [ $order_info, 'location' => 'Calgary, Canada', 'sum' => $sum, 'delivery' => 'FREE', 'items' => $products]);
+        return view('pages.invoice', ['information' => $information, 'location' => 'Calgary, Canada', 'status'=> $status,'sum' => $sum, 'delivery' => 'FREE', 'items' => $products]);
     }
 }
