@@ -76,7 +76,7 @@ function buidOrderHistory(orders) {
     }
 ]; */
 
-const mockItems = [{
+/* const mockItems = [{
         img: "img/orquideas.jpg",
         name: "Rose Orchid",
         price: "20€"
@@ -96,19 +96,24 @@ const mockItems = [{
         name: "XPR Vase",
         price: "15€"
     }
-];
+]; */
+
+/* const profile = {
+    username: 'mohammad.faruque',
+    email: 'mohammad.faruque@gmail.com',
+    address: 'Marcombe Dr NE, Calgary , Canada',
+    day: '29',
+    month: 'July',
+    year: '1998',
+    photo: 'img/mohammad-faruque-AgYOuy8kA7M-unsplash.jpg'
+    } */
 
 const userProfileSections = [{
         name: "Personal Information",
-        action: () => buildPersonalInfo({
-            username: 'mohammad.faruque',
-            email: 'mohammad.faruque@gmail.com',
-            address: 'Marcombe Dr NE, Calgary , Canada',
-            day: '29',
-            month: 'July',
-            year: '1998',
-            photo: 'img/mohammad-faruque-AgYOuy8kA7M-unsplash.jpg'
-        }, true)
+        action: async () => { 
+            const data = await fetchData('/profile/get');
+            return buildPersonalInfo(data, true)
+        }
     },
     {
         name: "Order History",

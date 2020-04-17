@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use DateTime;
+use Illuminate\Support\Facades\Date;
 
 class ProfileController extends Controller{
 
@@ -15,7 +17,7 @@ class ProfileController extends Controller{
     }
 
     public function orders() {
-        $user_id = 5; //TODO: get authenticated user
+        $user_id = 17; //TODO: get authenticated user
         $user = User::find($user_id);
         $orders = $user->orders()->get()->all();
         $clean_orders = array_map(function($order) {
@@ -33,7 +35,7 @@ class ProfileController extends Controller{
     }
     
     public function wishlist() {
-        $user_id = 22; //TODO: get authenticated user
+        $user_id = 17; //TODO: get authenticated user
         $user = User::find($user_id);
         $wishlist = $user->wishlists()->first(); //TODO: integrate multiple wishlists
         if($wishlist == null) {
@@ -48,5 +50,19 @@ class ProfileController extends Controller{
         },$products);
 
         return $items;
+    }
+
+    public function profile()
+    {
+      $user_id = 17; //TODO: get authenticated user
+      $user = User::find($user_id);
+      $img = $user->image()->first();
+      $photo = 'img/' . $img->img_name;
+      $date = new DateTime($user->date);
+      $year = $date->format('Y');
+      $month = $date->format('M');
+      $day = $date->format('d');
+      $data = ['username' => $user->username, 'email' => $user->email, 'address' => $user->address, 'year' => $year, 'month' => $month, 'day' => $day,'photo' => $photo];
+      return $data;
     }
 }

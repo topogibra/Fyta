@@ -65,8 +65,4 @@ class User extends Authenticatable
         return $this->hasMany('App\Wishlist','id_user');
     }
 
-    public function getProfileInfo()
-    {
-        
-    }
 }

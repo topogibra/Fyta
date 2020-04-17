@@ -29,7 +29,7 @@ Route::get('search', 'SearchController@render');
 Route::get('product/{id}', 'ProductController@render');
 Route::get('profile/orders','ProfileController@orders');
 Route::get('profile/wishlist','ProfileController@wishlist');
-
+Route::get('profile/get','ProfileController@profile');
 
 // Cards
 Route::get('cards', 'CardController@list');
