@@ -51,11 +51,18 @@ function buidOrderHistory(orders) {
         ordersContainer.appendChild(orderRow);
     });
 
+    if(orders.length == 0) {
+        const orderRow = document.createElement('div');
+        orderRow.classList.add(...['row','justify-content-center','table-entry'])
+        orderRow.textContent = 'No orders placed yet.'
+        ordersContainer.appendChild(orderRow)
+    }
+
     return ordersContainer;
 }
 
 
-const mockOrders = [{
+/* const mockOrders = [{
         number: 125877,
         date: "Dec 24 2019",
         price: "23.45€",
@@ -67,7 +74,7 @@ const mockOrders = [{
         price: "23.45€",
         state: "Processed"
     }
-];
+]; */
 
 const mockItems = [{
         img: "img/orquideas.jpg",
@@ -113,7 +120,10 @@ const userProfileSections = [{
     {
         name: "My Wishlist",
         id: "wishlist",
-        action: () => buildProductRow(mockItems)
+        action: async () => { 
+            const data = await fetchData('/profile/wishlist');
+            return buildProductRow(mockItems)
+        }
     },
 ];
 

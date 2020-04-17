@@ -15,12 +15,12 @@ class ProfileController extends Controller{
     }
 
     public function orders() {
-        $user_id = 1; //TODO: get authenticated user
+        $user_id = 5; //TODO: get authenticated user
         $user = User::find($user_id);
         $orders = $user->orders()->get()->all();
         $clean_orders = array_map(function($order) {
             $data = ['number'=> $order->shipping_id, 'date' => $order->order_date,'id' => $order->id];
-            $order_status = $order->history()->first();
+            $order_status = $order->history()->orderBy('date','desc')->first();
             $order_price = array_sum(array_map(function($product){
                 return $product->price * $product->pivot->quantity;
             },$order->products()->get()->all()));

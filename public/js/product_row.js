@@ -26,7 +26,7 @@ export default function buildProductRow(items){
         href.appendChild(heading);
         const paragraph = document.createElement('p');
         paragraph.className = "card-text product-price text-secondary";
-        paragraph.textContent = img.price;
+        paragraph.textContent = item.price;
 
         cardBody.appendChild(href);
         cardBody.appendChild(paragraph);
