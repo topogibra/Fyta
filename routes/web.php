@@ -28,6 +28,7 @@ Route::get('profile/order/{id}/invoice', 'InvoiceController@invoice');
 Route::get('search', 'SearchController@render');
 Route::get('product/{id}', 'ProductController@render');
 Route::get('profile/orders','ProfileController@orders');
+Route::get('profile/wishlist','ProfileController@wishlist');
 
 
 // Cards

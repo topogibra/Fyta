@@ -31,4 +31,22 @@ class ProfileController extends Controller{
 
         return $clean_orders;
     }
+    
+    public function wishlist() {
+        $user_id = 22; //TODO: get authenticated user
+        $user = User::find($user_id);
+        $wishlist = $user->wishlists()->first(); //TODO: integrate multiple wishlists
+        if($wishlist == null) {
+            return [];
+        }
+        $products = $wishlist->products()->get()->all();
+        $items = array_map(function($product){
+            $data = ['name'=>$product->name,'price' => $product->price, 'id' => $product->id];
+            $img = $product->images()->first();
+            $data['img'] = 'img/' . $img->img_name;
+            return $data;
+        },$products);
+
+        return $items;
+    }
 }

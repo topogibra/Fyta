@@ -17,7 +17,7 @@ class Product extends Model
 
     public function wishlists()
     {
-        return $this->belongsToMany('App\Wishlist', 'wishlist_product');
+        return $this->belongsToMany('App\Wishlist', 'wishlist_product','id_product','id_wishlist');
     }
 
     public function shoppingCart()
@@ -32,7 +32,7 @@ class Product extends Model
 
     public function images()
     {
-        return $this->belongsToMany('App\Image', 'product_image');
+        return $this->belongsToMany('App\Image', 'product_image','id_product','id_image');
     }
 
     public function tags()

@@ -60,6 +60,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Order','id_user');
     }
 
+    public function wishlists()
+    {
+        return $this->hasMany('App\Wishlist','id_user');
+    }
+
     public function getProfileInfo()
     {
         

@@ -17,6 +17,6 @@ class Wishlist extends Model
 
     public function products()
     {
-        return $this->belongsToMany('App\Product', 'wishlist_product');
+        return $this->belongsToMany('App\Product', 'wishlist_product','id_wishlist','id_product');
     }
 }

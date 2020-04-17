@@ -8,7 +8,7 @@ export default function buildProductRow(items){
         const card = document.createElement('div');
         card.className = "card product border-0 col-lg-3 col-md-6 col-sm-6";
         const imgWrapper = document.createElement('a');
-        imgWrapper.href = "/product";
+        imgWrapper.href = "/product/" + item.id;
         imgWrapper.className = "img-wrapper";
         const img = document.createElement('img');
         img.className = "card-img-top product-image img-fluid border border-dark";
@@ -26,7 +26,7 @@ export default function buildProductRow(items){
         href.appendChild(heading);
         const paragraph = document.createElement('p');
         paragraph.className = "card-text product-price text-secondary";
-        paragraph.textContent = item.price;
+        paragraph.textContent = item.price + '€';
 
         cardBody.appendChild(href);
         cardBody.appendChild(paragraph);

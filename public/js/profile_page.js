@@ -122,7 +122,7 @@ const userProfileSections = [{
         id: "wishlist",
         action: async () => { 
             const data = await fetchData('/profile/wishlist');
-            return buildProductRow(mockItems)
+            return buildProductRow(data)
         }
     },
 ];
