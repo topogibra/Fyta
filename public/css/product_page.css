@@ -110,11 +110,12 @@ h3 {
 }
 
 .row .reviews-title h3 {
-    margin-right: 1em;
+    margin: 0 1em;
 }
 
 .comment.row {
     margin-top: 1.5em;
+    width: 100%;
 }
 
 .comment>.container {

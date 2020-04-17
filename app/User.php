@@ -34,7 +34,7 @@ class User extends Authenticatable
 
     public function image()
     {
-        return $this->hasOne('App\Image', 'id_image');
+        return $this->hasOne('App\Image', 'id','id_image');
     }
 
 
@@ -53,5 +53,10 @@ class User extends Authenticatable
     public function ticketMessage()
     {
         return $this->hasMany('App\TicketMessage', 'id_user');
+    }
+
+    public function getProfileInfo()
+    {
+        
     }
 }

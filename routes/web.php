@@ -25,7 +25,7 @@ Route::get('profile', 'ProfileController@user');
 Route::get('manager', 'ProfileController@manager');
 Route::get('invoice', 'InvoiceController@invoice');
 Route::get('search', 'SearchController@render');
-Route::get('product', 'ProductController@render');
+Route::get('product/{id}', 'ProductController@render');
 
 
 
