@@ -7,11 +7,14 @@ use App\Order;
 
 //TODO:check if it is the right path
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class CheckoutController extends Controller{
     public function details()
     {
-        return view('pages.order_summary');
+        $user = User::find(1); //TODO
+        $output = str_replace(' ', '&nbsp;', $user->address);
+        return view('pages.order_summary', [ 'email' => $user->email , 'address' => $output]);
     }
 
     public function payment()
