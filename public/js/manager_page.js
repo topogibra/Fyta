@@ -2,6 +2,8 @@ import buildSections from './sections.js';
 import buildPersonalInfo from './personal_info.js';
 import { buildPersonalInfoForm } from './personal_info.js';
 import { fetchData } from './request.js'
+import { buildErrorMessage } from './http_error.js';
+
 
 
 function createProductColumn(info, attribute) {
@@ -36,7 +38,7 @@ function buildStocks(products) {
         row.className = "row table-entry";
         const name = createProductColumn(product.name, 'name');
         const href = document.createElement('a');
-        href.href = '/product';
+        href.href = '/product/' + product.id;
         href.appendChild(name);
         href.className = "col-md-3 col-6 name";
         row.appendChild(href);
@@ -126,7 +128,7 @@ function buildStocks(products) {
     return container;
 }
 
-function buidlPendingOrders(orders) {
+function buildPendingOrders(orders) {
     const container = document.createElement('div');
     container.className = "container";
     const header = document.createElement('div');
@@ -147,7 +149,7 @@ function buidlPendingOrders(orders) {
         const number = createProductColumn(order.number, 'order');
         const href = document.createElement('a');
         href.className = "col-md-3 col-6 name";
-        href.href = '/invoice';
+        href.href = '/order/' + order.id;
         href.appendChild(number);
         row.appendChild(href);
         row.appendChild(createProductColumn(order.date, 'date'));
@@ -273,55 +275,48 @@ function buildManagers(managers) {
     return container;
 }
 
-
-const mockManagers = [{
-        name: "Sisay Jeremiah",
-        photo: "img/sisay_jeremiah_small.jpg",
-        date: "Nov 24 2019"
-    },
-    {
-        name: "Dannie Almir",
-        photo: "img/dannie_almir.jpg",
-        date: "Mar 8 2020"
-    },
-    {
-        name: "Suzana Constância",
-        photo: "img/suzana_constancia.jpg",
-        date: "Jan 1 2020"
-    },
-    {
-        name: "Mohammad Faruque",
-        photo: "img/mohammad-faruque-AgYOuy8kA7M-unsplash.jpg",
-        date: "Aug 17 2016"
-    },
-]
-
 const managerProfileSections = [{
         name: "Manager Information",
         action: async() => {
-            const data = await fetchData('profile/get');
-            return buildPersonalInfo(data);
+            try {
+                const data = await fetchData('manager/get');
+                return buildPersonalInfo(data);
+            } catch (e) {
+                return buildErrorMessage(e.status, e.message)
+            }
         }
     },
     {
         name: "Stocks",
         action: async() => {
-            const data = await fetchData('profile/stocks');
-            return buildStocks(data);
+            try {
+                const data = await fetchData('manager/stocks');
+                return buildStocks(data);
+            } catch (e) {
+                return buildErrorMessage(e.status, e.message)
+            }
         }
     },
     {
         name: "Pending Orders",
         action: async() => {
-            const data = await fetchData('profile/pending-orders');
-            return buidlPendingOrders(data);
+            try {
+                const data = await fetchData('manager/pending-orders');
+                return buildPendingOrders(data);
+            } catch (e) {
+                return buildErrorMessage(e.status, e.message)
+            }
         }
     },
     {
         name: "Managers",
         action: async() => {
-            const data = await fetchData('profile/managers');
-            return buildManagers(data);
+            try {
+                const data = await fetchData('manager/managers');
+                return buildManagers(data);
+            } catch (e) {
+                return buildErrorMessage(e.status, e.message)
+            }
         }
     }
 ];

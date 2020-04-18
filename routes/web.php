@@ -25,17 +25,18 @@ Route::get('cart', 'CheckoutController@cart');
 Route::get('profile', 'ProfileController@user');
 Route::get('manager', 'ProfileController@manager');
 Route::get('profile/order/{id}/invoice', 'InvoiceController@invoice');
+Route::get('order/{id}', 'InvoiceController@order');
 Route::get('search', 'SearchController@render');
 Route::get('product/add', 'ProductController@add');
 Route::post('product', 'ProductController@create');
 Route::get('product/{id}', 'ProductController@render');
-Route::get('profile/orders','ProfileController@orders');
-Route::get('profile/stocks','ProfileController@stocks');
-Route::get('profile/pending-orders','ProfileController@pending');
-Route::get('profile/managers','ProfileController@managers');
-Route::get('profile/wishlist','ProfileController@wishlist');
 Route::get('profile/get','ProfileController@profile');
-// Route::get('profile/get-manager','ProfileController@profile-manager');
+Route::get('profile/orders','ProfileController@orders');
+Route::get('profile/wishlist','ProfileController@wishlist');
+Route::get('manager/get','ProfileController@profile');
+Route::get('manager/stocks','ProfileController@stocks');
+Route::get('manager/pending-orders','ProfileController@pending');
+Route::get('manager/managers','ProfileController@managers');
 
 // Cards
 Route::get('cards', 'CardController@list');

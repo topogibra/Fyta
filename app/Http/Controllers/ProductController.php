@@ -31,16 +31,19 @@ class ProductController extends Controller
 
     public function add()
     {
-        if (!User::checkIfManager()) 
-            return redirect('/');
+        if (User::checkUser() != User::$MANAGER) 
+            return back();
         return view('pages.product-form');
     }
 
     public function create(Request $request)
     {
-
-        if (!User::checkIfManager())
+        $role = User::checkUser();
+        if ($role == User::$GUEST)
             return abort(401);
+
+        if ($role == User::$CUSTOMER)
+            return abort(403);
 
         $request->validate([
             'img' => ['required'], 'name' => ['required'],

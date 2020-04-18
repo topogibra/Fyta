@@ -2,6 +2,7 @@ import buildProductRow from './product_row.js'
 import buildSections from './sections.js'
 import buildPersonalInfo from './personal_info.js'
 import {fetchData} from './request.js'
+import { buildErrorMessage } from './http_error.js';
 
 
 function createOrderColumn(info, attribute) {
@@ -61,73 +62,38 @@ function buidOrderHistory(orders) {
     return ordersContainer;
 }
 
-
-/* const mockOrders = [{
-        number: 125877,
-        date: "Dec 24 2019",
-        price: "23.45€",
-        state: "Processed"
-    },
-    {
-        number: 125877,
-        date: "Dec 24 2019",
-        price: "23.45€",
-        state: "Processed"
-    }
-]; */
-
-/* const mockItems = [{
-        img: "img/orquideas.jpg",
-        name: "Rose Orchid",
-        price: "20€"
-    },
-    {
-        img: "img/bonsai2.jpg",
-        name: "Bonsai CRT",
-        price: "35€"
-    },
-    {
-        img: "img/tulipas.jpg",
-        name: "Orange Tulips",
-        price: "10€"
-    },
-    {
-        img: "img/vaso.jpg",
-        name: "XPR Vase",
-        price: "15€"
-    }
-]; */
-
-/* const profile = {
-    username: 'mohammad.faruque',
-    email: 'mohammad.faruque@gmail.com',
-    address: 'Marcombe Dr NE, Calgary , Canada',
-    day: '29',
-    month: 'July',
-    year: '1998',
-    photo: 'img/mohammad-faruque-AgYOuy8kA7M-unsplash.jpg'
-    } */
-
 const userProfileSections = [{
         name: "Personal Information",
         action: async () => { 
-            const data = await fetchData('/profile/get');
-            return buildPersonalInfo(data, true)
+            try {
+                const data = await fetchData('/profile/get');
+                return buildPersonalInfo(data, true)
+            } catch(e) {
+                return buildErrorMessage(e.status,e.message)
+            }
         }
     },
     {
         name: "Order History",
         action: async () => { 
-            const data = await fetchData('/profile/orders');
-            return buidOrderHistory(data)
+            try {
+                const data = await fetchData('/profile/orders');
+                return buidOrderHistory(data)
+            } catch(e) {
+                return buildErrorMessage(e.status,e.message)
+            }
         }
     },
     {
         name: "My Wishlist",
         id: "wishlist",
         action: async () => { 
-            const data = await fetchData('/profile/wishlist');
-            return buildProductRow(data)
+            try {
+                const data = await fetchData('/profile/wishlist');
+                return buildProductRow(data)
+            } catch(e) {
+                return buildErrorMessage(e.status,e.message)
+            }
         }
     },
 ];

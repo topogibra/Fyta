@@ -166,6 +166,12 @@ input {
     padding: 5% 5%;
 }
 
+/*Error box only*/
+
+.profile .col-md-9>.container>.alert {
+    height: max-content;
+}
+
 #products-button {
     margin-top: 1em;
     font-size: 1em;
