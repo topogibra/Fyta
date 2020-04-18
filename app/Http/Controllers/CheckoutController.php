@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Order;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller{
     public function details()
     {
-        $response = $this->validateCustomer();
+        $response = User::validateCustomer();
         if($response)
             abort($response);
         
@@ -20,7 +21,7 @@ class CheckoutController extends Controller{
 
     public function payment()
     {
-        $response = $this->validateCustomer();
+        $response = User::validateCustomer();
         if($response)
             abort($response);
 
@@ -29,7 +30,7 @@ class CheckoutController extends Controller{
 
     public function summary($order_id) //NOTE: the order_id is not being passed anywhere
     {
-        $response = $this->validateCustomer();
+        $response = User::validateCustomer();
         if($response)
             abort($response);
         
@@ -42,15 +43,16 @@ class CheckoutController extends Controller{
         {
             $sum += $product->quantity * $product->price;
         }
-        // //TODO: location; delivery tipe in db
         return view('pages.checkout_details', [ 'information' => $information, 'status'=> $status,'sum' => $sum , 'delivery'=> 'FREE' ,'items' => $products]);
     }
 
     public function cart()
     {
-        $response = $this->validateCustomer();
-        if($response)
-            abort($response);
+        $role = User::checkUser();
+        if($role == User::$GUEST)
+            abort(401);
+        else if($role == User::$MANAGER)
+            return back();
         
         $id = Auth::id();
         $shopping_cart = Product::getShoppingCart($id);
@@ -58,15 +60,5 @@ class CheckoutController extends Controller{
         return view('pages.cart', ['items' => $shopping_cart]);
     }
 
-    public function validateCustomer()
-    {
-        $role = ProfileController::checkUser();
-        if($role == ProfileController::$GUEST) {
-            return 401;
-        }
-        else if($role == ProfileController::$MANAGER)
-            return 403;
-        
-        return null;
-    }
+   
 }

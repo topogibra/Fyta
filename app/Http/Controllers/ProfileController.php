@@ -5,14 +5,12 @@ namespace App\Http\Controllers;
 use DateTime;
 use App\Product;
 use App\Order;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller{
-    static $CUSTOMER = 'Customer';
-    static $MANAGER = 'Manager';
-    static $GUEST = 'Guest';
-
+    
 
     public function manager(){
         return view('pages.profile', ['layout' => ['scripts' => ['js/manager_page.js'], 'styles' => ['css/profile_page.css', 'css/registerpage.css']]]);
@@ -23,11 +21,11 @@ class ProfileController extends Controller{
     }
 
     public function orders() {
-        $role = $this->checkUser();
-        if($role == self::$GUEST) {
+        $role = User::checkUser();
+        if($role == User::$GUEST) {
             return response()->json(['message' => 'You must login to access your order history'], 401);
         }
-        else if($role == self::$MANAGER)
+        else if($role == User::$MANAGER)
             return response()->json(['message' => 'Managers can\'t access order history'], 403);
         
         $user = Auth::user();
@@ -46,12 +44,12 @@ class ProfileController extends Controller{
         return $clean_orders;
     }
 
-public function stocks() {
-        $role = $this->checkUser();
-        if($role == self::$GUEST) {
+    public function stocks() {
+        $role = User::checkUser();
+        if($role == User::$GUEST) {
             return response()->json(['message' => 'You must login to access stocks section'], 401);
         }
-        else if($role == self::$CUSTOMER)
+        else if($role == User::$CUSTOMER)
             return response()->json(['message' => 'You do not have access to this section'], 403);
         
     
@@ -65,11 +63,11 @@ public function stocks() {
     }
 
     public function pending() {
-        $role = $this->checkUser();
-        if($role == self::$GUEST) {
+        $role = User::checkUser();
+        if($role == User::$GUEST) {
             return response()->json(['message' => 'You must login to access the pending orders'], 401);
         }
-        else if($role == self::$CUSTOMER)
+        else if($role == User::$CUSTOMER)
             return response()->json(['message' => 'You do not have access to this section'], 403);
         
         $allstatus = Order::getStatusOrders()->all();
@@ -86,11 +84,11 @@ public function stocks() {
     }
 
     public function managers() {
-        $role = $this->checkUser();
-        if($role == self::$GUEST) {
+        $role = User::checkUser();
+        if($role == User::$GUEST) {
           return response()->json(['message' => 'You must login to access the pending orders'], 401);
         }
-        else if($role == self::$CUSTOMER)
+        else if($role == User::$CUSTOMER)
           return response()->json(['message' => 'You do not have access to this section'], 403);
         
         $user = Auth::user();
@@ -105,11 +103,11 @@ public function stocks() {
     }
     
     public function wishlist() {
-        $role = $this->checkUser();
-        if($role == self::$GUEST) {
+        $role = User::checkUser();
+        if($role == User::$GUEST) {
             return response()->json(['message' => 'You must login to access your wishlist'], 401);
         }
-        else if($role == self::$MANAGER)
+        else if($role == User::$MANAGER)
             return response()->json(['message' => 'Managers can\'t access wishlist'], 403);
         
         $user = Auth::user();
@@ -130,14 +128,14 @@ public function stocks() {
 
     public function profile(Request $request)
     {
-      $role = $this->checkUser();
-      if($role == self::$GUEST)
+      $role = User::checkUser();
+      if($role == User::$GUEST)
         return response()->json(['message' => 'You must login to access your profile'], 401);
 
-      if($request->path() == 'manager/get' && $role != self::$MANAGER)
+      if($request->path() == 'manager/get' && $role != User::$MANAGER)
         return response()->json(['message' => 'You do not have access to this section'], 403);
       
-      if($request->path() == 'profile/get' && $role != self::$CUSTOMER)
+      if($request->path() == 'profile/get' && $role != User::$CUSTOMER)
       return response()->json(['message' => 'Managers can\'t access customer profile'], 403);
             
       $user = Auth::user();
@@ -157,18 +155,6 @@ public function stocks() {
       }
 
       return $data;
-    }
-
-    public static function checkUser()
-    {
-        if(!Auth::check())
-            return self::$GUEST;
-
-        $user = Auth::user();
-        if($user->user_role != 'Customer')
-            return self::$MANAGER;
-        else
-            return self::$CUSTOMER;
     }
 
 }

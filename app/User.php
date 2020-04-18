@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
@@ -14,6 +15,10 @@ class User extends Authenticatable
     public $timestamps  = false;
 
     protected $table = 'user';
+    static $CUSTOMER = 'Customer';
+    static $MANAGER = 'Manager';
+    static $GUEST = 'Guest';
+
 
     /**
      * The attributes that are mass assignable.
@@ -86,5 +91,29 @@ class User extends Authenticatable
 
         return $managers;
        
+    }
+
+    public static function validateCustomer()
+    {
+        $role = self::checkUser();
+        if($role == self::$GUEST) {
+            return 401;
+        }
+        else if($role == self::$MANAGER)
+            return 403;
+        
+        return null;
+    }
+
+    public static function checkUser()
+    {
+        if(!Auth::check())
+            return self::$GUEST;
+
+        $user = Auth::user();
+        if($user->user_role != 'Customer')
+            return self::$MANAGER;
+        else
+            return self::$CUSTOMER;
     }
 }

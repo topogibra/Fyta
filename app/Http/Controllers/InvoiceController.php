@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Order;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class InvoiceController extends Controller{
     
     public function invoice($id)
     {
-        if(!Auth::check()) {
+        $role = User::checkUser();
+        if($role == User::$GUEST) {
             abort(401);
         }
 
@@ -19,11 +21,12 @@ class InvoiceController extends Controller{
         if(!$order) {
             abort(400);
         }
+
         $user_id = Auth::id();
-        if($order->id_user != $user_id) {
+        if($order->id_user != $user_id && $role == User::$CUSTOMER) {
             abort(403);
         }
-
+        
         $products = Product::getOrderProducts($id);
         $information = Order::getOrderInformation($id);
         $status = Order::getOrderStatus($id);
