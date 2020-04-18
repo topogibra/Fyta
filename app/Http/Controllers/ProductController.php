@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Image;
 use App\Product;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -23,7 +24,8 @@ class ProductController extends Controller
     {
 
         $request->validate(['img' => ['required'], 'name' => ['required'],
-             'price' => ['required', 'numeric', 'min:1'], 'description' => ['required'], 'stock' => ['required', 'numeric', 'min:1']]);
+             'price' => ['required', 'numeric', 'min:1'], 'description' => ['required'], 'stock' => ['required', 'numeric', 'min:1'],
+             'tags' => ['required', 'string']]);
 
         $product = new Product;
         $product->stock = $request->input('stock');
@@ -42,8 +44,20 @@ class ProductController extends Controller
         $img->img_name = $path;
         $img->description = $request->input('name');
         $img->save();
-
+        
         $product->images()->attach($img->id);
+
+        $tags = preg_split('/,/', $request->input('tags'));
+        foreach ($tags as $tag){
+            $db_tag = Tag::where('name', '=', $tag)->first();
+            if($db_tag == null){
+                $db_tag = new Tag;
+                $db_tag->name = $tag;
+                $db_tag->save();
+            }
+
+            $product->tags()->attach($db_tag->id);
+        }
 
         return redirect('/home');
     }

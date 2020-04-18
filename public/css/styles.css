@@ -323,3 +323,8 @@ a:hover {
     color: var(--white) !important;
     border-color: var(--white) !important;
 }
+
+#errors{
+    background-color: var(--lighter-gray);
+    color: #de7171;
+}
