@@ -50,7 +50,7 @@ class ProfileController extends Controller{
         return $clean_orders;
     }
 
-public static function stocks() {
+public function stocks() {
         $role = $this->checkUser();
         if($role == self::$GUEST) {
             return response()->json(['message' => 'You must login to access stocks section'], 401);
