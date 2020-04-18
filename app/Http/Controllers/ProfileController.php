@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use DateTime;
-use Illuminate\Support\Facades\Date;
 use App\Product;
 use App\Order;
-use Illuminate\Auth\Access\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class ProfileController extends Controller{
     static $CUSTOMER = 'Customer';
@@ -61,7 +57,7 @@ public function stocks() {
     
         $products = Product::getStockProducts()->all();
         $clean_products = array_map(function($product) {
-            $data = ['name'=> $product->name, 'price' => $product->price, 'stock' => $product->stock ];
+            $data = ['name'=> $product->name, 'price' => $product->price, 'stock' => $product->stock , 'id' => $product->id];
             return $data;
         }, $products);
 
@@ -78,7 +74,7 @@ public function stocks() {
         
         $allstatus = Order::getStatusOrders()->all();
         $clean_status = array_map(function($status) {
-            $data = ['number' => $status->shipping_id, 'date' => $status->order_date];
+            $data = ['number' => $status->shipping_id, 'date' => $status->order_date, 'id' => $status->order_id ];
             $order_status = $status->order_status;
             $order_status  = preg_replace("(_)"," ",$order_status);
             $data['status'] = $order_status;

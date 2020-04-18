@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Order;
-
-//TODO:check if it is the right path
 use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller{
@@ -29,7 +27,7 @@ class CheckoutController extends Controller{
         return view('pages.payment_details');
     }
 
-    public function summary(Request $request, $order_id) //NOTE: the order_id is not being passed anywhere
+    public function summary($order_id) //NOTE: the order_id is not being passed anywhere
     {
         $response = $this->validateCustomer();
         if($response)

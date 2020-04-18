@@ -123,7 +123,7 @@ class Product extends Model
     public static function getStockProducts() 
     {
         $products = DB::table('product')
-                            ->select('name','price','stock')
+                            ->select('name','price','stock','id')
                             ->limit(20) //TODO
                             ->get();
             

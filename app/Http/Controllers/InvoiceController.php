@@ -34,6 +34,36 @@ class InvoiceController extends Controller{
             $sum += $product->quantity * $product->price;
         }
 
-        return view('pages.invoice', ['information' => $information, 'location' => 'Calgary, Canada', 'status'=> $status,'sum' => $sum, 'delivery' => 'FREE', 'items' => $products]);
+        return view('pages.invoice', ['information' => $information, 'status'=> $status,'sum' => $sum, 'delivery' => 'FREE', 'items' => $products]);
     }
+
+    public function order($id)
+    {
+        if(!Auth::check()) {
+            abort(401);
+        }
+
+        $order = Order::find($id);
+        if(!$order) {
+            abort(400);
+        }
+        $user = Auth::user();
+        if($user->user_role != "Manager") {
+            abort(403);
+        }
+
+        $products = Product::getOrderProducts($id);
+        $information = Order::getOrderInformation($id);
+        $status = Order::getOrderStatus($id);
+
+        $sum = 0;
+        foreach($products as $product)
+        {
+            $sum += $product->quantity * $product->price;
+        }
+
+        return view('pages.invoice', ['information' => $information, 'status'=> $status,'sum' => $sum, 'delivery' => 'FREE', 'items' => $products]);
+    }
+
+    
 }
