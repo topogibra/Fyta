@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class ProfileController extends Controller{
-    const CUSTOMER = 'Customer';
-    const MANAGER = 'Manager';
-    const GUEST = 'Guest';
+    static $CUSTOMER = 'Customer';
+    static $MANAGER = 'Manager';
+    static $GUEST = 'Guest';
 
 
     public function manager(){
@@ -28,10 +28,10 @@ class ProfileController extends Controller{
 
     public function orders() {
         $role = $this->checkUser();
-        if($role == self::GUEST) {
+        if($role == self::$GUEST) {
             return response()->json(['message' => 'You must login to access your order history'], 401);
         }
-        else if($role == self::MANAGER)
+        else if($role == self::$MANAGER)
             return response()->json(['message' => 'Managers can\'t access order history'], 403);
         
         $user = Auth::user();
@@ -52,10 +52,10 @@ class ProfileController extends Controller{
 
     public function stocks() {
         $role = $this->checkUser();
-        if($role == self::GUEST) {
+        if($role == self::$GUEST) {
             return response()->json(['message' => 'You must login to access stocks section'], 401);
         }
-        else if($role == self::CUSTOMER)
+        else if($role == self::$CUSTOMER)
             return response()->json(['message' => 'You do not have access to this section'], 403);
         
         $products = Product::getStockProducts()->all();
@@ -69,10 +69,10 @@ class ProfileController extends Controller{
 
     public function pending() {
         $role = $this->checkUser();
-        if($role == self::GUEST) {
+        if($role == self::$GUEST) {
             return response()->json(['message' => 'You must login to access the pending orders'], 401);
         }
-        else if($role == self::CUSTOMER)
+        else if($role == self::$CUSTOMER)
             return response()->json(['message' => 'You do not have access to this section'], 403);
         
         $allstatus = Order::getStatusOrders()->all();
@@ -90,10 +90,10 @@ class ProfileController extends Controller{
 
     public function managers() {
         $role = $this->checkUser();
-        if($role == self::GUEST) {
+        if($role == self::$GUEST) {
           return response()->json(['message' => 'You must login to access the pending orders'], 401);
         }
-        else if($role == self::CUSTOMER)
+        else if($role == self::$CUSTOMER)
           return response()->json(['message' => 'You do not have access to this section'], 403);
         
         $user = Auth::user();
@@ -109,10 +109,10 @@ class ProfileController extends Controller{
     
     public function wishlist() {
         $role = $this->checkUser();
-        if($role == self::GUEST) {
+        if($role == self::$GUEST) {
             return response()->json(['message' => 'You must login to access your wishlist'], 401);
         }
-        else if($role == self::MANAGER)
+        else if($role == self::$MANAGER)
             return response()->json(['message' => 'Managers can\'t access wishlist'], 403);
         
         $user = Auth::user();
@@ -134,13 +134,13 @@ class ProfileController extends Controller{
     public function profile(Request $request)
     {
       $role = $this->checkUser();
-      if($role == self::GUEST)
+      if($role == self::$GUEST)
         return response()->json(['message' => 'You must login to access your profile'], 401);
 
-      if($request->path() == 'manager/get' && $role != self::MANAGER)
+      if($request->path() == 'manager/get' && $role != self::$MANAGER)
         return response()->json(['message' => 'You do not have access to this section'], 403);
       
-      if($request->path() == 'profile/get' && $role != self::CUSTOMER)
+      if($request->path() == 'profile/get' && $role != self::$CUSTOMER)
       return response()->json(['message' => 'Managers can\'t access customer profile'], 403);
             
       $user = Auth::user();
@@ -165,13 +165,13 @@ class ProfileController extends Controller{
     public static function checkUser()
     {
         if(!Auth::check())
-            return self::GUEST;
+            return self::$GUEST;
 
         $user = Auth::user();
         if($user->user_role != 'Customer')
-            return self::MANAGER;
+            return self::$MANAGER;
         else
-            return self::CUSTOMER;
+            return self::$CUSTOMER;
     }
 
 }
