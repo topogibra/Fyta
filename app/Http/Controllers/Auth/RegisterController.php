@@ -55,7 +55,7 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:user',
             'password' => 'required|string|min:6',
             'birthday' => 'required|date',
-            "address" => 'nullable|string|max:255'
+            "address" => 'required|string|max:255'
         ]);
     }
 
@@ -72,22 +72,23 @@ class RegisterController extends Controller
         $user->username = $data['username'];
         $user->email= $data['email'];
         $user->password_hash= bcrypt($data['password']);
-        // $user->password_hash = $data['password'];
-        // $user->address= $data['address'];
+        $user->address= $data['address'];
         $user->date= $data['birthday'];
         $user->user_role= 'Customer';
+
+        $file = Input::file('img');
+        if ($file != null){
+            $path = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move('img/', $path);
+
+            $img = new Image;
+            $img->img_name = $path;
+            $img->description = $user->username;
+            $img->save();
+            $user->id_image = $img->id;
+        }
+
         $user->save();
-
-        // $file = Input::file('img');
-        // $path = uniqid() . '.' . $file->getClientOriginalExtension();
-        // $file->move('img/', $path);
-
-        // $img = new Image;
-        // $img->path = $path;
-        // $img->description = $user->username;
-        // $img->save();
-
-        // $user->image()->attach(11);
         return $user;
     }
 }
