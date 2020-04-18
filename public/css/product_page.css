@@ -292,3 +292,8 @@ h3 {
 #tags-container {
     display: none;
 }
+
+#caption {
+    font-size: 0.7em;
+    background-color: var(--green);
+}

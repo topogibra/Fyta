@@ -52,6 +52,7 @@
     <div class="row" id="tags-container">
         <div class="my-2">
             <h5>Tags</h5>
+            <span class="badge badge-success" id="caption">Type a tag and press Enter to add it. Press a tag to remove it.</span>
             <div class="row" id="tags-row">
             </div>
             <input id="tags" class="mt-2 d-block" name="tags" type="text">
