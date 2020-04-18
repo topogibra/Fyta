@@ -34,6 +34,11 @@ class Order extends Model
             ->where('order.id', '=',$order_id)
             ->first();
         
+            $address = explode(" ", $information->address);
+            $address1 = array_splice($address,0,count($address)-2);
+            $information->address = implode(" ",$address1);
+            $information->location = $address[count($address)-2] . " " . $address[count($address)-1];
+
         return $information;
     }
 

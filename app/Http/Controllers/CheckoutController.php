@@ -45,7 +45,7 @@ class CheckoutController extends Controller{
             $sum += $product->quantity * $product->price;
         }
         // //TODO: location; delivery tipe in db
-        return view('pages.checkout_details', [ 'information' => $information, 'location' => 'Calgary, Canada', 'status'=> $status,'sum' => $sum , 'delivery'=> 'FREE' ,'items' => $products]);
+        return view('pages.checkout_details', [ 'information' => $information, 'status'=> $status,'sum' => $sum , 'delivery'=> 'FREE' ,'items' => $products]);
     }
 
     public function cart()

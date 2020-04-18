@@ -50,7 +50,7 @@ class ProfileController extends Controller{
         return $clean_orders;
     }
 
-    public function stocks() {
+public static function stocks() {
         $role = $this->checkUser();
         if($role == self::$GUEST) {
             return response()->json(['message' => 'You must login to access stocks section'], 401);
@@ -58,6 +58,7 @@ class ProfileController extends Controller{
         else if($role == self::$CUSTOMER)
             return response()->json(['message' => 'You do not have access to this section'], 403);
         
+    
         $products = Product::getStockProducts()->all();
         $clean_products = array_map(function($product) {
             $data = ['name'=> $product->name, 'price' => $product->price, 'stock' => $product->stock ];
