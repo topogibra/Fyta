@@ -7,8 +7,6 @@
     border-color: var(--black);
     border-radius: 1;
     position: relative;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .form {
@@ -112,4 +110,8 @@
     .form {
         margin: 3% 8%;
     }
+}
+
+#img{
+    display: none;
 }

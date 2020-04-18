@@ -2,19 +2,19 @@
     <div class="col-md-3">
         <div class="img-wrapper">
             <a href="product_page.php">
-                <img class="product-image img-fluid border border-dark" src={{ $item['img'] }} alt={{ $item['name'] }} >
+                <img class="product-image img-fluid border border-dark" src={{ $item->img }} alt={{ $item->name }} >
             </a>
         </div>
     </div>
     <div class="col-md-3">
         <a href="product_page.php">
-            <p class="product-name ">{{ $item['name'] }}</p>
+            <p class="product-name ">{{ $item->name }}</p>
         </a>
     </div>
     <div class="col-md-3">
-        <p class="product-price">{{ $item['price'] }}</p>
+        <p class="product-price">{{ $item->price }} €</p>
     </div>
     <div class="col-md-3">
-        <div class="quantity-box">{{ $item['qty'] }}</div>
+        <div class="quantity-box">{{ $item->quantity }}</div>
     </div>
 </div>

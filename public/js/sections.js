@@ -14,13 +14,14 @@ export default function buildSections(sections){
             reference.id = section.id
         }
 
-        reference.addEventListener('mousedown', () => {
+        reference.addEventListener('mousedown', async () => {
             removeAll(contentContainer);
 
             const header = document.createElement('h3');
             header.textContent = section.name;
             contentContainer.appendChild(header);
-            contentContainer.appendChild(section.action());
+            const content = await section.action();
+            contentContainer.appendChild(content);
         });
         item.appendChild(reference);
         listGroup.appendChild(item);

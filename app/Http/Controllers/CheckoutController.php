@@ -1,11 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use App\Product;
+use App\Order;
+
+//TODO:check if it is the right path
+use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class CheckoutController extends Controller{
     public function details()
     {
-        return view('pages.order_summary');
+        $user = User::find(1); //TODO
+        $output = str_replace(' ', '&nbsp;', $user->address);
+        return view('pages.order_summary', [ 'email' => $user->email , 'address' => $output]);
     }
 
     public function payment()
@@ -13,14 +22,29 @@ class CheckoutController extends Controller{
         return view('pages.payment_details');
     }
 
-    public function summary()
+    public function summary(Request $request, $order_id)
     {
-        return view('pages.checkout_details', ['order_number' => '125877', 'date' => 'Dec 24 2019', 'name' => 'Ellie Black', 'address' => 'Marcombe Dr NE, 334 3rd floor', 'location' => 'Calgary, Canada', 'sum' => '47.60€', 'delivery'=> 'FREE' ,'items' => [['img' => "img/sativa_indoor.jpg", 'name' => "Sativa Prime", 'price' => "4.20€", 'qty' => 3], ['img' => "img/supreme_vase.jpg", 'name' => "Supreme Bonsai Pot", 'price' => "40€", 'qty' => 1], ['img' => "img/watercan_tool.jpg", 'name' => "Green Watercan 12l", 'price' => "5€", 'qty' => 1]]]);
+        $products = Product::getOrderProducts($order_id);
+        $information = Order::getOrderInformation($order_id);
+        $status = Order::getOrderStatus($order_id);
+        
+        $sum = 0;
+        foreach($products as $product)
+        {
+            $sum += $product->quantity * $product->price;
+        }
+        // //TODO: location; delivery tipe in db
+        return view('pages.checkout_details', [ 'information' => $information, 'location' => 'Calgary, Canada', 'status'=> $status,'sum' => $sum , 'delivery'=> 'FREE' ,'items' => $products]);
     }
 
     public function cart()
     {
-        return view('pages.cart', ['items' => [['img' => "img/sativa_indoor.jpg", 'name' => "Sativa Prime", 'price' => 4.20, 'qty' => 3], ['img' => "img/supreme_vase.jpg", 'name' => "Supreme Bonsai Pot", 'price' => 40, 'qty' => 3]]]);
+        // TODO:
+        // $user_id = Auth::id();
+        
+        $shopping_cart = Product::getShoppingCart(48);
+
+        return view('pages.cart', ['items' => $shopping_cart]);
     }
 
 }

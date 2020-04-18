@@ -6,13 +6,13 @@
             <h3>Order Details</h3>
         <form>
             <div class="form-group">
-                <input type="text" class="form-control" id="checkoutemail" placeholder="Email">
+                <input type="text" class="form-control" id="checkoutemail" value={{$email}} placeholder="Email">
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" id="checkoutname" placeholder="Full Name">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" id="deliveryaddress" placeholder="Delivery Address">
+                <input type="text" class="form-control" id="deliveryaddress" value={!! $address !!} placeholder="Delivery Address">
             </div>
             <h6>Billing Address </h6>
 

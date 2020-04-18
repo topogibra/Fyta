@@ -104,8 +104,8 @@
           </div>
 
           <div class="col-lg-8">
-            <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2">
-                @each('components.search_items', $items, 'item')
+            <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2"> 
+              @each('components.search_items', $items, 'item')
             </div>
 
             <div class="pages">

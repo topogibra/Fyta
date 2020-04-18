@@ -75,9 +75,13 @@ export function buildPersonalInfoForm(info, user) {
             birthdayInputs.appendChild(optionsCol);
         };
 
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-        const years = ['2000', '1999', '1998', '1997', '1996', '1995', '1996'];
-
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        let years = [];
+        const currYear = new Date().getFullYear();
+        for(let i = 0; i < 100 ; i++) {
+            years.push((currYear-i).toString());
+        }
+        
         buildSelectionColumn("day", Array.from({ length: 31 }).map((_, i) => String(i + 1)), info.day);
         buildSelectionColumn("month", months, info.month);
         buildSelectionColumn("year", years, info.year);

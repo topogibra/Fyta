@@ -1,10 +1,26 @@
 <?php
 
+namespace App;
 namespace App\Http\Controllers;
 
+use App\Product;
+use App\Order;
+
+
 class InvoiceController extends Controller{
-    public function invoice()
+    
+    public function invoice($id)
     {
-        return view('pages.invoice', ['order_number' => '125877', 'date' => 'Dec 24 2019', 'name' => 'Ellie Black', 'address' => 'Marcombe Dr NE, 334 3rd floor', 'location' => 'Calgary, Canada', 'sum' => '47.60€', 'delivery' => 'FREE', 'items' => [['img' => "img/sativa_indoor.jpg", 'name' => "Sativa Prime", 'price' => "4.20€", 'qty' => 3], ['img' => "img/supreme_vase.jpg", 'name' => "Supreme Bonsai Pot", 'price' => "40€", 'qty' => 1], ['img' => "img/watercan_tool.jpg", 'name' => "Green Watercan 12l", 'price' => "5€", 'qty' => 1]]]);
+        $products = Product::getOrderProducts($id);
+        $information = Order::getOrderInformation($id);
+        $status = Order::getOrderStatus($id);
+
+        $sum = 0;
+        foreach($products as $product)
+        {
+            $sum += $product->quantity * $product->price;
+        }
+
+        return view('pages.invoice', ['information' => $information, 'location' => 'Calgary, Canada', 'status'=> $status,'sum' => $sum, 'delivery' => 'FREE', 'items' => $products]);
     }
 }

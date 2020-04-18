@@ -11,7 +11,6 @@
 |
 */
 
-use App\Http\Controllers\ProductController;
 
 Route::get('/', function(){
     return redirect('home');
@@ -19,18 +18,22 @@ Route::get('/', function(){
 
 Route::get('home', 'HomeController@render');
 Route::get('about', 'AboutController@render');
-Route::get('checkout-details', 'CheckoutController@details');
+Route::get('checkout-details', 'CheckoutController@details'); //adicionar do user
 Route::get('payment-details', 'CheckoutController@payment');
-Route::get('order-summary', 'CheckoutController@summary');
+Route::get('order-summary/{order_id}', 'CheckoutController@summary');
 Route::get('cart', 'CheckoutController@cart');
 Route::get('profile', 'ProfileController@user');
 Route::get('manager', 'ProfileController@manager');
-Route::get('invoice', 'InvoiceController@invoice');
+Route::get('profile/order/{id}/invoice', 'InvoiceController@invoice');
 Route::get('search', 'SearchController@render');
-Route::get('product', 'ProductController@render');
-Route::get('product/add', 'ProductController@add');
-Route::post('product', 'ProductController@create');
-
+Route::get('product/{id}', 'ProductController@render');
+Route::get('profile/orders','ProfileController@orders');
+Route::get('profile/stocks','ProfileController@stocks');
+Route::get('profile/pending-orders','ProfileController@pending');
+Route::get('profile/managers','ProfileController@managers');
+Route::get('profile/wishlist','ProfileController@wishlist');
+Route::get('profile/get','ProfileController@profile');
+// Route::get('profile/get-manager','ProfileController@profile-manager');
 
 // Cards
 Route::get('cards', 'CardController@list');
