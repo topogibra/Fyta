@@ -33,6 +33,7 @@ Route::get('profile/pending-orders','ProfileController@pending');
 Route::get('profile/managers','ProfileController@managers');
 Route::get('profile/wishlist','ProfileController@wishlist');
 Route::get('profile/get','ProfileController@profile');
+Route::get('profile/get-manager','ProfileController@profile-manager');
 
 // Cards
 Route::get('cards', 'CardController@list');

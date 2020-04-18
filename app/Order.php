@@ -52,6 +52,7 @@ class Order extends Model
         $status = DB::table('order_history')
                         ->select('order_history.order_status','order.shipping_id','order.order_date')
                         ->join('order', 'order.id', '=', 'order_history.id_order')
+                        ->where('order_history.order_status', '!=','Processed')
                         ->get();
 
         return $status;        

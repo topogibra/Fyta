@@ -36,6 +36,17 @@ class ProfileController extends Controller{
         return $clean_orders;
     }
 
+    public static function information() {
+        $managers = User::getManagersInfo()->all();
+        $clean_managers = array_map(function($manager) {
+            $data = ['name' => $manager->username, 'date' => $manager->date];
+            $data['photo'] = 'img/' . $manager->img_name;
+            return $data;
+        }, $managers);
+
+        return $clean_managers;
+    }
+
     public static function stocks() {
         $products = Product::getStockProducts()->all();
         $clean_products = array_map(function($product) {
@@ -95,11 +106,19 @@ class ProfileController extends Controller{
       $user = User::find($user_id);
       $img = $user->image()->first();
       $photo = 'img/' . $img->img_name;
+      if($user->user_role == 'Customer')
+      {
       $date = new DateTime($user->date);
       $year = $date->format('Y');
       $month = $date->format('M');
       $day = $date->format('d');
       $data = ['username' => $user->username, 'email' => $user->email, 'address' => $user->address, 'year' => $year, 'month' => $month, 'day' => $day,'photo' => $photo];
+      }
+      else
+      {
+        $data = ['username' => $user->username, 'email' => $user->email,'photo' => $photo];
+      }
+
       return $data;
     }
 }

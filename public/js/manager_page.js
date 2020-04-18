@@ -298,11 +298,10 @@ const mockManagers = [{
 
 const managerProfileSections = [{
         name: "Manager Information",
-        action: () => buildPersonalInfo({
-            username: "simone.biles",
-            email: "simone.biles.the.goat@gmail.com",
-            photo: "img/simone.jpeg"
-        })
+        action: async() => {
+            const data = await fetchData('profile/get');
+            return buildPersonalInfo(data);
+        }
     },
     {
         name: "Stocks",
