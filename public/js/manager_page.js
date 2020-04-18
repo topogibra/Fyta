@@ -2,6 +2,8 @@ import buildSections from './sections.js';
 import buildPersonalInfo from './personal_info.js';
 import { buildPersonalInfoForm } from './personal_info.js';
 import { fetchData } from './request.js'
+import { buildErrorMessage } from './http_error.js';
+
 
 
 function createProductColumn(info, attribute) {
@@ -126,7 +128,7 @@ function buildStocks(products) {
     return container;
 }
 
-function buidlPendingOrders(orders) {
+function buildPendingOrders(orders) {
     const container = document.createElement('div');
     container.className = "container";
     const header = document.createElement('div');
@@ -299,29 +301,45 @@ const mockManagers = [{
 const managerProfileSections = [{
         name: "Manager Information",
         action: async() => {
-            const data = await fetchData('profile/get');
-            return buildPersonalInfo(data);
+            try {
+                const data = await fetchData('manager/get');
+                return buildPersonalInfo(data);
+            } catch(e) {
+                return buildErrorMessage(e.status,e.message)
+            }
         }
     },
     {
         name: "Stocks",
         action: async() => {
-            const data = await fetchData('profile/stocks');
-            return buildStocks(data);
+            try {
+                const data = await fetchData('manager/stocks');
+                return buildStocks(data);
+            } catch(e) {
+                return buildErrorMessage(e.status,e.message)
+            }
         }
     },
     {
         name: "Pending Orders",
         action: async() => {
-            const data = await fetchData('profile/pending-orders');
-            return buidlPendingOrders(data);
+            try {
+                const data = await fetchData('manager/pending-orders');
+                return buildPendingOrders(data);
+            } catch(e) {
+                return buildErrorMessage(e.status,e.message)
+            }
         }
     },
     {
         name: "Managers",
         action: async() => {
-            const data = await fetchData('profile/managers');
-            return buildManagers(data);
+            try {
+                const data = await fetchData('manager/managers');
+                return buildManagers(data);
+            } catch(e) {
+                return buildErrorMessage(e.status,e.message)
+            }
         }
     }
 ];

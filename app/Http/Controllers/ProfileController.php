@@ -162,7 +162,7 @@ class ProfileController extends Controller{
       return $data;
     }
 
-    public function checkUser()
+    public static function checkUser()
     {
         if(!Auth::check())
             return self::GUEST;

@@ -27,6 +27,7 @@ export default function request(props) {
   
       response.result
         .then(data => {
+          data.status = response.status
           if (response.status == 200 || response.status == 201) {
             resolve(data);
           } else {
