@@ -3,7 +3,7 @@
 @section('img')
 <div class="my-2" class="product-creation-left">
     <label for="img">
-        <img id="template-img" src={{asset('/img/user.png')}}>
+        <img id="template-img" src={{asset('/img/template_img.png')}}>
     </label>
     <input type="file"  name="img" id="img">
 </div>
@@ -32,7 +32,7 @@
     <div class="row number-input">
         <div class="my-2 col-4">
             <h5> Price </h5>
-            <input class="col" class="mt-1 d-block" name="price" id="price" type="number">
+            <input class="col" class="mt-1 d-block" name="price" id="price" type="number" step=".01">
         </div>
         <div class="my-2 col-4">
             <h5> Stock </h5>
@@ -53,7 +53,7 @@
         <div class="my-2">
             <h5>Tags</h5>
             <span class="badge badge-success" id="caption">Type a tag and press Enter to add it. Press a tag to remove it.</span>
-            <div class="row" id="tags-row">
+            <div id="tags-row">
             </div>
             <input id="tags" class="mt-2 d-block" name="tags" type="text">
         </div>

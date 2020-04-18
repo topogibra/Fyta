@@ -20,7 +20,7 @@ const createdTags = [];
 tagInputs.addEventListener('keypress', (event) => {
     if (event.keyCode == 13 || event.which == 13) {
         const column = document.createElement('div');
-        column.className = "col badge badge-pill badge-light";
+        column.className = "badge badge-pill badge-light";
         column.textContent = tagInputs.value;
         tags.appendChild(column);
         createdTags.push(tagInputs.value);
