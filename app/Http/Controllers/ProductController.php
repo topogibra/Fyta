@@ -68,7 +68,7 @@ class ProductController extends Controller{
             $product->tags()->attach($db_tag->id);
         }
 
-        return redirect('/home');
+        return redirect('/product/'.$product->id);
     }
 
     public function buyNow(Request $request)
