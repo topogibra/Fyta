@@ -72,7 +72,9 @@ class ProfileController extends Controller{
     }
 
     public static function managers() {
-        $managers = User::getManagersInfo()->all();
+        $user_id = 31; //TODO: get authenticated user
+        $user = User::find($user_id);
+        $managers = $user->getManagersInfo()->all();
         $clean_managers = array_map(function($manager) {
             $data = ['name' => $manager->username, 'date' => $manager->date];
             $data['photo'] = 'img/' . $manager->img_name;

@@ -66,11 +66,13 @@ class User extends Authenticatable
         return $this->hasMany('App\Wishlist','id_user');
     }
 
-    public static function getManagersInfo()
+    public function getManagersInfo()
     {
         $managers = DB::table('user')
                         ->select('user.username','user.date','image.img_name')
                         ->join('image','image.id', '=','user.id_image')
+                        ->where('user_role','=','Manager')
+                        ->where('user.id','<>',$this->id)
                         ->get();
 
         return $managers;
