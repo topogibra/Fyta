@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use App\Image;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class RegisterController extends Controller
 {
@@ -27,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/cards';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -48,9 +51,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'username' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:user',
+            'password' => 'required|string|min:6',
+            'birthday' => 'required|date',
+            "address" => 'required|string|max:255'
         ]);
     }
 
@@ -62,10 +67,28 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+
+        $user = new User;
+        $user->username = $data['username'];
+        $user->email= $data['email'];
+        $user->password_hash= bcrypt($data['password']);
+        $user->address= $data['address'];
+        $user->date= $data['birthday'];
+        $user->user_role= 'Customer';
+
+        $file = Input::file('img');
+        if ($file != null){
+            $path = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move('img/', $path);
+
+            $img = new Image;
+            $img->img_name = $path;
+            $img->description = $user->username;
+            $img->save();
+            $user->id_image = $img->id;
+        }
+
+        $user->save();
+        return $user;
     }
 }

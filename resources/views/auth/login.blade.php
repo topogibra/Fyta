@@ -3,7 +3,8 @@
 
 @section('content')
 <div class="container">
-  <form>
+  <form method="POST" action="\login">
+    @csrf
     <div class="form ">
       <div class="row ">
         <div class="col">
@@ -12,21 +13,19 @@
       </div>
       <div class="form-group row">
         <div class="col">
-          <label for="loginEmail">Email or Username</label>
-          <input type="text" name="loginEmail" id="loginEmail" class="form-control" placeholder="" aria-describedby="loginRegisterHelp">
+          <label for="email">Email</label>
+          <input type="text" name="email" id="email" class="form-control" placeholder="" aria-describedby="loginRegisterHelp">
         </div>
       </div>
       <div class="form-group row">
         <div class="col">
-          <label for="loginPassword ">Password</label>
-          <input type="password" name="loginPassword" id="loginPassword" class="form-control" placeholder="" aria-describedby="loginRegisterHelp">
+          <label for="password ">Password</label>
+          <input type="password" name="password" id="password" class="form-control" placeholder="" aria-describedby="loginRegisterHelp">
         </div>
       </div>
       <div class="row ">
         <div class="col button">
-          <a class="btn rounded-0 btn-lg shadow-none" id="start" href="/profile">
-            Start Session
-          </a>
+          <input type="submit" class="btn rounded-0 btn-lg shadow-none" id="start" value="Start Session">
         </div>
       </div>
       <div class="row register-info justify-content-center">
@@ -38,4 +37,13 @@
     </div>
   </form>
 </div>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 @endsection
