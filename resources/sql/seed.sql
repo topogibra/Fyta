@@ -46,7 +46,7 @@ CREATE TABLE "user" (
   password_hash TEXT NOT NULL,
   "date" DATE NOT NULL,
   address TEXT,
-  id_image INTEGER NOT NULL,
+  id_image INTEGER,
   user_role "user_role" NOT NULL,
   CONSTRAINT user_pk PRIMARY KEY (id),
   CONSTRAINT user_username_uk UNIQUE (username),

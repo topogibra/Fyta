@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password',
+        'username', 'email', 'password_hash', 'address', 'date', 'user_role', 'picture'
     ];
 
     /**
@@ -38,7 +38,6 @@ class User extends Authenticatable
         return $this->hasOne('App\Image', 'id','id_image');
     }
 
-
     public function shoppingCart()
     {
         return $this->belongsToMany('App\Product', 'shopping_cart')->withPivot('quantity');
@@ -54,6 +53,16 @@ class User extends Authenticatable
     public function ticketMessage()
     {
         return $this->hasMany('App\TicketMessage', 'id_user');
+    }
+
+    /**
+     * Get the password for the user.
+     *
+     * @return string
+     */
+    public function getAuthPassword()
+    {
+        return $this->password_hash;
     }
 
     public function orders()
