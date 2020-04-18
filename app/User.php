@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -13,6 +15,10 @@ class User extends Authenticatable
     public $timestamps  = false;
 
     protected $table = 'user';
+    static $CUSTOMER = 'Customer';
+    static $MANAGER = 'Manager';
+    static $GUEST = 'Guest';
+
 
     /**
      * The attributes that are mass assignable.
@@ -34,7 +40,7 @@ class User extends Authenticatable
 
     public function image()
     {
-        return $this->hasOne('App\Image', 'id_image');
+        return $this->hasOne('App\Image', 'id','id_image');
     }
 
     public function shoppingCart()
@@ -62,5 +68,52 @@ class User extends Authenticatable
     public function getAuthPassword()
     {
         return $this->password_hash;
+    }
+
+    public function orders()
+    {
+        return $this->hasMany('App\Order','id_user');
+    }
+
+    public function wishlists()
+    {
+        return $this->hasMany('App\Wishlist','id_user');
+    }
+
+    public function getManagersInfo()
+    {
+        $managers = DB::table('user')
+                        ->select('user.username','user.date','image.img_name')
+                        ->join('image','image.id', '=','user.id_image')
+                        ->where('user_role','=','Manager')
+                        ->where('user.id','<>',$this->id)
+                        ->get();
+
+        return $managers;
+       
+    }
+
+    public static function validateCustomer()
+    {
+        $role = self::checkUser();
+        if($role == self::$GUEST) {
+            return 401;
+        }
+        else if($role == self::$MANAGER)
+            return 403;
+        
+        return null;
+    }
+
+    public static function checkUser()
+    {
+        if(!Auth::check())
+            return self::$GUEST;
+
+        $user = Auth::user();
+        if($user->user_role != 'Customer')
+            return self::$MANAGER;
+        else
+            return self::$CUSTOMER;
     }
 }

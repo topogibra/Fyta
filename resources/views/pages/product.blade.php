@@ -13,7 +13,7 @@
                         {{$name}}
                     </h3>
                     <span class="col-xs-1-12  review">
-                        <h6>$score</h6>
+                        <h6>{{ $score }}</h6>
                         <i class="far fa-star"></i>
                     </span>
                     <span class="col-5  view-reviews">
@@ -22,7 +22,7 @@
 
                 </div>
                 <div class="row price">
-                    {{$price}}
+                    {{$price}}€
                 </div>
                 <div id="description" class="row">
                     <p>

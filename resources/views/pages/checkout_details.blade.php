@@ -2,5 +2,5 @@
 
 @section('content')
     @include('components.checkout_progress', ['number' => 3])
-    @include('components.order_details',  ['order_number' => $order_number, 'date' => $date, 'name' => $name, 'address' => $address, 'location' => $location, 'sum' => $sum, 'delivery'=> $delivery ,'items' => $items, 'buttons' => True])
+    @include('components.order_details',  ['order_number' => $information->shipping_id, 'date' => $information->date, 'name' => $information->name, 'address' => $information->address, 'location' => $information->location, 'sum' => $sum, 'delivery'=> $delivery ,'items' => $items, 'buttons' => True])
 @endsection

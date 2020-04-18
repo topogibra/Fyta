@@ -1,6 +1,9 @@
 import buildSections from './sections.js';
 import buildPersonalInfo from './personal_info.js';
 import { buildPersonalInfoForm } from './personal_info.js';
+import { fetchData } from './request.js'
+import { buildErrorMessage } from './http_error.js';
+
 
 
 function createProductColumn(info, attribute) {
@@ -11,8 +14,8 @@ function createProductColumn(info, attribute) {
 }
 
 const stateStatus = {
-    'Ready for Shipping' : 'Confirm  Shipping',
-    'Awaiting Payment' : 'Awaiting Payment'
+    'Ready for Shipping': 'Confirm  Shipping',
+    'Awaiting Payment': 'Awaiting Payment'
 }
 
 function buildStocks(products) {
@@ -35,7 +38,7 @@ function buildStocks(products) {
         row.className = "row table-entry";
         const name = createProductColumn(product.name, 'name');
         const href = document.createElement('a');
-        href.href = '/product';
+        href.href = '/product/' + product.id;
         href.appendChild(name);
         href.className = "col-md-3 col-6 name";
         row.appendChild(href);
@@ -125,7 +128,7 @@ function buildStocks(products) {
     return container;
 }
 
-function buidlPendingOrders(orders) {
+function buildPendingOrders(orders) {
     const container = document.createElement('div');
     container.className = "container";
     const header = document.createElement('div');
@@ -146,7 +149,7 @@ function buidlPendingOrders(orders) {
         const number = createProductColumn(order.number, 'order');
         const href = document.createElement('a');
         href.className = "col-md-3 col-6 name";
-        href.href = '/invoice';
+        href.href = '/order/' + order.id;
         href.appendChild(number);
         row.appendChild(href);
         row.appendChild(createProductColumn(order.date, 'date'));
@@ -272,151 +275,49 @@ function buildManagers(managers) {
     return container;
 }
 
-const mockProducts = [{
-        name: 'Rose Orchid',
-        price: '20€',
-        stock: '43'
-    },
-    {
-        name: 'XPR Vase',
-        price: '15€',
-        stock: '37'
-    },
-    {
-        name: 'Bonsai CRT',
-        price: '35€',
-        stock: '12'
-    },
-    {
-        name: 'Orange Tulips',
-        price: '10€',
-        stock: '134'
-    },
-    {
-        name: '"Meat" Rose',
-        price: '30€',
-        stock: '15'
-    },
-    {
-        name: 'Red Dahlias',
-        price: '13.99€',
-        stock: '29'
-    },
-    {
-        name: 'Sativa Prime',
-        price: '4.20€',
-        stock: '15'
-    },
-    {
-        name: 'Green Palm Tree',
-        price: '80€',
-        stock: '4'
-    },
-    {
-        name: 'Lavender Premium',
-        price: '25€',
-        stock: '48'
-    },
-    {
-        name: 'Pond White Lilies',
-        price: '40€',
-        stock: '126'
-    },
-    {
-        name: 'Sunny\'s Sunflowers',
-        price: '30€',
-        stock: '37'
-    },
-    {
-        name: 'Baby Blue Vase',
-        price: '10€',
-        stock: '798'
-    },
-    {
-        name: 'Ceramic Pot',
-        price: '30€',
-        stock: '37'
-    },
-    {
-        name: 'Supreme Bonsai Pot',
-        price: '40€',
-        stock: '3'
-    },
-    {
-        name: 'High-tech mower',
-        price: '69.99€',
-        stock: '30'
-    },
-    {
-        name: 'Blue Garden Gloves',
-        price: '9€',
-        stock: '547'
-    },
-    {
-        name: 'Electric Grass Cutter',
-        price: '27€',
-        stock: '12'
-    },
-    {
-        name: 'Green Watercan 12L',
-        price: '5€',
-        stock: '228'
-    },
-];
-
-const mockOrders = [{
-        number: "125885",
-        date: "Feb 24 2020",
-        status: "Ready for Shipping"
-    },
-    {
-        number: "125877",
-        date: "Dec 24 2019",
-        status: "Awaiting Payment"
-    },
-]
-
-const mockManagers = [{
-        name: "Sisay Jeremiah",
-        photo: "img/sisay_jeremiah_small.jpg",
-        date: "Nov 24 2019"
-    },
-    {
-        name: "Dannie Almir",
-        photo: "img/dannie_almir.jpg",
-        date: "Mar 8 2020"
-    },
-    {
-        name: "Suzana Constância",
-        photo: "img/suzana_constancia.jpg",
-        date: "Jan 1 2020"
-    },
-    {
-        name: "Mohammad Faruque",
-        photo: "img/mohammad-faruque-AgYOuy8kA7M-unsplash.jpg",
-        date: "Aug 17 2016"
-    },
-]
-
 const managerProfileSections = [{
         name: "Manager Information",
-        action: () => buildPersonalInfo({
-            username: "simone.biles",
-            email: "simone.biles.the.goat@gmail.com",
-            photo: "img/simone.jpeg"
-        })
+        action: async() => {
+            try {
+                const data = await fetchData('manager/get');
+                return buildPersonalInfo(data);
+            } catch (e) {
+                return buildErrorMessage(e.status, e.message)
+            }
+        }
     },
     {
         name: "Stocks",
-        action: () => buildStocks(mockProducts)
+        action: async() => {
+            try {
+                const data = await fetchData('manager/stocks');
+                return buildStocks(data);
+            } catch (e) {
+                return buildErrorMessage(e.status, e.message)
+            }
+        }
     },
     {
         name: "Pending Orders",
-        action: () => buidlPendingOrders(mockOrders)
+        action: async() => {
+            try {
+                const data = await fetchData('manager/pending-orders');
+                return buildPendingOrders(data);
+            } catch (e) {
+                return buildErrorMessage(e.status, e.message)
+            }
+        }
     },
     {
         name: "Managers",
-        action: () => buildManagers(mockManagers)
+        action: async() => {
+            try {
+                const data = await fetchData('manager/managers');
+                return buildManagers(data);
+            } catch (e) {
+                return buildErrorMessage(e.status, e.message)
+            }
+        }
     }
 ];
 

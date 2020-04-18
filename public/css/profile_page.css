@@ -63,11 +63,13 @@ a.btn {
 .row.header {
     background-color: var(--light-gray);
     color: var(--dark-gray);
+    justify-content: space-between;
 }
 
 .table-entry {
     border-bottom: 1px solid var(--light-gray);
     padding: 0.5em 0;
+    align-items: center;
 }
 
 input.stock {
@@ -113,6 +115,7 @@ input {
 }
 
 #managers img {
+    border-radius: 50px;
     width: 3.5em;
     height: 3.5em;
     margin-left: 0.3em;
@@ -130,7 +133,6 @@ input {
 
 .img-wrapper {
     width: 100%;
-    height: 100%;
 }
 
 .img-wrapper>img {
@@ -161,7 +163,13 @@ input {
 }
 
 .profile .col-md-9>.container {
-    padding: 5% 10%;
+    padding: 5% 5%;
+}
+
+/*Error box only*/
+
+.profile .col-md-9>.container>.alert {
+    height: max-content;
 }
 
 #products-button {

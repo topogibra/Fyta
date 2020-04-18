@@ -8,6 +8,8 @@ class Discount extends Model
 {
     public $timestamps  = false;
     
+    protected $table = 'discount';
+
     public function products()
     {
         return $this->belongsToMany('App\Product', 'apply_discount');
