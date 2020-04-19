@@ -325,6 +325,14 @@ a:hover {
     border-color: var(--white) !important;
 }
 
+.btn-danger,
+.btn-danger:focus,
+.btn-danger:active {
+    background-color: var(--red) !important;
+    color: var(--white) !important;
+    border-color: var(--white) !important;
+}
+
 #errors{
     background-color: var(--lighter-gray);
     color: #de7171;
