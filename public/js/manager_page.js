@@ -212,7 +212,7 @@ function buildPendingOrders(orders) {
         const icon = document.createElement('i');
         icon.className = "fas fa-trash";
         const modal = buildModal('Are you sure you want to update the order\'s status?', buildConfirmation(async () => {
-            const order_status = order.status === "Awaiting_Payment" ? 'Ready_for_Shipping' : 'Processed';
+            const order_status = order.status === "Awaiting Payment" ? 'Ready_for_Shipping' : 'Processed';
             const result = await request({
                 url: '/order/update',
                 method: 'POST',
@@ -226,8 +226,11 @@ function buildPendingOrders(orders) {
             
             if (order_status === "Processed")
                 row.remove();
-            status.textContent = order_status.split('_').join(' ');
-            button.textContent = stateStatus[status.textContent];
+            else {
+                status.textContent = order_status.split('_').join(' ');
+                order.status = status.textContent; 
+                button.textContent = stateStatus[status.textContent];
+            }
             return result;
         }), deleteId)
         container.appendChild(modal);

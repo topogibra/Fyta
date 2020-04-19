@@ -37,7 +37,9 @@ class Order extends Model
         $address_size = count($address);
         $address1 = array_splice($address, 0, $address_size - 2);
         $information->address = implode(" ", $address1);
-        $information->location = ($address_size - 2) < 0 ? "" : $address[$address_size - 2] . " " . $address[$address_size - 1];
+        $information->location = (count($address) - 2) < 0 ? "" : $address[count($address) - 2] . " " . $address[count($address) - 1];
+
+
 
         return $information;
     }
@@ -55,12 +57,11 @@ class Order extends Model
 
     public static function getStatusOrders()
     {
-        $status = DB::table('order_history')
-            ->select('order_history.order_status', 'order.shipping_id', 'order.order_date', 'order.id as order_id')
-            ->join('order', 'order.id', '=', 'order_history.id_order')
-            ->where('order_history.order_status', '!=', 'Processed')
-            ->get();
-
+        $status = DB::select('select "order"."shipping_id", "order"."order_date", "order"."id" as "order_id", 
+	                                (select order_status from order_history where order_history.id = "order".id order by date DESC) as "order_status"
+                                from "order" where 
+                                (select count(*) from order_history where order_history.id = "order".id and order_status = \'Processed\' ) = 0
+                ');
         return $status;
     }
 }

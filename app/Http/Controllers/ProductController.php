@@ -83,14 +83,13 @@ class ProductController extends Controller
 
 
         DB::commit();
-        $request()->session()->delete('items');
         return redirect('/product/' . $product->id);
     }
 
     public function buyNow($id)
     {
         if(User::validateCustomer())
-            return redirect()->back();
+            return redirect('/login');
         request()->session()->put('items', [$id => 1]);
         return redirect('checkout-details');
     }

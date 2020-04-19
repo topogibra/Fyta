@@ -53,6 +53,7 @@ class CheckoutController extends Controller{
         $history->save();
 
         DB::commit();
+        $request()->session()->delete('items');
         return redirect('/order-summary/'.$order->id);
     }
 
