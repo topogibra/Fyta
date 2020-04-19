@@ -70,10 +70,11 @@ class ProfileController extends Controller{
         else if($role == User::$CUSTOMER)
             return response()->json(['message' => 'You do not have access to this section'], 403);
         
-        $allstatus = Order::getStatusOrders()->all();
+        $allstatus = Order::getStatusOrders();
         $clean_status = array_map(function($status) {
             $data = ['number' => $status->shipping_id, 'date' => $status->order_date, 'id' => $status->order_id ];
             $order_status = $status->order_status;
+            $order_status  = preg_replace("(_)"," ",$order_status);
             $data['status'] = $order_status;
             $order_status;
             return $data;
@@ -85,7 +86,7 @@ class ProfileController extends Controller{
     public function managers() {
         $role = User::checkUser();
         if($role == User::$GUEST) {
-          return response()->json(['message' => 'You must login to access the pending orders'], 401);
+          return response()->json(['message' => 'You must login to access the managers'], 401);
         }
         else if($role == User::$CUSTOMER)
           return response()->json(['message' => 'You do not have access to this section'], 403);
