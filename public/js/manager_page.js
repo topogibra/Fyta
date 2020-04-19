@@ -2,6 +2,7 @@ import buildSections from './sections.js';
 import buildPersonalInfo from './personal_info.js';
 import { buildPersonalInfoForm } from './personal_info.js';
 import { fetchData } from './request.js'
+import request from './request.js';
 import { buildErrorMessage } from './http_error.js';
 
 
@@ -11,6 +12,33 @@ function createProductColumn(info, attribute) {
     column.classList.add(...['col-md-3', 'col-6', attribute]);
     column.textContent = info;
     return column;
+}
+
+function buildConfirmation(action) {
+    const container = document.createElement('div');
+    container.className = "row justify-content-around";
+    const accept = document.createElement('a');
+    accept.href = '#'
+    accept.className = "col-4 btn-primary"
+    accept.textContent = "Yes"
+    const reject = document.createElement('a');
+    reject.href = '#'
+    reject.className = "col-4 btn-danger"
+    reject.textContent = "No"
+    container.appendChild(accept);
+    container.appendChild(reject);
+    reject.setAttribute('role', 'button');
+    reject.setAttribute('data-dismiss', 'modal');
+    reject.setAttribute('aria-label', 'Close');
+    accept.addEventListener('mousedown', async () => {
+        try {
+            await action();
+            reject.click();
+        } catch (error) {
+            container.appendChild(buildErrorMessage(error.status, error.message));
+        }
+    });
+    return container;
 }
 
 const stateStatus = {
@@ -35,6 +63,7 @@ function buildStocks(products) {
 
     products.forEach(product => {
         const row = document.createElement('div');
+        row.id = `product-${product.id}`
         row.className = "row table-entry";
         const name = createProductColumn(product.name, 'name');
         const href = document.createElement('a');
@@ -52,11 +81,17 @@ function buildStocks(products) {
         col.setAttribute('data-target', `#${deleteId}`);
         const icon = document.createElement('i');
         icon.className = "fas fa-trash";
-        const modal = buildModal('Delete Product', () => {
-            const container = document.createElement('div');
-            container.className = "row";
-            return container;
-        }, deleteId)
+        const modal = buildModal('Are you sure you want to delete?', buildConfirmation(async () => {
+            const result = await request({
+                url: `/product/${product.id}`,
+                method: 'DELETE',
+                content: {}
+            });
+            if (result.status != 200)
+                throw { status: result.status, message: 'Failed to delete, please try again later.' }
+            row.remove();
+            return result;
+        }), deleteId)
         container.appendChild(modal);
         col.appendChild(icon);
         row.appendChild(col);
@@ -167,8 +202,26 @@ function buildPendingOrders(orders) {
         row.appendChild(createProductColumn(order.status, 'status'));
         const col = createProductColumn('', 'confirm');
         const button = document.createElement('a');
+        button.setAttribute('role', 'button');
         button.className = "btn btn-primary confirm-order";
         button.textContent = stateStatus[order.status];
+        col.setAttribute('data-toggle', 'modal');
+        const deleteId = `delete-${order.id}`
+        col.setAttribute('data-target', `#${deleteId}`);
+        const icon = document.createElement('i');
+        icon.className = "fas fa-trash";
+        const modal = buildModal('Are you sure you want to update the order\'s status?', buildConfirmation(async () => {
+            const result = await request({
+                url: `/order/${order.id}`,
+                method: 'PUT',
+                content: {}
+            });
+            if (result.status != 200)
+                throw { status: result.status, message: 'Failed to update, please try again later.' }
+            row.remove();
+            return result;
+        }), deleteId)
+        container.appendChild(modal);
         col.appendChild(button);
         row.appendChild(col);
         container.appendChild(row);
@@ -177,7 +230,7 @@ function buildPendingOrders(orders) {
     return container;
 }
 
-function buildModal(pageName ,modalContent, modalId){
+function buildModal(pageName, modalContent, modalId) {
     const modal = document.createElement('div');
     modal.id = modalId;
     modal.style.display = "none";
@@ -291,49 +344,49 @@ function buildManagers(managers) {
 }
 
 const managerProfileSections = [{
-        name: "Manager Information",
-        action: async() => {
-            try {
-                const data = await fetchData('manager/get');
-                return buildPersonalInfo(data);
-            } catch (e) {
-                return buildErrorMessage(e.status, e.message)
-            }
-        }
-    },
-    {
-        name: "Stocks",
-        action: async() => {
-            try {
-                const data = await fetchData('manager/stocks');
-                return buildStocks(data);
-            } catch (e) {
-                return buildErrorMessage(e.status, e.message)
-            }
-        }
-    },
-    {
-        name: "Pending Orders",
-        action: async() => {
-            try {
-                const data = await fetchData('manager/pending-orders');
-                return buildPendingOrders(data);
-            } catch (e) {
-                return buildErrorMessage(e.status, e.message)
-            }
-        }
-    },
-    {
-        name: "Managers",
-        action: async() => {
-            const data = await fetchData('manager/managers');
-            return buildManagers(data);
-            try {
-            } catch (e) {
-                return buildErrorMessage(e.status, e.message)
-            }
+    name: "Manager Information",
+    action: async () => {
+        try {
+            const data = await fetchData('manager/get');
+            return buildPersonalInfo(data);
+        } catch (e) {
+            return buildErrorMessage(e.status, e.message)
         }
     }
+},
+{
+    name: "Stocks",
+    action: async () => {
+        try {
+            const data = await fetchData('manager/stocks');
+            return buildStocks(data);
+        } catch (e) {
+            return buildErrorMessage(e.status, e.message)
+        }
+    }
+},
+{
+    name: "Pending Orders",
+    action: async () => {
+        const data = await fetchData('manager/pending-orders');
+        return buildPendingOrders(data);
+        try {
+        } catch (e) {
+            return buildErrorMessage(e.status, e.message)
+        }
+    }
+},
+{
+    name: "Managers",
+    action: async () => {
+        try {
+            const data = await fetchData('manager/managers');
+            return buildManagers(data);
+        } catch (e) {
+            return buildErrorMessage(e.status, e.message)
+        }
+    }
+}
 ];
 
 

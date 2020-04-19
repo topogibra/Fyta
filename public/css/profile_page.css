@@ -172,6 +172,12 @@ input {
     height: max-content;
 }
 
+.delete {
+    border: 0;
+    padding: 0;
+    background-color: var(--white);
+}
+
 #products-button {
     margin-top: 1em;
     font-size: 1em;

@@ -64,7 +64,7 @@ CREATE TABLE "order" (
   id_user INTEGER NOT NULL,
   CONSTRAINT order_pk PRIMARY KEY (id),
   CONSTRAINT order_order_id_uk UNIQUE (shipping_id),
-  CONSTRAINT order_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE
+  CONSTRAINT order_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE SET NULL
 );
 DROP TABLE IF EXISTS product_order CASCADE;
 CREATE TABLE product_order (
