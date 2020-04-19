@@ -111,6 +111,7 @@ class ProductController extends Controller
         if(User::validateCustomer())
             return redirect('/login');
         request()->session()->put('items', [$id => 1]);
+        request()->session()->put('buynow', true);
         return redirect('checkout-details');
     }
 
