@@ -31,6 +31,7 @@ Route::get('search', 'SearchController@render');
 Route::get('product/add', 'ProductController@add');
 Route::get('product/buy/{id}', 'ProductController@buyNow');
 Route::post('product', 'ProductController@create');
+Route::post('cart/{id}', 'ProductController@addShoppingCart');
 Route::get('product/{id}', 'ProductController@render');
 Route::get('profile/get','ProfileController@profile');
 Route::get('profile/orders','ProfileController@orders');

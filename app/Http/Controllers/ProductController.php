@@ -86,6 +86,29 @@ class ProductController extends Controller
         return redirect('/product/' . $product->id);
     }
 
+    public function addShoppingCart(Request $request ,$id)
+    {
+        $role = User::checkUser();
+        if ($role == User::$GUEST)
+            return abort(401);
+
+        if ($role == User::$CUSTOMER)
+            return abort(403);
+
+        $request->validate([
+            'customer_id' => ['required'], 'product_id' => ['required'],
+            'quantity' => ['required', 'numeric', 'min:1']
+        ]);
+
+        $customer_id = $request->get('customer_id');
+        $product_id = $request->get('product_id');
+        $quantity = $request->get('qunatity');
+
+        DB::insert('insert into shopping-cart (id_user,id_product,quantity) values (?, ?,?)',[ $customer_id,$product_id, $quantity]);
+
+        return redirect('/product/' . $product_id);
+    }
+
     public function buyNow($id)
     {
         if(User::validateCustomer())
