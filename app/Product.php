@@ -86,6 +86,28 @@ class Product extends Model
 
     }
 
+    public static function getShoppingCartIds($user_id)
+    {
+        $products = DB::table('shopping_cart')
+                        ->select('quantity as qty','id_product as id')
+                        ->where('id_user','=',$user_id)
+                        ->get();
+    
+        return $products;
+
+    }
+
+    public static function deleteShoppingCartIds($user_id)
+    {
+        $products = DB::table('shopping_cart')
+                        ->select('quantity as qty','id_product as id')
+                        ->where('id_user','=',$user_id)
+                        ->delete();
+    
+        return $products;
+
+    }
+
     public static function getOrderProducts($id_order)
     {
         $products = DB::table('product_order')

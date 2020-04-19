@@ -7,7 +7,7 @@ use App\Product;
 use App\Tag;
 use App\Review;
 use App\User;
-use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -88,25 +88,22 @@ class ProductController extends Controller
 
     public function addShoppingCart(Request $request ,$id)
     {
+        echo 'bananas';
         $role = User::checkUser();
         if ($role == User::$GUEST)
             return abort(401);
 
-        if ($role == User::$CUSTOMER)
+        if ($role == User::$MANAGER)
             return abort(403);
 
-        $request->validate([
-            'customer_id' => ['required'], 'product_id' => ['required'],
-            'quantity' => ['required', 'numeric', 'min:1']
-        ]);
+        $user =  Auth::id();
+        $quantity = $request->get('quantity');
 
-        $customer_id = $request->get('customer_id');
-        $product_id = $request->get('product_id');
-        $quantity = $request->get('qunatity');
+        echo $user;
 
-        DB::insert('insert into shopping-cart (id_user,id_product,quantity) values (?, ?,?)',[ $customer_id,$product_id, $quantity]);
+        DB::insert('insert into shopping_cart(id_user,id_product,quantity) values (?, ?,?)', [$user, $id, $quantity]);
 
-        return redirect('/product/' . $product_id);
+        return redirect('/product/' . $id);
     }
 
     public function buyNow($id)
@@ -132,4 +129,16 @@ class ProductController extends Controller
     }
 
     
+    public function buy()
+    {
+        $user = Auth::id();
+        $cart = Product::getShoppingCartIds($user);
+
+        foreach($cart as $value){
+            $array_items[$value->id] = $value->qty;
+        }
+      
+        request()->session()->put('items', $array_items);
+        return redirect('checkout-details');
+    }
 }
