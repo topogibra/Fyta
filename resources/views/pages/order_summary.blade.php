@@ -4,31 +4,38 @@
     @include('components.checkout_progress', ['number' => 1])
     <div class="form">
             <h3>Order Details</h3>
-        <form>
+        <form action="/checkout-details" method="POST">
+            @csrf
+
             <div class="form-group">
-                <input type="text" class="form-control" id="checkoutemail" value={{$email}} placeholder="Email">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" id="checkoutname" placeholder="Full Name">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" id="deliveryaddress" value={!! $address !!} placeholder="Delivery Address">
+                <input type="text" class="form-control" id="deliveryaddress"  name="delivery" value={!! $address !!} placeholder="Delivery Address">
             </div>
             <h6>Billing Address </h6>
 
             <div class="checkbox">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" name="addresses" id="checkout" value="same">
-                    <label class="form-check-label" for="sameradio">Different Billing Address </label>
+                    <label class="form-check-label"  for="sameradio">Same Billing Address </label>
                 </div>
             </div>
 
 
             <div class="form-group">
-                <input type="text" class="form-control" id="billingaddress" placeholder="Billing Address">
+                <input type="text" class="form-control" id="billingaddress" name="billing" placeholder="Billing Address">
             </div>
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <div class="d-flex flex-row-reverse">
-                <a href="/payment-details" type="button" id="next-btn" class="btn rounded-0 btn-lg shadow-none">Next</a>
+                <button type="submit" id="next-btn" class="btn rounded-0 btn-lg shadow-none">Next</button>
             </div>
         </form>
     </div

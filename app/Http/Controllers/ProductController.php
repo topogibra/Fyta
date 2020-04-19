@@ -8,6 +8,7 @@ use App\Tag;
 use App\Review;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
 class ProductController extends Controller
@@ -21,7 +22,7 @@ class ProductController extends Controller
         $feedback = Review::getByProductID($id);
         $reviews = $feedback == null ? [] : $feedback->reviews;
         $score = $feedback == null ? 0 : $feedback->score;
-        return view('pages.product', [
+        return view('pages.product', ['id'=>$id,
             'img' => $product->img, 'description' =>  $product->description,
             'price' => $product->price, 'score' => $score, 'name' => $product->name,
             'related' => [['id' => 1, 'img' => 'img/supreme_vase.jpg', 'name' => 'Supreme Bonsai Pot', 'price' => '40€'], ['id' => 1, 'img' => 'img/gloves_tool.jpg', 'name' => 'Blue Garden Gloves', 'price' => '9€'], ['id' => 1, 'img' => 'img/pondlilies_outdoor.jpg', 'name' => 'Pond White Lilies', 'price' => '40€']],
@@ -51,6 +52,8 @@ class ProductController extends Controller
             'tags' => ['required', 'string']
         ]);
 
+
+        DB::beginTransaction();
         $product = new Product;
         $product->stock = $request->input('stock');
         $product->price = $request->input('price');
@@ -83,12 +86,15 @@ class ProductController extends Controller
             $product->tags()->attach($db_tag->id);
         }
 
+
+        DB::commit();
+        $request()->session()->delete('items');
         return redirect('/product/' . $product->id);
     }
 
-    public function buyNow(Request $request)
+    public function buyNow($id)
     {
-        $request->session()->put('items', [1]); //TODO: Add the actual id of the product
+        request()->session()->put('items', [$id => 1]);
         return redirect('checkout-details');
     }
 }

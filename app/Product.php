@@ -12,7 +12,7 @@ class Product extends Model
 
     public function orders()
     {
-        return $this->belongsToMany('App\Order', 'product_order','id_product','id_order')->withPivot('quantity');
+        return $this->belongsToMany('App\Order', 'product_order', 'id_product', 'id_order')->withPivot('quantity');
     }
 
     public function wishlists()

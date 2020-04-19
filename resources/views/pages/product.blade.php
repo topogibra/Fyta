@@ -20,7 +20,7 @@
 
 @section('price')
 <div class="row price">
-    {{$price}}
+    {{$price}}€
 </div>
 @endsection
 
@@ -48,7 +48,7 @@
             <a name="" id="addbasket" class="btn btn-success pr-3 " href="/cart" role="button">
                 Add To Basket
             </a>
-            <a name="" id="buynow" class="btn btn-light pr-3 " href="/checkout-details" role="button">
+            <a name="" id="buynow" class="btn btn-light pr-3 " href={{"buy/$id"}} role="button">
                 Buy now
             </a>
         </div>

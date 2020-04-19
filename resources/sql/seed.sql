@@ -56,7 +56,7 @@ CREATE TABLE "user" (
 DROP TABLE IF EXISTS "order" CASCADE;
 CREATE TABLE "order" (
   id SERIAL,
-  shipping_id INTEGER NOT NULL,
+  shipping_id TEXT NOT NULL,
   billing_address TEXT,
   delivery_address TEXT NOT NULL,
   order_date DATE DEFAULT now() NOT NULL,
