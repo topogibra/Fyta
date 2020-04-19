@@ -88,18 +88,18 @@ class ProductController extends Controller
 
     public function addShoppingCart(Request $request ,$id)
     {
-        echo 'bananas';
+        echo 'banas';
         $role = User::checkUser();
         if ($role == User::$GUEST)
-            return abort(401);
+        {
+            return response('Need to login', 401);
+        }
 
         if ($role == User::$MANAGER)
-            return abort(403);
+            return response('Manager', 403);
 
         $user =  Auth::id();
         $quantity = $request->get('quantity');
-
-        echo $user;
 
         DB::insert('insert into shopping_cart(id_user,id_product,quantity) values (?, ?,?)', [$user, $id, $quantity]);
 

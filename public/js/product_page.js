@@ -17,8 +17,13 @@ addShoppingCart.addEventListener('click', () => load(event));
 async function load(event) {
     value = parseInt(qtity.innerText);
     event.preventDefault();
-    await postData(addShoppingCart.href, value);
-    $("#myToast").toast({ delay: 3000 });
-    $("#myToast").toast('show');
+    let response = await postData(addShoppingCart.href, value);
+
+    if (response.status == 401)
+        window.location.replace('/login');
+    else {
+        $("#myToast").toast({ delay: 3000 });
+        $("#myToast").toast('show');
+    }
     return false;
 }
