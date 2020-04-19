@@ -40,13 +40,6 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
-        $role = User::checkUser();
-        if ($role == User::$GUEST)
-            return abort(401);
-
-        if ($role == User::$CUSTOMER)
-            return abort(403);
-
         $request->validate([
             'img' => ['required'], 'name' => ['required'],
             'price' => ['required', 'numeric', 'min:1'], 'description' => ['required'], 'stock' => ['required', 'numeric', 'min:1'],
@@ -56,6 +49,7 @@ class ProductController extends Controller
 
         DB::beginTransaction();
         $product = new Product;
+        $this->authorize('create', $product);
         $product->stock = $request->input('stock');
         $product->price = $request->input('price');
         $product->name = $request->input('name');
@@ -95,21 +89,20 @@ class ProductController extends Controller
 
     public function buyNow($id)
     {
+        if(User::validateCustomer())
+            return redirect()->back();
         request()->session()->put('items', [$id => 1]);
         return redirect('checkout-details');
     }
 
     public function delete($id)
     {
-        $role = User::checkUser();
-        if($role != User::$MANAGER) {
-            return response()->json(['message' => 'You do not have access to this operation.'], 403);
-        }
-
         $product = Product::find($id);
         if(!$product) {
             return response()->json(['message' => 'The product does not exist.'], 404);
         }
+
+        $this->authorize('delete', $product);
 
         $product->delete();
 

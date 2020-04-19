@@ -86,7 +86,7 @@ class ProfileController extends Controller{
     public function managers() {
         $role = User::checkUser();
         if($role == User::$GUEST) {
-          return response()->json(['message' => 'You must login to access the pending orders'], 401);
+          return response()->json(['message' => 'You must login to access the managers'], 401);
         }
         else if($role == User::$CUSTOMER)
           return response()->json(['message' => 'You do not have access to this section'], 403);

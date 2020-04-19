@@ -15,21 +15,7 @@ class OrderController extends Controller{
     
     public function invoice($id)
     {
-        $role = User::checkUser();
-        if($role == User::$GUEST) {
-            abort(401);
-        }
-
-        $order = Order::find($id);
-        if(!$order) {
-            abort(400);
-        }
-
-        $user_id = Auth::id();
-        if($order->id_user != $user_id && $role == User::$CUSTOMER) {
-            abort(403);
-        }
-        
+        $this->authorize('show', Order::find($id));
         $products = Product::getOrderProducts($id);
         $information = Order::getOrderInformation($id);
         $status = Order::getOrderStatus($id);
@@ -45,19 +31,7 @@ class OrderController extends Controller{
 
     public function order($id)
     {
-        if(!Auth::check()) {
-            abort(401);
-        }
-
-        $order = Order::find($id);
-        if(!$order) {
-            abort(400);
-        }
-        $user = Auth::user();
-        if($user->user_role != "Manager") {
-            abort(403);
-        }
-
+        $this->authorize('show', Order::find($id));
         $products = Product::getOrderProducts($id);
         $information = Order::getOrderInformation($id);
         $status = Order::getOrderStatus($id);
@@ -73,21 +47,18 @@ class OrderController extends Controller{
 
     public function update(Request $request) 
     {
-        $role = User::checkUser();
-        if($role != User::$MANAGER) {
-            return response()->json(['message' => 'You do not have access to this operation.'], 403);
-        }
-
         $request->validate([
             'order_id' => ['required','numeric'],
             'order_status' => ['required', 'string'],
         ]);
         
         $order = Order::find($request->input('order_id'));
+        
         if(!$order) {
             return response()->json(['message' => 'The order does not exist.'], 404);
         }
-        
+
+        $this->authorize('update', $order);        
         $status = $request->input('order_status');
         switch($status) {
             case 'Awaiting_Payment':
