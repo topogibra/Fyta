@@ -29,6 +29,7 @@ Route::get('profile/order/{id}/invoice', 'InvoiceController@invoice');
 Route::get('order/{id}', 'InvoiceController@order');
 Route::get('search', 'SearchController@render');
 Route::get('product/add', 'ProductController@add');
+Route::get('product/id', 'ProductController@delete');
 Route::get('product/buy/{id}', 'ProductController@buyNow');
 Route::post('product', 'ProductController@create');
 Route::get('product/{id}', 'ProductController@render');

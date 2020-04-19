@@ -74,6 +74,7 @@ class ProfileController extends Controller{
         $clean_status = array_map(function($status) {
             $data = ['number' => $status->shipping_id, 'date' => $status->order_date, 'id' => $status->order_id ];
             $order_status = $status->order_status;
+            $order_status  = preg_replace("(_)"," ",$order_status);
             $data['status'] = $order_status;
             $order_status;
             return $data;

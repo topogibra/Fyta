@@ -44,9 +44,20 @@ function buildStocks(products) {
         row.appendChild(href);
         row.appendChild(createProductColumn(product.price, 'price'));
         row.appendChild(createProductColumn(product.stock, 'stock'));
-        const col = createProductColumn('', 'delete');
+        const col = document.createElement('button');
+        col.classList.add(...['col-md-3', 'col-6', 'delete']);
+        col.type = "button";
+        col.setAttribute('data-toggle', 'modal');
+        const deleteId = `delete-${product.id}`
+        col.setAttribute('data-target', `#${deleteId}`);
         const icon = document.createElement('i');
         icon.className = "fas fa-trash";
+        const modal = buildModal('Delete Product', () => {
+            const container = document.createElement('div');
+            container.className = "row";
+            return container;
+        }, deleteId)
+        container.appendChild(modal);
         col.appendChild(icon);
         row.appendChild(col);
         container.appendChild(row);
@@ -57,7 +68,7 @@ function buildStocks(products) {
     const col = document.createElement('div');
     col.className = "col-md-4 col-12 ml-auto mr-0 pr-0";
     const button = document.createElement('a');
-    button.className = "btn rounded-0 btn-lg shadow-none";
+    button.className = "btn edit rounded-0 btn-lg shadow-none";
     button.setAttribute('role', 'button');
     button.textContent = 'Edit';
     button.id = "products-button"
@@ -166,6 +177,56 @@ function buildPendingOrders(orders) {
     return container;
 }
 
+function buildModal(pageName ,modalContent, modalId){
+    const modal = document.createElement('div');
+    modal.id = modalId;
+    modal.style.display = "none";
+    modal.className = "modal fade";
+    modal.tabIndex = -1;
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-labelledby', 'addManagerLabel');
+    modal.setAttribute('aria-hidden', 'true');
+    const dialog = document.createElement('div');
+    dialog.className = "modal-dialog";
+    dialog.setAttribute('role', 'document');
+    modal.appendChild(dialog);
+    const content = document.createElement('div');
+    content.className = "modal-content";
+    dialog.appendChild(content);
+    const header = document.createElement('div');
+    header.className = "modal-header";
+    content.appendChild(header);
+    const title = document.createElement('h5');
+    title.className = "modal-title";
+    title.id = "addManagerLabel";
+    title.textContent = pageName;
+    header.appendChild(title);
+    const closeButton = document.createElement('button');
+    closeButton.className = "close";
+    closeButton.setAttribute('type', 'button');
+    closeButton.setAttribute('data-dismiss', 'modal');
+    closeButton.setAttribute('aria-label', 'Close');
+    header.appendChild(closeButton);
+    const icon = document.createElement('i');
+    icon.className = "fas fa-times";
+    closeButton.appendChild(icon);
+
+    const body = document.createElement('div');
+    body.className = "modal-body";
+    body.appendChild(modalContent);
+    content.appendChild(body);
+
+    const footer = document.createElement('div');
+    footer.className = "modal-footer";
+    const saveButton = document.createElement('button');
+    saveButton.className = "btn btn-primary";
+    saveButton.setAttribute('data-dismiss', 'modal');
+    saveButton.textContent = "Confirm";
+    footer.appendChild(saveButton);
+    content.appendChild(footer);
+    return modal;
+}
+
 function buildManagers(managers) {
     const container = document.createElement('div');
     container.id = "managers"
@@ -216,57 +277,11 @@ function buildManagers(managers) {
     col.appendChild(button);
     row.appendChild(col);
 
-    const modal = document.createElement('div');
-    modal.id = "addManager";
-    modal.style.display = "none";
-    modal.className = "modal fade";
-    modal.tabIndex = -1;
-    modal.setAttribute('role', 'dialog');
-    modal.setAttribute('aria-labelledby', 'addManagerLabel');
-    modal.setAttribute('aria-hidden', 'true');
-    const dialog = document.createElement('div');
-    dialog.className = "modal-dialog";
-    dialog.setAttribute('role', 'document');
-    modal.appendChild(dialog);
-    const content = document.createElement('div');
-    content.className = "modal-content";
-    dialog.appendChild(content);
-    const header = document.createElement('div');
-    header.className = "modal-header";
-    content.appendChild(header);
-    const title = document.createElement('h5');
-    title.className = "modal-title";
-    title.id = "addManagerLabel";
-    title.textContent = "Add New Manager";
-    header.appendChild(title);
-    const closeButton = document.createElement('button');
-    closeButton.className = "close";
-    closeButton.setAttribute('type', 'button');
-    closeButton.setAttribute('data-dismiss', 'modal');
-    closeButton.setAttribute('aria-label', 'Close');
-    header.appendChild(closeButton);
-    const icon = document.createElement('i');
-    icon.className = "fas fa-times";
-    closeButton.appendChild(icon);
-
-    const body = document.createElement('div');
-    body.className = "modal-body";
-    body.appendChild(buildPersonalInfoForm({
+    const modal = buildModal("Add New Manager", buildPersonalInfoForm({
         username: "",
         email: "",
         photo: "img/user.png"
-    }))
-    content.appendChild(body);
-
-    const footer = document.createElement('div');
-    footer.className = "modal-footer";
-    const saveButton = document.createElement('button');
-    saveButton.className = "btn btn-primary";
-    saveButton.setAttribute('data-dismiss', 'modal');
-    saveButton.textContent = "Confirm";
-    footer.appendChild(saveButton);
-    content.appendChild(footer);
-
+    }), "Add New Manager");
     row.appendChild(modal);
     container.appendChild(row);
 
@@ -311,9 +326,9 @@ const managerProfileSections = [{
     {
         name: "Managers",
         action: async() => {
+            const data = await fetchData('manager/managers');
+            return buildManagers(data);
             try {
-                const data = await fetchData('manager/managers');
-                return buildManagers(data);
             } catch (e) {
                 return buildErrorMessage(e.status, e.message)
             }
