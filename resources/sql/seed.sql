@@ -353,6 +353,7 @@ INSERT INTO "image" (img_name,"description") VALUES ('mohammad-faruque-AgYOuy8kA
 INSERT INTO "image" (img_name,"description") VALUES ('dannie_almir.jpg','Dannie Almir');
 INSERT INTO "image" (img_name,"description") VALUES ('simone.jpeg','Simone Biles');
 INSERT INTO "image" (img_name,"description") VALUES ('sisay_jeremiah_small.jpg','Sisay Jeremiah');
+INSERT INTO "image" (img_name,"description") VALUES ('kitty.jpg','The best kitty');
 
 
 --R01
