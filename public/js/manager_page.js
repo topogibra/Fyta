@@ -31,9 +31,9 @@ function buildConfirmation(action) {
     reject.setAttribute('data-dismiss', 'modal');
     reject.setAttribute('aria-label', 'Close');
     accept.addEventListener('mousedown', async () => {
+        await action();
+        reject.click();
         try {
-            await action();
-            reject.click();
         } catch (error) {
             container.appendChild(buildErrorMessage(error.status, error.message));
         }
@@ -42,7 +42,7 @@ function buildConfirmation(action) {
 }
 
 const stateStatus = {
-    'Ready for Shipping': 'Confirm  Shipping',
+    'Ready for Shipping': 'Confirm Shipping',
     'Awaiting Payment': 'Awaiting Payment'
 }
 
@@ -199,7 +199,8 @@ function buildPendingOrders(orders) {
         href.appendChild(number);
         row.appendChild(href);
         row.appendChild(createProductColumn(order.date, 'date'));
-        row.appendChild(createProductColumn(order.status, 'status'));
+        const status = createProductColumn(order.status, 'status');
+        row.appendChild(status);
         const col = createProductColumn('', 'confirm');
         const button = document.createElement('a');
         button.setAttribute('role', 'button');
@@ -211,17 +212,22 @@ function buildPendingOrders(orders) {
         const icon = document.createElement('i');
         icon.className = "fas fa-trash";
         const modal = buildModal('Are you sure you want to update the order\'s status?', buildConfirmation(async () => {
+            const order_status = order.status === "Awaiting_Payment" ? 'Ready_for_Shipping' : 'Processed';
             const result = await request({
-                url: `/order/update`,
-                method: 'PUT',
+                url: '/order/update',
+                method: 'POST',
                 content: {
                     order_id: order.id,
-                    order_status: order.status === "Awaiting_Payment" ? 'Ready_for_Shipping' : 'Processed' 
+                    order_status  
                 }
             });
             if (result.status != 200)
                 throw { status: result.status, message: 'Failed to update, please try again later.' }
-            row.remove();
+            
+            if (order_status === "Processed")
+                row.remove();
+            status.textContent = order_status.split('_').join(' ');
+            button.textContent = stateStatus[status.textContent];
             return result;
         }), deleteId)
         container.appendChild(modal);

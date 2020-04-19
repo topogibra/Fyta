@@ -80,10 +80,10 @@ class OrderController extends Controller{
 
         $request->validate([
             'order_id' => ['required','numeric'],
-            'order_status' => ['required'],
+            'order_status' => ['required', 'string'],
         ]);
         
-        $order = Order::find($request->id_order);
+        $order = Order::find($request->input('order_id'));
         if(!$order) {
             return response()->json(['message' => 'The order does not exist.'], 404);
         }
