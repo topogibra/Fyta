@@ -3,10 +3,7 @@ export default function request(props) {
     return new Promise(async function(resolve, reject) {
       let { url, method, content } = props;
       const options = {
-        method,
-        headers: {
-          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        }
+        method
       };
   
       if (method === 'GET') {

@@ -116,8 +116,6 @@ class Product extends Model
                             ->join('image', 'image.id','=','product_image.id_image')
                             ->where('product.id','=',$id)
                             ->first();
-        if(!$product_img)
-            return null;
         $product_img->img = 'img/' . $product_img->img;
         return $product_img;
     }

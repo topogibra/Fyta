@@ -25,8 +25,8 @@ Route::get('order-summary/{order_id}', 'CheckoutController@summary');
 Route::get('cart', 'CheckoutController@cart');
 Route::get('profile', 'ProfileController@user');
 Route::get('manager', 'ProfileController@manager');
-Route::get('profile/order/{id}/invoice', 'OrderController@invoice');
-Route::get('order/{id}', 'OrderController@order');
+Route::get('profile/order/{id}/invoice', 'InvoiceController@invoice');
+Route::get('order/{id}', 'InvoiceController@order');
 Route::get('search', 'SearchController@render');
 Route::get('product/add', 'ProductController@add');
 Route::get('product/buy/{id}', 'ProductController@buyNow');
@@ -39,11 +39,20 @@ Route::get('manager/get','ProfileController@profile');
 Route::get('manager/stocks','ProfileController@stocks');
 Route::get('manager/pending-orders','ProfileController@pending');
 Route::get('manager/managers','ProfileController@managers');
-Route::delete('product/{id}','ProductController@delete');
-Route::post('order/update','OrderController@update');
 
+// Cards
+Route::get('cards', 'CardController@list');
+Route::get('cards/{id}', 'CardController@show');
+
+// API
+Route::put('api/cards', 'CardController@create');
+Route::delete('api/cards/{card_id}', 'CardController@delete');
+Route::put('api/cards/{card_id}/', 'ItemController@create');
+Route::post('api/item/{id}', 'ItemController@update');
+Route::delete('api/item/{id}', 'ItemController@delete');
 
 // Authentication
+
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
