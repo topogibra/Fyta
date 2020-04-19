@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Order;
+use App\OrderHistory;
 use App\User;
 use Illuminate\Support\Facades\Auth;
-
-use App\Order;
-use App\Product;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CheckoutController extends Controller{
     public function details()
@@ -31,6 +29,7 @@ class CheckoutController extends Controller{
             return response('No products in cart!', 400);
         }
 
+        DB::beginTransaction();
         $order = new Order;
         if($request->input('billing') != null){
             $order->billing_address = $request->input('billing'); 
@@ -40,16 +39,20 @@ class CheckoutController extends Controller{
         $order->delivery_address = $request->input('delivery');
         $order->payment_method = 'Bank_Transfer';
         $order->shipping_id = uniqid();
-        $order->id_user = 1; //TODO: Change this to ID of the authenticated user
+        $order->id_user = Auth::id();
         $order->save();
 
         foreach ($request->session()->get('items') as $product => $quantity){
             $order->products()->attach($product, ['quantity' => $quantity]);
         }
+        
+        $history = new OrderHistory;
+        $history->id_order = $order->id;
+        $history->order_status = 'Awaiting_Payment';
+        $history->save();
 
-
-
-        return redirect('/order-summary');
+        DB::commit();
+        return redirect('/order-summary/'.$order->id);
     }
 
     public function payment()

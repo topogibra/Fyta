@@ -8,14 +8,14 @@
             @csrf
 
             <div class="form-group">
-                <input type="text" class="form-control" id="deliveryaddress" name="delivery" placeholder="Delivery Address">
+                <input type="text" class="form-control" id="deliveryaddress"  name="delivery" value={!! $address !!} placeholder="Delivery Address">
             </div>
             <h6>Billing Address </h6>
 
             <div class="checkbox">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" name="addresses" id="checkout" value="same">
-                    <label class="form-check-label"  for="sameradio">Different Billing Address </label>
+                    <label class="form-check-label"  for="sameradio">Same Billing Address </label>
                 </div>
             </div>
 

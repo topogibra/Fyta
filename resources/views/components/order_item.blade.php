@@ -2,7 +2,7 @@
     <div class="col-md-3">
         <div class="img-wrapper">
             <a href="product_page.php">
-                <img class="product-image img-fluid border border-dark" src={{ $item->img }} alt={{ $item->name }} >
+                <img class="product-image img-fluid border border-dark" src={{ asset($item->img) }} alt={{ $item->name }} >
             </a>
         </div>
     </div>
