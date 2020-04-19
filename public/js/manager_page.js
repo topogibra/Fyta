@@ -212,9 +212,12 @@ function buildPendingOrders(orders) {
         icon.className = "fas fa-trash";
         const modal = buildModal('Are you sure you want to update the order\'s status?', buildConfirmation(async () => {
             const result = await request({
-                url: `/order/${order.id}`,
+                url: `/order/update`,
                 method: 'PUT',
-                content: {}
+                content: {
+                    order_id: order.id,
+                    order_status: order.status === "Awaiting Payment" ? 'Ready_for_Shipping' : 'Processed' 
+                }
             });
             if (result.status != 200)
                 throw { status: result.status, message: 'Failed to update, please try again later.' }
@@ -230,7 +233,7 @@ function buildPendingOrders(orders) {
     return container;
 }
 
-function buildModal(pageName, modalContent, modalId) {
+function buildModal(pageName, modalContent, modalId, hasFooter) {
     const modal = document.createElement('div');
     modal.id = modalId;
     modal.style.display = "none";
@@ -269,14 +272,16 @@ function buildModal(pageName, modalContent, modalId) {
     body.appendChild(modalContent);
     content.appendChild(body);
 
-    const footer = document.createElement('div');
-    footer.className = "modal-footer";
-    const saveButton = document.createElement('button');
-    saveButton.className = "btn btn-primary";
-    saveButton.setAttribute('data-dismiss', 'modal');
-    saveButton.textContent = "Confirm";
-    footer.appendChild(saveButton);
-    content.appendChild(footer);
+    if (hasFooter){
+        const footer = document.createElement('div');
+        footer.className = "modal-footer";
+        const saveButton = document.createElement('button');
+        saveButton.className = "btn btn-primary";
+        saveButton.setAttribute('data-dismiss', 'modal');
+        saveButton.textContent = "Confirm";
+        footer.appendChild(saveButton);
+        content.appendChild(footer);
+    }
     return modal;
 }
 
@@ -334,7 +339,7 @@ function buildManagers(managers) {
         username: "",
         email: "",
         photo: "img/user.png"
-    }), "Add New Manager");
+    }), "Add New Manager", true);
     row.appendChild(modal);
     container.appendChild(row);
 
@@ -368,9 +373,9 @@ const managerProfileSections = [{
 {
     name: "Pending Orders",
     action: async () => {
-        const data = await fetchData('manager/pending-orders');
-        return buildPendingOrders(data);
         try {
+            const data = await fetchData('manager/pending-orders');
+            return buildPendingOrders(data);
         } catch (e) {
             return buildErrorMessage(e.status, e.message)
         }
