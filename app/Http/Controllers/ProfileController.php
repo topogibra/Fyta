@@ -139,8 +139,12 @@ class ProfileController extends Controller{
             
       $user = Auth::user();
       $img = $user->image()->first();
-      $photo = 'img/' . $img->img_name;
-      if($user->user_role == 'Customer')
+      if(!$img)
+        $photo = 'img/user.png';
+    	else
+				$photo = 'img/' . $img->img_name;
+			
+			if($user->user_role == 'Customer')
       {
       $date = new DateTime($user->date);
       $year = $date->format('Y');
