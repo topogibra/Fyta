@@ -24,7 +24,15 @@
                 <input type="text" class="form-control" id="billingaddress" name="billing" placeholder="Billing Address">
             </div>
 
-            @include('components.errors')
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
             <div class="d-flex flex-row-reverse">
                 <button type="submit" id="next-btn" class="btn rounded-0 btn-lg shadow-none">Next</button>

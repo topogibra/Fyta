@@ -65,7 +65,16 @@
             </textarea>
         </div>
     </div>
-    @include('components.errors')
+    
+    @if ($errors->any())
+        <div class="alert row" id="errors">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="row" id="submit-button">
         <button type="submit" class="btn btn-primary mx-auto d-block mt-1" > Submit </button>
     </div>

@@ -2,7 +2,6 @@ import buildSections from './sections.js';
 import buildPersonalInfo from './personal_info.js';
 import { buildPersonalInfoForm } from './personal_info.js';
 import { fetchData } from './request.js'
-import request from './request.js';
 import { buildErrorMessage } from './http_error.js';
 
 
@@ -14,35 +13,8 @@ function createProductColumn(info, attribute) {
     return column;
 }
 
-function buildConfirmation(action) {
-    const container = document.createElement('div');
-    container.className = "row justify-content-around";
-    const accept = document.createElement('a');
-    accept.href = '#'
-    accept.className = "col-4 btn-primary"
-    accept.textContent = "Yes"
-    const reject = document.createElement('a');
-    reject.href = '#'
-    reject.className = "col-4 btn-danger"
-    reject.textContent = "No"
-    container.appendChild(accept);
-    container.appendChild(reject);
-    reject.setAttribute('role', 'button');
-    reject.setAttribute('data-dismiss', 'modal');
-    reject.setAttribute('aria-label', 'Close');
-    accept.addEventListener('mousedown', async () => {
-        await action();
-        reject.click();
-        try {
-        } catch (error) {
-            container.appendChild(buildErrorMessage(error.status, error.message));
-        }
-    });
-    return container;
-}
-
 const stateStatus = {
-    'Ready for Shipping': 'Confirm Shipping',
+    'Ready for Shipping': 'Confirm  Shipping',
     'Awaiting Payment': 'Awaiting Payment'
 }
 
@@ -63,7 +35,6 @@ function buildStocks(products) {
 
     products.forEach(product => {
         const row = document.createElement('div');
-        row.id = `product-${product.id}`
         row.className = "row table-entry";
         const name = createProductColumn(product.name, 'name');
         const href = document.createElement('a');
@@ -73,26 +44,9 @@ function buildStocks(products) {
         row.appendChild(href);
         row.appendChild(createProductColumn(product.price, 'price'));
         row.appendChild(createProductColumn(product.stock, 'stock'));
-        const col = document.createElement('button');
-        col.classList.add(...['col-md-3', 'col-6', 'delete']);
-        col.type = "button";
-        col.setAttribute('data-toggle', 'modal');
-        const deleteId = `delete-${product.id}`
-        col.setAttribute('data-target', `#${deleteId}`);
+        const col = createProductColumn('', 'delete');
         const icon = document.createElement('i');
         icon.className = "fas fa-trash";
-        const modal = buildModal('Are you sure you want to delete?', buildConfirmation(async () => {
-            const result = await request({
-                url: `/product/${product.id}`,
-                method: 'DELETE',
-                content: {}
-            });
-            if (result.status != 200)
-                throw { status: result.status, message: 'Failed to delete, please try again later.' }
-            row.remove();
-            return result;
-        }), deleteId)
-        container.appendChild(modal);
         col.appendChild(icon);
         row.appendChild(col);
         container.appendChild(row);
@@ -103,7 +57,7 @@ function buildStocks(products) {
     const col = document.createElement('div');
     col.className = "col-md-4 col-12 ml-auto mr-0 pr-0";
     const button = document.createElement('a');
-    button.className = "btn edit rounded-0 btn-lg shadow-none";
+    button.className = "btn rounded-0 btn-lg shadow-none";
     button.setAttribute('role', 'button');
     button.textContent = 'Edit';
     button.id = "products-button"
@@ -199,99 +153,17 @@ function buildPendingOrders(orders) {
         href.appendChild(number);
         row.appendChild(href);
         row.appendChild(createProductColumn(order.date, 'date'));
-        const status = createProductColumn(order.status, 'status');
-        row.appendChild(status);
+        row.appendChild(createProductColumn(order.status, 'status'));
         const col = createProductColumn('', 'confirm');
         const button = document.createElement('a');
-        button.setAttribute('role', 'button');
         button.className = "btn btn-primary confirm-order";
         button.textContent = stateStatus[order.status];
-        col.setAttribute('data-toggle', 'modal');
-        const deleteId = `delete-${order.id}`
-        col.setAttribute('data-target', `#${deleteId}`);
-        const icon = document.createElement('i');
-        icon.className = "fas fa-trash";
-        const modal = buildModal('Are you sure you want to update the order\'s status?', buildConfirmation(async () => {
-            const order_status = order.status === "Awaiting Payment" ? 'Ready_for_Shipping' : 'Processed';
-            const result = await request({
-                url: '/order/update',
-                method: 'POST',
-                content: {
-                    order_id: order.id,
-                    order_status  
-                }
-            });
-            if (result.status != 200)
-                throw { status: result.status, message: 'Failed to update, please try again later.' }
-            
-            if (order_status === "Processed")
-                row.remove();
-            else {
-                status.textContent = order_status.split('_').join(' ');
-                order.status = status.textContent; 
-                button.textContent = stateStatus[status.textContent];
-            }
-            return result;
-        }), deleteId)
-        container.appendChild(modal);
         col.appendChild(button);
         row.appendChild(col);
         container.appendChild(row);
     });
 
     return container;
-}
-
-function buildModal(pageName, modalContent, modalId, hasFooter) {
-    const modal = document.createElement('div');
-    modal.id = modalId;
-    modal.style.display = "none";
-    modal.className = "modal fade";
-    modal.tabIndex = -1;
-    modal.setAttribute('role', 'dialog');
-    modal.setAttribute('aria-labelledby', 'addManagerLabel');
-    modal.setAttribute('aria-hidden', 'true');
-    const dialog = document.createElement('div');
-    dialog.className = "modal-dialog";
-    dialog.setAttribute('role', 'document');
-    modal.appendChild(dialog);
-    const content = document.createElement('div');
-    content.className = "modal-content";
-    dialog.appendChild(content);
-    const header = document.createElement('div');
-    header.className = "modal-header";
-    content.appendChild(header);
-    const title = document.createElement('h5');
-    title.className = "modal-title";
-    title.id = "addManagerLabel";
-    title.textContent = pageName;
-    header.appendChild(title);
-    const closeButton = document.createElement('button');
-    closeButton.className = "close";
-    closeButton.setAttribute('type', 'button');
-    closeButton.setAttribute('data-dismiss', 'modal');
-    closeButton.setAttribute('aria-label', 'Close');
-    header.appendChild(closeButton);
-    const icon = document.createElement('i');
-    icon.className = "fas fa-times";
-    closeButton.appendChild(icon);
-
-    const body = document.createElement('div');
-    body.className = "modal-body";
-    body.appendChild(modalContent);
-    content.appendChild(body);
-
-    if (hasFooter){
-        const footer = document.createElement('div');
-        footer.className = "modal-footer";
-        const saveButton = document.createElement('button');
-        saveButton.className = "btn btn-primary";
-        saveButton.setAttribute('data-dismiss', 'modal');
-        saveButton.textContent = "Confirm";
-        footer.appendChild(saveButton);
-        content.appendChild(footer);
-    }
-    return modal;
 }
 
 function buildManagers(managers) {
@@ -344,11 +216,57 @@ function buildManagers(managers) {
     col.appendChild(button);
     row.appendChild(col);
 
-    const modal = buildModal("Add New Manager", buildPersonalInfoForm({
+    const modal = document.createElement('div');
+    modal.id = "addManager";
+    modal.style.display = "none";
+    modal.className = "modal fade";
+    modal.tabIndex = -1;
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-labelledby', 'addManagerLabel');
+    modal.setAttribute('aria-hidden', 'true');
+    const dialog = document.createElement('div');
+    dialog.className = "modal-dialog";
+    dialog.setAttribute('role', 'document');
+    modal.appendChild(dialog);
+    const content = document.createElement('div');
+    content.className = "modal-content";
+    dialog.appendChild(content);
+    const header = document.createElement('div');
+    header.className = "modal-header";
+    content.appendChild(header);
+    const title = document.createElement('h5');
+    title.className = "modal-title";
+    title.id = "addManagerLabel";
+    title.textContent = "Add New Manager";
+    header.appendChild(title);
+    const closeButton = document.createElement('button');
+    closeButton.className = "close";
+    closeButton.setAttribute('type', 'button');
+    closeButton.setAttribute('data-dismiss', 'modal');
+    closeButton.setAttribute('aria-label', 'Close');
+    header.appendChild(closeButton);
+    const icon = document.createElement('i');
+    icon.className = "fas fa-times";
+    closeButton.appendChild(icon);
+
+    const body = document.createElement('div');
+    body.className = "modal-body";
+    body.appendChild(buildPersonalInfoForm({
         username: "",
         email: "",
         photo: "img/user.png"
-    }), "Add New Manager", true);
+    }))
+    content.appendChild(body);
+
+    const footer = document.createElement('div');
+    footer.className = "modal-footer";
+    const saveButton = document.createElement('button');
+    saveButton.className = "btn btn-primary";
+    saveButton.setAttribute('data-dismiss', 'modal');
+    saveButton.textContent = "Confirm";
+    footer.appendChild(saveButton);
+    content.appendChild(footer);
+
     row.appendChild(modal);
     container.appendChild(row);
 
@@ -358,49 +276,49 @@ function buildManagers(managers) {
 }
 
 const managerProfileSections = [{
-    name: "Manager Information",
-    action: async () => {
-        try {
-            const data = await fetchData('manager/get');
-            return buildPersonalInfo(data);
-        } catch (e) {
-            return buildErrorMessage(e.status, e.message)
+        name: "Manager Information",
+        action: async() => {
+            try {
+                const data = await fetchData('manager/get');
+                return buildPersonalInfo(data);
+            } catch (e) {
+                return buildErrorMessage(e.status, e.message)
+            }
+        }
+    },
+    {
+        name: "Stocks",
+        action: async() => {
+            try {
+                const data = await fetchData('manager/stocks');
+                return buildStocks(data);
+            } catch (e) {
+                return buildErrorMessage(e.status, e.message)
+            }
+        }
+    },
+    {
+        name: "Pending Orders",
+        action: async() => {
+            try {
+                const data = await fetchData('manager/pending-orders');
+                return buildPendingOrders(data);
+            } catch (e) {
+                return buildErrorMessage(e.status, e.message)
+            }
+        }
+    },
+    {
+        name: "Managers",
+        action: async() => {
+            try {
+                const data = await fetchData('manager/managers');
+                return buildManagers(data);
+            } catch (e) {
+                return buildErrorMessage(e.status, e.message)
+            }
         }
     }
-},
-{
-    name: "Stocks",
-    action: async () => {
-        try {
-            const data = await fetchData('manager/stocks');
-            return buildStocks(data);
-        } catch (e) {
-            return buildErrorMessage(e.status, e.message)
-        }
-    }
-},
-{
-    name: "Pending Orders",
-    action: async () => {
-        try {
-            const data = await fetchData('manager/pending-orders');
-            return buildPendingOrders(data);
-        } catch (e) {
-            return buildErrorMessage(e.status, e.message)
-        }
-    }
-},
-{
-    name: "Managers",
-    action: async () => {
-        try {
-            const data = await fetchData('manager/managers');
-            return buildManagers(data);
-        } catch (e) {
-            return buildErrorMessage(e.status, e.message)
-        }
-    }
-}
 ];
 
 

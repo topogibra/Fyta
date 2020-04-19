@@ -31,7 +31,6 @@ class CheckoutController extends Controller{
 
         DB::beginTransaction();
         $order = new Order;
-        $this->authorize('create', $order);
         if($request->input('billing') != null){
             $order->billing_address = $request->input('billing'); 
         }
@@ -53,7 +52,6 @@ class CheckoutController extends Controller{
         $history->save();
 
         DB::commit();
-        $request()->session()->delete('items');
         return redirect('/order-summary/'.$order->id);
     }
 
@@ -66,11 +64,12 @@ class CheckoutController extends Controller{
         return view('pages.payment_details');
     }
 
-    public function summary($order_id)
+    public function summary($order_id) //NOTE: the order_id is not being passed anywhere
     {
-
+        $response = User::validateCustomer();
+        if($response)
+            abort($response);
         
-        $this->authorize('show', Order::find($order_id));
         $products = Product::getOrderProducts($order_id);
         $information = Order::getOrderInformation($order_id);
         $status = Order::getOrderStatus($order_id);
