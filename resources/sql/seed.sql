@@ -71,7 +71,7 @@ CREATE TABLE product_order (
   id_product INTEGER NOT NULL,
   id_order INTEGER NOT NULL,
   quantity INTEGER NOT NULL,
-  CONSTRAINT product_order_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE,
+  CONSTRAINT product_order_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE ON DELETE SET NULL,
   CONSTRAINT product_order_order_fk FOREIGN KEY (id_order) REFERENCES "order"(id) ON UPDATE CASCADE,
   PRIMARY KEY(id_product, id_order),
   CONSTRAINT quantity_check CHECK (quantity > 0)
@@ -88,7 +88,7 @@ CREATE TABLE review (
     AND rating <= 5
   ),
   CONSTRAINT review_pk PRIMARY KEY (id_product, id_order),
-  CONSTRAINT review_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE,
+  CONSTRAINT review_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE ON DELETE CASCADE,
   CONSTRAINT review_order_fk FOREIGN KEY (id_order) REFERENCES "order"(id) ON UPDATE CASCADE
 );
 DROP TABLE IF EXISTS order_history CASCADE;
@@ -113,7 +113,7 @@ CREATE TABLE wishlist_product (
   id_product INTEGER NOT NULL,
   id_wishlist INTEGER NOT NULL,
   CONSTRAINT wishlist_product_pk PRIMARY KEY (id_product, id_wishlist),
-  CONSTRAINT wishlist_product_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE,
+  CONSTRAINT wishlist_product_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE ON DELETE CASCADE,
   CONSTRAINT wishlist_product_wishlist_fk FOREIGN KEY (id_wishlist) REFERENCES wishlist(id) ON UPDATE CASCADE
 );
 DROP TABLE IF EXISTS shopping_cart CASCADE;
@@ -123,7 +123,7 @@ CREATE TABLE shopping_cart (
   quantity INTEGER NOT NULL,
   CONSTRAINT shopping_cart_pk PRIMARY KEY (id_user, id_product),
   CONSTRAINT shopping_cart_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE,
-  CONSTRAINT shopping_cart_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE,
+  CONSTRAINT shopping_cart_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE ON DELETE CASCADE,
   CONSTRAINT shopping_cart_quantity_check CHECK (quantity > 0)
 );
 DROP TABLE IF EXISTS discount CASCADE;
@@ -152,7 +152,7 @@ CREATE TABLE apply_discount (
   id_product INTEGER NOT NULL,
   id_discount INTEGER NOT NULL,
   CONSTRAINT apply_pk PRIMARY KEY (id_product, id_discount),
-  CONSTRAINT apply_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE,
+  CONSTRAINT apply_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE ON DELETE CASCADE,
   CONSTRAINT apply_discount_fk FOREIGN KEY (id_discount) REFERENCES discount(id) ON UPDATE CASCADE
 );
 DROP TABLE IF EXISTS tag CASCADE;
@@ -168,7 +168,7 @@ CREATE TABLE product_tag (
   id_product INTEGER NOT NULL,
   CONSTRAINT product_tag_pk PRIMARY KEY (id_tag, id_product),
   CONSTRAINT product_tag_tag_fk FOREIGN KEY (id_tag) REFERENCES tag(id) ON UPDATE CASCADE,
-  CONSTRAINT product_tag_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE
+  CONSTRAINT product_tag_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 DROP TABLE IF EXISTS ticket CASCADE;
 CREATE TABLE ticket (
@@ -204,7 +204,7 @@ CREATE TABLE product_image (
   id_product INTEGER NOT NULL,
   CONSTRAINT product_image_pk PRIMARY KEY (id_image, id_product),
   CONSTRAINT product_image_image_fk FOREIGN KEY (id_image) REFERENCES "image"(id) ON UPDATE CASCADE,
-  CONSTRAINT product_image_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE
+  CONSTRAINT product_image_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 DROP TABLE IF EXISTS user_removal CASCADE;
 CREATE TABLE user_removal (

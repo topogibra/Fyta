@@ -216,7 +216,7 @@ function buildPendingOrders(orders) {
                 method: 'PUT',
                 content: {
                     order_id: order.id,
-                    order_status: order.status === "Awaiting Payment" ? 'Ready_for_Shipping' : 'Processed' 
+                    order_status: order.status === "Awaiting_Payment" ? 'Ready_for_Shipping' : 'Processed' 
                 }
             });
             if (result.status != 200)

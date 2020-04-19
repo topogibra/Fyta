@@ -25,11 +25,10 @@ Route::get('order-summary/{order_id}', 'CheckoutController@summary');
 Route::get('cart', 'CheckoutController@cart');
 Route::get('profile', 'ProfileController@user');
 Route::get('manager', 'ProfileController@manager');
-Route::get('profile/order/{id}/invoice', 'InvoiceController@invoice');
-Route::get('order/{id}', 'InvoiceController@order');
+Route::get('profile/order/{id}/invoice', 'OrderController@invoice');
+Route::get('order/{id}', 'OrderController@order');
 Route::get('search', 'SearchController@render');
 Route::get('product/add', 'ProductController@add');
-Route::get('product/id', 'ProductController@delete');
 Route::get('product/buy/{id}', 'ProductController@buyNow');
 Route::post('product', 'ProductController@create');
 Route::get('product/{id}', 'ProductController@render');
@@ -40,7 +39,8 @@ Route::get('manager/get','ProfileController@profile');
 Route::get('manager/stocks','ProfileController@stocks');
 Route::get('manager/pending-orders','ProfileController@pending');
 Route::get('manager/managers','ProfileController@managers');
-
+Route::delete('product/{id}','ProductController@delete');
+Route::put('order/update','OrderController@update');
 // Cards
 Route::get('cards', 'CardController@list');
 Route::get('cards/{id}', 'CardController@show');

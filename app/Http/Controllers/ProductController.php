@@ -7,6 +7,7 @@ use App\Product;
 use App\Tag;
 use App\Review;
 use App\User;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -17,7 +18,7 @@ class ProductController extends Controller
     {
         $product = Product::getByID($id);
         if ($product == null) {
-            return response('No such product was found', 404);
+            return abort(404);
         }
         $feedback = Review::getByProductID($id);
         $reviews = $feedback == null ? [] : $feedback->reviews;
@@ -97,4 +98,23 @@ class ProductController extends Controller
         request()->session()->put('items', [$id => 1]);
         return redirect('checkout-details');
     }
+
+    public function delete($id)
+    {
+        $role = User::checkUser();
+        if($role != User::$MANAGER) {
+            return response()->json(['message' => 'You do not have access to this operation.'], 403);
+        }
+
+        $product = Product::find($id);
+        if(!$product) {
+            return response()->json(['message' => 'The product does not exist.'], 404);
+        }
+
+        $product->delete();
+
+        return response()->json(['message' => 'The product was deleted succesfully.'], 200);
+    }
+
+    
 }

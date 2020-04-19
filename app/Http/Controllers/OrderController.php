@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Order;
+use App\OrderHistory;
 use App\User;
+use Illuminate\Auth\Access\Response;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class InvoiceController extends Controller{
+class OrderController extends Controller{
     
     public function invoice($id)
     {
@@ -68,5 +71,41 @@ class InvoiceController extends Controller{
         return view('pages.invoice', ['information' => $information, 'status'=> $status,'sum' => $sum, 'delivery' => 'FREE', 'items' => $products]);
     }
 
-    
+    public function update(Request $request) 
+    {
+        $role = User::checkUser();
+        if($role != User::$MANAGER) {
+            return response()->json(['message' => 'You do not have access to this operation.'], 403);
+        }
+
+        $request->validate([
+            'order_id' => ['required','numeric'],
+            'order_status' => ['required'],
+        ]);
+        
+        $order = Order::find($request->id_order);
+        if(!$order) {
+            return response()->json(['message' => 'The order does not exist.'], 404);
+        }
+        
+        $status = $request->input('order_status');
+        switch($status) {
+            case 'Awaiting_Payment':
+            case 'Ready_for_Shipping':
+            case 'Processed':
+                break;
+            default:
+                return response()->json(['message' => 'The status is invalid.'], 400);
+        }
+
+        $order_h = new OrderHistory;
+        $order_h->date = now();
+        $order_h->id_order = $request->input('order_id');
+        $order_h->order_status = $status;
+        $order_h->save();
+
+        $order_h->order()->associate($order->id);
+
+        return response()->json(['message' => 'Order updated successfully.'], 200);
+    }
 }
