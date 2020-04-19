@@ -24,7 +24,8 @@ body {
     grid-column: 5;
     grid-row: 1;
     position: relative;
-    top: 1em;
+    top: 4em;
+    right: 1em;
 }
 
 .navbar-icons a {

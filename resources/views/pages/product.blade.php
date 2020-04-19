@@ -32,31 +32,42 @@
 
 @section('product-content')
     <div class="row ">
-        <div class="col-md-1-12 pr-3">
-            <div class="dropdown show">
-                <a class="btn btn-secondary dropdown-toggle " href="#" role="button" id="numItems" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    1
-                </a>
-                <div class="dropdown-menu" aria-labelledby="numItems">
-                    <a class="dropdown-item" href="#">1</a>
-                    <a class="dropdown-item" href="#">2</a>
-                    <a class="dropdown-item" href="#">3</a>
+        @if (User::checkUser() != User::$MANAGER)
+            <div class="col-md-1-12 pr-3">
+                <div class="dropdown show">
+                    <a class="btn btn-secondary dropdown-toggle " href="#" role="button" id="numItems" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        1
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="numItems">
+                        <a class="dropdown-item" href="#">1</a>
+                        <a class="dropdown-item" href="#">2</a>
+                        <a class="dropdown-item" href="#">3</a>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="col-md-1-12 pr-3" id="purchase-buttons">
+                <a name="" id="addbasket" class="btn btn-success pr-3 " href="/cart" role="button">
+                    Add To Basket
+                </a>
+                <a name="" id="buynow" class="btn btn-light pr-3 " href="/checkout-details" role="button">
+                    Buy now
+                </a>
+            </div>
+            <div class="col-lg-1-12 pr-3" id="favorites-add">
+                <i class="far fa-star"></i>
+                <span>Add to Favourites</span>
+
+            </div>
+        @else
         <div class="col-md-1-12 pr-3" id="purchase-buttons">
-            <a name="" id="addbasket" class="btn btn-success pr-3 " href="/cart" role="button">
-                Add To Basket
+            <a name="" id="addbasket" class="btn btn-success pr-3 " href="#" role="button">
+                Edit Product
             </a>
             <a name="" id="buynow" class="btn btn-light pr-3 " href={{"buy/$id"}} role="button">
                 Buy now
             </a>
         </div>
-        <div class="col-lg-1-12 pr-3" id="favorites-add">
-            <i class="far fa-star"></i>
-            <span>Add to Favourites</span>
-
-        </div>
+        @endif
     </div>
 @endsection
 
