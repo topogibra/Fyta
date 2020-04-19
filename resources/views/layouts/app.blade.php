@@ -53,7 +53,7 @@
                     <a href="/login" class="login">
                         <i class="fas fa-user"></i>
                     </a>
-                    @endguest
+                @endguest
                 </nav>
                 <nav class="navbar navbar-expand-md navbar-light navbar-categories">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#categoriesNavbar" aria-controls="categoriesNavbar" aria-expanded="false" aria-label="Toggle navigation">
