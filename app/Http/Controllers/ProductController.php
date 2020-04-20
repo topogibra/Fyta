@@ -88,6 +88,8 @@ class ProductController extends Controller
 
     public function addShoppingCart(Request $request ,$id)
     {
+        $request->validate(['quantity' => ['required' , 'min:1']]);
+
         $role = User::checkUser();
         if ($role == User::$GUEST)
         {
@@ -98,6 +100,7 @@ class ProductController extends Controller
             return response('Manager', 403);
 
         $user =  Auth::id();
+
         $quantity = $request->get('quantity');
 
         DB::insert('insert into shopping_cart(id_user,id_product,quantity) values (?, ?,?)', [$user, $id, $quantity]);

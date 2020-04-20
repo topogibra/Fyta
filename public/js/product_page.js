@@ -12,9 +12,8 @@ let qtity = document.getElementById('numItems');
 let value = parseInt(qtity.innerText);
 
 
-addShoppingCart.addEventListener('click', () => load(event));
+addShoppingCart.addEventListener('click', async(event) => {
 
-async function load(event) {
     value = parseInt(qtity.innerText);
     event.preventDefault();
     let response = await postData(addShoppingCart.href, value);
@@ -26,4 +25,4 @@ async function load(event) {
         $("#myToast").toast('show');
     }
     return false;
-}
+});

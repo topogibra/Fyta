@@ -54,6 +54,15 @@ class CheckoutController extends Controller{
 
         DB::commit();
         $request->session()->forget('items');
+
+        $user_id = Auth::id();
+        if(request()->session()->get('buynow') == null)
+        {
+            Product::deleteShoppingCartIds($user_id);
+        }
+        else
+            request()->session()->forget('buynow');
+            
         return redirect('/order-summary/'.$order->id);
     }
 
@@ -69,7 +78,6 @@ class CheckoutController extends Controller{
     public function summary($order_id)
     {
 
-        
         $this->authorize('show', Order::find($order_id));
         $products = Product::getOrderProducts($order_id);
         $information = Order::getOrderInformation($order_id);
