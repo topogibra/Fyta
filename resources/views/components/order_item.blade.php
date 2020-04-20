@@ -1,7 +1,7 @@
 <div class="row order-list-item">
     <div class="col-md-3">
         <div class="img-wrapper">
-            <a href="product_page.php">
+            <a href={{"/product/$item->id_product"}}>
                 <img class="product-image img-fluid border border-dark" src={{ asset($item->img) }} alt={{ $item->name }} >
             </a>
         </div>

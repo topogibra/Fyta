@@ -137,11 +137,17 @@ class ProductController extends Controller
         $user = Auth::id();
         $cart = Product::getShoppingCartIds($user);
 
+        $array_items = [];
         foreach($cart as $value){
             $array_items[$value->id] = $value->qty;
         }
       
         request()->session()->put('items', $array_items);
+
+        if(count(request()->session()->get('items', [])) == 0){
+            return response('No products in cart!', 400);
+        }
+
         return redirect('checkout-details');
     }
 }
