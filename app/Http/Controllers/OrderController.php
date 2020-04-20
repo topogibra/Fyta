@@ -29,22 +29,6 @@ class OrderController extends Controller{
         return view('pages.invoice', ['information' => $information, 'status'=> $status,'sum' => $sum, 'delivery' => 'FREE', 'items' => $products]);
     }
 
-    public function order($id)
-    {
-        $this->authorize('show', Order::find($id));
-        $products = Product::getOrderProducts($id);
-        $information = Order::getOrderInformation($id);
-        $status = Order::getOrderStatus($id);
-
-        $sum = 0;
-        foreach($products as $product)
-        {
-            $sum += $product->quantity * $product->price;
-        }
-
-        return view('pages.invoice', ['information' => $information, 'status'=> $status,'sum' => $sum, 'delivery' => 'FREE', 'items' => $products]);
-    }
-
     public function update(Request $request) 
     {
         $request->validate([

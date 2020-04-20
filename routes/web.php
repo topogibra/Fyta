@@ -26,7 +26,7 @@ Route::get('cart', 'CheckoutController@cart');
 Route::get('profile', 'ProfileController@user');
 Route::get('manager', 'ProfileController@manager');
 Route::get('profile/order/{id}/invoice', 'OrderController@invoice');
-Route::get('order/{id}', 'OrderController@order');
+Route::get('order/{id}', 'OrderController@invoice');
 Route::get('search', 'SearchController@render');
 Route::get('product/add', 'ProductController@add');
 Route::get('product/buy/{id}', 'ProductController@buyNow');
