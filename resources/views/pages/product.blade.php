@@ -63,6 +63,13 @@
                 <div class="toast-body">
                 Product succesfully added to shopping cart!
             </div>
+
+
+    <div class="toast" id="myToast" role="alert" aria-live="assertive" aria-atomic="true"  >
+        <div class="toast-body">
+          Product succesfully added to shopping cart!
+        </div>
+    </div>
         @else
         <div class="col-md-1-12 pr-3" id="purchase-buttons">
             <a name="" id="addbasket" class="btn btn-success pr-3 " href={{"/cart/$id"}} role="button">
@@ -72,9 +79,9 @@
                 Buy now
             </a>
         </div>
-        @endif
+    
     </div>
-
+    @endif
 </div>
 
 @endsection
