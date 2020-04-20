@@ -103,7 +103,17 @@ class ProductController extends Controller
 
         $quantity = $request->get('quantity');
 
-        DB::insert('insert into shopping_cart(id_user,id_product,quantity) values (?, ?,?)', [$user, $id, $quantity]);
+        $cart = Product::getStockByID($id,$user);
+
+        if($cart != null)
+        {
+            $quantity = $quantity + $cart->quantity;
+            Product::updateStock($id,$user,$quantity);
+        }
+        else    
+        {    
+            DB::insert('insert into shopping_cart(id_user,id_product,quantity) values (?, ?,?)', [$user, $id, $quantity]);
+        }
 
         return redirect('/product/' . $id);
     }

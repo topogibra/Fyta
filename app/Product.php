@@ -130,6 +130,28 @@ class Product extends Model
         return $product_imgs;
     }
 
+    public static function getStockByID($product, $user) 
+    {
+        $product = DB::table('shopping_cart')
+                            ->select('quantity')
+                            ->join('product', 'product.id', '=','shopping_cart.id_product')
+                            ->where('shopping_cart.id_user','=',$user)
+                            ->get()
+                            ->first();
+
+        return $product;
+    }
+
+    public static function updateStock($product, $user, $quantity) 
+    {
+        $product = DB::table('shopping_cart')
+                            ->select('stock')
+                            ->join('product', 'product.id', '=','shopping_cart.id_product')
+                            ->where('shopping_cart.id_user','=',$user)
+                            ->update(['quantity' => $quantity]);
+
+    }
+
     public static function getByID($id) 
     {
         $product_img = DB::table('product')

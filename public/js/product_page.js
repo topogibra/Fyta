@@ -10,7 +10,7 @@ addFavorites && addFavorites.addEventListener('mousedown', () => {
 let addShoppingCart = document.getElementById('addbasket');
 let qtity = document.getElementById('numItems');
 let value = parseInt(qtity.innerText);
-
+let mytoast = document.getElementById('myToast');
 
 addShoppingCart.addEventListener('click', async(event) => {
 
@@ -21,8 +21,8 @@ addShoppingCart.addEventListener('click', async(event) => {
     if (response.status == 401)
         window.location.replace('/login');
     else {
-        $("#myToast").toast({ delay: 3000 });
-        $("#myToast").toast('show');
+        $('#myToast').toast({ delay: 3000 });
+        $('#myToast').toast('show');
     }
     return false;
 });
