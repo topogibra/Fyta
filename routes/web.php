@@ -12,10 +12,7 @@
 */
 
 
-Route::get('/', function(){
-    return redirect('home');
-});
-
+Route::get('/', 'HomeController@root');
 Route::get('home', 'HomeController@render');
 Route::get('about', 'AboutController@render');
 Route::get('checkout-details', 'CheckoutController@details');

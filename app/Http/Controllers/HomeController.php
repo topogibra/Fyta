@@ -20,4 +20,9 @@ class HomeController extends Controller
         $tools = Product::getTopByTag('Tools');
         return view('pages.home', ['items' => [ 'top-deals' => $deals, 'indoor-plants' => $indoor, 'outdoor-plants' => $outdoor, 'top-vases' => $vases, 'top-tools' => $tools]]);
     }
+
+    public function root()
+    {
+        return redirect('home');
+    }
 }
