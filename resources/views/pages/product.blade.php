@@ -1,5 +1,4 @@
-@extends('layouts.product', ['content' => 'components.product-page', 'files' =>  ['scripts' => ['js/product_page.js'], 'styles' => ['css/product_page.css']]])
-
+@extends('layouts.product', ['content' => 'components.product-page', 'files' =>  ['scripts' => ['js/product_page.js', 'js/request.js'], 'styles' => ['css/product_page.css']]])
 
 @section('img')
     <img class="border" src={{asset($img)}}>
@@ -31,6 +30,9 @@
 @endsection
 
 @section('product-content')
+
+
+
     <div class="row ">
         @if (User::checkUser() != User::$MANAGER)
             <div class="col-md-1-12 pr-3">
@@ -56,17 +58,36 @@
             <div class="col-lg-1-12 pr-3" id="favorites-add">
                 <i class="far fa-star"></i>
                 <span>Add to Favourites</span>
-
             </div>
+            <div class="toast" id="myToast" role="alert" aria-live="assertive" aria-atomic="true"  >
+                <div class="toast-body">
+                Product succesfully added to shopping cart!
+            </div>
+
+
+    <div class="toast" id="myToast" role="alert" aria-live="assertive" aria-atomic="true"  >
+        <div class="toast-body">
+          Product succesfully added to shopping cart!
+        </div>
+    </div>
         @else
         <div class="col-md-1-12 pr-3" id="purchase-buttons">
-            <a name="" id="addbasket" class="btn btn-success pr-3 " href="#" role="button">
-                Edit Product
+            <a name="" id="addbasket" class="btn btn-success pr-3 " href={{"/cart/$id"}} role="button">
+                Add To Basket
+            </a>
+            <a name="" id="buynow" class="btn btn-light pr-3 " href={{"buy/$id"}} role="button">
+                Buy now
             </a>
         </div>
-        @endif
+    
     </div>
+    @endif
+</div>
+
 @endsection
+
+  
+
 
 @section('product-page-content')
 <h3>

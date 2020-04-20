@@ -73,7 +73,7 @@ class ProfileController extends Controller
         } else if ($role == User::$CUSTOMER)
             return response()->json(['message' => 'You do not have access to this section'], 403);
         
-        $allstatus = Order::getStatusOrders();
+        $allstatus = Order::getStatusOrders()->all();
         $clean_status = array_map(function ($status) {
             $data = ['number' => $status->shipping_id, 'date' => $status->order_date, 'id' => $status->order_id];
             $order_status = $status->order_status;

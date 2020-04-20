@@ -86,6 +86,28 @@ class Product extends Model
 
     }
 
+    public static function getShoppingCartIds($user_id)
+    {
+        $products = DB::table('shopping_cart')
+                        ->select('quantity as qty','id_product as id')
+                        ->where('id_user','=',$user_id)
+                        ->get();
+    
+        return $products;
+
+    }
+
+    public static function deleteShoppingCartIds($user_id)
+    {
+        $products = DB::table('shopping_cart')
+                        ->select('quantity as qty','id_product as id')
+                        ->where('id_user','=',$user_id)
+                        ->delete();
+    
+        return $products;
+
+    }
+
     public static function getOrderProducts($id_order)
     {
         $products = DB::table('product_order')
@@ -106,6 +128,28 @@ class Product extends Model
                 }
 
         return $product_imgs;
+    }
+
+    public static function getStockByID($product, $user) 
+    {
+        $product = DB::table('shopping_cart')
+                            ->select('quantity')
+                            ->join('product', 'product.id', '=','shopping_cart.id_product')
+                            ->where('shopping_cart.id_user','=',$user)
+                            ->get()
+                            ->first();
+
+        return $product;
+    }
+
+    public static function updateStock($product, $user, $quantity) 
+    {
+        $product = DB::table('shopping_cart')
+                            ->select('stock')
+                            ->join('product', 'product.id', '=','shopping_cart.id_product')
+                            ->where('shopping_cart.id_user','=',$user)
+                            ->update(['quantity' => $quantity]);
+
     }
 
     public static function getByID($id) 

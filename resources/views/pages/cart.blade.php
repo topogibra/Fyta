@@ -10,7 +10,7 @@
     @each('components.shopping_item', $items, 'item')
     <div class="row justify-content-end" id="checkout">
         <div class="col-sm-3">
-            <a type="role" href="/checkout-details" class="btn rounded-0 btn-lg shadow-none" id="checkout_btn" type="submit">Checkout</a>
+            <a type="role" href="/cart/buy" class="btn rounded-0 btn-lg shadow-none" id="checkout_btn" type="submit">Checkout</a>
         </div>
     </div>
 
