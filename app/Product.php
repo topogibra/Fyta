@@ -136,6 +136,7 @@ class Product extends Model
                             ->select('quantity')
                             ->join('product', 'product.id', '=','shopping_cart.id_product')
                             ->where('shopping_cart.id_user','=',$user)
+                            ->where('shopping_cart.id_product', '=' , $product)
                             ->get()
                             ->first();
 
@@ -147,6 +148,7 @@ class Product extends Model
         $product = DB::table('shopping_cart')
                             ->select('stock')
                             ->join('product', 'product.id', '=','shopping_cart.id_product')
+                            ->where('shopping_cart.id_product', '=' , $product)
                             ->where('shopping_cart.id_user','=',$user)
                             ->update(['quantity' => $quantity]);
 
