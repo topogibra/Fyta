@@ -88,7 +88,6 @@ class ProductController extends Controller
 
     public function addShoppingCart(Request $request ,$id)
     {
-        echo 'banas';
         $role = User::checkUser();
         if ($role == User::$GUEST)
         {
