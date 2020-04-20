@@ -34,9 +34,6 @@
                         <a href="/profile" class="user">
                             <i class="far fa-user"></i>
                         </a>
-                        <a href="/profile#wishlist" class="star">
-                            <i class="far fa-star"></i>
-                        </a>
                         <a href="/cart" class="cart">
                             <i class="fas fa-shopping-basket"></i>
                         </a>

@@ -30,9 +30,6 @@
 @endsection
 
 @section('product-content')
-
-
-
     <div class="row ">
         @if (User::checkUser() != User::$MANAGER)
             <div class="col-md-1-12 pr-3">
@@ -48,7 +45,7 @@
                 </div>
             </div>
             <div class="col-md-1-12 pr-3" id="purchase-buttons">
-                <a name="" id="addbasket" class="btn btn-success pr-3 " href="/cart" role="button">
+                <a name="" id="addbasket" class="btn btn-success pr-3 " href={{"/cart/$id"}} role="button">
                     Add To Basket
                 </a>
                 <a name="" id="buynow" class="btn btn-light pr-3 " href={{"buy/$id"}} role="button">
@@ -63,25 +60,14 @@
                 <div class="toast-body">
                 Product succesfully added to shopping cart!
             </div>
-
-
-    <div class="toast" id="myToast" role="alert" aria-live="assertive" aria-atomic="true"  >
-        <div class="toast-body">
-          Product succesfully added to shopping cart!
-        </div>
-    </div>
         @else
         <div class="col-md-1-12 pr-3" id="purchase-buttons">
-            <a name="" id="addbasket" class="btn btn-success pr-3 " href={{"/cart/$id"}} role="button">
-                Add To Basket
-            </a>
-            <a name="" id="buynow" class="btn btn-light pr-3 " href={{"buy/$id"}} role="button">
-                Buy now
+            <a name="" id="addbasket" class="btn btn-success pr-3 " href="#" role="button">
+                Edit Product
             </a>
         </div>
-    
-    </div>
-    @endif
+        @endif
+
 </div>
 
 @endsection

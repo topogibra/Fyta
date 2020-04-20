@@ -20,7 +20,7 @@ addShoppingCart.addEventListener('click', async(event) => {
 
     if (response.status == 401)
         window.location.replace('/login');
-    else {
+    else if(response.status == 200){
         $('#myToast').toast({ delay: 3000 });
         $('#myToast').toast('show');
     }

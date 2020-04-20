@@ -97,7 +97,7 @@ class CheckoutController extends Controller{
         if($role == User::$GUEST)
             abort(401);
         else if($role == User::$MANAGER)
-            return back();
+            return redirect('/manager');
         
         $id = Auth::id();
         $shopping_cart = Product::getShoppingCart($id);
