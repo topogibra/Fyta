@@ -53,7 +53,15 @@
                 </a>
             </div>
             <div class="col-lg-1-12 pr-3" id="favorites-add">
-                <i class="far fa-star"></i>
+                @if (User::checkUser() == User::$CUSTOMER)
+                    @if (User::isFavorited($id))
+                        <i class="fas fa-star"></i>
+                    @else
+                        <i class="far fa-star"></i>
+                    @endif
+                @else
+                    <i class="far fa-star"></i>
+                @endif
                 <span>Add to Favourites</span>
             </div>
             <div class="toast" id="myToast" role="alert" aria-live="assertive" aria-atomic="true"  >
