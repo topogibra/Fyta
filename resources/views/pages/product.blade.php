@@ -61,6 +61,11 @@
                     Product succesfully added to shopping cart!
                 </div>
             </div>
+            <div class="toast" id="favoriteToast" role="alert" aria-live="assertive" aria-atomic="true"  >
+                <div class="toast-body" >
+                    Product added to Favorites!
+                </div>
+            </div>
         @else
         <div class="col-md-1-12 pr-3" id="purchase-buttons">
             <a name="" id="addbasket" class="btn btn-success pr-3 " href="#" role="button">
