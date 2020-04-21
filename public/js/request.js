@@ -52,3 +52,15 @@ export const postData = async(url, quantity) => {
     const response = await request({ url, method: 'POST', content: { 'quantity': quantity } })
     return response
 }
+
+export const putFavorite = async (url, product_id) => {
+    console.log(product_id)
+    const response = await request({
+        url,
+        method: 'PUT',
+        content: {
+            'product_id': product_id
+        }
+    })
+    return response
+}

@@ -142,16 +142,18 @@ class ProfileController extends Controller
             return response()->json(['message' => 'You must login to add items to your wishlist'], 401);
         } else if ($role == User::$MANAGER)
             return response()->json(['message' => 'Managers can\'t add items to wishlists'], 403);
+        
 
         $user = Auth::user();
         $wishlist = $user->wishlists()->first(); //TODO: integrate multiple wishlists
         if ($wishlist == null) {
             return [];
         }
-
         
+        $wishlist->products()->attach($request->get('product_id'));
 
-        
+
+        return response()->json(['message' => 'Product added to wishlist'],200);
     }
 
     public function profile(Request $request)

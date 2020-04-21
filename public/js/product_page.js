@@ -1,10 +1,12 @@
 import {
-    postData
+    postData, putFavorite
 } from './request.js'
 
 const addFavorites = document.querySelector('#favorites-add');
 const favoriteToast = document.querySelector('#favoriteToast');
 const ToastDelay = 3000;
+
+const productId = document.URL.substring(document.URL.lastIndexOf('/') + 1);
 
 addFavorites && addFavorites.addEventListener('mousedown', async(event) => {
     const classList = addFavorites.querySelector('i').classList;
@@ -15,6 +17,9 @@ addFavorites && addFavorites.addEventListener('mousedown', async(event) => {
     isFavorited ? classList.add('fas') || classList.remove('far') : classList.add('far') || classList.remove('fas');
 
     
+    let response = await putFavorite('/profile/wishlist', productId);
+
+    console.log(response);
 
     $('#favoriteToast').toast({
         delay: ToastDelay
