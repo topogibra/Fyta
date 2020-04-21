@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Auth\RegisterController;
+use App\Image;
 use DateTime;
 use App\Product;
 use App\Order;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
+
 
 class ProfileController extends Controller
 {
@@ -159,5 +165,76 @@ class ProfileController extends Controller
         }
 
         return $data;
+    }
+
+    public function updateCustomer(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'birthday' => 'required|date',
+            "address" => 'required|string|max:255'
+        ]);
+
+        if($validator->fails()){
+            return response($validator->errors());
+        }
+
+        
+        $user = Auth::user();
+        $this->authorize('updateCustomer', $user);
+
+        $user->username = $request->input('username');
+        $user->email = $request->input('email');
+        if($request->has('password')){
+            $user->password_hash = bcrypt($request->input('password'));
+        }
+        $user->date = $request->input('birthday');
+        $user->address = $request->input('address');
+        $user->save();
+
+        $file = Input::file('photo');
+        if($file != null)
+            $this->storeNewPhoto($user, $file);
+        return response('Saved successfully');
+    }
+
+    public function updateManager(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response($validator->errors());
+        }
+        
+        $user = Auth::user();
+        $this->authorize('updateManager', $user);
+
+        $user->username = $request->input('username');
+        $user->email = $request->input('email');
+        if ($request->has('password')) {
+            $user->password_hash = bcrypt($request->input('password'));
+        }
+        
+        $file = Input::file('photo');
+        if($file != null)
+            $this->storeNewPhoto($user, $file);
+        $user->save();
+        return response('Saved successfully');
+    }
+
+    private function storeNewPhoto(User $user, UploadedFile $file){
+        $path = uniqid() . '.' . $file->getClientOriginalExtension();
+        $file->move('img/', $path);
+
+        $img = new Image;
+        $img->img_name = $path;
+        $img->description = $user->username;
+        $img->save();
+
+        $user->id_image = $img->id;
     }
 }

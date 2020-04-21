@@ -182,13 +182,6 @@ h3 {
     width: 33em;
 }
 
-.toast {
-    margin-top: 1em;
-    background-color: var(--lighter-gray);
-    color: var(--green);
-    font-weight: bold;
-}
-
 @media(min-width: 1440px) {
     .product-img img {
         height: 450px;

@@ -1,3 +1,6 @@
+import { validateRequirements, buildErrorMessage } from './http_error.js';
+import request from './request.js'
+
 export function buildPersonalInfoForm(info, user) {
     const container = document.createElement('div');
     container.className = "container";
@@ -8,13 +11,21 @@ export function buildPersonalInfoForm(info, user) {
 
     const imgRow = document.createElement('div');
     imgRow.className = "row justify-content-center";
+    const label = document.createElement('label');
+    label.setAttribute('for', 'img');
     form.appendChild(imgRow);
     const img = document.createElement('img');
     img.className = "mx-auto d-block img-fluid rounded-circle border border-dark rounded";
     img.alt = "User Image";
     img.id = "user-img";
     img.src = info.photo;
-    imgRow.appendChild(img);
+    label.appendChild(img);
+    imgRow.appendChild(label);
+    const photo = document.createElement('input')
+    photo.type = 'file';
+    photo.id = "img";
+    photo.name = "img";
+    imgRow.appendChild(photo);
 
     const personalInfo = document.createElement('div');
     personalInfo.className = "row form-group justify-content-center";
@@ -39,9 +50,10 @@ export function buildPersonalInfoForm(info, user) {
     if (user) {
         buildInput('text', 'address', 'Address', info.address, personalInfoCol);
 
-        const birthdayHeader = document.createElement('div');
+        const fieldSet = document.createElement('fieldset');
+        const birthdayHeader = document.createElement('legend');
         birthdayHeader.className = "row bd";
-        form.appendChild(birthdayHeader);
+        fieldSet.appendChild(birthdayHeader);
         const birthdayCol = document.createElement('div');
         birthdayCol.className = "col-12";
         birthdayHeader.appendChild(birthdayCol);
@@ -49,11 +61,11 @@ export function buildPersonalInfoForm(info, user) {
         heading.id = "birthday";
         heading.textContent = "Birthday";
         birthdayHeader.appendChild(heading);
-
+        form.appendChild(fieldSet);
 
         const birthdayInputs = document.createElement('div');
         birthdayInputs.className = "row form-group justify-content-center birthday";
-        form.appendChild(birthdayInputs);
+        fieldSet.appendChild(birthdayInputs);
         const buildSelectionColumn = (id, options, placeholder) => {
             const optionsCol = document.createElement('div');
             optionsCol.className = "col";
@@ -78,10 +90,10 @@ export function buildPersonalInfoForm(info, user) {
         const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         let years = [];
         const currYear = new Date().getFullYear();
-        for(let i = 0; i < 100 ; i++) {
-            years.push((currYear-i).toString());
+        for (let i = 0; i < 100; i++) {
+            years.push((currYear - i).toString());
         }
-        
+
         buildSelectionColumn("day", Array.from({ length: 31 }).map((_, i) => String(i + 1)), info.day);
         buildSelectionColumn("month", months, info.month);
         buildSelectionColumn("year", years, info.year);
@@ -100,6 +112,7 @@ export function buildPersonalInfoForm(info, user) {
     return container;
 }
 
+let errors;
 
 export default function buildPersonalInfo(info, user) {
     const container = buildPersonalInfoForm(info, user);
@@ -111,13 +124,90 @@ export default function buildPersonalInfo(info, user) {
     const saveChangesCol = document.createElement('div');
     saveChangesCol.className = "col-md-6 col-12 justify-content-end";
     saveChanges.appendChild(saveChangesCol);
-    const saveChangesButton = document.createElement('a');
+    const saveChangesButton = document.createElement('button');
     saveChangesButton.role = "button";
     saveChangesButton.className = "btn rounded-0 btn-lg shadow-none";
     saveChangesButton.id = "savechanges";
     saveChangesButton.textContent = "Save Changes";
     saveChangesCol.appendChild(saveChangesButton);
     form.appendChild(saveChanges);
+    const modalId = "success";
+    const picInput = container.querySelector('#img');
+    picInput.addEventListener('change', () => {
+        if (picInput.files && picInput.files[0]) {
+            const reader = new FileReader();
+            const profilePic = container.querySelector('#user-img');
+            reader.onload = e => (profilePic.src = e.target.result);
+
+            reader.readAsDataURL(picInput.files[0]);
+        }
+    });
+
+    form.addEventListener('submit', async (ev) => {
+        ev.preventDefault();
+        const validation = ['username', 'email'];
+        if (user) {
+            validation.push(...['address', 'day', 'month', 'year']);
+        }
+
+        const validationErrors = validateRequirements(validation);
+        if (validationErrors) {
+            errors && errors.remove();
+            saveChanges.className = "row justify-content-between"
+            saveChanges.prepend(validationErrors);
+            errors = validationErrors;
+        } else {
+            errors && errors.remove();
+            saveChanges.className = "row justify-content-end";
+            const content = {};
+            validation.forEach((id) => {
+                content[id] = document.getElementById(id).value; 
+            });
+            if(user){
+                const day = document.getElementById('day').value;
+                const month = document.getElementById('month').value;
+                const year = document.getElementById('year').value;
+                const birthday = year + '-' + month + '-' + day;
+                content['birthday'] = birthday;
+            }
+
+            const password = document.getElementById('password');
+            if(password.value)
+                content['password'] = password.value;
+            
+            if(picInput.files.length > 0)
+                content.photo = picInput.files[0];
+
+            try {
+                const response = await request({
+                    url: user ? '/profile/update' : '/manager',
+                    method: 'POST',
+                    content
+                });
+                if(response.status != 200){
+                    saveChanges.prepend(buildErrorMessage(response.status, response.content));
+                } else {
+                    $(`#${modalId}`).toast({ delay: 3000 });
+                    $(`#${modalId}`).toast('show');
+                }
+            }catch(e){
+                saveChanges.prepend(buildErrorMessage(e.status, e.message));
+            }
+        }
+        return false;
+    });
+
+
+    const modal = document.createElement('div');
+    modal.className = "toast";
+    modal.id = modalId;
+    modal.setAttribute('role', 'alert');
+    modal.setAttribute('aria-live', 'assertive');
+    modal.setAttribute('aria-atomic', 'true');
+    const modalBody = document.createElement('div');
+    modalBody.textContent = "Saved changes"
+    modal.appendChild(modalBody);
+    container.appendChild(modal);
 
     return container;
 }

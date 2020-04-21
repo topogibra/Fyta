@@ -15,6 +15,7 @@ export default function request(props) {
                 .map(key => `${key}=${content[key]}`)
                 .join('&'));
         } else if (method === 'PUT' || method === 'DELETE') {
+            options.headers['Content-Type'] = 'application/json';
             options.body = JSON.stringify(content);
         } else {
             options.body = new FormData();
