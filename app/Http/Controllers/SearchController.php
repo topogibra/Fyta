@@ -21,23 +21,36 @@ class SearchController extends Controller{
     public function textSearch(Request $request)
     {
         $query = $request->input('query');
-        $search_products = DB::table('product')
-                            ->selectRaw('product.id,"name", product."description" AS details, price, 
-                            ts_rank(
-                                setweight(to_tsvector(\'english\', product."name"), \'A\') || 
-                                setweight(to_tsvector(\'english\', product."description"), \'B\'), 
-                                plainto_tsquery(\'english\', ?)
-                            ) AS ranking',[$query])
-                            ->orderByDesc('ranking');
-        $product_imgs = DB::table('image')
-                            ->select('search_products.id','name','price','img_name AS img', 'description as alt')
-                            ->join('product_image','image.id','=','product_image.id_image')
-                            ->joinSub($search_products,'search_products', function($join) {
-                                $join->on('product_image.id_product','=','search_products.id');
-                            })
-                            ->where('ranking','>','0.5')
-                            ->limit(9)
-                            ->get();
+        $search_products = DB::table('product')->select('id','name','price','description','views');
+        if($query) {
+			$search_products = $search_products
+                                    ->selectRaw('ts_rank(
+                                            setweight(to_tsvector(\'english\', product."name"), \'A\') || 
+                                            setweight(to_tsvector(\'english\', product."description"), \'B\'), 
+                                            plainto_tsquery(\'english\', ?)
+                                    ) AS ranking',[$query])
+                                    ->orderByDesc('ranking');
+            
+            $product_imgs = DB::table('image')
+                                ->select('search_product.id','name','price','img_name AS img', 'image.description as alt')
+                                ->join('product_image','image.id','=','product_image.id_image')
+                                ->joinSub($search_products,'search_product', function($join) {
+                                    $join->on('product_image.id_product','=','search_product.id');
+                                })
+                                ->where('ranking','>','0.5')
+                                ->limit(9)
+                                ->get();
+        } else {
+            $product_imgs = $search_products
+                                ->select('product.id','name','price','img_name as img','image.description as alt')
+                                ->join('product_image','product.id','product_image.id_product')
+                                ->join('image','image.id','product_image.id_image')
+                                ->orderByDesc('views')
+                                ->groupBy('product.id','image.id')
+                                ->limit(9)
+                                ->get();
+        }
+				
         foreach($product_imgs as $product_img)
            $product_img->img = 'img/' . $product_img->img;
                             

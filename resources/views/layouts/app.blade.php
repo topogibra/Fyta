@@ -91,10 +91,12 @@
                 <form class="input-group w-auto mt-1 rounded-pill border border-dark navbar-search" action ="/search" method="GET">
                     <span class="input-group-append">
                         <button type="submit" class="btn border border-right-0" >
-                            <i class="fas fa-search form-control-feedback"></i>
+                            <i aria-hidden="true" class="fas fa-search form-control-feedback"></i>
+                            Submit the search
                         </button>
                     </span>
-                    <input class="form-control border-left-0" type="text" name="query">
+                    <label for="query">Search for a product...</label>
+                    <input class="form-control border-left-0" type="text" id="query" name="query" placeholder="Search for a product...">
                 </form>
             </nav>
             @yield('content')
