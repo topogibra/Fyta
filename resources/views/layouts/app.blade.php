@@ -88,14 +88,14 @@
                         </div>
                     </div>
                 </nav>
-                <div class="input-group w-auto mt-1 rounded-pill border border-dark navbar-search">
+                <form class="input-group w-auto mt-1 rounded-pill border border-dark navbar-search" action ="/search" method="GET">
                     <span class="input-group-append">
-                        <a class="btn border border-right-0" type="role" href="searchpage.php">
+                        <button type="submit" class="btn border border-right-0" >
                             <i class="fas fa-search form-control-feedback"></i>
-                        </a>
+                        </button>
                     </span>
-                    <input class="form-control border-left-0">
-                </div>
+                    <input class="form-control border-left-0" type="text" name="query">
+                </form>
             </nav>
             @yield('content')
             </div>
