@@ -42,6 +42,9 @@ Route::get('manager/pending-orders','ProfileController@pending');
 Route::get('manager/managers','ProfileController@managers');
 Route::delete('product/{id}','ProductController@delete');
 Route::post('order/update','OrderController@update');
+Route::get('profile/wishlist','ProfileController@wishlist');
+Route::put('profile/wishlist', 'ProfileController@addProductToWishlist');
+
 
 
 // Authentication

@@ -116,4 +116,9 @@ class User extends Authenticatable
         else
             return self::$CUSTOMER;
     }
+
+    public function addItemToWishlist($wishlist,$product_id){
+        $wishlists = $this->wishlists()->get()->all();
+        
+    }
 }
