@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::get('/', 'HomeController@root');
 Route::get('home', 'HomeController@render');
 Route::get('about', 'AboutController@render');
@@ -42,8 +41,11 @@ Route::get('manager/pending-orders','ProfileController@pending');
 Route::get('manager/managers','ProfileController@managers');
 Route::delete('product/{id}','ProductController@delete');
 Route::post('order/update','OrderController@update');
+
+//Whishlists
 Route::get('profile/wishlist','ProfileController@wishlist');
 Route::put('profile/wishlist', 'ProfileController@addProductToWishlist');
+Route::delete('profile/wishlist/{id}', 'ProfileController@removeProductFromWishlist');
 
 
 
