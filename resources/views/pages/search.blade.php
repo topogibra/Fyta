@@ -92,10 +92,14 @@
               </div>
               <div class="row price-inputs">
                 <div class="col-5 min-input">
+                  <label for="min">
                   <input type="number" class="form-control" id="min" placeholder="Min" min="1" max="99">
+                  </label>
                 </div>
                 <div class="col-5 max-input">
+                  <label for="max">
                   <input type="number" class="form-control" id="max" placeholder="Max" min="2" max="100">
+                  </label>
                 </div>
               </div>
 

@@ -25,18 +25,24 @@
     <div class="row">
         <div class="my-2">
             <h5> Name </h5>
+            <label for="name">
             <input id="name" class="mt-2 d-block" name="name" type="text">
+            </label>
         </div>
     </div>
     
     <div class="row number-input">
         <div class="my-2 col-4">
             <h5> Price </h5>
+            <label for="price">
             <input class="col" class="mt-1 d-block" name="price" id="price" type="number" step=".01">
+            </label>
         </div>
         <div class="my-2 col-4">
             <h5> Stock </h5>
+            <label for="stock">
             <input class="col" class="mt-1 d-block" name="stock" id="stock" type="number">
+            </label>
         </div>
         <div class="my-2 col-4">
             <h5>Category</h5>
@@ -56,7 +62,9 @@
             <span class="badge badge-success" id="caption">Type a tag and press Enter to add it. Press a tag to remove it.</span>
             <div id="tags-row">
             </div>
+            <label for="tags">
             <input id="tags" class="mt-2 d-block" name="tags" type="text">
+            </label>
         </div>
     </div>
     <div class="row">

@@ -14,13 +14,18 @@
       <label for="img" class="mx-auto d-block ">
         <img src={{asset("img/user.png")}} class="img-fluid rounded-circle border border-dark rounded" alt="User Image" id="user-img">
       </label>
+      <label for="img">
       <input type="file" name="img" id="img">
+      </label>
     </div>
     <!-- -->
     <div class="row form-group ">
       <div class="col">
+        <label for="username">   </label>
         <input type="text" name="username" id="username" class="form-control registerinput" placeholder="Username">
+        <label for="email">    </label>
         <input type="email" name="email" id="email" class="form-control registerinput" placeholder="Email" >
+        <label for="address"></label>
         <input type="text" name="address" id="address" class="form-control registerinput" placeholder="Address">
       </div>
     </div>
@@ -71,13 +76,16 @@
     <!--  -->
     <div class="form-group row ">
       <div class="col">
+        <label for="password">  </label>
         <input type="password" name="password" id="password" class="form-control registerinput" placeholder="Password" >
       </div>
     </div>
     <!--  -->
     <div class="row ">
       <div class="col ">
+        <label for="submitbutton">
         <input type="submit" class="btn rounded-0 btn-lg shadow-none" id="submitbutton" value="Register">
+        </label>
       </div>
     </div>
   </form>

@@ -25,7 +25,9 @@
       </div>
       <div class="row ">
         <div class="col button">
+          <label for="start">
           <input type="submit" class="btn rounded-0 btn-lg shadow-none" id="start" value="Start Session">
+          </label>
         </div>
       </div>
       <div class="row register-info justify-content-center">
