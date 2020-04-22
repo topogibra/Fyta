@@ -3,7 +3,7 @@
 @section('img')
 <div class="my-2" class="product-creation-left">
     <label for="img">
-        <img id="template-img" src={{asset('/img/template_img.png')}}>
+        <img id="template-img" src={{asset('/img/template_img.png')}} alt="defaultImg">
     </label>
     <input type="file"  name="img" id="img">
 </div>
@@ -41,7 +41,8 @@
         <div class="my-2 col-4">
             <h5>Category</h5>
             <select class="custom-select">
-                <option selected disabled></option>
+                <option selected disabled>
+                </option>
                 <option value="indoor">indoor</option>
                 <option value="outdoor">outdoor</option>
                 <option value="vases">vases</option>
@@ -61,7 +62,7 @@
     <div class="row">
         <div class="my-2 product-creation-left" id="create-product-description">
             <h5> Description </h5>
-            <textarea id="description" class="mt-1" name="description" type="text" rows="5", cols="50">
+            <textarea id="description" class="mt-1" name="description" rows="5" cols="50">
             </textarea>
         </div>
     </div>

@@ -15,7 +15,7 @@
             <div class="checkbox">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" name="addresses" id="checkout" value="same">
-                    <label class="form-check-label"  for="sameradio">Same Billing Address </label>
+                    <label class="form-check-label"  for="checkout">Same Billing Address </label>
                 </div>
             </div>
 

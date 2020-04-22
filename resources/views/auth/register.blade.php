@@ -19,15 +19,15 @@
     <!-- -->
     <div class="row form-group ">
       <div class="col">
-        <input type="text" name="username" id="username" class="form-control registerinput" placeholder="Username" aria-describedby="helpUser">
-        <input type="email" name="email" id="email" class="form-control registerinput" placeholder="Email" aria-describedby="helpId">
-        <input type="text" name="address" id="address" class="form-control registerinput" placeholder="Address" aria-describedby="helpId">
+        <input type="text" name="username" id="username" class="form-control registerinput" placeholder="Username">
+        <input type="email" name="email" id="email" class="form-control registerinput" placeholder="Email" >
+        <input type="text" name="address" id="address" class="form-control registerinput" placeholder="Address">
       </div>
     </div>
     <!--  -->
     <div class="row">
       <div class="col">
-        <h4 id="birthday">Birthday</h4>
+        <h4 id="titlebirthday">Birthday</h4>
       </div>
     </div>
     <!--  -->
@@ -71,7 +71,7 @@
     <!--  -->
     <div class="form-group row ">
       <div class="col">
-        <input type="password" name="password" id="password" class="form-control registerinput" placeholder="Password" aria-describedby="helpId">
+        <input type="password" name="password" id="password" class="form-control registerinput" placeholder="Password" >
       </div>
     </div>
     <!--  -->

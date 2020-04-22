@@ -24,7 +24,7 @@ class ProductController extends Controller
         $reviews = $feedback == null ? [] : $feedback->reviews;
         $score = $feedback == null ? 0 : $feedback->score;
         return view('pages.product', ['id'=>$id,
-            'img' => $product->img, 'description' =>  $product->description,
+            'img' => $product->img, 'alt' => $product->alt, 'description' =>  $product->description,
             'price' => $product->price, 'score' => $score, 'name' => $product->name,
             'related' => [['id' => 1, 'img' => 'img/supreme_vase.jpg', 'name' => 'Supreme Bonsai Pot', 'price' => '40€'], ['id' => 1, 'img' => 'img/gloves_tool.jpg', 'name' => 'Blue Garden Gloves', 'price' => '9€'], ['id' => 1, 'img' => 'img/pondlilies_outdoor.jpg', 'name' => 'Pond White Lilies', 'price' => '40€']],
             'reviews' => $reviews

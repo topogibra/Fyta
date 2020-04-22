@@ -83,7 +83,7 @@ class User extends Authenticatable
     public function getManagersInfo()
     {
         $managers = DB::table('user')
-                        ->select('user.username','user.date','image.img_name')
+                        ->select('user.username','user.date','image.img_name', 'image.description as alt')
                         ->join('image','image.id', '=','user.id_image')
                         ->where('user_role','=','Manager')
                         ->where('user.id','<>',$this->id)

@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container">
-  <form method="POST" action="\login">
+  <form method="POST" action="/login">
     @csrf
     <div class="form ">
       <div class="row ">
@@ -14,13 +14,13 @@
       <div class="form-group row">
         <div class="col">
           <label for="email">Email</label>
-          <input type="text" name="email" id="email" class="form-control" placeholder="" aria-describedby="loginRegisterHelp">
+          <input type="text" name="email" id="email" class="form-control" placeholder="" aria-describedby="helpId">
         </div>
       </div>
       <div class="form-group row">
         <div class="col">
-          <label for="password ">Password</label>
-          <input type="password" name="password" id="password" class="form-control" placeholder="" aria-describedby="loginRegisterHelp">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" class="form-control" placeholder="" aria-describedby="helpId">
         </div>
       </div>
       <div class="row ">

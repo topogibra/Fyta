@@ -90,7 +90,7 @@
                 </nav>
                 <div class="input-group w-auto mt-1 rounded-pill border border-dark navbar-search">
                     <span class="input-group-append">
-                        <a class="btn border border-right-0" type="role" href="searchpage.php">
+                        <a class="btn border border-right-0" href="searchpage.php">
                             <i class="fas fa-search form-control-feedback"></i>
                         </a>
                     </span>

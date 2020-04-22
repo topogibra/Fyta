@@ -56,10 +56,13 @@ class Product extends Model
                                 $join->on('top_items.id','=','product_image.id_product');
                             })
                             ->get();
+
         //parse the images directories
         foreach($product_imgs as $product) {
             $product->img = 'img/' . $product->img; 
+            $product->alt = str_replace(' ', '', $product->alt);
         }
+
         return $product_imgs;
     }
 
@@ -116,7 +119,7 @@ class Product extends Model
             ->where('product_order.id_order', '=',$id_order);
     
         $product_imgs = DB::table('image')
-            ->select('products.id_product','products.name','quantity','products.price','img_name as img')
+            ->select('products.id_product','products.name','quantity','products.price','img_name as img', 'image.description as alt')
             ->join('product_image','product_image.id_image','=','image.id')
             ->joinSub($products, 'products',function($join) {
                 $join->on('products.id_product','=','product_image.id_product');
@@ -124,7 +127,8 @@ class Product extends Model
             ->get();
 
             foreach($product_imgs as $product) {
-                $product->img = '../img/' . $product->img; 
+                $product->img = '../img/' . $product->img;
+                $product->alt = str_replace(' ', '', $product->alt);
                 }
 
         return $product_imgs;
@@ -157,7 +161,7 @@ class Product extends Model
     public static function getByID($id) 
     {
         $product_img = DB::table('product')
-                            ->select('product.name','price','product.description','img_name as img')
+                            ->select('product.name','price','product.description','img_name as img', 'image.description as alt')
                             ->join('product_image','product_image.id_product','=','product.id')
                             ->join('image', 'image.id','=','product_image.id_image')
                             ->where('product.id','=',$id)
@@ -165,6 +169,7 @@ class Product extends Model
         if(!$product_img)
             return null;
         $product_img->img = 'img/' . $product_img->img;
+        $product_img->alt = str_replace(' ', '', $product_img->alt);
         return $product_img;
     }
 

@@ -41,6 +41,7 @@ class Review extends Model
             $img = $user->image;
             $review->name = $user->username;
             $review->img = 'img/' . $img->img_name;
+            $review->alt = str_replace(' ', '', $img->description);
             $score += $review->review;
         }
         
