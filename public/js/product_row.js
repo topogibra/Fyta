@@ -26,9 +26,12 @@ export default function buildProductRow(items){
         href.appendChild(heading);
         const paragraph = document.createElement('p');
         paragraph.className = "card-text product-price text-secondary";
-        paragraph.textContent = item.price + '€';
+        paragraph.textContent = item.price + '€ ';
+        const addFavorite = document.createElement('i');
+        addFavorite.className = "card-link fas fa-star remove-favorite";
 
         cardBody.appendChild(href);
+        paragraph.appendChild(addFavorite);
         cardBody.appendChild(paragraph);
 
         card.appendChild(cardBody);

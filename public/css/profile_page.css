@@ -192,6 +192,13 @@ input {
     width: 100%;
 }
 
+.remove-favorite {
+    margin-top: 1em;
+    margin-left: 1em;
+    color: var(--green);
+    cursor: pointer;
+}
+
 @media(max-width: 767px) {
     .account-sections {
         padding-top: 0em;

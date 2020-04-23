@@ -15,7 +15,6 @@ const deleteFavorite = async (url) => {
         url,
         method: 'DELETE',
     })
-    console.log(response);
     return response
 }
 
@@ -32,8 +31,6 @@ addFavorites && addFavorites.addEventListener('mousedown', async(event) => {
     toastbody.textContent = 'Product ' + (isFavorited ? 'added to' : 'removed from') + ' favorites wishlist!';
     
     isFavorited ? classList.add('fas') || classList.remove('far') : classList.add('far') || classList.remove('fas');
-
-    let response;
 
     if (isFavorited) {
         response = await putFavorite('/profile/wishlist/' + productId);
