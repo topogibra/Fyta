@@ -1,9 +1,28 @@
 import {
-    postData, putFavorite, deleteFavorite
+    postData
 } from './request.js'
 
+const putFavorite = async (url, product_id) => {
+    const response = await request({
+        url,
+        method: 'PUT',
+        content: {
+            'product_id': product_id
+        }
+    })
+    return response
+}
+
+const deleteFavorite = async (url) => {
+    const response = await request({
+        url,
+        method: 'DELETE',
+    })
+    return response
+}
+
+
 const addFavorites = document.querySelector('#favorites-add');
-const favoriteToast = document.querySelector('#favoriteToast');
 const ToastDelay = 3000;
 
 const productId = document.URL.substring(document.URL.lastIndexOf('/') + 1);
@@ -12,7 +31,7 @@ addFavorites && addFavorites.addEventListener('mousedown', async(event) => {
     const classList = addFavorites.querySelector('i').classList;
     let isFavorited = classList.contains('far');
     let toastbody = document.querySelector('#favoriteToast > .toast-body');
-    toastbody.innerHTML = 'Product ' + (isFavorited ? 'added to' : 'removed from') + ' favorites wishlist!';
+    toastbody.textContent = 'Product ' + (isFavorited ? 'added to' : 'removed from') + ' favorites wishlist!';
     
     isFavorited ? classList.add('fas') || classList.remove('far') : classList.add('far') || classList.remove('fas');
 
@@ -24,8 +43,6 @@ addFavorites && addFavorites.addEventListener('mousedown', async(event) => {
         response = await deleteFavorite('/profile/wishlist/' + productId);
     }
 
-    console.log(response);
-
     $('#favoriteToast').toast({
         delay: ToastDelay
     });
@@ -35,7 +52,6 @@ addFavorites && addFavorites.addEventListener('mousedown', async(event) => {
 let addShoppingCart = document.getElementById('addbasket');
 let qtity = document.getElementById('numItems');
 let value = parseInt(qtity.innerText);
-let mytoast = document.getElementById('myToast');
 
 addShoppingCart.addEventListener('click', async (event) => {
 

@@ -53,21 +53,3 @@ export const postData = async(url, quantity) => {
     return response
 }
 
-export const putFavorite = async (url, product_id) => {
-    const response = await request({
-        url,
-        method: 'PUT',
-        content: {
-            'product_id': product_id
-        }
-    })
-    return response
-}
-
-export const deleteFavorite = async (url) => {
-    const response = await request({
-        url,
-        method: 'DELETE',
-    })
-    return response
-}

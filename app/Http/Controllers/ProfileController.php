@@ -153,7 +153,7 @@ class ProfileController extends Controller
         $wishlist->products()->attach($request->get('product_id'));
 
 
-        return response()->json(['message' => 'Product added to wishlist'],200);
+        return response('Product added to wishlist');
     }
 
     public function removeProductFromWishlist($id)
@@ -166,15 +166,14 @@ class ProfileController extends Controller
 
 
         $user = Auth::user();
-        $wishlist = $user->wishlists()->first(); //TODO: integrate multiple wishlists
+        $wishlist = $user->wishlists()->first();
         if ($wishlist == null) {
             return [];
         }
         
         $wishlist->products()->detach($wishlist->id,$id);
         
-        return response()->json(['message' => 'Product removed to wishlist'], 200);
-
+        return response('Product removed to wishlist');
     }
 
     public function profile(Request $request)
