@@ -51,6 +51,18 @@ body {
     grid-column: 3/4;
 }
 
+.navbar-search .btn {
+    font-size: 0;
+    background-color: transparent;
+}
+
+.navbar-search .btn .fa-search {
+    font-size: initial;
+}
+
+.navbar-search label {
+    font-size: 0;
+}
 .nav-link {
     color: black !important;
 }

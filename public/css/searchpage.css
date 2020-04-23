@@ -127,6 +127,10 @@ img {
     text-align: center;
 }
 
+.col-lg-8 > .row {
+    justify-content: center;
+}
+
 @media (max-width: 2000px) {
     .img-wrapper {
         height: 250px;
