@@ -8,9 +8,8 @@
             @csrf
 
             <div class="form-group">
-                <label for="deliveryaddress">
+                <label for="deliveryaddress"> </label>
                 <input type="text" class="form-control" id="deliveryaddress"  name="delivery" value={!! $address !!} placeholder="Delivery Address">
-                </label>
             </div>
             <h6>Billing Address </h6>
 
@@ -23,9 +22,8 @@
 
 
             <div class="form-group">
-                <label for="billingaddress">
+                <label for="billingaddress"> </label>
                 <input type="text" class="form-control" id="billingaddress" name="billing" placeholder="Billing Address">
-                </label>
             </div>
 
             @include('components.errors')

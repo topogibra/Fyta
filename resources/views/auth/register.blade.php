@@ -83,9 +83,8 @@
     <!--  -->
     <div class="row ">
       <div class="col ">
-        <label for="submitbutton">
+        <label for="submitbutton"> </label>
         <input type="submit" class="btn rounded-0 btn-lg shadow-none" id="submitbutton" value="Register">
-        </label>
       </div>
     </div>
   </form>
