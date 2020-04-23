@@ -39,7 +39,7 @@ export default function buildProductRow(items){
             let response = await deleteData('/profile/wishlist/' + itemid);
 
             if (response.status == 200) {
-                event.target.parentNode.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode.parentNode);
+                card.remove();
             }
         });
 
