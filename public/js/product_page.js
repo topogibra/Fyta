@@ -23,20 +23,29 @@ addFavorites && addFavorites.addEventListener('mousedown', async(event) => {
     let toastbody = document.querySelector('#favoriteToast > .toast-body');
     toastbody.textContent = 'Product ' + (isFavorited ? 'added to' : 'removed from') + ' favorites wishlist!';
     
-    isFavorited ? classList.add('fas') || classList.remove('far') : classList.add('far') || classList.remove('fas');
-
-    let response;
-
-    if (isFavorited) {
-        response = await putFavorite('/profile/wishlist/' + productId);
-    } else {
-        response = await deleteData('/profile/wishlist/' + productId);
+    let responseStatus;
+    
+    try {
+        let response;
+        if (isFavorited) {
+            response = await putFavorite('/profile/wishlist/' + productId);
+        } else {
+            response = await deleteData('/profile/wishlist/' + productId);
+        }
+        responseStatus = response.status;
+    } catch (error) {
+        responseStatus = error.status;
     }
-
-    $('#favoriteToast').toast({
-        delay: ToastDelay
-    });
-    $('#favoriteToast').toast('show');
+    
+    if (responseStatus == 200) {
+        isFavorited ? classList.add('fas') || classList.remove('far') : classList.add('far') || classList.remove('fas');
+        
+        $('#favoriteToast').toast({
+            delay: ToastDelay
+        });
+        
+        $('#favoriteToast').toast('show');
+    }
 });
 
 let addShoppingCart = document.getElementById('addbasket');

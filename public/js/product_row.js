@@ -30,7 +30,7 @@ export default function buildProductRow(items){
         paragraph.className = "card-text product-price text-secondary";
         paragraph.textContent = item.price + '€ ';
         const removeFavorite = document.createElement('i');
-        removeFavorite.className = "card-link fas fa-star remove-favorite";
+        removeFavorite.className = "card-link fas fa-trash remove-favorite";
 
         removeFavorite.addEventListener('mousedown', async (event) => {
             const href = event.target.parentNode.parentNode.firstChild.href; 
