@@ -135,7 +135,7 @@ class ProfileController extends Controller
         return $items;
     }
 
-    public function addProductToWishlist(Request $request)
+    public function addProductToWishlist($id)
     {
         $role = User::checkUser();
         if ($role == User::$GUEST) {
@@ -145,12 +145,12 @@ class ProfileController extends Controller
         
 
         $user = Auth::user();
-        $wishlist = $user->wishlists()->first(); //TODO: integrate multiple wishlists
+        $wishlist = $user->wishlists()->first();
         if ($wishlist == null) {
             return [];
         }
         
-        $wishlist->products()->attach($request->get('product_id'));
+        $wishlist->products()->attach($id);
 
 
         return response('Product added to wishlist');
@@ -170,8 +170,8 @@ class ProfileController extends Controller
         if ($wishlist == null) {
             return [];
         }
-        
-        $wishlist->products()->detach($wishlist->id,$id);
+
+        $wishlist->products()->detach($id);
         
         return response('Product removed to wishlist');
     }

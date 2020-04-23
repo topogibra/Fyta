@@ -42,9 +42,9 @@ Route::get('manager/managers','ProfileController@managers');
 Route::delete('product/{id}','ProductController@delete');
 Route::post('order/update','OrderController@update');
 
-//Whishlists
+// Wishlists
 Route::get('profile/wishlist','ProfileController@wishlist');
-Route::put('profile/wishlist', 'ProfileController@addProductToWishlist');
+Route::put('profile/wishlist/{id}', 'ProfileController@addProductToWishlist');
 Route::delete('profile/wishlist/{id}', 'ProfileController@removeProductFromWishlist');
 
 

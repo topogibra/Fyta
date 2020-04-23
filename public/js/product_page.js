@@ -1,14 +1,11 @@
-import {
+import request, {
     postData
 } from './request.js'
 
-const putFavorite = async (url, product_id) => {
+const putFavorite = async (url) => {
     const response = await request({
         url,
-        method: 'PUT',
-        content: {
-            'product_id': product_id
-        }
+        method: 'PUT'
     })
     return response
 }
@@ -18,6 +15,7 @@ const deleteFavorite = async (url) => {
         url,
         method: 'DELETE',
     })
+    console.log(response);
     return response
 }
 
@@ -38,7 +36,7 @@ addFavorites && addFavorites.addEventListener('mousedown', async(event) => {
     let response;
 
     if (isFavorited) {
-        response = await putFavorite('/profile/wishlist', productId);
+        response = await putFavorite('/profile/wishlist/' + productId);
     } else {
         response = await deleteFavorite('/profile/wishlist/' + productId);
     }
