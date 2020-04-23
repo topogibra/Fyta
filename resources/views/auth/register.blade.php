@@ -30,11 +30,8 @@
       </div>
     </div>
     <!--  -->
-    <div class="row">
-      <div class="col">
-        <h4 id="titlebirthday">Birthday</h4>
-      </div>
-    </div>
+    <fieldset>
+      <legend> Birthday </legend>
     <!--  -->
     <input name="birthday" type="hidden" value="" id="birthday"/>
     <div class="row form-group  birthday">
@@ -73,6 +70,7 @@
       </div>
 
     </div>
+  </fieldset>
     <!--  -->
     <div class="form-group row ">
       <div class="col">
