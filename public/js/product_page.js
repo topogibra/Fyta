@@ -1,5 +1,6 @@
 import request, {
-    postData
+    postData,
+    deleteData
 } from './request.js'
 
 const putFavorite = async (url) => {
