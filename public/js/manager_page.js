@@ -242,7 +242,7 @@ function buildPendingOrders(orders) {
     return container;
 }
 
-function buildModal(pageName, modalContent, modalId, hasFooter) {
+function buildModal(pageName, modalContent, modalId) {
     const modal = document.createElement('div');
     modal.id = modalId;
     modal.style.display = "none";
@@ -311,6 +311,23 @@ function buildManagers(managers) {
         col.className = "delete-button";
         const button = document.createElement('a');
         button.className = "btn btn-secondary";
+        button.setAttribute('data-toggle', 'modal');
+        const deleteId = `manager-${manager.id}`;
+        button.setAttribute('data-target', `#${deleteId}`);
+
+        const modal = buildModal('Are you sure you want to delete?', buildConfirmation(async () => {
+            const result = await request({
+                url: `/manager/${manager.id}`,
+                method: 'DELETE',
+                content: {}
+            });
+            if (result.status != 200)
+                throw { status: result.status, message: 'Failed to delete, please try again later.' }
+            row.remove();
+            return result;
+        }), deleteId);
+        
+        container.appendChild(modal);
         const icon = document.createElement('i');
         icon.className = "fas fa-times";
         button.appendChild(icon);
@@ -375,7 +392,7 @@ function buildManagers(managers) {
                     content
                 });
                 if (response.status != 200) {
-                    footer.prepend(buildErrorMessage(response.status, response.content));
+                    footer.prepend(buildErrorMessage("", response.content));
                 } else {
                     $(`#${managerId}`).modal('hide');
                     document.getElementById('managers-page').dispatchEvent(new Event('mousedown'));

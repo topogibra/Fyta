@@ -103,7 +103,7 @@ class ProfileController extends Controller
         $user = Auth::user();
         $managers = $user->getManagersInfo()->all();
         $clean_managers = array_map(function ($manager) {
-            $data = ['name' => $manager->username, 'date' => $manager->date];
+            $data = ['name' => $manager->username, 'date' => $manager->date, 'id' => $manager->id];
             $data['photo'] = 'img/' . $manager->img_name;
             return $data;
         }, $managers);
@@ -272,6 +272,19 @@ class ProfileController extends Controller
         $user->user_role = 'Manager';
         $this->authorize('upsertManager', Auth::user());
         return $this->upsertManager($request, $user);
+    }
+
+    public function deleteManager($id)
+    {
+        $user = User::find($id);
+        if($user == null)
+            return response('Failed to find specified manager', 400);
+
+        $this->authorize('upsertManager', Auth::user());
+
+        $user->delete();
+        
+        return response('Deleted sucessfully');
     }
 
     private function upsertManager(Request $request, User $user)

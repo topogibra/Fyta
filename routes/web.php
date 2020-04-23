@@ -37,6 +37,7 @@ Route::get('profile/user','ProfileController@profile');
 Route::get('profile/orders','ProfileController@orders');
 Route::get('profile/wishlist','ProfileController@wishlist');
 Route::get('manager/user','ProfileController@profile');
+Route::delete('manager/{id}','ProfileController@deleteManager');
 Route::get('manager/stocks','ProfileController@stocks');
 Route::get('manager/pending-orders','ProfileController@pending');
 Route::get('manager/managers','ProfileController@managers');
