@@ -10,14 +10,6 @@ const putFavorite = async (url) => {
     return response
 }
 
-const deleteFavorite = async (url) => {
-    const response = await request({
-        url,
-        method: 'DELETE',
-    })
-    return response
-}
-
 
 const addFavorites = document.querySelector('#favorites-add');
 const ToastDelay = 3000;
@@ -35,7 +27,7 @@ addFavorites && addFavorites.addEventListener('mousedown', async(event) => {
     if (isFavorited) {
         response = await putFavorite('/profile/wishlist/' + productId);
     } else {
-        response = await deleteFavorite('/profile/wishlist/' + productId);
+        response = await deleteData('/profile/wishlist/' + productId);
     }
 
     $('#favoriteToast').toast({
