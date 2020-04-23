@@ -26,6 +26,15 @@ export function buildPersonalInfoForm(info, user) {
     photo.id = "img";
     photo.name = "img";
     imgRow.appendChild(photo);
+    photo.addEventListener('change', () => {
+        if (photo.files && photo.files[0]) {
+            const reader = new FileReader();
+            reader.onload = e => (img.src = e.target.result);
+
+            reader.readAsDataURL(photo.files[0]);
+        }
+    });
+
 
     const personalInfo = document.createElement('div');
     personalInfo.className = "row form-group justify-content-center";
@@ -133,15 +142,6 @@ export default function buildPersonalInfo(info, user) {
     form.appendChild(saveChanges);
     const modalId = "success";
     const picInput = container.querySelector('#img');
-    picInput.addEventListener('change', () => {
-        if (picInput.files && picInput.files[0]) {
-            const reader = new FileReader();
-            const profilePic = container.querySelector('#user-img');
-            reader.onload = e => (profilePic.src = e.target.result);
-
-            reader.readAsDataURL(picInput.files[0]);
-        }
-    });
 
     form.addEventListener('submit', async (ev) => {
         ev.preventDefault();

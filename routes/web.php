@@ -23,6 +23,7 @@ Route::get('profile', 'ProfileController@user');
 Route::post('profile/update', 'ProfileController@updateCustomer');
 Route::get('manager', 'ProfileController@manager');
 Route::post('manager', 'ProfileController@updateManager');
+Route::post('manager/create', 'ProfileController@createManager');
 Route::get('profile/order/{id}/invoice', 'OrderController@invoice');
 Route::get('order/{id}', 'OrderController@invoice');
 Route::get('search', 'SearchController@render');

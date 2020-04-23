@@ -3,7 +3,7 @@ import buildPersonalInfo from './personal_info.js';
 import { buildPersonalInfoForm } from './personal_info.js';
 import { fetchData } from './request.js'
 import request from './request.js';
-import { buildErrorMessage } from './http_error.js';
+import { validateRequirements, buildErrorMessage } from './http_error.js';
 
 
 
@@ -280,17 +280,6 @@ function buildModal(pageName, modalContent, modalId, hasFooter) {
     body.className = "modal-body";
     body.appendChild(modalContent);
     content.appendChild(body);
-
-    if (hasFooter){
-        const footer = document.createElement('div');
-        footer.className = "modal-footer";
-        const saveButton = document.createElement('button');
-        saveButton.className = "btn btn-primary";
-        saveButton.setAttribute('data-dismiss', 'modal');
-        saveButton.textContent = "Confirm";
-        footer.appendChild(saveButton);
-        content.appendChild(footer);
-    }
     return modal;
 }
 
@@ -338,17 +327,71 @@ function buildManagers(managers) {
     button.className = "btn rounded-0 btn-lg shadow-none";
     button.id = "add-manager";
     button.type = "button"
+    const managerId = 'addManager';
     button.setAttribute('data-toggle', 'modal');
-    button.setAttribute('data-target', '#addManager');
+    button.setAttribute('data-target', `#${managerId}`);
     button.textContent = "Add New Manager";
     col.appendChild(button);
     row.appendChild(col);
+    let errors;
 
     const modal = buildModal("Add New Manager", buildPersonalInfoForm({
         username: "",
         email: "",
         photo: "img/user.png"
-    }), "Add New Manager", true);
+    }), managerId, true);
+
+
+    const form = modal.querySelector('form');
+    const footer = document.createElement('div');
+    footer.className = "modal-footer";
+    const saveButton = document.createElement('button');
+    saveButton.className = "btn btn-primary";
+    saveButton.textContent = "Confirm";
+    footer.appendChild(saveButton);
+    form.appendChild(footer);
+    const picInput = form.querySelector('#img');
+
+    const createManager = async (event) => {
+        event.preventDefault();
+        const validation = ['username', 'email', 'password', 'img']
+        const validationErrors = validateRequirements(validation);
+        if (validationErrors) {
+            errors && errors.remove();
+            errors = validationErrors;
+            footer.prepend(errors);
+        } else {
+            errors && errors.remove();
+            const content = {};
+            validation.forEach((id) => {
+                content[id] = document.getElementById(id).value;
+            });
+
+            content.photo = picInput.files[0];
+            try {
+                const response = await request({
+                    url: '/manager/create',
+                    method: 'POST',
+                    content
+                });
+                if (response.status != 200) {
+                    footer.prepend(buildErrorMessage(response.status, response.content));
+                } else {
+                    $(`#${managerId}`).modal('hide');
+                    document.getElementById('managers-page').dispatchEvent(new Event('mousedown'));
+                }
+            } catch (e) {
+                if(e.status == 400){
+                    const { status, ...errors  } = e;
+                    e.message = Object.keys(errors).map(key => errors[key] + " ").join();
+                }
+                footer.prepend(buildErrorMessage(e.status, e.message));
+            }
+        }
+    };
+    form.addEventListener('submit', createManager); 
+    modal.querySelector('button.btn.btn-primary').addEventListener('submit', createManager); 
+
     row.appendChild(modal);
     container.appendChild(row);
 
@@ -392,6 +435,7 @@ const managerProfileSections = [{
 },
 {
     name: "Managers",
+    id: "managers-page",
     action: async () => {
         try {
             const data = await fetchData('manager/managers');

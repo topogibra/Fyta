@@ -44,7 +44,7 @@ CREATE TABLE "user" (
   username TEXT NOT NULL,
   email TEXT NOT NULL,
   password_hash TEXT NOT NULL,
-  "date" DATE NOT NULL,
+  "date" DATE DEFAULT now() NOT NULL,
   address TEXT,
   id_image INTEGER,
   user_role "user_role" NOT NULL,
