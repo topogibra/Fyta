@@ -337,3 +337,11 @@ a:hover {
     background-color: var(--lighter-gray);
     color: #de7171;
 }
+
+
+.toast {
+    margin-top: 1em;
+    background-color: var(--lighter-gray);
+    color: var(--green);
+    font-weight: bold;
+}

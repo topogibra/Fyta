@@ -42,13 +42,7 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
+    public static function getValidator(array $data)
     {
         return Validator::make($data, [
             'username' => 'required|string|max:255|unique:user',
@@ -57,6 +51,17 @@ class RegisterController extends Controller
             'birthday' => 'required|date',
             "address" => 'required|string|max:255'
         ]);
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return self::getValidator($data);
     }
 
     /**
