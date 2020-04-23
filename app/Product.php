@@ -178,5 +178,23 @@ class Product extends Model
         return $products;
     }
 
+    public static function getRelatedProducts($product)
+    {
+        return DB::table('product')
+                        ->select(DB::raw('count(*) as related_count'), 'product.id', 'product.name', 'product.price', 'image.description', 'product.name', 'img_name as img')
+                        ->join('product_image','product_image.id_product','=','product.id')
+                        ->join('image', 'image.id', '=', 'product_image.id_image')
+                        ->join('product_tag', 'product_tag.id_product', '=', 'product.id')
+                        ->join('tag', 'product_tag.id_tag', '=', 'tag.id')
+                        ->where('product.id', '!=', $product)
+                        ->whereRaw("(select count(*) from tag, product_tag where tag.id = product_tag.id_tag and product_tag.id_product = $product) > 0")
+                        ->groupBy('product.id', 'image.id')
+                        ->orderByDesc('related_count')
+                        ->limit(3)
+                        ->get()
+                        ->all();
+
+    }
+
 
 }

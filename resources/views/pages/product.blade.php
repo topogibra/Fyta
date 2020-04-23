@@ -77,14 +77,16 @@
 
 
 @section('product-page-content')
-<h3>
-    Related Products
-</h3>
-<div class="row product-section">
-    <div class="row related-products justify-content-center">
-        @each('components.related_product', $related, 'item')
+@if (count($related) > 0)
+    <h3>
+        Related Products
+    </h3>
+    <div class="row product-section">
+        <div class="row related-products justify-content-center">
+            @each('components.related_product', $related, 'item')
+        </div>
     </div>
-</div>
+@endif
 <div id="reviews" class="row product-section">
     <span class="row reviews-title">
         <h3>{{count($reviews)}} Reviews</h3>
