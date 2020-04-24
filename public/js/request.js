@@ -14,11 +14,9 @@ export default function request(props) {
                 Object.keys(content)
                 .map(key => `${key}=${content[key]}`)
                 .join('&'));
-        } else if (method === 'PUT' || method === 'DELETE') {
-            options.body = JSON.stringify(content);
         } else {
-            options.body = new FormData();
-            Object.keys(content).forEach(key => options.body.append(key, content[key]));
+            options.headers['Content-Type'] = 'application/json';
+            options.body = JSON.stringify(content);
         }
 
         const response = await fetch(url, options)
