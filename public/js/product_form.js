@@ -1,3 +1,5 @@
+import { validateRequirements } from './http_error.js';
+
 const picInput = document.querySelector('#img');
 const img = document.querySelector('#template-img');
 
@@ -44,21 +46,21 @@ category.addEventListener('change', () => {
 let errors;
 const page = document.querySelector('#content-wrap');
 
-document.querySelector('form').addEventListener('submit', (event) => {
+document.querySelector('#productForm').addEventListener('submit', (event) => {
 
-    // event.preventDefault();
+    event.preventDefault();
     createdTags.push(category.value);
     event.target.tags.value = createdTags.join(',');
 
-    // let validation = ['name', 'price', 'stock', 'description', 'custom-select', 'template-img'];
-    // let validationErrors = validateRequirements(validation);
+    let validation = ['name', 'price', 'stock', 'description', 'custom-select', 'template-img'];
+    let validationErrors = validateRequirements(validation);
 
-    // errors && errors.remove();
-    // if (validationErrors) {
-    //     event.preventDefault();
-    //     page.append(validationErrors);
-    //     errors = validationErrors;
-    // }
+    errors && errors.remove();
+    if (validationErrors) {
+        event.preventDefault();
+        page.append(validationErrors);
+        errors = validationErrors;
+    }
 
 
 });

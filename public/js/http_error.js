@@ -10,47 +10,120 @@ export function buildErrorMessage(error, message) {
     return container
 }
 
-export function validateRequirements(requiredInputs) {
+
+export function validateRequirementsUser(requiredInputs) {
 
     const errorsArray = [];
 
     requiredInputs.forEach((id) => {
         const input = document.getElementById(id);
+
         if (!input.value) {
             errorsArray.push({
                 'id': id,
                 'message': " is required"
             });
         }
-        if (id == "username" || id == "email" || id == "address" || id == "deliveryaddress" || id == "billingaddress") {
-            if (!(validateMaxSize(input.value) || errorsArray.find(() => ({ 'id': id }))))
-                errorsArray.push({
-                    'id': id,
-                    'message': " to big. Max of 255 caracters"
-                });
-        } else if (id == "password") {
-            if (!(validateMinSize(input.value) || errorsArray.find(() => ({ 'id': id }))))
-                errorsArray.push({
-                    'id': id,
-                    'message': " is incorrect. At least 6 digits are needed"
-                });
-        } else if (id == "birthday") {
-            const day = document.getElementById('day');
-            const month = document.getElementById("month");
-            const year = document.getElementById("year");
-            if (!(validateDate(day.value, month.value, year.value) || errorsArray.find(() => ({ 'id': id }))))
-                errorsArray.push({
-                    'id': id,
-                    'message': " invalid"
-                });
-        } else if (id == "stock" || id == "price") {
-            if (!(validateMoreOne(input.value) || errorsArray.find(() => ({ 'id': id }))))
-                errorsArray.push({
-                    'id': id,
-                    'message': " is incorrect. At least 6 digits are needed"
-                });
+
+        switch (id) {
+            case "username", "email", "address":
+                if (!(validateMaxSize(input.value) || errorsArray.find(() => ({ 'id': id }))))
+                    errorsArray.push({
+                        'id': id,
+                        'message': " to big. Max of 255 caracters"
+                    });
+                break;
+            case "password":
+                // if (!(validateMinSize(input.value) || errorsArray.find(() => ({ 'id': id }))))
+                //     errorsArray.push({
+                //         'id': id,
+                //         'message': " is incorrect. At least 6 digits are needed"
+                //     });
+                break;
+            case "birthday":
+                const day = document.getElementById('day');
+                const month = document.getElementById("month");
+                const year = document.getElementById("year");
+                if (!(validateDate(day.value, month.value, year.value) || errorsArray.find(() => ({ 'id': id }))))
+                    errorsArray.push({
+                        'id': id,
+                        'message': " invalid"
+                    });
+                break;
+
         }
+
     });
+
+    return createErrors(errorsArray);
+}
+
+export function validateRequirementsCheckout(requiredInputs) {
+
+    const errorsArray = [];
+
+    requiredInputs.forEach((id) => {
+        const input = document.getElementById(id);
+
+        if (!input.value) {
+            errorsArray.push({
+                'id': id,
+                'message': " is required"
+            });
+        }
+
+        switch (id) {
+            case "deliveryaddress", "billingaddress":
+                if (!(validateMaxSize(input.value) || errorsArray.find(() => ({ 'id': id }))))
+                    errorsArray.push({
+                        'id': id,
+                        'message': " to big. Max of 255 caracters"
+                    });
+                break;
+        }
+
+    });
+
+    return createErrors(errorsArray);
+}
+
+export function validateRequirementsProduct(requiredInputs) {
+
+    const errorsArray = [];
+
+    requiredInputs.forEach((id) => {
+        const input = document.getElementById(id);
+
+        if (!input.value || (id = 'img-template' && !input.src)) {
+            errorsArray.push({
+                'id': id,
+                'message': " is required"
+            });
+        }
+
+        switch (id) {
+            case "description", "name", "category":
+                if (!(validateMaxSize(input.value) || errorsArray.find(() => ({ 'id': id }))))
+                    errorsArray.push({
+                        'id': id,
+                        'message': " to big. Max of 255 caracters"
+                    });
+                break;
+            case "stock", "price":
+                if (!(validateMoreOne(input.value) || errorsArray.find(() => ({ 'id': id }))))
+                    errorsArray.push({
+                        'id': id,
+                        'message': " is incorrect. At least 6 digits are needed"
+                    });
+        }
+
+
+    });
+
+    return createErrors(errorsArray);
+}
+
+function createErrors(errorsArray) {
 
     if (errorsArray.length > 0) {
         const errors = document.createElement('ul');
@@ -63,6 +136,7 @@ export function validateRequirements(requiredInputs) {
         });
         return errors;
     }
+
     return false;
 }
 
