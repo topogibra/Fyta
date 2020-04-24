@@ -1,9 +1,9 @@
-@extends('layouts.app', ['scripts' => [], 'styles' => ['css/loginpage.css']])
+@extends('layouts.app', ['scripts' => ['js/login.js'], 'styles' => ['css/loginpage.css']])
 
 
 @section('content')
-<div class="container">
-  <form method="POST" action="/login">
+<div class="container" id="page">
+  <form method="POST" action="/login" id="loginForm">
     @csrf
     <div class="form ">
       <div class="row ">

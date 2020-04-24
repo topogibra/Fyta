@@ -359,13 +359,14 @@ function buildManagers(managers) {
 }
 
 const managerProfileSections = [{
-    name: "Manager Information",
-    action: async () => {
-        try {
-            const data = await fetchData('manager/user');
-            return buildPersonalInfo(data);
-        } catch (e) {
-            return buildErrorMessage(e.status, e.message)
+        name: "Manager Information",
+        action: async() => {
+            try {
+                const data = await fetchData('manager/user');
+                return buildPersonalInfo(data);
+            } catch (e) {
+                return buildErrorMessage(e.status, e.message)
+            }
         }
     },
     {

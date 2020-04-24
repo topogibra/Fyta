@@ -15,7 +15,7 @@ picInput.addEventListener('change', () => {
 });
 
 document.getElementById('registerForm').addEventListener('submit', (event) => {
-    event.preventDefault();
+
     const form = event.target;
     const day = document.getElementById('day').value;
     const month = document.getElementById('month').value;
@@ -26,9 +26,11 @@ document.getElementById('registerForm').addEventListener('submit', (event) => {
     let validation = ['username', 'email', 'address', 'birthday', 'password'];
     let validationErrors = validateRequirements(validation);
 
+    errors && errors.remove();
     if (validationErrors) {
-        errors && errors.remove();
         page.append(validationErrors);
         errors = validationErrors;
+        event.preventDefault();
     }
+
 });

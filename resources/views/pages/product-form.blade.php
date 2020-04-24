@@ -2,7 +2,6 @@
 
 @section('img')
 <div class="my-2" class="product-creation-left">
-    <label for="img">  </label>
         <img id="template-img" src={{asset('/img/template_img.png')}} alt="defaultImg">
     <input type="file"  name="img" id="img">
 </div>
@@ -42,7 +41,7 @@
         </div>
         <div class="my-2 col-4">
             <h5>Category</h5>
-            <select class="custom-select">
+            <select class="custom-select" id="custom-select">
                 <option selected disabled>
                 </option>
                 <option value="indoor">indoor</option>

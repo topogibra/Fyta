@@ -23,13 +23,13 @@ export function validateRequirements(requiredInputs) {
             });
         }
         if (id == "username" || id == "email" || id == "address") {
-            if (!validateMaxSize(input.value))
+            if (!(validateMaxSize(input.value) || errorsArray.find(() => ({ 'id': id }))))
                 errorsArray.push({
                     'id': id,
                     'message': " to big. Max of 255 caracters"
                 });
         } else if (id == "password") {
-            if (!validateMinSize(input.value))
+            if (!(validateMinSize(input.value) || errorsArray.find(() => ({ 'id': id }))))
                 errorsArray.push({
                     'id': id,
                     'message': " is incorrect. At least 6 digits are needed"
@@ -38,10 +38,16 @@ export function validateRequirements(requiredInputs) {
             const day = document.getElementById('day');
             const month = document.getElementById("month");
             const year = document.getElementById("year");
-            if (!validateDate(day.value, month.value, year.value))
+            if (!(validateDate(day.value, month.value, year.value) || errorsArray.find(() => ({ 'id': id }))))
                 errorsArray.push({
                     'id': id,
                     'message': " invalid"
+                });
+        } else if (id == "stock" || id == "price") {
+            if (!(validateMoreOne(input.value) || errorsArray.find(() => ({ 'id': id }))))
+                errorsArray.push({
+                    'id': id,
+                    'message': " is incorrect. At least 6 digits are needed"
                 });
         }
     });
@@ -90,4 +96,8 @@ function validateMaxSize(element) {
 
 function validateMinSize(element) {
     return element.length > 6;
+}
+
+function validateMoreOne(element) {
+    return element >= 1;
 }
