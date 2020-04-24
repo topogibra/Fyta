@@ -66,8 +66,7 @@
     <div class="row">
         <div class="my-2 product-creation-left" id="create-product-description">
             <h5> Description </h5>
-            <textarea id="description" class="mt-1" name="description" rows="5" cols="50">
-            </textarea>
+            <textarea id="description" class="mt-1" name="description" rows="5" cols="50"></textarea>
         </div>
     </div>
     @include('components.errors')

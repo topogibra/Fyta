@@ -10,15 +10,21 @@ export function buildErrorMessage(error, message) {
     return container
 }
 
-
-export function validateRequirementsUser(requiredInputs) {
+export function validateRequirements(requiredInputs) {
 
     const errorsArray = [];
 
     requiredInputs.forEach((id) => {
         const input = document.getElementById(id);
 
-        if (!input.value) {
+        if (id == 'template-img') {
+            if (input.src == null) {
+                errorsArray.push({
+                    'id': id,
+                    'message': " is required"
+                });
+            }
+        } else if (!input.value) {
             errorsArray.push({
                 'id': id,
                 'message': " is required"
@@ -26,12 +32,13 @@ export function validateRequirementsUser(requiredInputs) {
         }
 
         switch (id) {
-            case "username", "email", "address":
-                if (!(validateMaxSize(input.value) || errorsArray.find(() => ({ 'id': id }))))
+            case "username", "email", "address", "name", "deliveryaddress", "billingaddress", "description":
+                if (!(validateMaxSize(input.value) || errorsArray.find(() => ({ 'id': id })))) {
                     errorsArray.push({
                         'id': id,
                         'message': " to big. Max of 255 caracters"
                     });
+                }
                 break;
             case "password":
                 // if (!(validateMinSize(input.value) || errorsArray.find(() => ({ 'id': id }))))
@@ -44,83 +51,32 @@ export function validateRequirementsUser(requiredInputs) {
                 const day = document.getElementById('day');
                 const month = document.getElementById("month");
                 const year = document.getElementById("year");
-                if (!(validateDate(day.value, month.value, year.value) || errorsArray.find(() => ({ 'id': id }))))
+                if (!(validateDate(day.value, month.value, year.value) || errorsArray.find(() => ({ 'id': id })))) {
                     errorsArray.push({
                         'id': id,
                         'message': " invalid"
                     });
-                break;
-
-        }
-
-    });
-
-    return createErrors(errorsArray);
-}
-
-export function validateRequirementsCheckout(requiredInputs) {
-
-    const errorsArray = [];
-
-    requiredInputs.forEach((id) => {
-        const input = document.getElementById(id);
-
-        if (!input.value) {
-            errorsArray.push({
-                'id': id,
-                'message': " is required"
-            });
-        }
-
-        switch (id) {
-            case "deliveryaddress", "billingaddress":
-                if (!(validateMaxSize(input.value) || errorsArray.find(() => ({ 'id': id }))))
-                    errorsArray.push({
-                        'id': id,
-                        'message': " to big. Max of 255 caracters"
-                    });
-                break;
-        }
-
-    });
-
-    return createErrors(errorsArray);
-}
-
-export function validateRequirementsProduct(requiredInputs) {
-
-    const errorsArray = [];
-
-    requiredInputs.forEach((id) => {
-        const input = document.getElementById(id);
-
-        if (!input.value || (id = 'img-template' && !input.src)) {
-            errorsArray.push({
-                'id': id,
-                'message': " is required"
-            });
-        }
-
-        switch (id) {
-            case "description", "name", "category":
-                if (!(validateMaxSize(input.value) || errorsArray.find(() => ({ 'id': id }))))
-                    errorsArray.push({
-                        'id': id,
-                        'message': " to big. Max of 255 caracters"
-                    });
+                }
                 break;
             case "stock", "price":
-                if (!(validateMoreOne(input.value) || errorsArray.find(() => ({ 'id': id }))))
+                if (!(validateMoreOne(input.value) || errorsArray.find(() => ({ 'id': id })))) {
                     errorsArray.push({
                         'id': id,
                         'message': " is incorrect. At least 6 digits are needed"
                     });
-        }
+                }
+                break;
 
+        }
 
     });
 
-    return createErrors(errorsArray);
+    let errors = createErrors(errorsArray);
+
+    if (errors != null)
+        return errors;
+    else
+        return false;
 }
 
 function createErrors(errorsArray) {
@@ -137,7 +93,6 @@ function createErrors(errorsArray) {
         return errors;
     }
 
-    return false;
 }
 
 function validateDate(day, month, year) {

@@ -48,7 +48,6 @@ const page = document.querySelector('#content-wrap');
 
 document.querySelector('#productForm').addEventListener('submit', (event) => {
 
-    event.preventDefault();
     createdTags.push(category.value);
     event.target.tags.value = createdTags.join(',');
 
@@ -60,7 +59,9 @@ document.querySelector('#productForm').addEventListener('submit', (event) => {
         event.preventDefault();
         page.append(validationErrors);
         errors = validationErrors;
+        event.target.tags.value = "";
     }
+
 
 
 });
