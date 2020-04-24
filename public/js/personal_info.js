@@ -1,4 +1,4 @@
-import { validateRequirements, buildErrorMessage } from './http_error.js';
+import { validateRequirements } from './http_error.js';
 import request from './request.js'
 
 export function buildPersonalInfoForm(info, user) {

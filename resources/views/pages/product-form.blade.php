@@ -2,8 +2,10 @@
 
 @section('img')
 <div class="my-2" class="product-creation-left">
+    <label for="img">
         <img id="template-img" src={{asset('/img/template_img.png')}} alt="defaultImg">
-    <input type="file"  name="img" id="img">
+    </label>
+        <input type="file"  name="img" id="img">
 </div>
 @endsection
 

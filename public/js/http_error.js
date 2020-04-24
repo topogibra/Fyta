@@ -22,7 +22,7 @@ export function validateRequirements(requiredInputs) {
                 'message': " is required"
             });
         }
-        if (id == "username" || id == "email" || id == "address") {
+        if (id == "username" || id == "email" || id == "address" || id == "deliveryaddress" || id == "billingaddress") {
             if (!(validateMaxSize(input.value) || errorsArray.find(() => ({ 'id': id }))))
                 errorsArray.push({
                     'id': id,

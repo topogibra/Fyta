@@ -2,7 +2,7 @@
 
 @section('content')
     @include('components.checkout_progress', ['number' => 1])
-    <div class="form">
+    <div class="form" id="form">
             <h3>Order Details</h3>
         <form action="/checkout-details" method="POST">
             @csrf

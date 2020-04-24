@@ -45,18 +45,20 @@ let errors;
 const page = document.querySelector('#content-wrap');
 
 document.querySelector('form').addEventListener('submit', (event) => {
+
+    // event.preventDefault();
     createdTags.push(category.value);
     event.target.tags.value = createdTags.join(',');
 
-    let validation = ['name', 'price', 'stock', 'description', 'custom-select', 'template-img'];
-    let validationErrors = validateRequirements(validation);
+    // let validation = ['name', 'price', 'stock', 'description', 'custom-select', 'template-img'];
+    // let validationErrors = validateRequirements(validation);
 
-    errors && errors.remove();
-    if (validationErrors) {
-        event.preventDefault();
-        page.append(validationErrors);
-        errors = validationErrors;
-    }
+    // errors && errors.remove();
+    // if (validationErrors) {
+    //     event.preventDefault();
+    //     page.append(validationErrors);
+    //     errors = validationErrors;
+    // }
 
 
 });
