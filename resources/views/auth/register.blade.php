@@ -1,7 +1,7 @@
 @extends('layouts.app', ['scripts' => ['js/register.js'], 'styles' => ['css/registerpage.css']])
 
 @section('content')
-<div class="container">
+<div class="container" id="page">
   <form action="/register" method="POST" class=".form form justify-content-center" id='registerForm' enctype="multipart/form-data">
     @csrf
     <div class="row ">
