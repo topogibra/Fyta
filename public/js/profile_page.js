@@ -66,7 +66,7 @@ const userProfileSections = [{
         name: "Personal Information",
         action: async () => { 
             try {
-                const data = await fetchData('/profile/get');
+                const data = await fetchData('/profile/user');
                 return buildPersonalInfo(data, true)
             } catch(e) {
                 return buildErrorMessage(e.status,e.message)

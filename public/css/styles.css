@@ -51,6 +51,18 @@ body {
     grid-column: 3/4;
 }
 
+.navbar-search .btn {
+    font-size: 0;
+    background-color: transparent;
+}
+
+.navbar-search .btn .fa-search {
+    font-size: initial;
+}
+
+.navbar-search label {
+    font-size: 0;
+}
 .nav-link {
     color: black !important;
 }
@@ -336,4 +348,12 @@ a:hover {
 #errors{
     background-color: var(--lighter-gray);
     color: #de7171;
+}
+
+
+.toast {
+    margin-top: 1em;
+    background-color: var(--lighter-gray);
+    color: var(--green);
+    font-weight: bold;
 }

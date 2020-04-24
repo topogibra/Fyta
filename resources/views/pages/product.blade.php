@@ -59,7 +59,8 @@
             </div>
             <div class="toast" id="myToast" role="alert" aria-live="assertive" aria-atomic="true"  >
                 <div class="toast-body">
-                Product succesfully added to shopping cart!
+                    Product succesfully added to shopping cart!
+                </div>
             </div>
         </div>
         @else
@@ -78,14 +79,16 @@
 
 
 @section('product-page-content')
-<h3>
-    Related Products
-</h3>
-<div class="row product-section">
-    <div class="row related-products justify-content-center">
-        @each('components.related_product', $related, 'item')
+@if (count($related) > 0)
+    <h3>
+        Related Products
+    </h3>
+    <div class="row product-section">
+        <div class="row related-products justify-content-center">
+            @each('components.related_product', $related, 'item')
+        </div>
     </div>
-</div>
+@endif
 <div id="reviews" class="row product-section">
     <div class="row reviews-title">
         <h3>{{count($reviews)}} Reviews</h3>

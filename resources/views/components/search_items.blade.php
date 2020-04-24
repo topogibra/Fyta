@@ -1,12 +1,12 @@
 <div class="col mb-4">
     <div class="card">
-    <a href="/product" class="img-wrapper">
-        <img class="card-img-top" src={{asset($item->img)}} alt={{$item->name}}>
+    <a href="/product/{{ $item->id }}" class="img-wrapper">
+        <img class="card-img-top" src={{asset($item->img)}} alt={{$item->alt}}>
     </a>
     <div class="card-body">
         <div class="row flex-nowrap justify-content-between">
         <h5 class="card-title">
-            <a href="/product">
+            <a href="/product/{{ $item->id }}">
             {{$item->name}}
             </a>
         </h5>

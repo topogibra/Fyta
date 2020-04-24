@@ -107,32 +107,17 @@
 
           <div class="col-lg-8">
             <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2"> 
-              @each('components.search_items', $items, 'item')
-            </div>
-
-            <div class="pages">
-              <div class="row">
-                <nav aria-label="Page navigation example">
-                  <ul class="pagination">
-                    <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                      </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                      </a>
-                    </li>
+              @if (count($items) > 0)
+                @each('components.search_items', $items, 'item')
+              @else 
+                <div class="alert row" id="errors">
+                  <ul>                     
+                    <li>No results found!</li>
                   </ul>
-                </nav>
-              </div>
-
-
+                </div>
+              @endif
             </div>
+
           </div>
 
 

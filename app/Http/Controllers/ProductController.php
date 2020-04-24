@@ -22,11 +22,12 @@ class ProductController extends Controller
         }
         $feedback = Review::getByProductID($id);
         $reviews = $feedback == null ? [] : $feedback->reviews;
-        $score = $feedback == null ? 0 : $feedback->score;
+        $score = $feedback == null ? 0 : round($feedback->score);
+        $related_products = Product::getRelatedProducts($id);
         return view('pages.product', ['id'=>$id,
             'img' => $product->img, 'alt' => $product->alt, 'description' =>  $product->description,
             'price' => $product->price, 'score' => $score, 'name' => $product->name,
-            'related' => [['id' => 1, 'img' => 'img/supreme_vase.jpg', 'name' => 'Supreme Bonsai Pot', 'price' => '40€'], ['id' => 1, 'img' => 'img/gloves_tool.jpg', 'name' => 'Blue Garden Gloves', 'price' => '9€'], ['id' => 1, 'img' => 'img/pondlilies_outdoor.jpg', 'name' => 'Pond White Lilies', 'price' => '40€']],
+            'related' => $related_products,
             'reviews' => $reviews
         ]);
     }
