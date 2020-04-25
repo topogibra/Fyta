@@ -16,6 +16,11 @@ class ProductPolicy
         return Auth::check() && $user->user_role == User::$MANAGER;
     }
 
+    public function update(User $user)
+    {
+        return Auth::check() && $user->user_role == User::$MANAGER;
+    }
+
     public function delete(User $user)
     {
         return Auth::check() && $user->user_role == User::$MANAGER;
