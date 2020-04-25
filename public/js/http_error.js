@@ -18,7 +18,7 @@ export function validateRequirements(requiredInputs) {
         const input = document.getElementById(id);
 
         if (id == 'template-img') {
-            if (input.src == null) {
+            if (input.src == null || input.src == window.location.origin + "/img/template_img.png") {
                 errorsArray.push({
                     'id': id,
                     'message': " is required"
