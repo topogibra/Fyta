@@ -37,7 +37,31 @@ class ProductController extends Controller
     {
         if (User::checkUser() != User::$MANAGER)
             return back();
-        return view('pages.product-form');
+        return view('pages.product-form', [
+            'method' => 'POST'
+        ]);
+    }
+
+    public function edit($id)
+    {
+        $product = Product::find($id);
+        if ($product == null) {
+            return abort(404);
+        }
+
+        $this->authorize('update', $product);
+        
+        return view('pages.product-form', [
+            'id' => $id,
+            'name' => $product->name,
+            'img' => $product->images()->get()->first()->img_name,
+            'tags' => $product->tags()->get()->all(),
+            'stock' => $product->stock,
+            'price' => $product->price,
+            'description' => $product->description,
+            'method' => 'PUT'
+
+        ]);
     }
 
     public function create(Request $request)
@@ -179,6 +203,7 @@ class ProductController extends Controller
                 $product->save();
             }
         });
+        
         return response()->json(array_map(function ($item) {
             return Product::find($item['id']);
         }, $request->all()));

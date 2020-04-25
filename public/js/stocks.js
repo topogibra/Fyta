@@ -23,7 +23,7 @@ export default function buildStocks(products) {
         row.className = "row table-entry";
         const name = createProductColumn(product.name, 'name');
         const href = document.createElement('a');
-        href.href = '/product/' + product.id;
+        href.href = '/product/' + product.id + '/edit';
         href.appendChild(name);
         href.className = "col-md-3 col-6 name";
         row.appendChild(href);

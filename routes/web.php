@@ -33,6 +33,7 @@ Route::get('product/buy/{id}', 'ProductController@buyNow');
 Route::post('product', 'ProductController@create');
 Route::post('cart/{id}', 'ProductController@addShoppingCart');
 Route::get('product/{id}', 'ProductController@render');
+Route::get('product/{id}/edit', 'ProductController@edit');
 Route::get('profile/user','ProfileController@profile');
 Route::get('profile/orders','ProfileController@orders');
 Route::get('profile/wishlist','ProfileController@wishlist');
