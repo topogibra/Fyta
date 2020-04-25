@@ -40,12 +40,12 @@ export function validateRequirements(requiredInputs) {
                     });
                 }
                 break;
-            case "password":
-                // if (!(validateMinSize(input.value) || errorsArray.find(() => ({ 'id': id }))))
-                //     errorsArray.push({
-                //         'id': id,
-                //         'message': " is incorrect. At least 6 digits are needed"
-                //     });
+            case "password": //TODO: already created accounts wont be validated without this parameter
+                if (!(validateMinSize(input.value) || errorsArray.find(() => ({ 'id': id }))))
+                    errorsArray.push({
+                        'id': id,
+                        'message': " is incorrect. At least 6 digits are needed"
+                    });
                 break;
             case "birthday":
                 const day = document.getElementById('day');
