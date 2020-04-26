@@ -876,7 +876,7 @@ INSERT INTO apply_discount (id_product,id_discount) VALUES (87,18),(46,8),(66,4)
 --R13
 INSERT INTO tag ("name") VALUES ('Indoor'),('Outdoor'),('Vases'),('Tools');
 INSERT INTO tag ("name") VALUES ('Orchid'),('Tulips'),('Bonsai'),('Dahlias');
-INSERT INTO tag ("name") VALUES ('Green'),('Pink'),('Red'),('Yellow');
+INSERT INTO tag ("name") VALUES ('Green'),('Pink'),('Red'),('Yellow'),('Deals');
 
 
 
@@ -897,7 +897,7 @@ INSERT INTO product_tag (id_tag,id_product) VALUES (10,26),(10,27),(10,28),(10,2
 INSERT INTO product_tag (id_tag,id_product) VALUES (11,51),(11,52),(11,53),(11,54),(11,55),(11,56),(11,57),(11,58),(11,59),(11,60),(11,61),(11,62),(11,63),(11,64),(11,65),(11,66),(11,67),(11,68),(11,69),(11,70),(11,71),(11,72),(11,73),(11,74),(11,75);
 INSERT INTO product_tag (id_tag,id_product) VALUES (12,76),(12,77),(12,78),(12,79),(12,80),(12,81),(12,82),(12,83),(12,84),(12,85),(12,86),(12,87),(12,88),(12,89),(12,90),(12,91),(12,92),(12,93),(12,94),(12,95),(12,96),(12,97),(12,98),(12,99),(12,100);
 
-
+INSERT INTO product_tag (id_tag,id_product) VALUES (13,76),(13,77),(13,78),(13,79),(13,80),(13,81),(13,82),(13,83),(13,84),(13,85),(13,86),(13,87),(13,88),(13,89),(13,90),(13,91),(13,92),(13,93),(13,94),(13,95),(13,96),(13,97),(13,98),(13,99),(13,100);
 --R15
 INSERT INTO ticket (ticket_type,id_user) VALUES ('Faulty_Delivery',18),('Product_Complaint',1),('Faulty_Delivery',5),('Faulty_Delivery',8);
 INSERT INTO ticket (ticket_type,id_user) VALUES ('Faulty_Delivery',9),('Payment_Error',8),('Payment_Error',8),('Payment_Error',11);

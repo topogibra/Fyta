@@ -105,6 +105,7 @@ class ProfileController extends Controller
         $clean_managers = array_map(function ($manager) {
             $data = ['name' => $manager->username, 'date' => $manager->date, 'id' => $manager->id];
             $data['photo'] = 'img/' . $manager->img_name;
+            $data['alt'] = $manager->alt;
             return $data;
         }, $managers);
 

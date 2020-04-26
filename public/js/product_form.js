@@ -1,3 +1,5 @@
+import { validateRequirements } from './http_error.js';
+
 const picInput = document.querySelector('#img');
 const img = document.querySelector('#template-img');
 
@@ -41,8 +43,25 @@ category.addEventListener('change', () => {
     tagsRow.style.display = "flex";
 });
 
+let errors;
+const page = document.querySelector('#content-wrap');
 
-document.querySelector('form').addEventListener('submit', (event) => {
+document.querySelector('#productForm').addEventListener('submit', (event) => {
+
     createdTags.push(category.value);
     event.target.tags.value = createdTags.join(',');
+
+    let validation = ['name', 'price', 'stock', 'description', 'custom-select', 'template-img'];
+    let validationErrors = validateRequirements(validation);
+
+    errors && errors.remove();
+    if (validationErrors) {
+        event.preventDefault();
+        page.append(validationErrors);
+        errors = validationErrors;
+        event.target.tags.value = "";
+    }
+
+
+
 });

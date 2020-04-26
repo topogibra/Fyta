@@ -22,8 +22,16 @@
     font-size: 1em;
 }
 
-.steps .row .col .row hr {
-    margin: 1.2em 0em 0em 0.75em;
+.steps>.row .col:nth-child(1) .row hr {
+    width: 25%;
+}
+
+.steps>.row .col:nth-child(2) .row hr {
+    width: 15%;
+}
+
+.steps .row .col p:nth-child(1) {
+    border: 2px solid var(--dark-gray);
 }
 
 .steps .row .col p:nth-child(1) {

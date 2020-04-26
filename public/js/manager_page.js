@@ -30,11 +30,10 @@ function buildConfirmation(action) {
     reject.setAttribute('role', 'button');
     reject.setAttribute('data-dismiss', 'modal');
     reject.setAttribute('aria-label', 'Close');
-    accept.addEventListener('mousedown', async () => {
+    accept.addEventListener('mousedown', async() => {
         await action();
         reject.click();
-        try {
-        } catch (error) {
+        try {} catch (error) {
             container.appendChild(buildErrorMessage(error.status, error.message));
         }
     });
@@ -81,7 +80,7 @@ function buildStocks(products) {
         col.setAttribute('data-target', `#${deleteId}`);
         const icon = document.createElement('i');
         icon.className = "fas fa-trash";
-        const modal = buildModal('Are you sure you want to delete?', buildConfirmation(async () => {
+        const modal = buildModal('Are you sure you want to delete?', buildConfirmation(async() => {
             const result = await request({
                 url: `/product/${product.id}`,
                 method: 'DELETE',
@@ -211,24 +210,24 @@ function buildPendingOrders(orders) {
         col.setAttribute('data-target', `#${deleteId}`);
         const icon = document.createElement('i');
         icon.className = "fas fa-trash";
-        const modal = buildModal('Are you sure you want to update the order\'s status?', buildConfirmation(async () => {
+        const modal = buildModal('Are you sure you want to update the order\'s status?', buildConfirmation(async() => {
             const order_status = order.status === "Awaiting Payment" ? 'Ready_for_Shipping' : 'Processed';
             const result = await request({
                 url: '/order/update',
                 method: 'POST',
                 content: {
                     order_id: order.id,
-                    order_status  
+                    order_status
                 }
             });
             if (result.status != 200)
                 throw { status: result.status, message: 'Failed to update, please try again later.' }
-            
+
             if (order_status === "Processed")
                 row.remove();
             else {
                 status.textContent = order_status.split('_').join(' ');
-                order.status = status.textContent; 
+                order.status = status.textContent;
                 button.textContent = stateStatus[status.textContent];
             }
             return result;
@@ -249,7 +248,8 @@ function buildModal(pageName, modalContent, modalId) {
     modal.className = "modal fade";
     modal.tabIndex = -1;
     modal.setAttribute('role', 'dialog');
-    modal.setAttribute('aria-labelledby', 'addManagerLabel');
+    let id = "addManagerLabel" + modalId;
+    modal.setAttribute('aria-labelledby', id);
     modal.setAttribute('aria-hidden', 'true');
     const dialog = document.createElement('div');
     dialog.className = "modal-dialog";
@@ -263,7 +263,7 @@ function buildModal(pageName, modalContent, modalId) {
     content.appendChild(header);
     const title = document.createElement('h5');
     title.className = "modal-title";
-    title.id = "addManagerLabel";
+    title.id = "addManagerLabel" + modalId;
     title.textContent = pageName;
     header.appendChild(title);
     const closeButton = document.createElement('button');
@@ -280,6 +280,17 @@ function buildModal(pageName, modalContent, modalId) {
     body.className = "modal-body";
     body.appendChild(modalContent);
     content.appendChild(body);
+
+    if (hasFooter) {
+        const footer = document.createElement('div');
+        footer.className = "modal-footer";
+        const saveButton = document.createElement('button');
+        saveButton.className = "btn btn-primary";
+        saveButton.setAttribute('data-dismiss', 'modal');
+        saveButton.textContent = "Confirm";
+        footer.appendChild(saveButton);
+        content.appendChild(footer);
+    }
     return modal;
 }
 
@@ -294,6 +305,7 @@ function buildManagers(managers) {
         const photo = document.createElement('div');
         const img = document.createElement('img');
         img.src = manager.photo;
+        img.alt = manager.alt;
         photo.appendChild(img);
         row.appendChild(photo);
 
@@ -352,7 +364,7 @@ function buildManagers(managers) {
     row.appendChild(col);
     let errors;
 
-    const modal = buildModal("Add New Manager", buildPersonalInfoForm({
+    const modal = buildModal("AddNewManager", buildPersonalInfoForm({
         username: "",
         email: "",
         photo: "img/user.png"
@@ -418,35 +430,36 @@ function buildManagers(managers) {
 }
 
 const managerProfileSections = [{
-    name: "Manager Information",
-    action: async () => {
-        try {
-            const data = await fetchData('manager/user');
-            return buildPersonalInfo(data);
-        } catch (e) {
-            return buildErrorMessage(e.status, e.message)
+        name: "Manager Information",
+        action: async() => {
+            try {
+                const data = await fetchData('manager/user');
+                return buildPersonalInfo(data);
+            } catch (e) {
+                return buildErrorMessage(e.status, e.message)
+            }
         }
-    }
-},
-{
-    name: "Stocks",
-    action: async () => {
-        try {
-            const data = await fetchData('manager/stocks');
-            return buildStocks(data);
-        } catch (e) {
-            return buildErrorMessage(e.status, e.message)
+    },
+    {
+        name: "Stocks",
+        action: async() => {
+            try {
+                const data = await fetchData('manager/stocks');
+                return buildStocks(data);
+            } catch (e) {
+                return buildErrorMessage(e.status, e.message)
+            }
         }
-    }
-},
-{
-    name: "Pending Orders",
-    action: async () => {
-        try {
-            const data = await fetchData('manager/pending-orders');
-            return buildPendingOrders(data);
-        } catch (e) {
-            return buildErrorMessage(e.status, e.message)
+    },
+    {
+        name: "Pending Orders",
+        action: async() => {
+            try {
+                const data = await fetchData('manager/pending-orders');
+                return buildPendingOrders(data);
+            } catch (e) {
+                return buildErrorMessage(e.status, e.message)
+            }
         }
     }
 },
@@ -461,7 +474,6 @@ const managerProfileSections = [{
             return buildErrorMessage(e.status, e.message)
         }
     }
-}
 ];
 
 

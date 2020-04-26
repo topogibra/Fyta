@@ -25,7 +25,7 @@ class ProductController extends Controller
         $score = $feedback == null ? 0 : round($feedback->score);
         $related_products = Product::getRelatedProducts($id);
         return view('pages.product', ['id'=>$id,
-            'img' => $product->img, 'description' =>  $product->description,
+            'img' => $product->img, 'alt' => $product->alt, 'description' =>  $product->description,
             'price' => $product->price, 'score' => $score, 'name' => $product->name,
             'related' => $related_products,
             'reviews' => $reviews

@@ -1,17 +1,17 @@
 @extends('layouts.product', ['content' => 'components.product-page', 'files' =>  ['scripts' => ['js/product_page.js', 'js/request.js'], 'styles' => ['css/product_page.css']]])
 
 @section('img')
-    <img class="border" src={{asset($img)}}>
+    <img class="border" src={{asset("img/$img")}} alt={{$alt}}>
 @endsection
 
 @section('header')
 <h3 class="col-xs-1-12 col-5">
     {{$name}}
 </h3>
-<span class="col-xs-1-12  review">
+<div class="col-xs-1-12  review">
     <h6>{{$score}}</h6>
     <i class="far fa-star"></i>
-</span>
+</div>
 <span class="col-5  view-reviews">
     <a href="#reviews">View Reviews</a>
 </span>
@@ -34,7 +34,8 @@
         @if (User::checkUser() != User::$MANAGER)
             <div class="col-md-1-12 pr-3">
                 <div class="dropdown show">
-                    <a class="btn btn-secondary dropdown-toggle " href="#" role="button" id="numItems" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn btn-secondary dropdown-toggle " href="#"
+                     id="numItems" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         1
                     </a>
                     <div class="dropdown-menu" aria-labelledby="numItems">
@@ -45,10 +46,10 @@
                 </div>
             </div>
             <div class="col-md-1-12 pr-3" id="purchase-buttons">
-                <a name="" id="addbasket" class="btn btn-success pr-3 " href={{"/cart/$id"}} role="button">
+                <a id="addbasket" class="btn btn-success pr-3 " href={{"/cart/$id"}} >
                     Add To Basket
                 </a>
-                <a name="" id="buynow" class="btn btn-light pr-3 " href={{"buy/$id"}} role="button">
+                <a id="buynow" class="btn btn-light pr-3 " href={{"buy/$id"}} >
                     Buy now
                 </a>
             </div>
@@ -76,13 +77,12 @@
             </div>
         @else
         <div class="col-md-1-12 pr-3" id="purchase-buttons">
-            <a name="" id="addbasket" class="btn btn-success pr-3 " href="#" role="button">
+            <a id="addbasket" class="btn btn-success pr-3 " href="#" >
                 Edit Product
             </a>
         </div>
         @endif
 
-</div>
 
 @endsection
 
@@ -101,7 +101,7 @@
     </div>
 @endif
 <div id="reviews" class="row product-section">
-    <span class="row reviews-title">
+    <div class="row reviews-title">
         <h3>{{count($reviews)}} Reviews</h3>
         <div class="stars">
             @for ($i = 0; $i < $score; $i++)
@@ -111,7 +111,7 @@
                 <i class=" far fa-star"></i>
             @endfor
         </div>
-    </span>
+    </div>
     @each('components.reviews', $reviews, 'review')
 </div>
 @endsection
