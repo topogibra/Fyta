@@ -146,10 +146,10 @@ input {
     height: 100%;
 }
 
-.profile .container .row>.card.product {
+.profile .container .row>.card {
     margin-top: 0;
+    padding-right: 0.5rem;
 }
-
 
 
 .profile .container .row>* {
