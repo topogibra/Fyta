@@ -91,11 +91,10 @@ class Product extends Model
     public static function deleteShoppingCartProduct($user_id, $product_id)
     {
         $products = DB::table('shopping_cart')
-                        ->select('product.name','product.price','quantity','product.id as id')
-                        ->join('product','product.id', '=', $product_id)
                         ->where('id_user','=',$user_id)
-                        ->delete();
+                        ->get();
 
+        $products->where('id_product','=',$product_id)->delete();
     }
 
     public static function getShoppingCartIds($user_id)
