@@ -60,16 +60,16 @@
                     <div class="collapse navbar-collapse" id="categoriesNavbar">
                         <ul class="navbar-nav mt-2 mt-lg-0 mr-lg-4">
                             <li class="nav-item">
-                                <a class="nav-link" href="/search">Indoor</a>
+                                <a class="nav-link" href="/search?section=Indoor">Indoor</a>
                             </li>
                             <li class="nav-item  divider">
-                                <a class="nav-link" href="/search">Outdoor</a>
+                                <a class="nav-link" href="/search?section=Outdoor">Outdoor</a>
                             </li>
                             <li class="nav-item  divider">
-                                <a class="nav-link" href="/search">Vases</a>
+                                <a class="nav-link" href="/search?section=Vases">Vases</a>
                             </li>
                             <li class="nav-item  divider">
-                                <a class="nav-link" href="/search">Tools</a>
+                                <a class="nav-link" href="/search?section=Tools">Tools</a>
                             </li>
                             <li class="nav-item  divider">
                                 <a class="nav-link" href="/search">Deals</a>

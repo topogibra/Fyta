@@ -25,7 +25,7 @@ Route::get('manager', 'ProfileController@manager');
 Route::post('manager', 'ProfileController@updateManager');
 Route::get('profile/order/{id}/invoice', 'OrderController@invoice');
 Route::get('order/{id}', 'OrderController@invoice');
-Route::get('search', 'SearchController@textSearch');
+Route::get('search', 'SearchController@render');
 Route::get('product/add', 'ProductController@add');
 Route::get('cart/buy', 'ProductController@buy');
 Route::get('product/buy/{id}', 'ProductController@buyNow');
@@ -41,6 +41,7 @@ Route::get('manager/pending-orders','ProfileController@pending');
 Route::get('manager/managers','ProfileController@managers');
 Route::delete('product/{id}','ProductController@delete');
 Route::post('order/update','OrderController@update');
+Route::post('search','SearchController@fullSearch');
 
 // Wishlists
 Route::get('profile/wishlist','ProfileController@wishlist');
