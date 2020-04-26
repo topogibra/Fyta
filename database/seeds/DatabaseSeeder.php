@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $manager = new User();
         $manager->username = 'root';
         $manager->email = 'root@root.com';
-        $manager->password_hash = bcrypt('root');
+        $manager->password_hash = bcrypt('rootroot');
         $manager->date = '1920-01-01';
         $manager->user_role = 'Manager';
         $manager->id_image = 15;
@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         $user->username = 'johndoe';
         $user->email = 'john@doe.com';
         $user->address = 'John Doe Village';
-        $user->password_hash = bcrypt('doe');
+        $user->password_hash = bcrypt('johndoe');
         $user->date = '1920-01-01';
         $user->user_role = 'Customer';
         $user->id_image = 15;
