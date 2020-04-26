@@ -1,7 +1,7 @@
 @extends('layouts.product', ['content' => 'components.product-page', 'files' =>  ['scripts' => ['js/product_page.js', 'js/request.js'], 'styles' => ['css/product_page.css']]])
 
 @section('img')
-    <img class="border" src={{asset($img)}} alt={{$alt}}>
+    <img class="border" src={{asset("img/$img")}} alt={{$alt}}>
 @endsection
 
 @section('header')

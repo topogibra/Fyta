@@ -59,7 +59,6 @@ class Product extends Model
 
         //parse the images directories
         foreach($product_imgs as $product) {
-            $product->img = 'img/' . $product->img; 
             $product->alt = nl2br(str_replace(" ", "&nbsp;", $product->alt));
         }
 
@@ -82,7 +81,6 @@ class Product extends Model
                             ->get();
 
         foreach($product_imgs as $product) {
-            $product->img = 'img/' . $product->img; 
             $product->alt =  nl2br(str_replace(" ", "&nbsp;", $product->alt));
             }
     
@@ -128,7 +126,6 @@ class Product extends Model
             ->get();
 
             foreach($product_imgs as $product) {
-                $product->img = '../img/' . $product->img;
                 $product->alt = nl2br(str_replace(" ", "&nbsp;", $product->alt));
                 }
 
@@ -169,7 +166,6 @@ class Product extends Model
                             ->first();
         if(!$product_img)
             return null;
-        $product_img->img = 'img/' . $product_img->img;
         $product_img->alt = nl2br(str_replace(" ", "&nbsp;", $product_img->alt));
         return $product_img;
     }
