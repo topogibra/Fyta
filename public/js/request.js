@@ -62,3 +62,7 @@ export const deleteData = async (url) => {
     return response
 }
 
+export const deleteProductData = async(url) => {
+    const response = await request({ url, method: 'DELETE' })
+    return response
+}

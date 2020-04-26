@@ -68,7 +68,7 @@ class Product extends Model
     public static function getShoppingCart($user_id)
     {
         $products = DB::table('shopping_cart')
-                        ->select('product.name','product.price','quantity','product.id')
+                        ->select('product.name','product.price','quantity','product.id as id')
                         ->join('product','product.id', '=', 'id_product')
                         ->where('id_user','=',$user_id);
 
@@ -85,6 +85,16 @@ class Product extends Model
             }
     
         return $product_imgs;
+
+    }
+
+    public static function deleteShoppingCartProduct($user_id, $product_id)
+    {
+        $products = DB::table('shopping_cart')
+                        ->select('product.name','product.price','quantity','product.id as id')
+                        ->join('product','product.id', '=', $product_id)
+                        ->where('id_user','=',$user_id)
+                        ->delete();
 
     }
 

@@ -29,6 +29,7 @@ Route::get('order/{id}', 'OrderController@invoice');
 Route::get('search', 'SearchController@render');
 Route::get('product/add', 'ProductController@add');
 Route::get('cart/buy', 'ProductController@buy');
+Route::delete('cart/{id}','ProductController@deleteCartProduct');
 Route::get('product/buy/{id}', 'ProductController@buyNow');
 Route::post('product', 'ProductController@create');
 Route::put('product', 'ProductController@updateProduct');
