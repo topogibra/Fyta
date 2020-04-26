@@ -116,4 +116,13 @@ class User extends Authenticatable
         else
             return self::$CUSTOMER;
     }
+
+    public static function isFavorited($product_id){
+        if(!Auth::check()){
+            return false;
+        }
+        $user = Auth::user();
+        return $user->wishlists()->first()->products()->where('id',$product_id)->exists() != null;
+    }
+
 }

@@ -15,7 +15,6 @@ export default function request(props) {
                 .map(key => `${key}=${content[key]}`)
                 .join('&'));
         } else if (method === 'PUT' || method === 'DELETE') {
-            options.headers['Content-Type'] = 'application/json';
             options.body = JSON.stringify(content);
         } else {
             options.body = new FormData();
@@ -52,3 +51,12 @@ export const postData = async(url, quantity) => {
     const response = await request({ url, method: 'POST', content: { 'quantity': quantity } })
     return response
 }
+
+export const deleteData = async (url) => {
+    const response = await request({
+        url,
+        method: 'DELETE',
+    })
+    return response
+}
+

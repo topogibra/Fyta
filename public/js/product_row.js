@@ -1,3 +1,5 @@
+import { deleteData } from "./request.js";
+
 export default function buildProductRow(items){
     const container = document.createElement('div');
     container.className = 'container';
@@ -19,16 +21,30 @@ export default function buildProductRow(items){
         const cardBody = document.createElement('div');
         cardBody.className = "card-body text-center";
         const href = document.createElement('a');
-        href.href = "/product";
+        href.href = "/product/" + item.id;
         const heading = document.createElement('h5');
         heading.className = "card-title product-name text-dark";
         heading.textContent = item.name;
         href.appendChild(heading);
         const paragraph = document.createElement('p');
         paragraph.className = "card-text product-price text-secondary";
-        paragraph.textContent = item.price + '€';
+        paragraph.textContent = item.price + '€ ';
+        const removeFavorite = document.createElement('i');
+        removeFavorite.className = "card-link fas fa-trash remove-favorite";
+
+        removeFavorite.addEventListener('mousedown', async (event) => {
+            const href = event.target.parentNode.parentNode.firstChild.href; 
+            const itemid = href.substring(href.lastIndexOf('/') + 1);
+
+            let response = await deleteData('/profile/wishlist/' + itemid);
+
+            if (response.status == 200) {
+                card.remove();
+            }
+        });
 
         cardBody.appendChild(href);
+        paragraph.appendChild(removeFavorite);
         cardBody.appendChild(paragraph);
 
         card.appendChild(cardBody);
