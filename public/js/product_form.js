@@ -19,7 +19,7 @@ const tagsRow = document.querySelector('#tags-container');
 
 const tagsNodes = document.querySelectorAll('.badge.badge-pill.badge-light');
 
-const createdTags = [ ...Array(tagsNodes).map(node => node.textContent) ];
+const createdTags = (Array(...tagsNodes).map(node => node.textContent.trim()));
 
 if(createdTags.length > 0){
     tagsRow.style.display = "flex";
@@ -57,7 +57,7 @@ category.addEventListener('change', () => {
 });
 
 
-document.querySelector('form').addEventListener('submit', (event) => {
+document.querySelector('#product-form').addEventListener('submit', (event) => {
     createdTags.push(category.value);
     event.target.tags.value = createdTags.join(',');
 });

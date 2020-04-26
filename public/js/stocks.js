@@ -23,7 +23,7 @@ export default function buildStocks(products) {
         row.className = "row table-entry";
         const name = createProductColumn(product.name, 'name');
         const href = document.createElement('a');
-        href.href = '/product/' + product.id + '/edit';
+        href.href = '/product/' + product.id;
         href.appendChild(name);
         href.className = "col-md-3 col-6 name";
         row.appendChild(href);
@@ -133,11 +133,21 @@ export default function buildStocks(products) {
             button.classList.add('edit');
             button.textContent = "Edit"
 
-            changeMode(element => {
+            document.querySelectorAll('.price').forEach(currentNode => {
                 const node = document.createElement('div');
-                node.className = element.className;
-                node.textContent = element.value;
-                return node;
+                node.className = currentNode.className;
+                node.textContent = currentNode.value;
+                currentNode.replaceWith(node);
+            });
+
+            document.querySelectorAll('.name').forEach((currentNode, index) => {
+                const href = document.createElement('a');
+                href.href = '/product/' + products[index].id;
+                const node = document.createElement('div');
+                href.appendChild(node);
+                href.className = currentNode.className;
+                node.textContent = currentNode.value;
+                currentNode.replaceWith(href);
             });
 
             document.querySelectorAll('div.stock').forEach(stock => {
