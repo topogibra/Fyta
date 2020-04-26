@@ -17,7 +17,7 @@ class UserPolicy
         return Auth::check() && $user->user_role == User::$CUSTOMER;
     }
 
-    public function updateManager(User $user)
+    public function upsertManager(User $user)
     {
         return Auth::check() && $user->user_role == User::$MANAGER;
     }
