@@ -83,7 +83,7 @@ class User extends Authenticatable
     public function getManagersInfo()
     {
         $managers = DB::table('user')
-                        ->select('user.username','user.date','image.img_name', 'image.description as alt')
+                        ->select('user.username','user.date','image.img_name', 'user.id', 'image.description as alt')
                         ->join('image','image.id', '=','user.id_image')
                         ->where('user_role','=','Manager')
                         ->where('user.id','<>',$this->id)
@@ -116,4 +116,13 @@ class User extends Authenticatable
         else
             return self::$CUSTOMER;
     }
+
+    public static function isFavorited($product_id){
+        if(!Auth::check()){
+            return false;
+        }
+        $user = Auth::user();
+        return $user->wishlists()->first()->products()->where('id',$product_id)->exists() != null;
+    }
+
 }

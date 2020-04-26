@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::get('/', 'HomeController@root');
 Route::get('home', 'HomeController@render');
 Route::get('about', 'AboutController@render');
@@ -24,9 +23,10 @@ Route::get('profile', 'ProfileController@user');
 Route::post('profile/update', 'ProfileController@updateCustomer');
 Route::get('manager', 'ProfileController@manager');
 Route::post('manager', 'ProfileController@updateManager');
+Route::post('manager/create', 'ProfileController@createManager');
 Route::get('profile/order/{id}/invoice', 'OrderController@invoice');
 Route::get('order/{id}', 'OrderController@invoice');
-Route::get('search', 'SearchController@textSearch');
+Route::get('search', 'SearchController@render');
 Route::get('product/add', 'ProductController@add');
 Route::get('cart/buy', 'ProductController@buy');
 Route::get('product/buy/{id}', 'ProductController@buyNow');
@@ -37,11 +37,19 @@ Route::get('profile/user','ProfileController@profile');
 Route::get('profile/orders','ProfileController@orders');
 Route::get('profile/wishlist','ProfileController@wishlist');
 Route::get('manager/user','ProfileController@profile');
+Route::delete('manager/{id}','ProfileController@deleteManager');
 Route::get('manager/stocks','ProfileController@stocks');
 Route::get('manager/pending-orders','ProfileController@pending');
 Route::get('manager/managers','ProfileController@managers');
 Route::delete('product/{id}','ProductController@delete');
 Route::post('order/update','OrderController@update');
+Route::post('search','SearchController@fullSearch');
+
+// Wishlists
+Route::get('profile/wishlist','ProfileController@wishlist');
+Route::put('profile/wishlist/{id}', 'ProfileController@addProductToWishlist');
+Route::delete('profile/wishlist/{id}', 'ProfileController@removeProductFromWishlist');
+
 
 
 // Authentication

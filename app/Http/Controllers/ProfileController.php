@@ -78,12 +78,12 @@ class ProfileController extends Controller
             return response()->json(['message' => 'You must login to access the pending orders'], 401);
         } else if ($role == User::$CUSTOMER)
             return response()->json(['message' => 'You do not have access to this section'], 403);
-        
+
         $allstatus = Order::getStatusOrders();
         $clean_status = array_map(function ($status) {
             $data = ['number' => $status->shipping_id, 'date' => $status->order_date, 'id' => $status->order_id];
             $order_status = $status->order_status;
-            $order_status  = preg_replace("(_)"," ",$order_status);
+            $order_status  = preg_replace("(_)", " ", $order_status);
             $data['status'] = $order_status;
             $order_status;
             return $data;
@@ -103,7 +103,7 @@ class ProfileController extends Controller
         $user = Auth::user();
         $managers = $user->getManagersInfo()->all();
         $clean_managers = array_map(function ($manager) {
-            $data = ['name' => $manager->username, 'date' => $manager->date];
+            $data = ['name' => $manager->username, 'date' => $manager->date, 'id' => $manager->id];
             $data['photo'] = 'img/' . $manager->img_name;
             $data['alt'] = $manager->alt;
             return $data;
@@ -134,6 +134,47 @@ class ProfileController extends Controller
         }, $products);
 
         return $items;
+    }
+
+    public function addProductToWishlist($id)
+    {
+        $role = User::checkUser();
+        if ($role == User::$GUEST) {
+            return response()->json(['message' => 'You must login to add items to your wishlist'], 401);
+        } else if ($role == User::$MANAGER)
+            return response()->json(['message' => 'Managers can\'t add items to wishlists'], 403);
+        
+
+        $user = Auth::user();
+        $wishlist = $user->wishlists()->first();
+        if ($wishlist == null) {
+            return [];
+        }
+        
+        $wishlist->products()->attach($id);
+
+
+        return response('Product added to wishlist');
+    }
+
+    public function removeProductFromWishlist($id)
+    {
+        $role = User::checkUser();
+        if ($role == User::$GUEST) {
+            return response()->json(['message' => 'You must login to add items to your wishlist'], 401);
+        } else if ($role == User::$MANAGER)
+            return response()->json(['message' => 'Managers can\'t add items to wishlists'], 403);
+
+
+        $user = Auth::user();
+        $wishlist = $user->wishlists()->first();
+        if ($wishlist == null) {
+            return [];
+        }
+
+        $wishlist->products()->detach($id);
+        
+        return response('Product removed to wishlist');
     }
 
     public function profile(Request $request)
@@ -177,17 +218,17 @@ class ProfileController extends Controller
             "address" => 'required|string|max:255'
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return response($validator->errors());
         }
 
-        
+
         $user = Auth::user();
         $this->authorize('updateCustomer', $user);
 
         $user->username = $request->input('username');
         $user->email = $request->input('email');
-        if($request->has('password')){
+        if ($request->has('password')) {
             $user->password_hash = bcrypt($request->input('password'));
         }
         $user->date = $request->input('birthday');
@@ -195,7 +236,7 @@ class ProfileController extends Controller
         $user->save();
 
         $file = Input::file('photo');
-        if($file != null)
+        if ($file != null)
             $this->storeNewPhoto($user, $file);
         return response('Saved successfully');
     }
@@ -210,24 +251,61 @@ class ProfileController extends Controller
         if ($validator->fails()) {
             return response($validator->errors());
         }
-        
+
         $user = Auth::user();
-        $this->authorize('updateManager', $user);
+        $this->authorize('upsertManager', $user);
+        return $this->upsertManager($request, $user);
+    }
+
+    public function createManager(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|string|max:255|unique:user',
+            'email' => 'required|string|email|max:255|unique:user',
+            'password' => 'required|string|min:6'
+        ]);
+
+        if ($validator->fails()) {
+            return response($validator->errors(), 400);
+        }
+
+        $user = new User();
+        $user->user_role = 'Manager';
+        $this->authorize('upsertManager', Auth::user());
+        return $this->upsertManager($request, $user);
+    }
+
+    public function deleteManager($id)
+    {
+        $user = User::find($id);
+        if($user == null)
+            return response('Failed to find specified manager', 400);
+
+        $this->authorize('upsertManager', Auth::user());
+
+        $user->delete();
+        
+        return response('Deleted sucessfully');
+    }
+
+    private function upsertManager(Request $request, User $user)
+    {
 
         $user->username = $request->input('username');
         $user->email = $request->input('email');
         if ($request->has('password')) {
             $user->password_hash = bcrypt($request->input('password'));
         }
-        
+
         $file = Input::file('photo');
-        if($file != null)
+        if ($file != null)
             $this->storeNewPhoto($user, $file);
         $user->save();
         return response('Saved successfully');
     }
 
-    private function storeNewPhoto(User $user, UploadedFile $file){
+    private function storeNewPhoto(User $user, UploadedFile $file)
+    {
         $path = uniqid() . '.' . $file->getClientOriginalExtension();
         $file->move('img/', $path);
 

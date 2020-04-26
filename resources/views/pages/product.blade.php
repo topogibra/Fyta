@@ -54,7 +54,15 @@
                 </a>
             </div>
             <div class="col-lg-1-12 pr-3" id="favorites-add">
-                <i class="far fa-star"></i>
+                @if (User::checkUser() == User::$CUSTOMER)
+                    @if (User::isFavorited($id))
+                        <i class="fas fa-star"></i>
+                    @else
+                        <i class="far fa-star"></i>
+                    @endif
+                @else
+                    <i class="far fa-star"></i>
+                @endif
                 <span>Add to Favourites</span>
             </div>
             <div class="toast" id="myToast" role="alert" aria-live="assertive" aria-atomic="true"  >
@@ -62,7 +70,11 @@
                     Product succesfully added to shopping cart!
                 </div>
             </div>
-        </div>
+            <div class="toast" id="favoriteToast" role="alert" aria-live="assertive" aria-atomic="true"  >
+                <div class="toast-body" >
+                    Product added to Favorites!
+                </div>
+            </div>
         @else
         <div class="col-md-1-12 pr-3" id="purchase-buttons">
             <a id="addbasket" class="btn btn-success pr-3 " href="#" >

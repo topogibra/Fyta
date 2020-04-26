@@ -1,18 +1,58 @@
-import { postData } from './request.js'
+import request, {
+    postData,
+    deleteData
+} from './request.js'
+
+const putFavorite = async (url) => {
+    const response = await request({
+        url,
+        method: 'PUT'
+    })
+    return response
+}
+
 
 const addFavorites = document.querySelector('#favorites-add');
+const ToastDelay = 3000;
 
-addFavorites && addFavorites.addEventListener('mousedown', () => {
+const productId = document.URL.substring(document.URL.lastIndexOf('/') + 1);
+
+addFavorites && addFavorites.addEventListener('mousedown', async(event) => {
     const classList = addFavorites.querySelector('i').classList;
-    classList.contains('far') ? classList.add('fas') || classList.remove('far') : classList.add('far') || classList.remove('fas');
+    let isFavorited = classList.contains('far');
+    let toastbody = document.querySelector('#favoriteToast > .toast-body');
+    toastbody.textContent = 'Product ' + (isFavorited ? 'added to' : 'removed from') + ' favorites wishlist!';
+    
+    let responseStatus;
+    
+    try {
+        let response;
+        if (isFavorited) {
+            response = await putFavorite('/profile/wishlist/' + productId);
+        } else {
+            response = await deleteData('/profile/wishlist/' + productId);
+        }
+        responseStatus = response.status;
+    } catch (error) {
+        responseStatus = error.status;
+    }
+    
+    if (responseStatus == 200) {
+        isFavorited ? classList.add('fas') || classList.remove('far') : classList.add('far') || classList.remove('fas');
+        
+        $('#favoriteToast').toast({
+            delay: ToastDelay
+        });
+        
+        $('#favoriteToast').toast('show');
+    }
 });
 
 let addShoppingCart = document.getElementById('addbasket');
 let qtity = document.getElementById('numItems');
 let value = parseInt(qtity.innerText);
-let mytoast = document.getElementById('myToast');
 
-addShoppingCart.addEventListener('click', async(event) => {
+addShoppingCart.addEventListener('click', async (event) => {
 
     value = parseInt(qtity.innerText);
     event.preventDefault();
@@ -20,8 +60,10 @@ addShoppingCart.addEventListener('click', async(event) => {
 
     if (response.status == 401)
         window.location.replace('/login');
-    else if(response.status == 200){
-        $('#myToast').toast({ delay: 3000 });
+    else if (response.status == 200) {
+        $('#myToast').toast({
+            delay: ToastDelay
+        });
         $('#myToast').toast('show');
     }
     return false;

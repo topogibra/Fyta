@@ -44,7 +44,7 @@ CREATE TABLE "user" (
   username TEXT NOT NULL,
   email TEXT NOT NULL,
   password_hash TEXT NOT NULL,
-  "date" DATE NOT NULL,
+  "date" DATE DEFAULT now() NOT NULL,
   address TEXT,
   id_image INTEGER,
   user_role "user_role" NOT NULL,
@@ -106,7 +106,7 @@ CREATE TABLE wishlist (
   "name" TEXT NOT NULL,
   id_user INTEGER NOT NULL,
   CONSTRAINT wishlist_pk PRIMARY KEY (id),
-  CONSTRAINT wishlist_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE
+  CONSTRAINT wishlist_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 DROP TABLE IF EXISTS wishlist_product CASCADE;
 CREATE TABLE wishlist_product (
@@ -114,7 +114,7 @@ CREATE TABLE wishlist_product (
   id_wishlist INTEGER NOT NULL,
   CONSTRAINT wishlist_product_pk PRIMARY KEY (id_product, id_wishlist),
   CONSTRAINT wishlist_product_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE ON DELETE CASCADE,
-  CONSTRAINT wishlist_product_wishlist_fk FOREIGN KEY (id_wishlist) REFERENCES wishlist(id) ON UPDATE CASCADE
+  CONSTRAINT wishlist_product_wishlist_fk FOREIGN KEY (id_wishlist) REFERENCES wishlist(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 DROP TABLE IF EXISTS shopping_cart CASCADE;
 CREATE TABLE shopping_cart (
@@ -122,7 +122,7 @@ CREATE TABLE shopping_cart (
   id_product INTEGER NOT NULL,
   quantity INTEGER NOT NULL,
   CONSTRAINT shopping_cart_pk PRIMARY KEY (id_user, id_product),
-  CONSTRAINT shopping_cart_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE,
+  CONSTRAINT shopping_cart_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE,
   CONSTRAINT shopping_cart_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE ON DELETE CASCADE,
   CONSTRAINT shopping_cart_quantity_check CHECK (quantity > 0)
 );
@@ -176,7 +176,7 @@ CREATE TABLE ticket (
   ticket_type "ticket_type" NOT NULL,
   id_user INTEGER NOT NULL,
   CONSTRAINT ticket_pk PRIMARY KEY (id),
-  CONSTRAINT ticket_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE
+  CONSTRAINT ticket_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 DROP TABLE IF EXISTS ticket_message CASCADE;
 CREATE TABLE ticket_message (
@@ -186,8 +186,8 @@ CREATE TABLE ticket_message (
   id_ticket INTEGER NOT NULL,
   id_user INTEGER NOT NULL,
   CONSTRAINT ticket_message_pk PRIMARY KEY (id),
-  CONSTRAINT ticket_message_ticket_fk FOREIGN KEY (id_ticket) REFERENCES ticket(id) ON UPDATE CASCADE,
-  CONSTRAINT ticket_message_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE
+  CONSTRAINT ticket_message_ticket_fk FOREIGN KEY (id_ticket) REFERENCES ticket(id) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT ticket_message_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 DROP TABLE IF EXISTS ticket_history CASCADE;
 CREATE TABLE ticket_history (
@@ -874,24 +874,30 @@ INSERT INTO apply_discount (id_product,id_discount) VALUES (32,11),(89,15),(27,2
 INSERT INTO apply_discount (id_product,id_discount) VALUES (87,18),(46,8),(66,4),(82,7),(76,11);
 
 --R13
-INSERT INTO tag ("name") VALUES ('Gisela'),('Aspen'),('Audrey'),('Tools');
-INSERT INTO tag ("name") VALUES ('Grace'),('Martena'),('Lilah'),('Alika');
-INSERT INTO tag ("name") VALUES ('Outdoor'),('Haviva'),('Joan'),('Bertha');
-INSERT INTO tag ("name") VALUES ('Hadassah'),('Dai'),('Deals'),('Indoor');
-INSERT INTO tag ("name") VALUES ('Sydnee'),('Quon'),('Clare'),('Vases');
+INSERT INTO tag ("name") VALUES ('Indoor'),('Outdoor'),('Vases'),('Tools');
+INSERT INTO tag ("name") VALUES ('Orchid'),('Tulips'),('Bonsai'),('Dahlias');
+INSERT INTO tag ("name") VALUES ('Green'),('Pink'),('Red'),('Yellow'),('Deals');
+
+
 
 --R14
-INSERT INTO product_tag (id_tag,id_product) VALUES (15,61),(9,42),(11,71),(5,95),(10,67);
-INSERT INTO product_tag (id_tag,id_product) VALUES (16,27),(20,66),(15,58),(17,38),(9,22);
-INSERT INTO product_tag (id_tag,id_product) VALUES (10,28),(9,9),(18,29),(18,93),(15,76);
-INSERT INTO product_tag (id_tag,id_product) VALUES (2,30),(1,17),(9,11),(4,91),(9,13);
-INSERT INTO product_tag (id_tag,id_product) VALUES (7,15),(20,72),(11,92),(16,60),(18,74);
-INSERT INTO product_tag (id_tag,id_product) VALUES (12,35),(20,98),(17,56),(15,59),(17,49);
-INSERT INTO product_tag (id_tag,id_product) VALUES (3,3),(11,35),(19,10),(4,77),(17,78);
-INSERT INTO product_tag (id_tag,id_product) VALUES (4,22),(20,40),(8,100),(3,51),(16,6);
-INSERT INTO product_tag (id_tag,id_product) VALUES (2,26),(17,76),(16,100),(9,93),(20,56);
-INSERT INTO product_tag (id_tag,id_product) VALUES (20,89),(15,65),(15,51),(8,67),(4,70);
 
+INSERT INTO product_tag (id_tag,id_product) VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11),(1,12),(1,13),(1,14),(1,15),(1,16),(1,17),(1,18),(1,19),(1,20),(1,21),(1,22),(1,23),(1,24),(1,25);
+INSERT INTO product_tag (id_tag,id_product) VALUES (2,26),(2,27),(2,28),(2,29),(2,30),(2,31),(2,32),(2,33),(2,34),(2,35),(2,36),(2,37),(2,38),(2,39),(2,40),(2,41),(2,42),(2,43),(2,44),(2,45),(2,46),(2,47),(2,48),(2,49),(2,50);
+INSERT INTO product_tag (id_tag,id_product) VALUES (3,51),(3,52),(3,53),(3,54),(3,55),(3,56),(3,57),(3,58),(3,59),(3,60),(3,61),(3,62),(3,63),(3,64),(3,65),(3,66),(3,67),(3,68),(3,69),(3,70),(3,71),(3,72),(3,73),(3,74),(3,75);
+INSERT INTO product_tag (id_tag,id_product) VALUES (4,76),(4,77),(4,78),(4,79),(4,80),(4,81),(4,82),(4,83),(4,84),(4,85),(4,86),(4,87),(4,88),(4,89),(4,90),(4,91),(4,92),(4,93),(4,94),(4,95),(4,96),(4,97),(4,98),(4,99),(4,100);
+
+INSERT INTO product_tag (id_tag,id_product) VALUES (5,1),(5,2),(5,3),(5,4),(5,5),(5,6),(5,7),(5,8),(5,9),(5,10),(5,11),(5,12),(5,13),(5,14),(5,15),(5,16),(5,17),(5,18),(5,19),(5,20),(5,21),(5,22),(5,23),(5,24),(5,25);
+INSERT INTO product_tag (id_tag,id_product) VALUES (6,26),(6,27),(6,28),(6,29),(6,30),(6,31),(6,32),(6,33),(6,34),(6,35),(6,36),(6,37),(6,38),(6,39),(6,40),(6,41),(6,42),(6,43),(6,44),(6,45),(6,46),(6,47),(6,48),(6,49),(6,50);
+INSERT INTO product_tag (id_tag,id_product) VALUES (7,51),(7,52),(7,53),(7,54),(7,55),(7,56),(7,57),(7,58),(7,59),(7,60),(7,61),(7,62),(7,63),(7,64),(7,65),(7,66),(7,67),(7,68),(7,69),(7,70),(7,71),(7,72),(7,73),(7,74),(7,75);
+INSERT INTO product_tag (id_tag,id_product) VALUES (8,76),(8,77),(8,78),(8,79),(8,80),(8,81),(8,82),(8,83),(8,84),(8,85),(8,86),(8,87),(8,88),(8,89),(8,90),(8,91),(8,92),(8,93),(8,94),(8,95),(8,96),(8,97),(8,98),(8,99),(8,100);
+
+INSERT INTO product_tag (id_tag,id_product) VALUES (9,1),(9,2),(9,3),(9,4),(9,5),(9,6),(9,7),(9,8),(9,9),(9,10),(9,11),(9,12),(9,13),(9,14),(9,15),(9,16),(9,17),(9,18),(9,19),(9,20),(9,21),(9,22),(9,23),(9,24),(9,25);
+INSERT INTO product_tag (id_tag,id_product) VALUES (10,26),(10,27),(10,28),(10,29),(10,30),(10,31),(10,32),(10,33),(10,34),(10,35),(10,36),(10,37),(10,38),(10,39),(10,40),(10,41),(10,42),(10,43),(10,44),(10,45),(10,46),(10,47),(10,48),(10,49),(10,50);
+INSERT INTO product_tag (id_tag,id_product) VALUES (11,51),(11,52),(11,53),(11,54),(11,55),(11,56),(11,57),(11,58),(11,59),(11,60),(11,61),(11,62),(11,63),(11,64),(11,65),(11,66),(11,67),(11,68),(11,69),(11,70),(11,71),(11,72),(11,73),(11,74),(11,75);
+INSERT INTO product_tag (id_tag,id_product) VALUES (12,76),(12,77),(12,78),(12,79),(12,80),(12,81),(12,82),(12,83),(12,84),(12,85),(12,86),(12,87),(12,88),(12,89),(12,90),(12,91),(12,92),(12,93),(12,94),(12,95),(12,96),(12,97),(12,98),(12,99),(12,100);
+
+INSERT INTO product_tag (id_tag,id_product) VALUES (13,76),(13,77),(13,78),(13,79),(13,80),(13,81),(13,82),(13,83),(13,84),(13,85),(13,86),(13,87),(13,88),(13,89),(13,90),(13,91),(13,92),(13,93),(13,94),(13,95),(13,96),(13,97),(13,98),(13,99),(13,100);
 --R15
 INSERT INTO ticket (ticket_type,id_user) VALUES ('Faulty_Delivery',18),('Product_Complaint',1),('Faulty_Delivery',5),('Faulty_Delivery',8);
 INSERT INTO ticket (ticket_type,id_user) VALUES ('Faulty_Delivery',9),('Payment_Error',8),('Payment_Error',8),('Payment_Error',11);

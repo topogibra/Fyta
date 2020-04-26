@@ -146,12 +146,15 @@ input {
     height: 100%;
 }
 
-.profile .container .row>.card.product {
+.profile .container .row>.card {
     margin-top: 0;
+    padding-right: 0.5rem;
 }
+
 
 .profile .container .row>* {
     text-align: center;
+    
 }
 
 .profile {
@@ -190,6 +193,13 @@ input {
     background-color: var(--green);
     color: var(--white);
     width: 100%;
+}
+
+.remove-favorite {
+    margin-top: 1em;
+    margin-left: 1em;
+    color: var(--green);
+    cursor: pointer;
 }
 
 @media(max-width: 767px) {

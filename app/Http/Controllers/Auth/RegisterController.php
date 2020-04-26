@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Http\Controllers\Controller;
 use App\Image;
+use App\Wishlist;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
@@ -94,6 +95,13 @@ class RegisterController extends Controller
         }
 
         $user->save();
+        
+        $wishlist = new Wishlist();
+        $wishlist->name = 'Favorites';
+        $wishlist->id_user = $user->id;
+
+        $wishlist->save();
+        
         return $user;
     }
 }
