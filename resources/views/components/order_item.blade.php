@@ -2,7 +2,7 @@
     <div class="col-md-3">
         <div class="img-wrapper">
             <a href={{"/product/$item->id_product"}}>
-                <img class="product-image img-fluid border border-dark" src={{ asset($item->img) }} alt={{ $item->alt }} >
+                <img class="product-image img-fluid border border-dark" src={{ asset($item->img) }} alt={!! $item->alt !!} >
             </a>
         </div>
     </div>

@@ -1,6 +1,6 @@
 <div class="row justify-content-center border-bottom shopCartEntry">
     <div class="col-sm-2 entry-img">
-        <img src={{asset($item->img)}} alt="" class="shopCartProduct-image">
+        <img src={{asset($item->img)}} alt={!!$item->alt!!} class="shopCartProduct-image">
     </div>
     <div class="col-sm-9 row justify-content-center entry-info">
         <div class=" col-sm-3 col-6 align-self-center shopCartProduct-name">

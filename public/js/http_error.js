@@ -103,7 +103,7 @@ function validateDate(day, month, year) {
     if (daymoReg.test(day) && yearReg.test(year) && daymoReg.test(month))
         return false;
 
-    if (year < 1000 || year > 3000 || month == 0 || month > 12)
+    if (year < 1000 || month == 0 || month > 12)
         return false;
 
     var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];

@@ -2,6 +2,7 @@ import { validateRequirements } from './http_error.js';
 
 const difdelivery = document.querySelector("#checkout");
 const billingaddress = document.querySelector("#billingaddress");
+const checkbox = document.querySelector("#checkout");
 
 difdelivery.addEventListener('change', () => {
     if (difdelivery.checked) {
@@ -17,7 +18,7 @@ let page = document.querySelector('#content-wrap')
 document.querySelector('#form').addEventListener('submit', (event) => {
 
     let validation = ['deliveryaddress'];
-    if (billingaddress.style.display != 'none')
+    if (checkbox.checked == false)
         validation.push(...['billingaddress']);
 
     let validationErrors = validateRequirements(validation);

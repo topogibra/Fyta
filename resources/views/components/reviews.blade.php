@@ -2,7 +2,7 @@
     <div class="container w-100">
         <div class="row">
             <div class="col-md-3 col-sm-4">
-                <img class="w-100 h-100 rounded-circle border border-light" src={{asset($review->img)}} alt={{$review->alt}}>
+                <img class="w-100 h-100 rounded-circle border border-light" src={{asset($review->img)}} alt={!!$review->alt!!}>
             </div>
             <div class="col-md-6 col-sm-9">
                 <p class="name">{{$review->name}}</p>
