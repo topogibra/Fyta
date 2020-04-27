@@ -141,7 +141,7 @@ class Product extends Model
         return $product_imgs;
     }
 
-    public static function getStockByID($product, $user) 
+    public static function getQuantityByID($product, $user) 
     {
         $product = DB::table('shopping_cart')
                             ->select('quantity')
@@ -168,7 +168,7 @@ class Product extends Model
     public static function getByID($id) 
     {
         $product_img = DB::table('product')
-                            ->select('product.name','price','product.description','img_name as img', 'image.description as alt')
+                            ->select('product.name','price','product.description', 'product.stock','img_name as img', 'image.description as alt')
                             ->join('product_image','product_image.id_product','=','product.id')
                             ->join('image', 'image.id','=','product_image.id_image')
                             ->where('product.id','=',$id)

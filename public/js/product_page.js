@@ -17,14 +17,14 @@ const ToastDelay = 3000;
 
 const productId = document.URL.substring(document.URL.lastIndexOf('/') + 1);
 
-addFavorites && addFavorites.addEventListener('mousedown', async(event) => {
+addFavorites && addFavorites.addEventListener('mousedown', async (event) => {
     const classList = addFavorites.querySelector('i').classList;
     let isFavorited = classList.contains('far');
     let toastbody = document.querySelector('#favoriteToast > .toast-body');
     toastbody.textContent = 'Product ' + (isFavorited ? 'added to' : 'removed from') + ' favorites wishlist!';
-    
+
     let responseStatus;
-    
+
     try {
         let response;
         if (isFavorited) {
@@ -36,29 +36,29 @@ addFavorites && addFavorites.addEventListener('mousedown', async(event) => {
     } catch (error) {
         responseStatus = error.status;
     }
-    
+
     if (responseStatus == 200) {
         isFavorited ? classList.add('fas') || classList.remove('far') : classList.add('far') || classList.remove('fas');
-        
+
         $('#favoriteToast').toast({
             delay: ToastDelay
         });
-        
+
         $('#favoriteToast').toast('show');
     }
 });
 
 let addShoppingCart = document.getElementById('addbasket');
 let qtity = document.getElementById('numItems');
-if(qtity){
+if (qtity) {
     let value = parseInt(qtity.innerText);
-    
+
     addShoppingCart.addEventListener('click', async (event) => {
-    
+
         value = parseInt(qtity.innerText);
         event.preventDefault();
         let response = await postData(addShoppingCart.href, value);
-    
+
         if (response.status == 401)
             window.location.replace('/login');
         else if (response.status == 200) {
@@ -69,4 +69,13 @@ if(qtity){
         }
         return false;
     });
+    let dropvalues = document.querySelectorAll('.dropdown-item');
+
+    for (let i = 0; i < dropvalues.length; i++) {
+        dropvalues[i].addEventListener('click', function () {
+            document.querySelector('.dropdown-toggle').innerText = dropvalues[i].textContent;
+            document.querySelector('#vote').value = dropvalues[i].textContent;
+        });
+    }
 }
+

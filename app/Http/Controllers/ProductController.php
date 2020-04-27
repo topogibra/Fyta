@@ -30,6 +30,7 @@ class ProductController extends Controller
             'price' => $product->price, 'score' => $score, 'name' => $product->name,
             'related' => $related_products,
             'reviews' => $reviews,
+            'stock' => $product->stock
         ]);
     }
 
@@ -152,7 +153,7 @@ class ProductController extends Controller
 
         $quantity = $request->get('quantity');
 
-        $cart = Product::getStockByID($id, $user);
+        $cart = Product::getQuantityByID($id, $user);
 
         if ($cart != null) {
             $quantity = $quantity + $cart->quantity;

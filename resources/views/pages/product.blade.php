@@ -38,10 +38,10 @@
                      id="numItems" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         1
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="numItems">
-                        <a class="dropdown-item" href="#">1</a>
-                        <a class="dropdown-item" href="#">2</a>
-                        <a class="dropdown-item" href="#">3</a>
+                    <div class="dropdown-menu overflow-auto" aria-labelledby="numItems">
+                        @for ($i = 1; $i <= $stock; $i++)  
+                            <a class="dropdown-item" href="#">{{$i}}</a>
+                        @endfor
                     </div>
                 </div>
             </div>
