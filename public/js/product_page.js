@@ -3,7 +3,7 @@ import request, {
     deleteData
 } from './request.js'
 
-const putFavorite = async (url) => {
+const putFavorite = async(url) => {
     const response = await request({
         url,
         method: 'PUT'
@@ -17,7 +17,7 @@ const ToastDelay = 3000;
 
 const productId = document.URL.substring(document.URL.lastIndexOf('/') + 1);
 
-addFavorites && addFavorites.addEventListener('mousedown', async (event) => {
+addFavorites && addFavorites.addEventListener('mousedown', async(event) => {
     const classList = addFavorites.querySelector('i').classList;
     let isFavorited = classList.contains('far');
     let toastbody = document.querySelector('#favoriteToast > .toast-body');
@@ -53,7 +53,7 @@ let qtity = document.getElementById('numItems');
 if (qtity) {
     let value = parseInt(qtity.innerText);
 
-    addShoppingCart.addEventListener('click', async (event) => {
+    addShoppingCart.addEventListener('click', async(event) => {
 
         value = parseInt(qtity.innerText);
         event.preventDefault();
@@ -72,10 +72,8 @@ if (qtity) {
     let dropvalues = document.querySelectorAll('.dropdown-item');
 
     for (let i = 0; i < dropvalues.length; i++) {
-        dropvalues[i].addEventListener('click', function () {
+        dropvalues[i].addEventListener('click', function() {
             document.querySelector('.dropdown-toggle').innerText = dropvalues[i].textContent;
-            document.querySelector('#vote').value = dropvalues[i].textContent;
         });
     }
 }
-
