@@ -1,4 +1,4 @@
-import { deleteProductData } from './request.js'
+import { deleteData } from './request.js'
 
 
 let garbage = document.querySelector('.shopCartProduct-trash');
@@ -6,13 +6,12 @@ let garbage = document.querySelector('.shopCartProduct-trash');
 garbage.addEventListener('click', async(event) => {
 
     event.preventDefault();
-    let response = await deleteProductData(garbage.href);
+    let response = await deleteData(garbage.href);
 
     if (response.status != 200)
-        return "bananas";
+        return false;
+    else
+        location.reload();
 
-
-
-    //TODO:analyze response
 
 });

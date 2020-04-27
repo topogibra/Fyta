@@ -122,15 +122,17 @@ class ProductController extends Controller
         return redirect('/product/' . $product->id);
     }
 
-    public function deleteCartProduct(Request $request ,$id)
+    public function deleteCartProduct($id)
     {
         $role = User::checkUser();
         if ($role == User::$MANAGER)
-            return response()->json('Managers access shopping cart', 403);
+            return response('Managers access shopping cart', 403);
 
         $id_user = Auth::id();
         Product::deleteShoppingCartProduct($id_user,$id);
-        return redirect('/home');
+        
+        redirect('/cart');
+        return response('Sucessfully deleted product!', 200);
     }
 
     public function addShoppingCart(Request $request ,$id)
