@@ -66,6 +66,7 @@ export default function buildStocks(products) {
     col.appendChild(button);
     row.appendChild(col);
     container.appendChild(row);
+    let error;
 
     const changeMode = (nodeCreation) => {
         ['name', 'price'].forEach(elementClass => {
@@ -107,6 +108,8 @@ export default function buildStocks(products) {
             });
 
         } else {
+            let errorFound;
+            console.log(errorFound);
             const stocks = [...Array(products[products.length - 1].id).keys()].map(n => { //TODO: Change to number of items per page when entering pagination
                 const product = document.querySelector(`#product-${n + 1}`);
                 return {
@@ -115,47 +118,67 @@ export default function buildStocks(products) {
                     price: Number(product.querySelector('input.price').value),
                     stock: Number(product.querySelector('input.stock').value)
                 }
-            })
-
-            try{
-                const response  = await request({
-                    url: '/manager/stocks',
-                    method: 'PUT',
-                    content: stocks
-                });
-
-                if(response.status != 200)
-                    row.appendChild(buildErrorMessage(response.status, 'An error has ocurred please try again later!'));
-            }catch(e){
-                row.appendChild(buildErrorMessage(e.status, 'An error has ocurred please try again later!'));
+            });
+            for(let i = 0; i < stocks.length; i++){
+                const stock = stocks[i];
+                if(!stock.price || !stock.stock){
+                    error && error.remove();
+                    error = buildErrorMessage('', 'Stock and price must be numbers!');
+                    row.appendChild(error);
+                    errorFound = true;
+                    break;
+                }
             }
-            button.classList.remove('changes');
-            button.classList.add('edit');
-            button.textContent = "Edit"
 
-            document.querySelectorAll('.price').forEach(currentNode => {
-                const node = document.createElement('div');
-                node.className = currentNode.className;
-                node.textContent = currentNode.value;
-                currentNode.replaceWith(node);
-            });
-
-            document.querySelectorAll('.name').forEach((currentNode, index) => {
-                const href = document.createElement('a');
-                href.href = '/product/' + products[index].id;
-                const node = document.createElement('div');
-                href.appendChild(node);
-                href.className = currentNode.className;
-                node.textContent = currentNode.value;
-                currentNode.replaceWith(href);
-            });
-
-            document.querySelectorAll('div.stock').forEach(stock => {
-                const text = document.createElement('div');
-                text.className = stock.className;
-                text.textContent = stock.querySelector('input').value;
-                stock.replaceWith(text);
-            });
+            if(!errorFound){
+                error && error.remove();
+                try{
+                    const response  = await request({
+                        url: '/manager/stocks',
+                        method: 'PUT',
+                        content: stocks
+                    });
+    
+                    if(response.status != 200) {
+                        error && error.remove();
+                        error = buildErrorMessage(response.status, 'An error has ocurred please try again later!');
+                        row.appendChild(error);
+                    }
+    
+                }catch(e){
+                    error && error.remove();
+                    error = buildErrorMessage(e.status, 'An error has ocurred please try again later!');
+                    row.appendChild(error);
+                    row.appendChild(buildErrorMessage(e.status, 'An error has ocurred please try again later!'));
+                }
+                button.classList.remove('changes');
+                button.classList.add('edit');
+                button.textContent = "Edit"
+    
+                document.querySelectorAll('.price').forEach(currentNode => {
+                    const node = document.createElement('div');
+                    node.className = currentNode.className;
+                    node.textContent = currentNode.value;
+                    currentNode.replaceWith(node);
+                });
+    
+                document.querySelectorAll('.name').forEach((currentNode, index) => {
+                    const href = document.createElement('a');
+                    href.href = '/product/' + products[index].id;
+                    const node = document.createElement('div');
+                    href.appendChild(node);
+                    href.className = currentNode.className;
+                    node.textContent = currentNode.value;
+                    currentNode.replaceWith(href);
+                });
+    
+                document.querySelectorAll('div.stock').forEach(stock => {
+                    const text = document.createElement('div');
+                    text.className = stock.className;
+                    text.textContent = stock.querySelector('input').value;
+                    stock.replaceWith(text);
+                });
+            }
         }
     });
 

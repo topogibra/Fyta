@@ -118,7 +118,7 @@ export default function buildManagers(managers) {
                     url: '/manager/create',
                     method: 'POST',
                     content
-                });
+                }, true);
                 if (response.status != 200) {
                     footer.prepend(buildErrorMessage("", response.content));
                 } else {

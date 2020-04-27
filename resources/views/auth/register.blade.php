@@ -1,7 +1,7 @@
 @extends('layouts.app', ['scripts' => ['js/register.js'], 'styles' => ['css/registerpage.css']])
 
 @section('content')
-<div class="container">
+<div class="container" id="page">
   <form action="/register" method="POST" class=".form form justify-content-center" id='registerForm' enctype="multipart/form-data">
     @csrf
     <div class="row ">
@@ -14,22 +14,24 @@
       <label for="img" class="mx-auto d-block ">
         <img src={{asset("img/user.png")}} class="img-fluid rounded-circle border border-dark rounded" alt="User Image" id="user-img">
       </label>
+      <label for="img">
       <input type="file" name="img" id="img">
+      </label>
     </div>
     <!-- -->
     <div class="row form-group ">
       <div class="col">
-        <input type="text" name="username" id="username" class="form-control registerinput" placeholder="Username" aria-describedby="helpUser">
-        <input type="email" name="email" id="email" class="form-control registerinput" placeholder="Email" aria-describedby="helpId">
-        <input type="text" name="address" id="address" class="form-control registerinput" placeholder="Address" aria-describedby="helpId">
+        <label for="username">   </label>
+        <input type="text" name="username" id="username" class="form-control registerinput" placeholder="Username">
+        <label for="email">    </label>
+        <input type="email" name="email" id="email" class="form-control registerinput" placeholder="Email" >
+        <label for="address"></label>
+        <input type="text" name="address" id="address" class="form-control registerinput" placeholder="Address">
       </div>
     </div>
     <!--  -->
-    <div class="row">
-      <div class="col">
-        <h4 id="birthday">Birthday</h4>
-      </div>
-    </div>
+    <fieldset>
+      <legend> Birthday </legend>
     <!--  -->
     <input name="birthday" type="hidden" value="" id="birthday"/>
     <div class="row form-group  birthday">
@@ -68,15 +70,18 @@
       </div>
 
     </div>
+  </fieldset>
     <!--  -->
     <div class="form-group row ">
       <div class="col">
-        <input type="password" name="password" id="password" class="form-control registerinput" placeholder="Password" aria-describedby="helpId">
+        <label for="password">  </label>
+        <input type="password" name="password" id="password" class="form-control registerinput" placeholder="Password" >
       </div>
     </div>
     <!--  -->
     <div class="row ">
       <div class="col ">
+        <label for="submitbutton"> </label>
         <input type="submit" class="btn rounded-0 btn-lg shadow-none" id="submitbutton" value="Register">
       </div>
     </div>

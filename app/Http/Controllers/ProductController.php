@@ -24,9 +24,8 @@ class ProductController extends Controller
         $reviews = $feedback == null ? [] : $feedback->reviews;
         $score = $feedback == null ? 0 : round($feedback->score);
         $related_products = Product::getRelatedProducts($id);
-        return view('pages.product', [
-            'id' => $id,
-            'img' => $product->img, 'description' =>  $product->description,
+        return view('pages.product', ['id'=>$id,
+            'img' => $product->img, 'alt' => $product->alt, 'description' =>  $product->description,
             'price' => $product->price, 'score' => $score, 'name' => $product->name,
             'related' => $related_products,
             'reviews' => $reviews,
@@ -234,6 +233,8 @@ class ProductController extends Controller
         $product->name = $item['name'];
         $product->price = $item['price'];
         $product->stock = $item['stock'];
+        if(isset($item['description']))
+            $product->description = $item['description'];
         $file = Input::file('img');
 
         if($file != null){
@@ -244,6 +245,8 @@ class ProductController extends Controller
             $img->img_name = $path;
             $img->description = $item['name'];
             $img->save();
+            $product->images()->detach();
+            $product->images()->attach($img->id);
         }
 
         if(isset($item['tags'])){

@@ -1,4 +1,4 @@
-import { validateRequirements, buildErrorMessage } from './http_error.js';
+import { validateRequirements } from './http_error.js';
 import request from './request.js'
 
 export function buildPersonalInfoForm(info, user) {
@@ -175,15 +175,17 @@ export default function buildPersonalInfo(info, user) {
             if(password.value)
                 content['password'] = password.value;
             
-            if(picInput.files.length > 0)
+            if(picInput.files.length > 0){
+                console.log(picInput.files[0]);
                 content.photo = picInput.files[0];
+            }
 
             try {
                 const response = await request({
                     url: user ? '/profile/update' : '/manager',
                     method: 'POST',
                     content
-                });
+                }, true);
                 if(response.status != 200){
                     saveChanges.prepend(buildErrorMessage(response.status, response.content));
                 } else {

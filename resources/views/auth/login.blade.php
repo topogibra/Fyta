@@ -1,9 +1,9 @@
-@extends('layouts.app', ['scripts' => [], 'styles' => ['css/loginpage.css']])
+@extends('layouts.app', ['scripts' => ['js/login.js'], 'styles' => ['css/loginpage.css']])
 
 
 @section('content')
-<div class="container">
-  <form method="POST" action="\login">
+<div class="container" id="page">
+  <form method="POST" action="/login" id="loginForm">
     @csrf
     <div class="form ">
       <div class="row ">
@@ -14,17 +14,18 @@
       <div class="form-group row">
         <div class="col">
           <label for="email">Email</label>
-          <input type="text" name="email" id="email" class="form-control" placeholder="" aria-describedby="loginRegisterHelp">
+          <input type="text" name="email" id="email" class="form-control" placeholder="" aria-describedby="helpId">
         </div>
       </div>
       <div class="form-group row">
         <div class="col">
-          <label for="password ">Password</label>
-          <input type="password" name="password" id="password" class="form-control" placeholder="" aria-describedby="loginRegisterHelp">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" class="form-control" placeholder="" aria-describedby="helpId">
         </div>
       </div>
       <div class="row ">
         <div class="col button">
+          <label for="start">  </label>
           <input type="submit" class="btn rounded-0 btn-lg shadow-none" id="start" value="Start Session">
         </div>
       </div>

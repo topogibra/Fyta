@@ -105,6 +105,7 @@ class ProfileController extends Controller
         $clean_managers = array_map(function ($manager) {
             $data = ['name' => $manager->username, 'date' => $manager->date, 'id' => $manager->id];
             $data['photo'] = 'img/' . $manager->img_name;
+            $data['alt'] = $manager->alt;
             return $data;
         }, $managers);
 
@@ -232,11 +233,11 @@ class ProfileController extends Controller
         }
         $user->date = $request->input('birthday');
         $user->address = $request->input('address');
-        $user->save();
-
+        
         $file = Input::file('photo');
         if ($file != null)
             $this->storeNewPhoto($user, $file);
+        $user->save();
         return response('Saved successfully');
     }
 

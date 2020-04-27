@@ -35,8 +35,8 @@
     </div>
     @if ($buttons)
         <div class="row buttons lg-content-between sm-space-around">
-        <a href="" type="button" id="back-btn" class="btn rounded-0 btn-lg shadow-none">Back</a>
-        <a href="/home" type="button" id="next-btn" class="btn rounded-0 btn-lg shadow-none">Finish</a>
+        <a href=""  id="back-btn" class="btn rounded-0 btn-lg shadow-none">Back</a>
+        <a href="/home"  id="next-btn" class="btn rounded-0 btn-lg shadow-none">Finish</a>
     </div>
     @endif
 </div>

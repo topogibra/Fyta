@@ -1,10 +1,10 @@
-export default function request(props) {
-    return new Promise(async function(resolve, reject) {
+export default function request(props, useFormData) {
+    return new Promise(async function (resolve, reject) {
         let { url, method, content } = props;
         const options = {
             method,
             headers: {
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             }
         };
 
@@ -12,8 +12,12 @@ export default function request(props) {
             content && (url +=
                 '?' +
                 Object.keys(content)
-                .map(key => `${key}=${content[key]}`)
-                .join('&'));
+                    .map(key => `${key}=${content[key]}`)
+                    .join('&'));
+        } else if (useFormData) {
+            console.log("using form data");
+            options.body = new FormData();
+            Object.keys(content).forEach(key => options.body.append(key, content[key]));
         } else {
             options.headers['Content-Type'] = 'application/json';
             options.body = JSON.stringify(content);
@@ -40,12 +44,12 @@ export default function request(props) {
     });
 }
 
-export const fetchData = async(url) => {
+export const fetchData = async (url) => {
     const response = await request({ url, method: 'GET' })
     return response
 }
 
-export const postData = async(url, quantity) => {
+export const postData = async (url, quantity) => {
     const response = await request({ url, method: 'POST', content: { 'quantity': quantity } })
     return response
 }

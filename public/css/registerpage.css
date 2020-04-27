@@ -5,7 +5,7 @@
     width: 6em;
     height: 6em;
     border-color: var(--black);
-    border-radius: 1;
+    border-radius: 10px;
     position: relative;
 }
 
@@ -112,6 +112,6 @@
     }
 }
 
-#img{
+#img {
     display: none;
 }
