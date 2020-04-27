@@ -24,7 +24,8 @@ class ProductController extends Controller
         $reviews = $feedback == null ? [] : $feedback->reviews;
         $score = $feedback == null ? 0 : round($feedback->score);
         $related_products = Product::getRelatedProducts($id);
-        return view('pages.product', ['id'=>$id,
+        return view('pages.product', [
+            'id' => $id,
             'img' => $product->img, 'alt' => $product->alt, 'description' =>  $product->description,
             'price' => $product->price, 'score' => $score, 'name' => $product->name,
             'related' => $related_products,
@@ -129,15 +130,15 @@ class ProductController extends Controller
             return response('Managers access shopping cart', 403);
 
         $id_user = Auth::id();
-        Product::deleteShoppingCartProduct($id_user,$id);
-        
+        Product::deleteShoppingCartProduct($id_user, $id);
+
         redirect('/cart');
         return response('Sucessfully deleted product!', 200);
     }
 
-    public function addShoppingCart(Request $request ,$id)
+    public function addShoppingCart(Request $request, $id)
     {
-        $request->validate(['quantity' => ['required', 'min:1']]);
+        $request->validate(['quantity' => ['required', 'min:-1']]);
 
         $role = User::checkUser();
         if ($role == User::$GUEST) {
@@ -162,6 +163,8 @@ class ProductController extends Controller
 
         return redirect('/product/' . $id);
     }
+
+
 
     public function buyNow($id)
     {
