@@ -77,7 +77,7 @@
             </div>
         @else
         <div class="col-md-1-12 pr-3" id="purchase-buttons">
-            <a id="addbasket" class="btn btn-success pr-3 " href="#" >
+            <a name="" id="addbasket" class="btn btn-success pr-3 " href={{ "$id/edit" }} role="button">
                 Edit Product
             </a>
         </div>

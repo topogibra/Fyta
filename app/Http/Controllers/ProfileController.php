@@ -233,11 +233,11 @@ class ProfileController extends Controller
         }
         $user->date = $request->input('birthday');
         $user->address = $request->input('address');
-        $user->save();
-
+        
         $file = Input::file('photo');
         if ($file != null)
             $this->storeNewPhoto($user, $file);
+        $user->save();
         return response('Saved successfully');
     }
 

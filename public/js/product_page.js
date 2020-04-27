@@ -50,21 +50,23 @@ addFavorites && addFavorites.addEventListener('mousedown', async(event) => {
 
 let addShoppingCart = document.getElementById('addbasket');
 let qtity = document.getElementById('numItems');
-let value = parseInt(qtity.innerText);
-
-addShoppingCart.addEventListener('click', async (event) => {
-
-    value = parseInt(qtity.innerText);
-    event.preventDefault();
-    let response = await postData(addShoppingCart.href, value);
-
-    if (response.status == 401)
-        window.location.replace('/login');
-    else if (response.status == 200) {
-        $('#myToast').toast({
-            delay: ToastDelay
-        });
-        $('#myToast').toast('show');
-    }
-    return false;
-});
+if(qtity){
+    let value = parseInt(qtity.innerText);
+    
+    addShoppingCart.addEventListener('click', async (event) => {
+    
+        value = parseInt(qtity.innerText);
+        event.preventDefault();
+        let response = await postData(addShoppingCart.href, value);
+    
+        if (response.status == 401)
+            window.location.replace('/login');
+        else if (response.status == 200) {
+            $('#myToast').toast({
+                delay: ToastDelay
+            });
+            $('#myToast').toast('show');
+        }
+        return false;
+    });
+}

@@ -174,7 +174,8 @@ class Product extends Model
     {
         $products = DB::table('product')
                             ->select('name','price','stock','id')
-                            ->limit(20) //TODO
+                            ->orderBy('id')
+                            ->limit(20) //TODO Take care of this with pagination
                             ->get();
             
         return $products;

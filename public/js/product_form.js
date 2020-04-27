@@ -15,9 +15,24 @@ picInput.addEventListener('change', () => {
 
 const tagInputs = document.querySelector('#tags');
 const tags = document.querySelector('#tags-row');
+const tagsRow = document.querySelector('#tags-container');
 
 
-const createdTags = [];
+
+const tagsNodes = document.querySelectorAll('.badge.badge-pill.badge-light');
+
+const createdTags = (Array(...tagsNodes).map(node => node.textContent.trim()));
+
+if(createdTags.length > 0){
+    tagsRow.style.display = "flex";
+    tagsNodes.forEach((node, index) => {
+        node.addEventListener('mousedown', () => {
+            node.remove();
+            createdTags.splice(index, 1);
+        });
+    })
+}
+
 
 tagInputs.addEventListener('keypress', (event) => {
     if (event.keyCode == 13 || event.which == 13) {
@@ -28,6 +43,7 @@ tagInputs.addEventListener('keypress', (event) => {
         createdTags.push(tagInputs.value);
 
         column.addEventListener('mousedown', () => {
+            createdTags.splice(createdTags.indexOf(tagInputs.value), 1);
             column.remove();
         });
 
@@ -39,15 +55,14 @@ tagInputs.addEventListener('keypress', (event) => {
 const category = document.querySelector('.custom-select');
 
 category.addEventListener('change', () => {
-    const tagsRow = document.querySelector('#tags-container');
     tagsRow.style.display = "flex";
 });
 
 let errors;
 const page = document.querySelector('#content-wrap');
 
-document.querySelector('#productForm').addEventListener('submit', (event) => {
 
+document.querySelector('#product-form').addEventListener('submit', (event) => {
     createdTags.push(category.value);
     event.target.tags.value = createdTags.join(',');
 
