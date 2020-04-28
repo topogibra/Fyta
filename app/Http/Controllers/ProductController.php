@@ -7,7 +7,6 @@ use App\Product;
 use App\Tag;
 use App\Review;
 use App\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -122,43 +121,6 @@ class ProductController extends Controller
         return redirect('/product/' . $product->id);
     }
 
-    public function addShoppingCart(Request $request, $id)
-    {
-        $request->validate(['quantity' => ['required', 'min:1']]);
-
-        $role = User::checkUser();
-        if ($role == User::$GUEST) {
-            return response('Need to login', 401);
-        }
-
-        if ($role == User::$MANAGER)
-            return response('Manager', 403);
-
-        $user =  Auth::id();
-
-        $quantity = $request->get('quantity');
-
-        $cart = Product::getStockByID($id, $user);
-
-        if ($cart != null) {
-            $quantity = $quantity + $cart->quantity;
-            Product::updateStock($id, $user, $quantity);
-        } else {
-            DB::insert('insert into shopping_cart(id_user,id_product,quantity) values (?, ?,?)', [$user, $id, $quantity]);
-        }
-
-        return redirect('/product/' . $id);
-    }
-
-    public function buyNow($id)
-    {
-        if (User::validateCustomer())
-            return redirect('/login');
-        request()->session()->put('items', [$id => 1]);
-        request()->session()->put('buynow', true);
-        return redirect('checkout-details');
-    }
-
     public function delete($id)
     {
         $product = Product::find($id);
@@ -171,26 +133,6 @@ class ProductController extends Controller
         $product->delete();
 
         return response()->json(['message' => 'The product was deleted succesfully.'], 200);
-    }
-
-
-    public function buy()
-    {
-        $user = Auth::id();
-        $cart = Product::getShoppingCartIds($user);
-
-        $array_items = [];
-        foreach ($cart as $value) {
-            $array_items[$value->id] = $value->qty;
-        }
-
-        request()->session()->put('items', $array_items);
-
-        if (count(request()->session()->get('items', [])) == 0) {
-            return response('No products in cart!', 400);
-        }
-
-        return redirect('checkout-details');
     }
 
     public function updateProducts(Request $request)
@@ -264,7 +206,6 @@ class ProductController extends Controller
 
             }
         }
-
 
         $product->save();
     }
