@@ -18,7 +18,7 @@ const ToastDelay = 3000;
 
 const productId = document.URL.substring(document.URL.lastIndexOf('/') + 1);
 
-let page = document.querySelector('.product-section');
+let page = document.querySelector('.title');
 
 addFavorites && addFavorites.addEventListener('mousedown', async(event) => {
     const classList = addFavorites.querySelector('i').classList;
@@ -69,7 +69,7 @@ if (qtity) {
         errors && errors.remove();
         if (validationErrors) {
             event.preventDefault();
-            page.appendChild(validationErrors);
+            page.append(validationErrors);
             errors = validationErrors;
             event.target.tags.value = "";
         }

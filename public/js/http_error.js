@@ -24,6 +24,13 @@ export function validateRequirements(requiredInputs) {
                     'message': " is required"
                 });
             }
+        } else if (id == 'numItems') {
+            if (!(validateMoreOne(input.innerHTML))) {
+                errorsArray.push({
+                    'id': "Number of products",
+                    'message': " is incorrect. At least one unit is needed "
+                });
+            }
         } else if (!input.value) {
             errorsArray.push({
                 'id': id,
@@ -58,15 +65,15 @@ export function validateRequirements(requiredInputs) {
                     });
                 }
                 break;
-            case "stock", "price", 'numItems':
+            case "stock", "price":
                 if (!(validateMoreOne(input.value) || errorsArray.find(() => ({ 'id': id })))) {
                     errorsArray.push({
+
                         'id': id,
-                        'message': " is incorrect. At least 6 digits are needed"
+                        'message': " is incorrect. At least one unit is needed "
                     });
                 }
                 break;
-
         }
 
     });
