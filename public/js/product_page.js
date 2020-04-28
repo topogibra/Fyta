@@ -2,6 +2,7 @@ import request, {
     postData,
     deleteData
 } from './request.js'
+import { validateRequirements } from './http_error.js';
 
 const putFavorite = async(url) => {
     const response = await request({
@@ -16,6 +17,8 @@ const addFavorites = document.querySelector('#favorites-add');
 const ToastDelay = 3000;
 
 const productId = document.URL.substring(document.URL.lastIndexOf('/') + 1);
+
+let page = document.querySelector('.product-section');
 
 addFavorites && addFavorites.addEventListener('mousedown', async(event) => {
     const classList = addFavorites.querySelector('i').classList;
@@ -48,6 +51,7 @@ addFavorites && addFavorites.addEventListener('mousedown', async(event) => {
     }
 });
 
+let errors;
 let addShoppingCart = document.getElementById('addbasket');
 let qtity = document.getElementById('numItems');
 if (qtity) {
@@ -57,6 +61,19 @@ if (qtity) {
 
         value = parseInt(qtity.innerText);
         event.preventDefault();
+
+        let validation = ['numItems']
+        validateRequirements(validation)
+        let validationErrors = validateRequirements(validation);
+
+        errors && errors.remove();
+        if (validationErrors) {
+            event.preventDefault();
+            page.appendChild(validationErrors);
+            errors = validationErrors;
+            event.target.tags.value = "";
+        }
+
         let response = await postData(addShoppingCart.href, value);
 
         if (response.status == 401)

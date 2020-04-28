@@ -58,7 +58,7 @@ export function validateRequirements(requiredInputs) {
                     });
                 }
                 break;
-            case "stock", "price":
+            case "stock", "price", 'numItems':
                 if (!(validateMoreOne(input.value) || errorsArray.find(() => ({ 'id': id })))) {
                     errorsArray.push({
                         'id': id,

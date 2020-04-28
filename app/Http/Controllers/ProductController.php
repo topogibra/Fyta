@@ -128,7 +128,7 @@ class ProductController extends Controller
     {
         $role = User::checkUser();
         if ($role == User::$MANAGER)
-            return response('Managers access shopping cart', 403);
+            return response('Managers cannot access shopping cart', 403);
 
         $id_user = Auth::id();
         Product::deleteShoppingCartProduct($id_user, $id);
