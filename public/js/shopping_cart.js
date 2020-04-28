@@ -11,6 +11,14 @@ let quantities = document.querySelectorAll('.shopCartProduct-stock span');
 let producttotal = document.querySelectorAll('.shopCartProduct-total p');
 let productvalue = document.querySelectorAll('.shopCartProduct-per-price ');
 
+let noproducts = document.querySelector('#noproducts');
+let checkout = document.querySelector('#checkout_btn');
+
+if (product.length != 0)
+    noproducts.style.display = 'none'
+else
+    noproducts.style.display = 'block'
+
 for (let i = 0; i < garbage.length; i++) {
     garbage[i].addEventListener('click', async(event) => {
 
@@ -19,8 +27,14 @@ for (let i = 0; i < garbage.length; i++) {
 
         if (response.status != 200)
             return false;
-        else
+        else {
             product[i].remove();
+            product = document.querySelectorAll('.shopCartEntry');
+            if (product.length == 0) {
+                noproducts.style.display = 'block'
+                checkout.remove();
+            }
+        }
 
 
     });
@@ -53,8 +67,14 @@ for (let i = 0; i < garbage.length; i++) {
             return false;
         else {
             quantities[i].innerHTML = parseInt(quantities[i].innerHTML) - 1;
-            if (quantities[i].innerHTML == 0)
+            if (quantities[i].innerHTML == 0) {
                 product[i].remove();
+                product = document.querySelectorAll('.shopCartEntry');
+                if (product.length == 0) {
+                    noproducts.style.display = 'block'
+                    checkout.remove();
+                }
+            }
             producttotal[i].innerHTML = parseInt(quantities[i].innerHTML) * parseInt(productvalue[i].innerText) + "€";
         }
 
