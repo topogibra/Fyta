@@ -1,6 +1,7 @@
 import { buildErrorMessage } from "./http_error.js";
 import request from "./request.js";
 import { removeAll } from "./utils.js";
+import { buildPagination } from "./pagination.js"
 
 //responsiveness
 const filter = document.getElementById("filter");
@@ -223,10 +224,14 @@ const searchRequest = async (content) => {
       container.appendChild(
         buildErrorMessage(response.status, response.content)
       );
-    } else container.appendChild(buildSearchResults(response));
+    } else {
+
+      container.appendChild(buildSearchResults(response))
+    };
   } catch (e) {
     container.appendChild(buildErrorMessage(404, "No Results Found!"));
   }
+  document.querySelector('.content').appendChild(buildPagination("", {}, 2, 5));
 };
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -240,12 +245,12 @@ const fetchContent = {
   maxPrice: 100,
 };
 
-if(queryText) {
+if (queryText) {
   const query = document.querySelector(".navbar-search #query");
   query.value = queryText;
 }
 
-if(tag) {
+if (tag) {
   const catList = document.querySelector(".col-lg-3 #categories").children;
   for (let cat of catList) {
     const label = cat.querySelector(".custom-control-label");

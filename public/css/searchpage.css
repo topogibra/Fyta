@@ -112,12 +112,15 @@ img {
     display: none;
 }
 
-.pages .row {
-    justify-content: center;
-}
-
 .page-item .page-link {
     color: var(--green);
+    cursor: pointer;
+}
+
+.page-item.active .page-link{
+    background-color: var(--green);
+    color: var(--white);
+    border-color: var(--green);
 }
 
 .min,
