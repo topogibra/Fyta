@@ -4,7 +4,12 @@ import { deleteData, postData } from './request.js'
 let garbage = document.querySelectorAll('.shopCartProduct-trash');
 let less = document.querySelectorAll('.stock-minus');
 let more = document.querySelectorAll('.stock-plus');
+
+let product = document.querySelectorAll('.shopCartEntry');
+
 let quantities = document.querySelectorAll('.shopCartProduct-stock span');
+let producttotal = document.querySelectorAll('.shopCartProduct-total p');
+let productvalue = document.querySelectorAll('.shopCartProduct-per-price ');
 
 for (let i = 0; i < garbage.length; i++) {
     garbage[i].addEventListener('click', async(event) => {
@@ -15,7 +20,7 @@ for (let i = 0; i < garbage.length; i++) {
         if (response.status != 200)
             return false;
         else
-            location.reload();
+            product[i].remove();
 
 
     });
@@ -27,8 +32,10 @@ for (let i = 0; i < garbage.length; i++) {
 
         if (response.status != 200)
             return false;
-        else
-            location.reload();
+        else {
+            quantities[i].innerHTML = parseInt(quantities[i].innerHTML) + 1;
+            producttotal[i].innerHTML = parseInt(quantities[i].innerHTML) * parseInt(productvalue[i].innerText) + "€";
+        }
 
 
     });
@@ -44,8 +51,12 @@ for (let i = 0; i < garbage.length; i++) {
 
         if (response.status != 200)
             return false;
-        else
-            location.reload();
+        else {
+            quantities[i].innerHTML = parseInt(quantities[i].innerHTML) - 1;
+            if (quantities[i].innerHTML == 0)
+                product[i].remove();
+            producttotal[i].innerHTML = parseInt(quantities[i].innerHTML) * parseInt(productvalue[i].innerText) + "€";
+        }
 
 
     });
