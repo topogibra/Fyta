@@ -109,8 +109,8 @@ export default function buildStocks(products) {
 
         } else {
             let errorFound;
-            const stocks = [...Array(products[products.length - 1].id).keys()].map(n => { //TODO: Change to number of items per page when entering pagination
-                const product = document.querySelector(`#product-${n + 1}`);
+            const stocks = products.map(product => product.id).map(n => {
+                const product = document.querySelector(`#product-${n}`);
                 return {
                     id: n + 1,
                     name: product.querySelector('input.name').value,

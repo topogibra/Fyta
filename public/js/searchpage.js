@@ -146,8 +146,10 @@ function retrieveSearchForm() {
 
 function buildSearchResults(products) {
   const parentContainer = document.querySelector(".col-lg-8");
+  parentContainer.id = "results";
   parentContainer.className = "col-lg-8 align-self-start";
   const container = document.createElement("div");
+  container.id = "results";
   container.className =
     "row row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2";
 
@@ -195,6 +197,7 @@ function buildSearchResults(products) {
 
   if (products.length == 0) {
     parentContainer.className = "col-lg-8 align-self-center";
+    parentContainer.id = "";
     const row = document.createElement("p");
     row.className = "text-center alert alert-secondary";
     row.textContent = "No results found!";
@@ -210,8 +213,9 @@ const searchAction = async (orderByMatch = true) => {
   searchRequest(content);
 };
 
-const searchRequest = async (content) => {
+const searchRequest = async (content, activePage = 1) => {
   const container = document.querySelector(".col-lg-8");
+  content.page = activePage - 1;
   removeAll(container);
   try {
     const response = await request({
@@ -226,12 +230,12 @@ const searchRequest = async (content) => {
       );
     } else {
 
-      container.appendChild(buildSearchResults(response))
+      container.appendChild(buildSearchResults(response.items))
+      container.appendChild(buildPagination(activePage, response.pages, (page) => searchRequest(content, page)));
     };
   } catch (e) {
     container.appendChild(buildErrorMessage(404, "No Results Found!"));
   }
-  document.querySelector('.content').appendChild(buildPagination("", {}, 2, 5));
 };
 
 const urlParams = new URLSearchParams(window.location.search);

@@ -56,14 +56,16 @@ class Order extends Model
         return $status;
     }
 
-    public static function getStatusOrders()
+    public static function getStatusOrders($page)
     {
-        $status = DB::select('select "order"."shipping_id", "order"."order_date", "order"."id" as "order_id", 
+        $status = DB::table('order')
+            ->selectRaw('"order"."shipping_id", "order"."order_date", "order"."id" as "order_id", 
                                     (select order_status from order_history where order_history.id_order = "order".id order by order_history.date DESC
                                     limit 1) as "order_status"
-                                from "order" where 
-                                (select count(*) from order_history where order_history.id_order = "order".id and order_status = \'Processed\' ) = 0
-                ');
+                                ')
+            ->whereRaw('(select count(*) from order_history where order_history.id_order = "order".id and order_status = \'Processed\' ) = 0
+                ')
+            ->limit(10)->offset($page * 10)->get()->all();
         return $status;
     }
 }

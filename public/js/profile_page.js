@@ -3,7 +3,8 @@ import buildSections from './sections.js'
 import buildPersonalInfo from './personal_info.js'
 import {fetchData} from './request.js'
 import { buildErrorMessage } from './http_error.js';
-
+import { buildPage } from './sections.js';
+import { buildPagination } from './pagination.js';
 
 function createOrderColumn(info, attribute) {
     const column = document.createElement('div');
@@ -62,6 +63,38 @@ function buidOrderHistory(orders) {
     return ordersContainer;
 }
 
+async function orders(page = 1){
+    try {
+        const response = await fetchData('/profile/orders', page);
+        const container = buidOrderHistory(response.orders);
+        container.appendChild(buildPagination(page, response.pages, (page) => {
+            buildPage({
+                name: "Pending Orders",
+                action: async () => await orders(page)
+            });
+        }));
+        return container;
+    } catch (e) {
+        return buildErrorMessage(e.status, e.message)
+    }
+}
+
+async function wishlist(page = 1){
+    try {
+        const response = await fetchData('/profile/wishlist');
+        const container = buildProductRow(response.wishlist);
+        container.appendChild(buildPagination(page, response.pages, (page) => {
+            buildPage({
+                name: "Pending Orders",
+                action: async () => await wishlist(page)
+            });
+        }));
+        return container;
+    } catch (e) {
+        return buildErrorMessage(e.status, e.message)
+    }
+}
+
 const userProfileSections = [{
         name: "Personal Information",
         action: async () => { 
@@ -75,26 +108,12 @@ const userProfileSections = [{
     },
     {
         name: "Order History",
-        action: async () => { 
-            try {
-                const data = await fetchData('/profile/orders');
-                return buidOrderHistory(data)
-            } catch(e) {
-                return buildErrorMessage(e.status,e.message)
-            }
-        }
+        action: orders
     },
     {
         name: "My Wishlist",
         id: "wishlist",
-        action: async () => { 
-            try {
-                const data = await fetchData('/profile/wishlist');
-                return buildProductRow(data)
-            } catch(e) {
-                return buildErrorMessage(e.status,e.message)
-            }
-        }
+        action: wishlist
     },
 ];
 

@@ -80,13 +80,15 @@ class User extends Authenticatable
         return $this->hasMany('App\Wishlist','id_user');
     }
 
-    public function getManagersInfo()
+    public function getManagersInfo($page)
     {
         $managers = DB::table('user')
                         ->select('user.username','user.date','image.img_name', 'user.id', 'image.description as alt')
                         ->join('image','image.id', '=','user.id_image')
                         ->where('user_role','=','Manager')
                         ->where('user.id','<>',$this->id)
+                        ->limit(10)
+                        ->offset($page * 10)
                         ->get();
 
         return $managers;

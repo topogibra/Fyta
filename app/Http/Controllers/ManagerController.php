@@ -79,8 +79,12 @@ class ManagerController extends ProfileController
         return response('Saved successfully');
     }
 
-    public function stocks()
+    public function stocks(Request $request)
     {
+        $request->validate([
+            'page' => ['required', 'numeric', 'min:0']
+        ]);
+
         $role = User::checkUser();
         if ($role == User::$GUEST) {
             return response()->json(['message' => 'You must login to access stocks section'], 401);
@@ -88,18 +92,22 @@ class ManagerController extends ProfileController
             return response()->json(['message' => 'You do not have access to this section'], 403);
 
 
-        $products = Product::getStockProducts()->all();
+        $products = Product::getStockProducts($request->input('page') - 1)->all();
         $clean_products = array_map(function ($product) {
             $data = ['name' => $product->name, 'price' => $product->price, 'stock' => $product->stock, 'id' => $product->id];
             return $data;
         }, $products);
 
-        return $clean_products;
+        return ['stocks' => $clean_products, 'pages' => ceil(Product::count() / 10)];
     }
 
 
-    public function managers()
+    public function managers(Request $request)
     {
+        $request->validate([
+            'page' => ['required', 'numeric', 'min:0']
+        ]);
+
         $role = User::checkUser();
         if ($role == User::$GUEST) {
             return response()->json(['message' => 'You must login to access the pending orders'], 401);
@@ -107,7 +115,7 @@ class ManagerController extends ProfileController
             return response()->json(['message' => 'You do not have access to this section'], 403);
 
         $user = Auth::user();
-        $managers = $user->getManagersInfo()->all();
+        $managers = $user->getManagersInfo($request->input('page') - 1)->all();
         $clean_managers = array_map(function ($manager) {
             $data = ['name' => $manager->username, 'date' => $manager->date, 'id' => $manager->id];
             $data['photo'] = 'img/' . $manager->img_name;
@@ -115,6 +123,10 @@ class ManagerController extends ProfileController
             return $data;
         }, $managers);
 
-        return $clean_managers;
+        return [
+            'managers' => $clean_managers,
+            'pages' => ceil(User::where('user_role', '=', 'Manager')
+                ->where('user.id', '<>', $user->id)->count() / 10)
+        ];
     }
 }
