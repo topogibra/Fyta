@@ -15,9 +15,7 @@ const putFavorite = async(url) => {
 
 const addFavorites = document.querySelector('#favorites-add');
 const ToastDelay = 3000;
-
 const productId = document.URL.substring(document.URL.lastIndexOf('/') + 1);
-
 let page = document.querySelector('.title');
 
 addFavorites && addFavorites.addEventListener('mousedown', async(event) => {
@@ -54,8 +52,22 @@ addFavorites && addFavorites.addEventListener('mousedown', async(event) => {
 let errors;
 let addShoppingCart = document.getElementById('addbasket');
 let qtity = document.getElementById('numItems');
+let dropChildren = document.querySelector('.overflow-auto').children;
+let stock = document.querySelector('.overflow-auto').children.length;
+
 if (qtity) {
     let value = parseInt(qtity.innerText);
+
+    function verifyQuantityAfterAdding() {
+        dropChildren = document.querySelector('.overflow-auto').children;
+        stock = document.querySelector('.overflow-auto').children.length;
+        let stockquantity = stock - qtity.innerText;
+        for (let i = stock; i > stockquantity; i--) {
+            dropChildren[i - 1].remove();
+        }
+        if (qtity.innerText > stockquantity)
+            qtity.innerText = 1;
+    }
 
     addShoppingCart.addEventListener('click', async(event) => {
 
@@ -74,6 +86,9 @@ if (qtity) {
             event.target.tags.value = "";
         }
 
+        if (value > stock)
+            return false;
+
         let response = await postData(addShoppingCart.href, value);
 
         if (response.status == 401)
@@ -83,6 +98,7 @@ if (qtity) {
                 delay: ToastDelay
             });
             $('#myToast').toast('show');
+            verifyQuantityAfterAdding();
         }
         return false;
     });

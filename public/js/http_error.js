@@ -10,6 +10,11 @@ export function buildErrorMessage(error, message) {
     return container
 }
 
+function validateStock(quantity) {
+    let stock = document.querySelector('.overflow-auto').children.length;
+    return stock >= quantity;
+}
+
 export function validateRequirements(requiredInputs) {
 
     const errorsArray = [];
@@ -31,6 +36,13 @@ export function validateRequirements(requiredInputs) {
                     'message': " is incorrect. At least one unit is needed "
                 });
             }
+            if (!(validateStock(input.innerHTML))) {
+                errorsArray.push({
+                    'id': "Number of products",
+                    'message': " is incorrect. More products than the existent in the stock"
+                });
+            }
+
         } else if (!input.value) {
             errorsArray.push({
                 'id': id,

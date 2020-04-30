@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Image;
 use App\Product;
+use App\Order;
 use App\Tag;
 use App\Review;
 use App\User;
@@ -24,13 +25,21 @@ class ProductController extends Controller
         $reviews = $feedback == null ? [] : $feedback->reviews;
         $score = $feedback == null ? 0 : round($feedback->score);
         $related_products = Product::getRelatedProducts($id);
+        $stock = $product->stock;
+
+        if (User::checkUser() == User::$CUSTOMER) {
+            $cart = Product::getQuantityByID($id, Auth::id());
+            if ($cart !=  null)
+                $stock = $stock - $cart->quantity;
+        }
+
         return view('pages.product', [
             'id' => $id,
             'img' => $product->img, 'alt' => $product->alt, 'description' =>  $product->description,
             'price' => $product->price, 'score' => $score, 'name' => $product->name,
             'related' => $related_products,
             'reviews' => $reviews,
-            'stock' => $product->stock
+            'stock' => $stock
         ]);
     }
 
@@ -40,7 +49,7 @@ class ProductController extends Controller
             return back();
 
         $categories = ['Indoor', 'Outdoor', 'Vases', 'Tools'];
-        
+
         return view('pages.product-form', [
             'method' => 'POST',
             'categories' => $categories
@@ -55,7 +64,7 @@ class ProductController extends Controller
         }
 
         $this->authorize('update', $product);
-        $categories = [ 'Indoor', 'Outdoor', 'Vases', 'Tools' ];
+        $categories = ['Indoor', 'Outdoor', 'Vases', 'Tools'];
         $category = $product->tags()->whereBetween('tag.id', [1, 4])->get()->first()->name;
         if (($key = array_search($category, $categories)) !== false) {
             unset($categories[$key]);
@@ -71,7 +80,7 @@ class ProductController extends Controller
             'price' => $product->price,
             'description' => $product->description,
             'method' => 'PUT',
-            'category'=> $category,
+            'category' => $category,
             'categories' => $categories
         ]);
     }
@@ -220,12 +229,12 @@ class ProductController extends Controller
         ]);
 
 
-        DB::transaction(function () use (&$request){
+        DB::transaction(function () use (&$request) {
             foreach ($request->all() as $item) {
                 $this->updateProductInfo($item);
             }
         });
-        
+
         return response('Success!');
     }
 
@@ -244,20 +253,21 @@ class ProductController extends Controller
         return redirect('/product/' . $request->input('id'));
     }
 
-    private function updateProductInfo($item){
+    private function updateProductInfo($item)
+    {
         $product = Product::find($item['id']);
         $this->authorize('update', $product);
         $product->name = $item['name'];
         $product->price = $item['price'];
         $product->stock = $item['stock'];
-        if(isset($item['description']))
+        if (isset($item['description']))
             $product->description = $item['description'];
         $file = Input::file('img');
 
-        if($file != null){
+        if ($file != null) {
             $path = uniqid() . '.' . $file->getClientOriginalExtension();
             $file->move('img/', $path);
-    
+
             $img = new Image;
             $img->img_name = $path;
             $img->description = $item['name'];
@@ -266,7 +276,7 @@ class ProductController extends Controller
             $product->images()->attach($img->id);
         }
 
-        if(isset($item['tags'])){
+        if (isset($item['tags'])) {
             $tags = preg_split('/,/', $item['tags']);
             foreach ($tags as $tag) {
                 $db_tag = Tag::where('name', '=', $tag)->first();
@@ -275,10 +285,8 @@ class ProductController extends Controller
                     $db_tag->name = $tag;
                     $db_tag->save();
                     $product->tags()->attach($db_tag->id);
-                } else if($product->tags()->where('tag.id', '=', $db_tag->id)->get()->first() == null)
+                } else if ($product->tags()->where('tag.id', '=', $db_tag->id)->get()->first() == null)
                     $product->tags()->attach($db_tag->id);
-                
-
             }
         }
 
