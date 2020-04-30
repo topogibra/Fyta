@@ -15,7 +15,6 @@ export default function request(props, useFormData) {
                     .map(key => `${key}=${content[key]}`)
                     .join('&'));
         } else if (useFormData) {
-            console.log("using form data");
             options.body = new FormData();
             Object.keys(content).forEach(key => options.body.append(key, content[key]));
         } else {
