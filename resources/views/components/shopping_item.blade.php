@@ -1,10 +1,12 @@
 <div class="row justify-content-center border-bottom shopCartEntry">
     <div class="col-sm-2 entry-img">
+        <a href="/product/{{ $item->id }}">
         <img src={{asset("img/$item->img")}} alt={!!$item->alt!!} class="shopCartProduct-image">
+    </a>
     </div>
     <div class="col-sm-9 row justify-content-center entry-info">
         <div class=" col-sm-3 col-6 align-self-center shopCartProduct-name">
-        <p class="mb-0">{{$item->name}}</p>
+            <a href="product/{{$item->id}}" class="name">{{$item->name}}</a>
         </div>
         <div class="col-sm-2 col-6 align-self-center shopCartProduct-per-price">
         <p class="mb-0 text-right">{{$item->price}}€</p>
