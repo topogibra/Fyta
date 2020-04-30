@@ -86,9 +86,6 @@ if (qtity) {
             event.target.tags.value = "";
         }
 
-        if (value > stock)
-            return false;
-
         let response = await postData(addShoppingCart.href, value);
 
         if (response.status == 401)

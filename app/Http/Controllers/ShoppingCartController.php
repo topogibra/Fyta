@@ -13,7 +13,7 @@ class ShoppingCartController extends Controller
 
     public function addShoppingCart(Request $request, $id)
     {
-        $request->validate(['quantity' => ['required', 'min:1']]);
+        $request->validate(['quantity' => ['required', 'min:-1']]);
 
         $role = User::checkUser();
         if ($role == User::$GUEST) {
@@ -27,7 +27,7 @@ class ShoppingCartController extends Controller
 
         $quantity = $request->get('quantity');
 
-        $cart = Product::getStockByID($id, $user);
+        $cart = Product::getQuantityByID($id, $user);
 
         if ($cart != null) {
             $quantity = $quantity + $cart->quantity;
