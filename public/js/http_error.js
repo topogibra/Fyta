@@ -38,8 +38,8 @@ export function validateRequirements(requiredInputs) {
             }
             if (!(validateStock(input.innerHTML))) {
                 errorsArray.push({
-                    'id': "Number of products",
-                    'message': " is incorrect. More products than the existent in the stock"
+                    'id': "There is not enough stock",
+                    'message': "to add to cart/basket"
                 });
             }
 
@@ -82,7 +82,7 @@ export function validateRequirements(requiredInputs) {
                     errorsArray.push({
 
                         'id': id,
-                        'message': " is incorrect. At least one unit is needed "
+                        'message': " is incorrect. At least one digit is needed "
                     });
                 }
                 break;

@@ -30,8 +30,11 @@ class ShoppingCartController extends Controller
         $cart = Product::getQuantityByID($id, $user);
 
         if ($cart != null) {
+            $product = Product::find($id);
             $quantity = $quantity + $cart->quantity;
-            Product::updateStock($id, $user, $quantity);
+            if ($product->stock <  $quantity)
+                return response('Number of products to add exceed stock', 500);
+            Product::updateQuantity($id, $user, $quantity);
         } else {
             DB::insert('insert into shopping_cart(id_user,id_product,quantity) values (?, ?,?)', [$user, $id, $quantity]);
         }
@@ -70,5 +73,4 @@ class ShoppingCartController extends Controller
 
         return redirect('checkout-details');
     }
-
 }

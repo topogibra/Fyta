@@ -154,16 +154,23 @@ class Product extends Model
         return $product;
     }
 
-    public static function updateStock($product, $user, $quantity) 
+    public static function updateQuantity($product, $user, $quantity) 
     {
         $product = DB::table('shopping_cart')
-                            ->select('stock')
                             ->join('product', 'product.id', '=','shopping_cart.id_product')
                             ->where('shopping_cart.id_product', '=' , $product)
                             ->where('shopping_cart.id_user','=',$user)
                             ->update(['quantity' => $quantity]);
 
     }
+
+    public static function updateStock($id, $quantity) 
+    {
+        $product = Product::find($id);
+        $product->stock = $product->stock - $quantity;
+        $product->save();
+    }
+
 
     public static function getByID($id) 
     {
