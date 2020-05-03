@@ -57,7 +57,7 @@
     </div>
   </div>
   <div class="content">
-    <div class="row justify-content-between">
+    <div class="row justify-content-between" id="parent">
       <div class="col-lg-3 ">
         <h5>Categories</h5>
         <ul id="categories" class="list-group list-group-flush">

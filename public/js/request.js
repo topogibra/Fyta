@@ -53,11 +53,10 @@ export const postData = async (url, quantity) => {
     return response
 }
 
-export const deleteData = async (url) => {
+export const deleteData = async(url) => {
     const response = await request({
         url,
         method: 'DELETE',
     })
     return response
 }
-

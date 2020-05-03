@@ -13,7 +13,7 @@ class ShoppingCartController extends Controller
 
     public function addShoppingCart(Request $request, $id)
     {
-        $request->validate(['quantity' => ['required', 'min:1']]);
+        $request->validate(['quantity' => ['required', 'min:-1']]);
 
         $role = User::checkUser();
         if ($role == User::$GUEST) {
@@ -27,11 +27,14 @@ class ShoppingCartController extends Controller
 
         $quantity = $request->get('quantity');
 
-        $cart = Product::getStockByID($id, $user);
+        $cart = Product::getQuantityByID($id, $user);
 
         if ($cart != null) {
+            $product = Product::find($id);
             $quantity = $quantity + $cart->quantity;
-            Product::updateStock($id, $user, $quantity);
+            if ($product->stock <  $quantity)
+                return response('Number of products to add exceed stock', 500);
+            Product::updateQuantity($id, $user, $quantity);
         } else {
             DB::insert('insert into shopping_cart(id_user,id_product,quantity) values (?, ?,?)', [$user, $id, $quantity]);
         }
@@ -39,6 +42,18 @@ class ShoppingCartController extends Controller
         return redirect('/product/' . $id);
     }
 
+    public function deleteCartProduct($id)
+    {
+        $role = User::checkUser();
+        if ($role == User::$MANAGER)
+            return response('Managers cannot access shopping cart', 403);
+
+        $id_user = Auth::id();
+        Product::deleteShoppingCartProduct($id_user, $id);
+
+        redirect('/cart');
+        return response('Sucessfully deleted product!', 200);
+    }
 
     public function buy()
     {
@@ -58,5 +73,4 @@ class ShoppingCartController extends Controller
 
         return redirect('checkout-details');
     }
-
 }

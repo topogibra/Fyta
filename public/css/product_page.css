@@ -298,3 +298,7 @@ h3 {
     font-size: 0.7em;
     background-color: var(--green);
 }
+
+.dropdown-menu {
+    height: 8em;
+}

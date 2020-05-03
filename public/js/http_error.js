@@ -10,6 +10,11 @@ export function buildErrorMessage(error, message) {
     return container
 }
 
+function validateStock(quantity) {
+    let stock = document.querySelector('.overflow-auto').children.length;
+    return stock >= quantity;
+}
+
 export function validateRequirements(requiredInputs) {
 
     const errorsArray = [];
@@ -24,6 +29,20 @@ export function validateRequirements(requiredInputs) {
                     'message': " is required"
                 });
             }
+        } else if (id == 'numItems') {
+            if (!(validateMoreOne(input.innerHTML))) {
+                errorsArray.push({
+                    'id': "Number of products",
+                    'message': " is incorrect. At least one unit is needed "
+                });
+            }
+            if (!(validateStock(input.innerHTML))) {
+                errorsArray.push({
+                    'id': "There is not enough stock",
+                    'message': "to add to cart/basket"
+                });
+            }
+
         } else if (!input.value) {
             errorsArray.push({
                 'id': id,
@@ -61,12 +80,12 @@ export function validateRequirements(requiredInputs) {
             case "stock", "price":
                 if (!(validateMoreOne(input.value) || errorsArray.find(() => ({ 'id': id })))) {
                     errorsArray.push({
+
                         'id': id,
-                        'message': " is incorrect. At least 6 digits are needed"
+                        'message': " is incorrect. At least one digit is needed "
                     });
                 }
                 break;
-
         }
 
     });
