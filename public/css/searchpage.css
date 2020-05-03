@@ -112,14 +112,6 @@ img {
     display: none;
 }
 
-.pages .row {
-    justify-content: center;
-}
-
-.page-item .page-link {
-    color: var(--green);
-}
-
 .min,
 .max,
 .min-input,
@@ -129,10 +121,6 @@ img {
 
 .price-inputs label {
     display: none;
-}
-
-.col-lg-8 > .row {
-    justify-content: center;
 }
 
 @media (max-width: 2000px) {

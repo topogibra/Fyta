@@ -15,8 +15,13 @@ class CustomerController extends ProfileController
         return view('pages.profile', ['layout' => ['scripts' => ['js/profile_page.js'], 'styles' => ['css/profile_page.css', 'css/registerpage.css', 'css/homepage.css']]]);
     }
 
-    public function wishlist()
+    public function wishlist(Request $request)
     {
+
+        $request->validate([
+            'page' => ['required', 'numeric', 'min:0']
+        ]);
+
         $role = User::checkUser();
         if ($role == User::$GUEST) {
             return response()->json(['message' => 'You must login to access your wishlist'], 401);
@@ -28,7 +33,7 @@ class CustomerController extends ProfileController
         if ($wishlist == null) {
             return [];
         }
-        $products = $wishlist->products()->get()->all();
+        $products = $wishlist->products()->limit(10)->offset(10 * ($request->input('page') - 1))->get()->all();
         $items = array_map(function ($product) {
             $data = ['name' => $product->name, 'price' => $product->price, 'id' => $product->id];
             $img = $product->images()->first();
@@ -36,7 +41,7 @@ class CustomerController extends ProfileController
             return $data;
         }, $products);
 
-        return $items;
+        return [ 'wishlist' => $items, 'pages' => ceil($wishlist->products()->count() / 10)];
     }
 
     public function addProductToWishlist($id)

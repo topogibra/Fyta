@@ -25,7 +25,8 @@ class SearchController extends Controller
             'query' => ['string','nullable'],
             'orderByMatch' => ['required', 'boolean'],
             'minPrice' => ['required', 'numeric', 'min:1'],
-            'maxPrice' => ['required', 'numeric', 'min:2']
+            'maxPrice' => ['required', 'numeric', 'min:2'],
+            'page' => ['required', 'numeric', 'min:0']
         ]);
 
         $query = $request->input('query');
@@ -33,6 +34,7 @@ class SearchController extends Controller
         $minPrice = $request->input('minPrice');
         $maxPrice = $request->input('maxPrice');
         $tags = $request->input('tags');
+        $page = $request->input('page');
         //$sizes = $request->input('sizes'); //TODO: query based on product sizes tag
 
         $search_products = DB::table('product')->select('product.name as title','*');
@@ -57,19 +59,21 @@ class SearchController extends Controller
 
         if ($query && $orderByMatch) {
             $product_imgs = $product_imgs
-                ->orderByDesc('ranking');
+            ->orderByDesc('ranking');
         } else {
             $product_imgs = $product_imgs
                 ->orderBy('price');
         }
-
-        $product_imgs = $product_imgs->limit(9)->get()->all();
-
+        
+        
+        $products = $product_imgs->get()->all();
+        $count = count($products);
+        $products = array_slice($products, 9 * $page, 9);
         $items = array_map(function ($product) {
             $data = ['name' => $product->title, 'price' => $product->price, 'id' => $product->id,'img' => $product->img_name,'alt' => $product->description];
             return $data;
-        }, $product_imgs);
-        return $items;
+        }, $products);
+        return ['items' => $items, 'pages' => ceil($count / 9)];
     }
 
     public function textQuery($products, $query)

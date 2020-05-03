@@ -7,7 +7,6 @@ export default function buildManagers(managers) {
     const container = document.createElement('div');
     container.id = "managers"
     container.className = "container";
-
     managers.forEach(manager => {
         const row = document.createElement('div');
         row.className = "row table-entry";

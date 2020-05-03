@@ -186,12 +186,13 @@ class Product extends Model
         return $product_img;
     }
 
-    public static function getStockProducts() 
+    public static function getStockProducts($page) 
     {
         $products = DB::table('product')
                             ->select('name','price','stock','id')
                             ->orderBy('id')
-                            ->limit(20) //TODO Take care of this with pagination
+                            ->limit(10)
+                            ->offset($page * 10)
                             ->get();
             
         return $products;

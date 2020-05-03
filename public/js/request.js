@@ -43,8 +43,8 @@ export default function request(props, useFormData) {
     });
 }
 
-export const fetchData = async (url) => {
-    const response = await request({ url, method: 'GET' })
+export const fetchData = async (url, page = 1) => {
+    const response = await request({ url, method: 'GET', content : { page } })
     return response
 }
 
