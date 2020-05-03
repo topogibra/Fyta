@@ -73,8 +73,12 @@ class OrderController extends Controller{
     }
 
 
-    public function orders()
+    public function orders(Request $request)
     {
+        $request->validate([
+            'page' => ['required', 'numeric', 'min:0']
+        ]);
+
         $role = User::checkUser();
         if ($role == User::$GUEST) {
             return response()->json(['message' => 'You must login to access your order history'], 401);
@@ -82,7 +86,7 @@ class OrderController extends Controller{
             return response()->json(['message' => 'Managers can\'t access order history'], 403);
 
         $user = Auth::user();
-        $orders = $user->orders()->get()->all();
+        $orders = $user->orders()->limit(10)->offset(10 * ($request->input('page') - 1))->get()->all();
         $clean_orders = array_map(function ($order) {
             $data = ['number' => $order->shipping_id, 'date' => $order->order_date, 'id' => $order->id];
             $order_status = $order->history()->orderBy('date', 'desc')->first();
@@ -94,18 +98,22 @@ class OrderController extends Controller{
             return $data;
         }, $orders);
 
-        return $clean_orders;
+        return ['orders' => $clean_orders, 'pages' =>  ceil($user->orders()->count() / 10)];
     }
 
-    public function pending()
+    public function pending(Request $request)
     {
+        $request->validate([
+            'page' => ['required', 'numeric', 'min:0']
+        ]);
+
         $role = User::checkUser();
         if ($role == User::$GUEST) {
             return response()->json(['message' => 'You must login to access the pending orders'], 401);
         } else if ($role == User::$CUSTOMER)
             return response()->json(['message' => 'You do not have access to this section'], 403);
 
-        $allstatus = Order::getStatusOrders();
+        $allstatus = Order::getStatusOrders($request->input('page') - 1);
         $clean_status = array_map(function ($status) {
             $data = ['number' => $status->shipping_id, 'date' => $status->order_date, 'id' => $status->order_id];
             $order_status = $status->order_status;
@@ -115,7 +123,7 @@ class OrderController extends Controller{
             return $data;
         }, $allstatus);
 
-        return $clean_status;
+        return ['orders' => $clean_status, 'pages' =>  ceil(Order::count() / 10)];
     }
 
 }

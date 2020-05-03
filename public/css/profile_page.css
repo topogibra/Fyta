@@ -152,6 +152,10 @@ input {
 }
 
 
+.pagination {
+    margin-top: 2em;
+}
+
 .profile .container .row>* {
     text-align: center;
     
