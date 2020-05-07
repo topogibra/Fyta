@@ -8,6 +8,7 @@ import buildPendingOrders from "./orders.js";
 import buildStocks from "./stocks.js";
 import buildManagers from "./managers.js";
 import buildSales from "./sales.js";
+import buildStatistics from './statistics.js'
 
 async function pendingOrders(page = 1) {
     try {
@@ -95,6 +96,26 @@ const managerProfileSections = [
                 return buildErrorMessage(e.status, e.message);
             }
         },
+    },
+    {
+        name: "Statistics",
+        action: async () => {
+            try {
+                const data = await request({
+                    url: '/statistics/most-sold',
+                    content: {
+                        start: "2018-01-01",
+                        end: "2018-12-31",
+                        limit: 10
+                    },
+                    method: 'POST'
+                });
+
+                return buildStatistics(data);
+            } catch (e) {
+                return buildErrorMessage(e.status, e.message)
+            }
+        }
     },
     {
         name: "Stocks",
