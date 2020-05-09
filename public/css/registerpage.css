@@ -91,6 +91,10 @@
     margin-right: 2rem;
 }
 
+#confbutton .btn-primary{
+    padding: 1em;
+}
+
 @media (min-width: 1440px) {
     .form {
         margin: 3% 20%;

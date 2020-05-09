@@ -121,6 +121,10 @@ class CustomerController extends ProfileController
 
     public function delete(Request $request,$username)
     {
+        $request->validate([
+            'reason' => ['required', 'string']
+        ]);
+
         $user = Auth::user();
         if ($user == null)
             return response('User not found', 400);
@@ -128,7 +132,7 @@ class CustomerController extends ProfileController
             return response('User didnt match session', 400);
         
         $new_delete = new UserRemoval();
-        $new_delete->reason = 'bananas';
+        $new_delete->reason = $request->reason;
         $new_delete->username = $username;
         $new_delete->removed_at = Date('Y-m-d');
         $new_delete->save();

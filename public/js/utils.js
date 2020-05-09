@@ -72,6 +72,26 @@ export function buildConfirmation(action) {
     return container;
 }
 
+export function buildAccept(action) {
+    const container = document.createElement('div');
+    container.className = "row justify-content-center";
+    container.id = "confbutton"
+    const accept = document.createElement('a');
+    accept.href = '#'
+    accept.className = "col-8 btn-primary"
+    accept.textContent = "Confirm delete"
+    container.appendChild(accept);
+    accept.addEventListener('mousedown', async () => {
+        await action();
+        try {
+        } catch (error) {
+            container.appendChild(buildErrorMessage(error.status, error.message));
+        }
+    });
+    return container;
+}
+
+
 export function createProductColumn(info, attribute) {
     const column = document.createElement('div');
     column.classList.add(...['col-md-3', 'col-6', attribute]);

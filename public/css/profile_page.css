@@ -34,6 +34,12 @@ a.btn {
     border: 1px solid var(--light-gray);
 }
 
+#remove-a{
+    font-size: 0.8em;
+    border: 1px solid red;
+    margin-right:1em;
+    margin-top: 1em;
+}
 #savechanges,
 #add-manager,
 #logout {
