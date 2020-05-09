@@ -32,17 +32,17 @@
     </div>
     
     <div class="row number-input">
-        <div class="my-2 col-4">
+        <div class="col-auto">
             <h5> Price </h5>
             <label for="price"> </label>
             <input class="col" class="mt-1 d-block" name="price" id="price" type="number" step=".01" value={{ $price ?? 0}}>
         </div>
-        <div class="my-2 col-4">
+        <div class="col-auto">
             <h5> Stock </h5>
             <label for="stock"> </label>
             <input class="col" class="mt-1 d-block" name="stock" id="stock" type="number" value={{ $stock ?? 0}}>
         </div>
-        <div class="my-2 col-4">
+        <div class="col-auto">
             <h5>Category</h5>
             <select class="custom-select">
                 @if (isset($category))
@@ -57,7 +57,7 @@
         </div>
     </div>
     <div class="row" id="tags-container">
-        <div class="my-2">
+        <div class="my-2" id='tags-part'>
             <h5>Tags</h5>
             <span class="badge badge-success" id="caption">Type a tag and press Enter to add it. Press a tag to remove it.</span>
             <div id="tags-row">
