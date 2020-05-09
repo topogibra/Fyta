@@ -1,5 +1,6 @@
 import { validateRequirements } from './http_error.js';
 import request from './request.js'
+import {deleteData} from './request.js'
 
 export function buildPersonalInfoForm(info, user) {
     const container = document.createElement('div');
@@ -199,6 +200,26 @@ export default function buildPersonalInfo(info, user) {
         return false;
     });
 
+    const remove = document.createElement('div');
+    remove.className = "row";
+    remove.id = "remove-account";
+    const remove_a =document.createElement('a');
+    remove_a.id = "remove-a";
+    remove_a.href = "customer/" + info.username;
+    remove_a.className = "btn rounded-0 btn-lg shadow-none";
+    remove.appendChild(remove_a);
+    container.appendChild(remove);
+
+    remove_a.addEventListener('click', async (ev) => {
+
+        ev.preventDefault();
+        let response = await deleteData(remove_a.href);
+
+        if(response.status != 200)
+            return false;
+        else
+            window.location.href = "/home";;
+    });
 
     const modal = document.createElement('div');
     modal.className = "toast";
