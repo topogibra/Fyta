@@ -60,3 +60,12 @@ export const deleteData = async(url) => {
     })
     return response
 }
+
+export const deleteAccount = async(url,reason) => {
+    const response = await request({
+        url,
+        method: 'DELETE',
+        content: { 'reason': reason }
+    })
+    return response
+}

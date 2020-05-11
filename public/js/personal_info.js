@@ -1,5 +1,7 @@
 import { validateRequirements } from './http_error.js';
 import request from './request.js'
+import { deleteAccount } from './request.js'
+import { buildModal, buildAccept } from './utils.js';
 
 export function buildPersonalInfoForm(info, user) {
     const container = document.createElement('div');
@@ -161,9 +163,9 @@ export default function buildPersonalInfo(info, user) {
             saveChanges.className = "row justify-content-end";
             const content = {};
             validation.forEach((id) => {
-                content[id] = document.getElementById(id).value; 
+                content[id] = document.getElementById(id).value;
             });
-            if(user){
+            if (user) {
                 const day = document.getElementById('day').value;
                 const month = document.getElementById('month').value;
                 const year = document.getElementById('year').value;
@@ -172,10 +174,10 @@ export default function buildPersonalInfo(info, user) {
             }
 
             const password = document.getElementById('password');
-            if(password.value)
+            if (password.value)
                 content['password'] = password.value;
-            
-            if(picInput.files.length > 0){
+
+            if (picInput.files.length > 0) {
                 console.log(picInput.files[0]);
                 content.photo = picInput.files[0];
             }
@@ -186,19 +188,64 @@ export default function buildPersonalInfo(info, user) {
                     method: 'POST',
                     content
                 }, true);
-                if(response.status != 200){
+                if (response.status != 200) {
                     saveChanges.prepend(buildErrorMessage(response.status, response.content));
                 } else {
                     $(`#${modalId}`).toast({ delay: 3000 });
                     $(`#${modalId}`).toast('show');
                 }
-            }catch(e){
+            } catch (e) {
                 saveChanges.prepend(buildErrorMessage(e.status, e.message));
             }
         }
         return false;
     });
 
+    const remove = document.createElement('div');
+    remove.className = "row justify-content-end";
+    remove.id = "remove-account";
+    const remove_a = document.createElement('a');
+    remove_a.text = "Remove Account";
+    remove_a.id = "remove-a";
+    remove_a.href = "customer/" + info.username;
+    remove_a.setAttribute('data-toggle', 'modal');
+    remove_a.setAttribute('data-target', '#removemodal');
+    remove_a.className = "btn rounded-0 btn-lg shadow-none";
+    remove.appendChild(remove_a);
+    container.appendChild(remove);
+
+    remove_a.addEventListener('click', async (ev) => {
+        ev.preventDefault();
+    });
+
+    const modalremove = buildModal('Can you please explain why you want to remove your account?', buildAccept(async () => {
+
+        let reason = document.querySelector('#reason').value;
+        if (reason == "")
+            reason = 'didntanswer';
+
+        let response = await deleteAccount(remove_a.href, reason);
+
+        if (response.status != 200) {
+            return false;
+        }
+        else
+            window.location.replace("/home");
+
+    }), 'removemodal');
+    const modalbody = modalremove.lastChild.lastChild.children[1];
+    const text = document.createElement('p');
+    text.className = "text-center"
+    text.textContent = "Are you sure you want to delete your account?"
+    modalbody.prepend(text)
+    const inputreason = document.createElement('input');
+    inputreason.id = "reason";
+    inputreason.type = "text";
+    inputreason.className = "form-control";
+    modalbody.prepend(inputreason)
+
+
+    container.appendChild(modalremove);
 
     const modal = document.createElement('div');
     modal.className = "toast";
