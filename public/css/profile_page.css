@@ -1,4 +1,5 @@
 @import url("pallette.css");
+
 .account-sections {
     margin-top: 10%;
 }
@@ -210,6 +211,26 @@ input {
     margin-left: 1em;
     color: var(--green);
     cursor: pointer;
+}
+
+.date-input > div {
+    min-width: 10em;
+    min-height: 2em;
+}
+
+
+.date-input {
+    border-color: var(--green);
+    color: var(--green);
+    background-color: var(--white);
+}
+
+.date-input:focus,
+.date-input:active, 
+.date-input:hover {
+    background-color: var(--green)!important;
+    color: var(--white)!important;
+    border-color: var(--white)!important;
 }
 
 @media(max-width: 767px) {

@@ -1,0 +1,82 @@
+@import url("pallette.css");
+
+
+.calendar {
+    border: 2px solid var(--green);
+    padding: 1em;
+    max-width: 50vw;
+    border-radius: 0.5em;
+}
+
+.calendar{
+  flex-grow: 1;
+}
+
+.calendar > div {
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    color: var(--green);
+}
+
+.calendar > div.controllers{
+    justify-content: space-between;
+    padding: 1em;
+}
+
+.calendar > div h5 {
+    font-size: 1em;
+    margin: 0;
+}
+
+.calendar table{
+    empty-cells: show;
+    border-collapse: collapse;
+    margin: auto;
+    margin-top: 1em;
+    width: 90%;
+}
+
+.calendar table td {
+    width: 2.5em;
+    height: 2.5em;
+    border: 2px solid var(--light-gray);
+    text-align: center;
+    color: var(--green);
+    font-size: 0.9em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.calendar .fa{
+    cursor: pointer;
+}
+
+.calendar table td.unavailable,
+#calendars .calendar table td.unavailable.past-date {
+    color: var(--light-gray);
+    background-color: white;
+    text-decoration: line-through;
+}
+
+#calendars .calendar table td.unavailable {
+    color: white;
+    background-color: var(--green);
+}
+
+.calendar table td.selected{
+    background-color: var(--green);
+    color: white;
+}
+
+.calendar table th{
+    font-size: 0.7em;
+    padding-bottom: 0.4em;
+    color: var(--green);
+}
+
+.calendar > div i{
+    font-size: 0.8em;
+}

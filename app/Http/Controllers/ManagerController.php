@@ -13,7 +13,8 @@ class ManagerController extends ProfileController
 {
     public function render()
     {
-        return view('pages.profile', ['layout' => ['scripts' => ['js/manager_page.js'], 'styles' => ['css/profile_page.css', 'css/registerpage.css']]]);
+        return view('pages.profile', ['layout' => ['scripts' => ['js/manager_page.js'],
+            'styles' => ['css/profile_page.css', 'css/registerpage.css', 'css/calendar.css']]]);
     }
 
     public function update(Request $request)
