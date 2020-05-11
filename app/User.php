@@ -95,6 +95,30 @@ class User extends Authenticatable
        
     }
 
+    public function getProcessedOrders($product_id){
+        $user_id = $this->id;
+
+        $processedOrders = DB::table('product_order')
+                            ->select('order.id', 'order.shipping_id', 'order.order_date')
+                            ->join('order_history',function($join){
+                                $join->on("order_history.id_order","=","product_order.id_order")
+                                     ->whereRaw("order_history.order_status='Processed'");
+                            })
+                            ->leftJoin("review",function($join) use ($product_id){
+                                $join->on("order_history.id_order", "=", "review.id_order")
+                                     ->where("review.id_product", "=", $product_id);
+                            })
+                            ->join('order','order.id',"=",'order_history.id_order')
+                            ->where("product_order.id_product","=",$product_id)
+                            ->where('order.id_user',"=",$user_id)
+                            ->where(function($query){
+                                $query->whereNull('review.id_product')
+                                      ->orWhereNull('review.id_order');
+                            }
+                        )->get();
+        return $processedOrders;
+    }
+
     public static function validateCustomer()
     {
         $role = self::checkUser();

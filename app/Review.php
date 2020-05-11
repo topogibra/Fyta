@@ -49,4 +49,13 @@ class Review extends Model
         return (object) ['reviews' => $reviews,'score' => $score];
     }
 
+    public static function exists($product_id,$order_id){
+        $results = Review::where([
+            ['id_product',"=",$product_id],
+            ['id_order', "=", $order_id]
+        ])->count();
+
+        return $results > 0;
+    }
+
 }

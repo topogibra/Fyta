@@ -55,6 +55,9 @@ Route::get('profile/wishlist', 'CustomerController@wishlist');
 Route::put('profile/wishlist/{id}', 'CustomerController@addProductToWishlist');
 Route::delete('profile/wishlist/{id}', 'CustomerController@removeProductFromWishlist');
 
+//Reviews
+Route::post('review', 'ReviewController@addReview');
+
 
 
 // Authentication
