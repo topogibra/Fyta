@@ -39,6 +39,31 @@ class Product extends Model
     {
         return $this->belongsToMany('App\Tag','product_tag','id_product','id_tag');
     }
+
+    public static function getTopSales()
+    {
+        $top_items = DB::table('product')
+                        ->select('product.id','name','price')
+                        ->join('apply_discount','product.id','=','apply_discount.id_product')
+                        ->join( 'discount' ,'discount.id','=','apply_discount.id_discount')
+                        ->where([['date_begin', '<=', date('Y-m-d')], ['date_end', '>=',  date('Y-m-d')]])
+                        ->orderByDesc('views')
+                        ->limit(4);
+        $product_imgs = DB::table('image')
+                            ->select('top_items.id as id','top_items.name','price','img_name as img','description as alt')
+                            ->join('product_image','product_image.id_image','=','image.id')
+                            ->joinSub($top_items, 'top_items',function($join) {
+                                $join->on('top_items.id','=','product_image.id_product');
+                            })
+                            ->get();
+
+        //parse the images directories
+        foreach($product_imgs as $product) {
+            $product->alt = nl2br(str_replace(" ", "&nbsp;", $product->alt));
+        }
+
+        return $product_imgs;
+    }
     
     public static function getTopByTag($tag)
     {

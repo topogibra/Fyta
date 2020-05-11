@@ -851,17 +851,17 @@ INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (27,56,8),(45,62,
 INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (7,72,3),(44,19,1),(35,96,14),(23,57,10),(37,35,20),(14,48,18),(34,55,4),(40,66,17),(32,73,14),(35,93,11);
 
 --R10
-INSERT INTO discount ("percentage",date_begin,date_end) VALUES (96,'2019-04-11','2019-12-21'),(88,'2019-02-25','2019-06-26'),(2,'2019-01-11','2019-02-02'),(88,'2019-08-03','2019-11-09');
-INSERT INTO discount ("percentage",date_begin,date_end) VALUES (2,'2019-02-01','2019-09-20'),(3,'2019-03-10','2019-07-30'),(53,'2019-02-25','2019-06-29'),(41,'2018-10-21','2019-01-27');
-INSERT INTO discount ("percentage",date_begin,date_end) VALUES (42,'2019-04-18','2019-11-30'),(94,'2018-08-11','2019-07-07'),(33,'2018-06-12','2019-04-21'),(65,'2019-09-27','2019-12-21');
-INSERT INTO discount ("percentage",date_begin,date_end) VALUES (31,'2019-06-30','2019-07-05'),(27,'2019-03-20','2019-07-07'),(77,'2018-12-11','2019-03-10'),(4,'2019-04-07','2019-06-21');
-INSERT INTO discount ("percentage",date_begin,date_end) VALUES (18,'2019-03-25','2019-08-17'),(79,'2019-05-18','2019-12-05'),(47,'2018-07-13','2019-02-08'),(80,'2019-10-10','2019-10-20');
+INSERT INTO discount ("percentage",date_begin,date_end) VALUES (96,'2020-04-11','2020-07-21'),(88,'2019-02-25','2020-07-26'),(2,'2019-01-11','2020-07-02'),(88,'2019-08-03','2020-07-09');
+INSERT INTO discount ("percentage",date_begin,date_end) VALUES (2,'2020-02-01','2020-07-20'),(3,'2019-03-10','2020-07-30'),(53,'2019-02-25','2020-07-29'),(41,'2018-10-21','2020-07-27');
+INSERT INTO discount ("percentage",date_begin,date_end) VALUES (42,'2020-04-18','2020-07-30'),(94,'2018-08-11','2020-07-07'),(33,'2018-06-12','2020-07-21'),(65,'2019-09-27','2020-07-21');
+INSERT INTO discount ("percentage",date_begin,date_end) VALUES (31,'2020-05-2','2020-07-10'),(27,'2019-03-20','2020-07-07'),(77,'2018-12-11','2020-07-10'),(4,'2019-04-07','2020-07-21');
+INSERT INTO discount ("percentage",date_begin,date_end) VALUES (18,'2020-05-2','2020-07-10'),(79,'2019-05-18','2020-07-05'),(47,'2018-07-13','2020-07-08'),(80,'2019-10-10','2020-07-20');
 
---R11
+-- --R11
 INSERT INTO discount_code (id_discount,code) VALUES (2,'Guy'),(4,'Yoshi'),(1,'Callie'),(5,'Raja'),(16,'Rudyard');
 INSERT INTO discount_code (id_discount,code) VALUES (20,'Noelani'),(9,'Ralph'),(6,'Russell'),(7,'Nehru'),(10,'Salvador');
 
---R12
+-- --R12
 INSERT INTO apply_discount (id_product,id_discount) VALUES (21,4),(10,1),(27,14),(44,3),(91,14);
 INSERT INTO apply_discount (id_product,id_discount) VALUES (20,11),(95,8),(34,1),(55,11),(49,18);
 INSERT INTO apply_discount (id_product,id_discount) VALUES (84,10),(96,17),(6,18),(20,9),(63,8);

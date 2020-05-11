@@ -6,6 +6,7 @@
             <p class="card-text text-center align-self-center ">Fytá</h5>
         </div>
     </div>
+    @if(count($items['top-deals']) >0)
     <div class="top-sold">
         <h2 id="top-title-top"><a href="/search">Top Deals</a></h2>
         <div class="container-fluid">
@@ -14,6 +15,9 @@
             </div>
         </div>
     </div>
+    @endif
+
+
     <div class="top-sold">
         <h2 id="top-title-indoor"><a href="/search">Indoor Plants</a></h2>
         <div class="container-fluid">

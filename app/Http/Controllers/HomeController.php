@@ -13,7 +13,7 @@ class HomeController extends Controller
 
     public function render()
     {
-        $deals = Product::getTopByTag('Deals');
+        $deals = Product::getTopSales();
         $indoor = Product::getTopByTag('Indoor');
         $outdoor = Product::getTopByTag('Outdoor');
         $vases = Product::getTopByTag('Vases');
