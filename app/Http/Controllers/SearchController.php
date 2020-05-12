@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use App\Product;
+use App\User;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
@@ -71,7 +72,7 @@ class SearchController extends Controller
         $products = array_slice($products, 9 * $page, 9);
         $items = array_map(function ($product) {
             $salePrice = Product::getSalePrice($product->prodID);
-            $data = ['name' => $product->title, 'price' => $product->price, 'sale_price' => $salePrice, 'id' => $product->prodID,'img' => $product->img_name,'alt' => $product->description];
+            $data = ['name' => $product->title, 'price' => $product->price, 'sale_price' => $salePrice, 'id' => $product->prodID,'img' => $product->img_name,'alt' => $product->description , 'favorite' => User::isFavorited($product->id)];
             return $data;
         }, $products);
         return ['items' => $items, 'pages' => ceil($count / 9)];

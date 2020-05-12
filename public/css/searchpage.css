@@ -11,7 +11,7 @@
 }
 
 .content .card-body i .fab,
-.content .far {
+.content .fa-star {
     color: var(--green);
 }
 
