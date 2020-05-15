@@ -1,4 +1,4 @@
-@extends('layouts.product', ['content' => 'components.product-page', 'files' =>  ['scripts' => ['js/product_page.js', 'js/request.js'], 'styles' => ['css/product_page.css']]])
+@extends('layouts.product', ['content' => 'components.product-page', 'files' =>  ['scripts' => ['js/product_page.js','js/request.js','js/review.js'], 'styles' => ['css/product_page.css']]])
 
 @section('img')
     <img class="border" src={{asset("img/$img")}} alt={{$alt}}>
@@ -105,10 +105,10 @@
         <h3>{{count($reviews)}} Reviews</h3>
         <div class="stars">
             @for ($i = 0; $i < $score; $i++)
-                <i class=" fas fa-star"></i>
+                <i class="fas fa-star"></i>
             @endfor
             @for ($i = 0; $i < (5 - $score); $i++)
-                <i class=" far fa-star"></i>
+                <i class="far fa-star"></i>
             @endfor
         </div>
     </div>

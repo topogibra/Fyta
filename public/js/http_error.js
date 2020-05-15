@@ -51,11 +51,11 @@ export function validateRequirements(requiredInputs) {
         }
 
         switch (id) {
-            case "username", "email", "address", "name", "deliveryaddress", "billingaddress", "description":
+            case "username", "email", "address", "name", "deliveryaddress", "billingaddress", "description", "reviewDescription":
                 if (!(validateMaxSize(input.value) || errorsArray.find(() => ({ 'id': id })))) {
                     errorsArray.push({
                         'id': id,
-                        'message': " to big. Max of 255 caracters"
+                        'message': " too big. Max of 255 caracters"
                     });
                 }
                 break;
@@ -98,7 +98,7 @@ export function validateRequirements(requiredInputs) {
         return false;
 }
 
-function createErrors(errorsArray) {
+export function createErrors(errorsArray) {
 
     if (errorsArray.length > 0) {
         const errors = document.createElement('ul');

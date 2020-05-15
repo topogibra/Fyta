@@ -110,7 +110,7 @@ h3 {
 }
 
 .row .reviews-title h3 {
-    margin: 0 1em;
+    margin: 0 1rem;
 }
 
 .comment.row {
@@ -143,6 +143,46 @@ h3 {
     color: var(--green);
     flex-grow: unset;
     padding: 0 0.1em;
+}
+
+
+.review-stars {
+    margin-bottom: 0rem;
+    display: flex;
+}
+
+.review-stars > p{
+    text-align: center;
+    padding-right: 1rem;
+}
+
+.review-stars>.star{
+    color: var(--green);
+    
+}
+
+#select-order-Id{
+    margin-bottom: 1rem;
+}
+
+#review-form{
+    margin-bottom: 3rem;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+#review-form-text {
+    resize: none;
+    width: 100%;
+}
+
+#submit-review {
+    background-color: var(--green);
+    border-color: var(--grey);
+}
+
+#review-title-form > h3 { 
+    margin-bottom: 1.5rem;
 }
 
 .card-body {
@@ -221,6 +261,9 @@ h3 {
 #submit-button {
     width: 33em;
 }
+
+
+
 
 @media(min-width: 1440px) {
     .product-img img {
