@@ -233,6 +233,10 @@ input {
     border-color: var(--white)!important;
 }
 
+canvas {
+    margin-top: 2.5rem;
+}
+
 @media(max-width: 767px) {
     .account-sections {
         padding-top: 0em;

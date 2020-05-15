@@ -24,8 +24,8 @@ class StatisticsController extends Controller{
             $limit = 5;
 
         $most_sold = DB::table('product')
-            ->select('product.name')
-            ->selectRaw('count("order".id) as sold')
+            ->select('product.id')
+            ->selectRaw('sum("product_order".quantity) as sold')
             ->join('product_order', 'product.id', '=', 'product_order.id_product')
             ->join('order', 'product_order.id_order', '=', 'order.id')
             ->where('order.order_date', '>=', $request->input('start'))
@@ -36,7 +36,23 @@ class StatisticsController extends Controller{
             ->get()
             ->all();
 
-        return response()->json($most_sold);
+        $grouped_sold = array_map(function ($product) use($request) {
+            return DB::table('product')
+                ->select('product.name', 'product.id')
+                ->selectRaw('sum("product_order".quantity) as sold')
+                ->selectRaw("date_trunc('month', \"order\".order_date) as order_date") 
+                ->join('product_order', 'product.id', '=', 'product_order.id_product')
+                ->join('order', 'product_order.id_order', '=', 'order.id')
+                ->where('order.order_date', '>=', $request->input('start'))
+                ->where('order.order_date', '<=', $request->input('end'))
+                ->where('product.id', '=', $product->id)
+                ->groupBy('product.id')
+                ->groupBy('order_date')
+                ->get()
+                ->all();
+        }, $most_sold);
+
+        return response()->json($grouped_sold);
     }
 
 }

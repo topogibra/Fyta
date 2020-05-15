@@ -2,6 +2,7 @@ import buildSections from "./sections.js";
 import { buildPage } from "./sections.js";
 import buildPersonalInfo from "./personal_info.js";
 import { fetchData } from "./request.js";
+import request from "./request.js";
 import { buildErrorMessage } from "./http_error.js";
 import { buildPagination } from "./pagination.js";
 import buildPendingOrders from "./orders.js";
@@ -99,23 +100,7 @@ const managerProfileSections = [
     },
     {
         name: "Statistics",
-        action: async () => {
-            try {
-                const data = await request({
-                    url: '/statistics/most-sold',
-                    content: {
-                        start: "2018-01-01",
-                        end: "2018-12-31",
-                        limit: 10
-                    },
-                    method: 'POST'
-                });
-
-                return buildStatistics(data);
-            } catch (e) {
-                return buildErrorMessage(e.status, e.message)
-            }
-        }
+        action: buildStatistics
     },
     {
         name: "Stocks",

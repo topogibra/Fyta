@@ -4,7 +4,7 @@ let selecting = false;
 let currentStart, currentEnd;
 let currentYear, currentMonth;
 
-const months = [
+export const months = [
     'January',
     'February',
     'March',
