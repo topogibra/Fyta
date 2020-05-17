@@ -26,7 +26,7 @@ h3 {
     height: 3em;
 }
 
-.fa-trash {
+.fa-trash, .fa-edit {
     color: var(--green);
 }
 
@@ -197,7 +197,7 @@ input {
     background-color: var(--white);
 }
 
-#products-button {
+#products-button, #sales-button {
     margin-top: 1em;
     font-size: 1em;
     background-color: var(--green);

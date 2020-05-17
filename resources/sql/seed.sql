@@ -137,14 +137,14 @@ CREATE TABLE discount (
     "percentage" > 0
     AND "percentage" < 100
   ),
-  CONSTRAINT discount_dates_check CHECK (date_end > date_begin)
+  CONSTRAINT discount_dates_check CHECK (date_end >= date_begin)
 );
 DROP TABLE IF EXISTS discount_code CASCADE;
 CREATE TABLE discount_code (
   id_discount SERIAL,
   code TEXT NOT NULL,
   CONSTRAINT discount_code_pk PRIMARY KEY (id_discount),
-  CONSTRAINT discount_code_discount_fk FOREIGN KEY (id_discount) REFERENCES discount(id) ON UPDATE CASCADE,
+  CONSTRAINT discount_code_discount_fk FOREIGN KEY (id_discount) REFERENCES discount(id) ON UPDATE CASCADE ON DELETE CASCADE,
   CONSTRAINT discount_code_uk UNIQUE (code)
 );
 DROP TABLE IF EXISTS apply_discount CASCADE;
@@ -153,7 +153,7 @@ CREATE TABLE apply_discount (
   id_discount INTEGER NOT NULL,
   CONSTRAINT apply_pk PRIMARY KEY (id_product, id_discount),
   CONSTRAINT apply_product_fk FOREIGN KEY (id_product) REFERENCES product(id) ON UPDATE CASCADE ON DELETE CASCADE,
-  CONSTRAINT apply_discount_fk FOREIGN KEY (id_discount) REFERENCES discount(id) ON UPDATE CASCADE
+  CONSTRAINT apply_discount_fk FOREIGN KEY (id_discount) REFERENCES discount(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 DROP TABLE IF EXISTS tag CASCADE;
 CREATE TABLE tag (
@@ -286,13 +286,16 @@ CREATE FUNCTION discount_period() RETURNS TRIGGER AS $BODY$ BEGIN IF EXISTS (
       *
     FROM discount,
       apply_discount,
+      apply_discount as new_apply,
       discount as new_discount
     WHERE
-      apply_discount.id_discount = NEW.id
-      OR (
-        apply_discount.id_discount = discount.id
-        AND new_discount.date_begin >= discount.date_begin
-        AND new_discount.date_begin <= discount.date_end
+      discount.id <> new_discount.id
+      AND apply_discount.id_discount = discount.id
+      AND new_apply.id_discount = new_discount.id
+      AND apply_discount.id_product = new_apply.id_product
+      AND (
+        (new_discount.date_begin >= discount.date_begin AND new_discount.date_begin <= discount.date_end)
+        OR (new_discount.date_begin <= discount.date_begin AND new_discount.date_end >= discount.date_end)
       )
   ) THEN RAISE EXCEPTION 'Only one discount can only be applied to a product in a given period of time';
 END IF;
@@ -851,26 +854,26 @@ INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (27,56,8),(45,62,
 INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (7,72,3),(44,19,1),(35,96,14),(23,57,10),(37,35,20),(14,48,18),(34,55,4),(40,66,17),(32,73,14),(35,93,11);
 
 --R10
-INSERT INTO discount ("percentage",date_begin,date_end) VALUES (96,'2020-04-11','2020-07-21'),(88,'2019-02-25','2020-07-26'),(2,'2019-01-11','2020-07-02'),(88,'2019-08-03','2020-07-09');
-INSERT INTO discount ("percentage",date_begin,date_end) VALUES (2,'2020-02-01','2020-07-20'),(3,'2019-03-10','2020-07-30'),(53,'2019-02-25','2020-07-29'),(41,'2018-10-21','2020-07-27');
-INSERT INTO discount ("percentage",date_begin,date_end) VALUES (42,'2020-04-18','2020-07-30'),(94,'2018-08-11','2020-07-07'),(33,'2018-06-12','2020-07-21'),(65,'2019-09-27','2020-07-21');
-INSERT INTO discount ("percentage",date_begin,date_end) VALUES (31,'2020-05-2','2020-07-10'),(27,'2019-03-20','2020-07-07'),(77,'2018-12-11','2020-07-10'),(4,'2019-04-07','2020-07-21');
-INSERT INTO discount ("percentage",date_begin,date_end) VALUES (18,'2020-05-2','2020-07-10'),(79,'2019-05-18','2020-07-05'),(47,'2018-07-13','2020-07-08'),(80,'2019-10-10','2020-07-20');
+INSERT INTO discount ("percentage",date_begin,date_end) VALUES (96,'2018-04-11','2018-05-21'),(88,'2019-02-25','2019-07-26'),(2,'2020-01-11','2020-02-02'),(88,'2020-04-03','2020-05-09');
+INSERT INTO discount ("percentage",date_begin,date_end) VALUES (2,'2020-02-01','2020-06-20'),(3,'2020-03-10','2020-07-30'),(53,'2020-05-25','2020-06-29'),(41,'2020-03-21','2020-04-27');
+INSERT INTO discount ("percentage",date_begin,date_end) VALUES (42,'2020-04-18','2020-07-30'),(94,'2020-08-11','2020-09-07'),(33,'2020-06-12','2020-07-21'),(65,'2020-09-27','2020-10-21');
+INSERT INTO discount ("percentage",date_begin,date_end) VALUES (31,'2020-06-2','2020-06-10'),(27,'2020-03-20','2020-07-07'),(77,'2020-06-01','2020-07-10'),(4,'2020-04-07','2020-07-21');
+INSERT INTO discount ("percentage",date_begin,date_end) VALUES (18,'2020-05-2','2020-07-10'),(79,'2019-05-18','2020-07-05'),(47,'2020-07-01','2020-07-08'),(80,'2020-10-10','2020-11-20');
 
 -- --R11
 INSERT INTO discount_code (id_discount,code) VALUES (2,'Guy'),(4,'Yoshi'),(1,'Callie'),(5,'Raja'),(16,'Rudyard');
 INSERT INTO discount_code (id_discount,code) VALUES (20,'Noelani'),(9,'Ralph'),(6,'Russell'),(7,'Nehru'),(10,'Salvador');
 
--- --R12
-INSERT INTO apply_discount (id_product,id_discount) VALUES (21,4),(10,1),(27,14),(44,3),(91,14);
-INSERT INTO apply_discount (id_product,id_discount) VALUES (20,11),(95,8),(34,1),(55,11),(49,18);
-INSERT INTO apply_discount (id_product,id_discount) VALUES (84,10),(96,17),(6,18),(20,9),(63,8);
-INSERT INTO apply_discount (id_product,id_discount) VALUES (35,14),(26,20),(28,11),(26,6),(78,10);
+--R12
+INSERT INTO apply_discount (id_product,id_discount) VALUES (2,2),(3,20),(6,18),(10,1),(21,4);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (1,11),(95,8),(34,1),(55,11),(49,18);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (84,10),(96,17),(20,9),(63,8),(27,14);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (35,14),(26,20),(28,11),(13,6),(78,10);
 INSERT INTO apply_discount (id_product,id_discount) VALUES (66,15),(64,17),(34,2),(18,11),(83,12);
-INSERT INTO apply_discount (id_product,id_discount) VALUES (76,15),(82,11),(59,20),(91,16),(89,16);
-INSERT INTO apply_discount (id_product,id_discount) VALUES (3,20),(30,10),(60,20),(39,4),(26,11);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (73,15),(81,11),(59,20),(90,16),(89,16);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (30,10),(60,20),(39,4),(29,11),(44,3);
 INSERT INTO apply_discount (id_product,id_discount) VALUES (94,4),(99,8),(37,14),(25,7),(36,18);
-INSERT INTO apply_discount (id_product,id_discount) VALUES (32,11),(89,15),(27,20),(51,18),(2,2);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (32,11),(88,15),(27,20),(51,18),(91,14);
 INSERT INTO apply_discount (id_product,id_discount) VALUES (87,18),(46,8),(66,4),(82,7),(76,11);
 
 --R13

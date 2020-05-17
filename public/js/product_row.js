@@ -26,9 +26,27 @@ export default function buildProductRow(items){
         heading.className = "card-title product-name text-dark";
         heading.textContent = item.name;
         href.appendChild(heading);
-        const paragraph = document.createElement('p');
-        paragraph.className = "card-text product-price text-secondary";
-        paragraph.textContent = item.price + '€ ';
+        
+        let paragraph;
+        if(item.sale_price == -1) {
+            paragraph = document.createElement("p");
+            paragraph.className = "card-text product-price text-secondary";
+            paragraph.textContent = item.price + "€";
+        } else {
+            paragraph = document.createElement("div");
+            paragraph.className = "card-text product-price row"
+            const oldPrice = document.createElement("p");
+            oldPrice.className = "text-danger px-1";
+            const crossed = document.createElement("s");
+            crossed.textContent = item.price + "€";
+            oldPrice.appendChild(crossed);
+            const salePrice = document.createElement("p");
+            salePrice.className = "text-secondary px-1";
+            salePrice.textContent = item.sale_price + "€";
+            paragraph.appendChild(oldPrice);
+            paragraph.appendChild(salePrice);
+        }
+
         const removeFavorite = document.createElement('i');
         removeFavorite.className = "card-link fas fa-trash remove-favorite";
 

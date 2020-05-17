@@ -186,9 +186,26 @@ function buildSearchResults(products) {
         cardRow.appendChild(fav);
         cardBody.appendChild(cardRow);
 
-        const cardPrice = document.createElement("p");
-        cardPrice.className = "card-text";
-        cardPrice.textContent = product.price + "€";
+        let cardPrice;
+        if(product.sale_price == -1) {
+            cardPrice = document.createElement("p");
+            cardPrice.className = "card-text";
+            cardPrice.textContent = product.price + "€";
+        } else {
+            cardPrice = document.createElement("div");
+            cardPrice.className = "card-text row"
+            const oldPrice = document.createElement("p");
+            oldPrice.className = "text-danger px-1";
+            const crossed = document.createElement("s");
+            crossed.textContent = product.price + "€";
+            oldPrice.appendChild(crossed);
+            const salePrice = document.createElement("p");
+            salePrice.className = "px-1";
+            salePrice.textContent = product.sale_price + "€";
+            cardPrice.appendChild(oldPrice);
+            cardPrice.appendChild(salePrice);
+        }
+        
         cardBody.appendChild(cardPrice);
         card.appendChild(cardBody);
         productCol.appendChild(card);
@@ -234,7 +251,7 @@ const searchRequest = async(content, activePage = 1) => {
             parent.appendChild(buildPagination(activePage, response.pages, (page) => searchRequest(content, page)));
         };
     } catch (e) {
-        parent.appendChild(buildErrorMessage(404, "No Results Found!"));
+        container.appendChild(buildErrorMessage(404, "No Results Found!"));
     }
 };
 

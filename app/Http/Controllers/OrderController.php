@@ -91,7 +91,9 @@ class OrderController extends Controller{
             $data = ['number' => $order->shipping_id, 'date' => $order->order_date, 'id' => $order->id];
             $order_status = $order->history()->orderBy('date', 'desc')->first();
             $order_price = array_sum(array_map(function ($product) {
-                return $product->price * $product->pivot->quantity;
+                $sale_price = Product::getSalePrice($product->id);
+                $price = $sale_price == -1 ? $product->price : $sale_price;
+                return $price * $product->pivot->quantity;
             }, $order->products()->get()->all()));
             $data['state'] = $order_status->order_status;
             $data['price'] = $order_price;

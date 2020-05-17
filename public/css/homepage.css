@@ -139,7 +139,7 @@
         width: 200px;
         margin: auto;
     }
-    .top-sold .row {
+    .top-sold .container-fluid > .row {
         padding: 0 18em;
         justify-content: center;
         height: 250px;

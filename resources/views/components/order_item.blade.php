@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="col-md-3">
-        <a href="product_page.php">
+        <a href="{{"/product/$item->id_product"}}">
             <p class="product-name ">{{ $item->name }}</p>
         </a>
     </div>

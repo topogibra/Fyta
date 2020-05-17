@@ -24,6 +24,9 @@ class ProductController extends Controller
         $reviews = $feedback == null ? [] : $feedback->reviews;
         $score = $feedback == null ? 0 : round($feedback->score);
         $related_products = Product::getRelatedProducts($id);
+        foreach($related_products as $rel)
+            $rel->sale_price = Product::getSalePrice($rel->id);
+            
         $stock = $product->stock;
 
         if (User::checkUser() == User::$CUSTOMER) {
@@ -35,7 +38,7 @@ class ProductController extends Controller
         return view('pages.product', [
             'id' => $id,
             'img' => $product->img, 'alt' => $product->alt, 'description' =>  $product->description,
-            'price' => $product->price, 'score' => $score, 'name' => $product->name,
+            'price' => $product->price,'sale_price' => $product->sale_price, 'score' => $score, 'name' => $product->name,
             'related' => $related_products,
             'reviews' => $reviews,
             'stock' => $stock

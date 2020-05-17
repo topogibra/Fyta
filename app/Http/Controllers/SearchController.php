@@ -37,7 +37,7 @@ class SearchController extends Controller
         $page = $request->input('page');
         //$sizes = $request->input('sizes'); //TODO: query based on product sizes tag
 
-        $search_products = DB::table('product')->select('product.name as title','*');
+        $search_products = DB::table('product')->select('product.id as prodID','product.name as title','*');
         if ($query) {
             $search_products = $this->textQuery($search_products, $query);
         }
@@ -52,7 +52,7 @@ class SearchController extends Controller
             ->whereBetween('price', [$minPrice, $maxPrice]);
 
 
-        $product_imgs = $search_products
+        $product_imgs = $search_products->distinct()
             ->join('product_image', 'product_image.id_product', 'product.id')
             ->join('image', 'image.id', 'product_image.id_image');
             
@@ -70,7 +70,8 @@ class SearchController extends Controller
         $count = count($products);
         $products = array_slice($products, 9 * $page, 9);
         $items = array_map(function ($product) {
-            $data = ['name' => $product->title, 'price' => $product->price, 'id' => $product->id,'img' => $product->img_name,'alt' => $product->description];
+            $salePrice = Product::getSalePrice($product->prodID);
+            $data = ['name' => $product->title, 'price' => $product->price, 'sale_price' => $salePrice, 'id' => $product->prodID,'img' => $product->img_name,'alt' => $product->description];
             return $data;
         }, $products);
         return ['items' => $items, 'pages' => ceil($count / 9)];
@@ -83,7 +84,7 @@ class SearchController extends Controller
                         setweight(to_tsvector(\'english\', product."name"), \'A\') || 
                         setweight(to_tsvector(\'english\', product."description"), \'B\'), 
                         plainto_tsquery(\'english\', ?)
-                    ) AS ranking'),'product.name as title','*')
+                    ) AS ranking'),'product.id as prodID','product.name as title','*')
             ->setBindings([$query]);
     }
 

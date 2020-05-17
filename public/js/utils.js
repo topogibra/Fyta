@@ -98,3 +98,10 @@ export function createProductColumn(info, attribute) {
     column.textContent = info;
     return column;
 }
+
+export function createSaleColumn(info, attribute) {
+    const column = document.createElement('div');
+    column.classList.add(...['col-md-2','col-6','text-center',attribute]);
+    column.textContent = info;
+    return column;
+}

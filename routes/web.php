@@ -51,6 +51,15 @@ Route::post('order/update', 'OrderController@update');
 Route::post('search', 'SearchController@fullSearch');
 Route::delete('customer/{username}','CustomerController@delete');
 
+//Sales
+Route::get('manager/sales','SalesController@sales');
+Route::delete('manager/sales/{id}','SalesController@delete');
+Route::get('manager/sale','SalesController@add');
+Route::post('manager/sale','SalesController@create');
+Route::get('manager/sales/{id}','SalesController@edit');
+Route::put('manager/sale','SalesController@update');
+Route::get('manager/sale/products','SalesController@availableProducts');
+
 // Wishlists
 Route::get('profile/wishlist', 'CustomerController@wishlist');
 Route::put('profile/wishlist/{id}', 'CustomerController@addProductToWishlist');

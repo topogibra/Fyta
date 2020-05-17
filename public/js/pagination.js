@@ -16,7 +16,7 @@ export function buildPagination(activePage, numPages, changePage) {
     ul.className = "pagination row justify-content-center";
     const previous = createItem("<");
     ul.appendChild(previous);
-    const start = (activePage - 1) <= 0 ? 1 :  activePage === numPages ? activePage - 2 : activePage - 1;
+    const start = (activePage - 1) <= 0 ? 1 :  (activePage === numPages && numPages > 2) ? activePage - 2 : activePage - 1;
     const end = (activePage + 1) >= numPages ? numPages : start === 1 ? 3 : (activePage + 1);
     for (let i = start; i <= end; i++) {
         const item = createItem(i, activePage === i);
