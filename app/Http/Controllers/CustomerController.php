@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use App\User;
 use App\UserRemoval;
 use Illuminate\Support\Facades\Auth;
@@ -36,7 +37,8 @@ class CustomerController extends ProfileController
         }
         $products = $wishlist->products()->limit(10)->offset(10 * ($request->input('page') - 1))->get()->all();
         $items = array_map(function ($product) {
-            $data = ['name' => $product->name, 'price' => $product->price, 'id' => $product->id];
+            $sale_price = Product::getSalePrice($product->id);
+            $data = ['name' => $product->name, 'price' => $product->price,'sale_price' => $sale_price,'id' => $product->id];
             $img = $product->images()->first();
             $data['img'] = 'img/' . $img->img_name;
             return $data;

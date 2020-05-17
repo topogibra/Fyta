@@ -19,7 +19,12 @@
 
 @section('price')
 <div class="row price">
-    {{$price}}€
+    @if($sale_price == -1)
+         {{$price}}€
+    @else
+        <p class="text-danger px-1"><s>{{ $price }}€</s></p>
+        <p class="px-1">{{ $sale_price }}€</p>
+    @endif
 </div>
 @endsection
 

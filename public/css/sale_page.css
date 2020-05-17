@@ -1,0 +1,63 @@
+    @import url("pallette.css");
+    h3 {
+        text-align: center;
+    }
+    
+    #form-content {
+        width: 80%;
+    }
+    
+    #submit-button {
+        width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+    }
+    
+    #form-content {
+        margin: 0;
+    }
+    
+    #form-content img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    #selProducts {
+        width: 100%;
+    }
+    
+    #form-content #selectProdBtn {
+        max-width: max-content;
+        padding: 0 1em;
+    }
+    .number-input input {
+        width: 15em;
+    }
+    
+    h5 {
+        padding-top: 1em;
+    }
+
+    #products-sales legend {
+        font-size: inherit;
+    }
+    
+    .pagination {
+        margin-top: 1em;
+    }
+
+    #productname{
+        min-width:50%;
+    }
+    #image{
+        min-width:40%;
+    }
+    #price{
+        min-width:10%;
+    }
+    @media(max-width: 320px) {
+        #form-content {
+            width: 90%;
+        }
+    }
+
