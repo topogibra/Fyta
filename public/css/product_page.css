@@ -211,101 +211,6 @@ h3 {
     width: fit-content;
 }
 
-#form-content h5 {
-    color: var(--green);
-}
-
-#name,
-#description,
-#tags,
-#submit-button {
-    width: 33em;
-}
-
-
-
-
-@media(min-width: 1440px) {
-    .product-img img {
-        height: 450px;
-        width: 450px;
-    }
-    .container {
-        padding: 0;
-    }
-}
-
-@media(max-width: 1024px) {
-    .container {
-        padding: 0 4%;
-    }
-}
-
-@media(max-width: 950px) {
-    #purchase-buttons a {
-        margin: 0.5em 0;
-    }
-    #favorites-add {
-        margin-top: 0.5em;
-    }
-}
-
-@media(max-width: 768px) {
-    .row.product-section .col-md {
-        flex-basis: auto;
-    }
-    .product-img {
-        width: 100%;
-    }
-    .product-img img {
-        height: 400px;
-        width: 400px;
-        margin-bottom: 2em;
-    }
-    .row.product-section .col-md img .h-75 {
-        height: auto;
-    }
-    div.related-products img {
-        height: 125px;
-        width: 125px;
-    }
-    .card .card-title {
-        font-size: 0.8em;
-    }
-    .card .card-text {
-        color: var(--dark-gray);
-        font-size: 0.8em;
-    }
-}
-
-@media(max-width: 574px) {
-    .product-img img {
-        height: 300px;
-        width: 300px;
-        margin-bottom: 2em;
-    }
-    .comment>.container>.row {
-        justify-content: center;
-    }
-    .row.comment {
-        padding: 0 0.3em;
-    }
-    .comment>.container>.row>.col-md-3 {
-        width: 5em;
-        height: 5em;
-    }
-    .comment>.container>.row>.col-md-6 {
-        padding: 0;
-    }
-    .view-reviews {
-        padding-left: 0;
-    }
-    #name,
-    #description {
-        width: 27em;
-    }
-}
-
 .number-input input {
     width: 7em;
 }
@@ -345,3 +250,147 @@ h3 {
 .dropdown-menu {
     height: 8em;
 }
+
+#form-content h5 {
+    color: var(--green);
+}
+
+#name,
+#description,
+#tags,
+#submit-button {
+    width: 33em;
+}
+
+
+
+
+@media(min-width: 1440px) {
+    .product-img img {
+        height: 400px;
+        width: 400px;
+    }
+    .container {
+        padding: 0;
+    }
+    .review, .view-reviews{
+        margin-top:2em;
+    }
+}
+
+@media(max-width: 1024px) {
+    .container {
+        padding: 0 4%;
+    }
+}
+
+@media(max-width: 950px) {
+    #purchase-buttons a {
+        margin: 0.5em 0;
+    }
+    #favorites-add {
+        margin-top: 0.5em;
+    }
+}
+
+@media(max-width: 768px) {
+    #name,
+#description,
+#tags,
+#submit-button {
+    width: 25em;
+}
+    .related-products  {
+        width:30em;
+    }
+    .product-img {
+        width: 100%;
+    }
+    .product-img img {
+        height: 400px;
+        width: 400px;
+        margin-bottom: 2em;
+    }
+    .row.product-section .col-md img .h-75 {
+        height: auto;
+    }
+    div.related-products img {
+        height: 125px;
+        width: 125px;
+    }
+    .card .card-title {
+        font-size: 0.8em;
+    }
+    .card .card-text {
+        color: var(--dark-gray);
+        font-size: 0.8em;
+    }
+}
+
+@media(max-width: 574px) {
+    #name,
+    #description,
+    #tags,
+    #submit-button {
+        width: 25em;
+    }
+    .related-products  {
+        width:25em;
+    }
+    .product-img img {
+        height: 300px;
+        width: 300px;
+        margin-bottom: 2em;
+    }
+    .comment>.container>.row {
+        justify-content: center;
+    }
+    .row.comment {
+        padding: 0 0.3em;
+    }
+    .comment>.container>.row>.col-md-3 {
+        width: 5em;
+        height: 5em;
+    }
+    .comment>.container>.row>.col-md-6 {
+        padding: 0;
+    }
+    .view-reviews {
+        padding-left: 0;
+    }
+    #name,
+    #description {
+        width: 21em;
+    }
+}
+
+@media(max-width: 465px) {
+    #name,
+#description,
+#tags,
+#submit-button {
+    width: 21em;
+}
+    .related-products  {
+        width:21em;
+    }
+}
+
+@media(max-width: 320px) {
+    
+    #name,
+#description,
+#tags,
+#submit-button,#tags-container, #tags-part,#caption {
+    width: 18em;
+}
+#form-content{
+    width:20em;
+}
+    .related-products  {
+        width:20em;
+    }
+}
+
+
+

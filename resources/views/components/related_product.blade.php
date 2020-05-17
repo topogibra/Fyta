@@ -1,4 +1,4 @@
-<article class="col-md-4 col-sm-12">
+<article class="col-md-4 col-sm-10">
     <div class="card align-items-center">
         <a href="/product/{{ $item->id }}">
             <img class="border border-dark" src={{asset("img/$item->img")}} alt={{ "$item->description" }}>
