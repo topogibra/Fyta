@@ -184,24 +184,30 @@ function buildSearchResults(products) {
         cardTitle.appendChild(href);
         cardRow.appendChild(cardTitle);
 
-        if(product.favorite != undefined) {
+        if (product.favorite != undefined) {
             const fav = document.createElement("i");
             if (product.favorite) fav.className = "fas fa-star";
             else fav.className = "far fa-star";
             fav.id = product.id;
+            fav.setAttribute("date-toggle", "popover");
+            fav.setAttribute("data-placement", "right");
+            fav.setAttribute("aria-atomic", "true");
+            fav.setAttribute("aria-live", "assertive");
+            fav.role = "alert";
+
             cardRow.appendChild(fav);
         }
-            
+
         cardBody.appendChild(cardRow);
 
         let cardPrice;
-        if(product.sale_price == -1) {
+        if (product.sale_price == -1) {
             cardPrice = document.createElement("p");
             cardPrice.className = "card-text";
             cardPrice.textContent = product.price + "€";
         } else {
             cardPrice = document.createElement("div");
-            cardPrice.className = "card-text row"
+            cardPrice.className = "card-text row";
             const oldPrice = document.createElement("p");
             oldPrice.className = "text-danger px-1";
             const crossed = document.createElement("s");
@@ -213,24 +219,12 @@ function buildSearchResults(products) {
             cardPrice.appendChild(oldPrice);
             cardPrice.appendChild(salePrice);
         }
-        
+
         cardBody.appendChild(cardPrice);
         card.appendChild(cardBody);
         productCol.appendChild(card);
         container.appendChild(productCol);
     });
-
-    const favModal = document.createElement("div");
-    favModal.className = "toast";
-    favModal.id = "favoriteToast";
-    favModal.role = "alert";
-    favModal.setAttribute("aria-live", "assertive");
-    favModal.setAttribute("aria-atomic", "true");
-    const modalBody = document.createElement("div");
-    modalBody.className = "toast-body";
-    modalBody.textContent = "Product added to Favorites!";
-    favModal.appendChild(modalBody);
-    container.appendChild(favModal);
 
     if (products.length == 0) {
         parentContainer.className = "col-lg-8 align-self-center";
@@ -307,7 +301,9 @@ if (tag) {
         }
     }
 
-    const crumbSection = document.querySelector(".title .breadcrumb-item.active");
+    const crumbSection = document.querySelector(
+        ".title .breadcrumb-item.active"
+    );
     crumbSection.textContent = tag;
 }
 
@@ -329,29 +325,18 @@ const favorites = async () => {
         fav.addEventListener("mousedown", async (ev) => {
             const classList = fav.classList;
             let isFavorited = classList.contains("far");
-            let toastbody = document.querySelector(
-                "#favoriteToast > .toast-body"
-            );
-            toastbody.textContent =
-                "Product " +
-                (isFavorited ? "added to" : "removed from") +
-                " favorites wishlist!";
 
             let responseStatus;
 
             try {
                 let response;
                 if (isFavorited) {
-                    console.log("canas");
                     response = await putFavorite("/profile/wishlist/" + fav.id);
                 } else {
-                    console.log("cabanas");
                     response = await deleteData("/profile/wishlist/" + fav.id);
                 }
                 responseStatus = response.status;
             } catch (error) {
-                console.log("mostra me");
-
                 responseStatus = error.status;
             }
 
@@ -360,11 +345,22 @@ const favorites = async () => {
                     ? classList.add("fas") || classList.remove("far")
                     : classList.add("far") || classList.remove("fas");
 
-                $("#favoriteToast").toast({
-                    delay: toastDelay,
-                });
+                fav.setAttribute(
+                    "data-content",
+                    "Product " +
+                        (isFavorited ? "added to" : "removed from") +
+                        " favorites wishlist!"
+                );
 
-                $("#favoriteToast").toast("show");
+                $(`#${fav.id}`).popover({
+                    offset: "[0,0]"
+                });
+                $(`#${fav.id}`).popover("show");
+                $(`#${fav.id}`).on('shown.bs.popover', function() {
+                    setTimeout(function() {
+                        $(`#${fav.id}`).popover('hide');
+                    }, 1000);
+                });
             }
         });
     });
