@@ -69,6 +69,8 @@ Route::delete('profile/wishlist/{id}', 'CustomerController@removeProductFromWish
 Route::post('review', 'ReviewController@addReview');
 
 
+// Statistics
+Route::post('statistics/most-sold', 'StatisticsController@most_sold');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

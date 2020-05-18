@@ -2,12 +2,14 @@ import buildSections from "./sections.js";
 import { buildPage } from "./sections.js";
 import buildPersonalInfo from "./personal_info.js";
 import { fetchData } from "./request.js";
+import request from "./request.js";
 import { buildErrorMessage } from "./http_error.js";
 import { buildPagination } from "./pagination.js";
 import buildPendingOrders from "./orders.js";
 import buildStocks from "./stocks.js";
 import buildManagers from "./managers.js";
 import buildSales from "./sales.js";
+import buildStatistics from './statistics.js'
 
 async function pendingOrders(page = 1) {
     try {
@@ -95,6 +97,10 @@ const managerProfileSections = [
                 return buildErrorMessage(e.status, e.message);
             }
         },
+    },
+    {
+        name: "Statistics",
+        action: buildStatistics
     },
     {
         name: "Stocks",

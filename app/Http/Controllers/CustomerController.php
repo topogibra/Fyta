@@ -14,7 +14,8 @@ class CustomerController extends ProfileController
 {
     public function render()
     {
-        return view('pages.profile', ['layout' => ['scripts' => ['js/profile_page.js'], 'styles' => ['css/profile_page.css', 'css/registerpage.css', 'css/homepage.css']]]);
+        return view('pages.profile', ['layout' => ['scripts' => ['js/profile_page.js'], 'styles' => ['css/profile_page.css',
+         'css/registerpage.css', 'css/homepage.css']]]);
     }
 
     public function wishlist(Request $request)
