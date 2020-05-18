@@ -6,8 +6,8 @@
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Indoor Plants</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Flowering Plants</li>
+            <li class="breadcrumb-item"><a href="/search">Search</a></li>
+            <li class="breadcrumb-item active" aria-current="page"></li>
           </ol>
         </nav>
       </div>

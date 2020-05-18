@@ -184,11 +184,14 @@ function buildSearchResults(products) {
         cardTitle.appendChild(href);
         cardRow.appendChild(cardTitle);
 
-        const fav = document.createElement("i");
-        if (product.favorite) fav.className = "far fa-star";
-        else fav.className = "fas fa-star";
-        fav.id = product.id;
-        cardRow.appendChild(fav);
+        if(product.favorite != undefined) {
+            const fav = document.createElement("i");
+            if (product.favorite) fav.className = "fas fa-star";
+            else fav.className = "far fa-star";
+            fav.id = product.id;
+            cardRow.appendChild(fav);
+        }
+            
         cardBody.appendChild(cardRow);
 
         let cardPrice;
@@ -303,6 +306,9 @@ if (tag) {
             break;
         }
     }
+
+    const crumbSection = document.querySelector(".title .breadcrumb-item.active");
+    crumbSection.textContent = tag;
 }
 
 searchRequest(fetchContent);

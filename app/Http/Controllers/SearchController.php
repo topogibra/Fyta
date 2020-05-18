@@ -23,7 +23,7 @@ class SearchController extends Controller
     public function fullSearch(Request $request)
     {
         $request->validate([
-            'query' => ['string','nullable'],
+            'query' => ['string', 'nullable'],
             'orderByMatch' => ['required', 'boolean'],
             'minPrice' => ['required', 'numeric', 'min:1'],
             'maxPrice' => ['required', 'numeric', 'min:2'],
@@ -38,14 +38,14 @@ class SearchController extends Controller
         $page = $request->input('page');
         //$sizes = $request->input('sizes'); //TODO: query based on product sizes tag
 
-        $search_products = DB::table('product')->select('product.id as prodID','product.name as title','*');
+        $search_products = DB::table('product')->select('product.id as prodID', 'product.name as title', '*');
         if ($query) {
             $search_products = $this->textQuery($search_products, $query);
         }
         if ($tags) {
             $search_products = $search_products
-                ->join('product_tag','product_tag.id_product','product.id')
-                ->join('tag', 'tag.id', 'product_tag.id_tag') 
+                ->join('product_tag', 'product_tag.id_product', 'product.id')
+                ->join('tag', 'tag.id', 'product_tag.id_tag')
                 ->whereIn('tag.name', $tags);
         }
 
@@ -56,23 +56,24 @@ class SearchController extends Controller
         $product_imgs = $search_products->distinct()
             ->join('product_image', 'product_image.id_product', 'product.id')
             ->join('image', 'image.id', 'product_image.id_image');
-            
+
 
         if ($query && $orderByMatch) {
             $product_imgs = $product_imgs
-            ->orderByDesc('ranking');
+                ->orderByDesc('ranking');
         } else {
             $product_imgs = $product_imgs
                 ->orderBy('price');
         }
-        
-        
+
         $products = $product_imgs->get()->all();
         $count = count($products);
         $products = array_slice($products, 9 * $page, 9);
         $items = array_map(function ($product) {
             $salePrice = Product::getSalePrice($product->prodID);
-            $data = ['name' => $product->title, 'price' => $product->price, 'sale_price' => $salePrice, 'id' => $product->prodID,'img' => $product->img_name,'alt' => $product->description , 'favorite' => User::isFavorited($product->id)];
+            $data = ['name' => $product->title, 'price' => $product->price, 'sale_price' => $salePrice, 'id' => $product->prodID, 'img' => $product->img_name, 'alt' => $product->description];
+            if (User::checkUser() == User::$CUSTOMER)
+                $data['favorite'] = User::isFavorited($product->prodID);
             return $data;
         }, $products);
         return ['items' => $items, 'pages' => ceil($count / 9)];
@@ -85,8 +86,7 @@ class SearchController extends Controller
                         setweight(to_tsvector(\'english\', product."name"), \'A\') || 
                         setweight(to_tsvector(\'english\', product."description"), \'B\'), 
                         plainto_tsquery(\'english\', ?)
-                    ) AS ranking'),'product.id as prodID','product.name as title','*')
+                    ) AS ranking'), 'product.id as prodID', 'product.name as title', '*')
             ->setBindings([$query]);
     }
-
 }
