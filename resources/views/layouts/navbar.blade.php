@@ -47,7 +47,7 @@
                 <a class="nav-link" href="/search?section=Tools">Tools</a>
             </li>
             <li class="nav-item  divider">
-                <a class="nav-link" href="/search">Deals</a>
+                <a class="nav-link" href="/search?section=Deals">Deals</a>
             </li>
         </ul>
     </div>

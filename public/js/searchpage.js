@@ -1,7 +1,7 @@
 import { buildErrorMessage } from "./http_error.js";
-import request from "./request.js";
+import request, { deleteData } from "./request.js";
 import { removeAll } from "./utils.js";
-import { buildPagination } from "./pagination.js"
+import { buildPagination } from "./pagination.js";
 
 //responsiveness
 const filter = document.getElementById("filter");
@@ -43,14 +43,14 @@ function priceInputHandler() {
     if (priceinputmin.valueAsNumber >= priceinputmax.valueAsNumber) {
         if (priceinputmin.valueAsNumber == priceinputminoldvalue) {
             priceinputmin.value =
-                priceinputmin.valueAsNumber == 1 ?
-                priceinputmin.valueAsNumber :
-                priceinputmax.valueAsNumber - 1;
+                priceinputmin.valueAsNumber == 1
+                    ? priceinputmin.valueAsNumber
+                    : priceinputmax.valueAsNumber - 1;
         } else if (priceinputmax.valueAsNumber == priceinputmaxoldvalue) {
             priceinputmax.value =
-                priceinputmax.valueAsNumber == 100 ?
-                priceinputmax.valueAsNumber :
-                priceinputmin.valueAsNumber + 1;
+                priceinputmax.valueAsNumber == 100
+                    ? priceinputmax.valueAsNumber
+                    : priceinputmin.valueAsNumber + 1;
         }
     }
 
@@ -100,7 +100,7 @@ orderByMatchMobile.addEventListener("mousedown", () => searchAction());
 
 //search control
 const searchBar = document.querySelector(".navbar-search");
-searchBar.addEventListener("submit", async(event) => {
+searchBar.addEventListener("submit", async (event) => {
     event.preventDefault();
     searchAction();
 });
@@ -128,10 +128,12 @@ function retrieveSearchForm() {
         }
     }
 
-    const minPrice = document.querySelector(".col-lg-3 .price .price-inputs #min")
-        .valueAsNumber;
-    const maxPrice = document.querySelector(".col-lg-3 .price .price-inputs #max")
-        .valueAsNumber;
+    const minPrice = document.querySelector(
+        ".col-lg-3 .price .price-inputs #min"
+    ).valueAsNumber;
+    const maxPrice = document.querySelector(
+        ".col-lg-3 .price .price-inputs #max"
+    ).valueAsNumber;
 
     const data = {
         query: queryText,
@@ -171,7 +173,9 @@ function buildSearchResults(products) {
         const cardBody = document.createElement("div");
         cardBody.className = "card-body";
         const cardRow = document.createElement("div");
-        cardRow.classList.add(...["row", "flex-nowrap", "justify-content-between"]);
+        cardRow.classList.add(
+            ...["row", "flex-nowrap", "justify-content-between"]
+        );
         const cardTitle = document.createElement("h5");
         cardTitle.className = "card-title";
         const href = document.createElement("a");
@@ -180,20 +184,30 @@ function buildSearchResults(products) {
         cardTitle.appendChild(href);
         cardRow.appendChild(cardTitle);
 
-        const fav = document.createElement("i");
-        fav.className = "far fa-star";
-        fav.style = "font-size: 1.5em;";
-        cardRow.appendChild(fav);
+        if (product.favorite != undefined) {
+            const fav = document.createElement("i");
+            if (product.favorite) fav.className = "fas fa-star";
+            else fav.className = "far fa-star";
+            fav.id = product.id;
+            fav.setAttribute("date-toggle", "popover");
+            fav.setAttribute("data-placement", "right");
+            fav.setAttribute("aria-atomic", "true");
+            fav.setAttribute("aria-live", "assertive");
+            fav.role = "alert";
+
+            cardRow.appendChild(fav);
+        }
+
         cardBody.appendChild(cardRow);
 
         let cardPrice;
-        if(product.sale_price == -1) {
+        if (product.sale_price == -1) {
             cardPrice = document.createElement("p");
             cardPrice.className = "card-text";
             cardPrice.textContent = product.price + "€";
         } else {
             cardPrice = document.createElement("div");
-            cardPrice.className = "card-text row"
+            cardPrice.className = "card-text row";
             const oldPrice = document.createElement("p");
             oldPrice.className = "text-danger px-1";
             const crossed = document.createElement("s");
@@ -205,7 +219,7 @@ function buildSearchResults(products) {
             cardPrice.appendChild(oldPrice);
             cardPrice.appendChild(salePrice);
         }
-        
+
         cardBody.appendChild(cardPrice);
         card.appendChild(cardBody);
         productCol.appendChild(card);
@@ -224,13 +238,13 @@ function buildSearchResults(products) {
     return container;
 }
 
-const searchAction = async(orderByMatch = true) => {
+const searchAction = async (orderByMatch = true) => {
     const content = retrieveSearchForm();
     content.orderByMatch = orderByMatch;
     searchRequest(content);
 };
 
-const searchRequest = async(content, activePage = 1) => {
+const searchRequest = async (content, activePage = 1) => {
     const container = document.querySelector(".col-lg-8");
     content.page = activePage - 1;
     removeAll(container);
@@ -246,10 +260,15 @@ const searchRequest = async(content, activePage = 1) => {
                 buildErrorMessage(response.status, response.content)
             );
         } else {
-            container.appendChild(buildSearchResults(response.items))
+            container.appendChild(buildSearchResults(response.items));
             let parent = document.querySelector("#results");
-            parent.appendChild(buildPagination(activePage, response.pages, (page) => searchRequest(content, page)));
-        };
+            parent.appendChild(
+                buildPagination(activePage, response.pages, (page) =>
+                    searchRequest(content, page)
+                )
+            );
+            favorites();
+        }
     } catch (e) {
         container.appendChild(buildErrorMessage(404, "No Results Found!"));
     }
@@ -281,6 +300,68 @@ if (tag) {
             break;
         }
     }
+
+    const crumbSection = document.querySelector(
+        ".title .breadcrumb-item.active"
+    );
+    crumbSection.textContent = tag;
 }
 
 searchRequest(fetchContent);
+
+//favorites
+const putFavorite = async (url) => {
+    const response = await request({
+        url,
+        method: "PUT",
+    });
+    return response;
+};
+
+const toastDelay = 1000;
+const favorites = async () => {
+    const favsBtns = document.querySelectorAll("i.fa-star");
+    favsBtns.forEach((fav) => {
+        fav.addEventListener("mousedown", async (ev) => {
+            const classList = fav.classList;
+            let isFavorited = classList.contains("far");
+
+            let responseStatus;
+
+            try {
+                let response;
+                if (isFavorited) {
+                    response = await putFavorite("/profile/wishlist/" + fav.id);
+                } else {
+                    response = await deleteData("/profile/wishlist/" + fav.id);
+                }
+                responseStatus = response.status;
+            } catch (error) {
+                responseStatus = error.status;
+            }
+
+            if (responseStatus == 200) {
+                isFavorited
+                    ? classList.add("fas") || classList.remove("far")
+                    : classList.add("far") || classList.remove("fas");
+
+                fav.setAttribute(
+                    "data-content",
+                    "Product " +
+                        (isFavorited ? "added to" : "removed from") +
+                        " favorites wishlist!"
+                );
+
+                $(`#${fav.id}`).popover({
+                    offset: "[0,0]"
+                });
+                $(`#${fav.id}`).popover("show");
+                $(`#${fav.id}`).on('shown.bs.popover', function() {
+                    setTimeout(function() {
+                        $(`#${fav.id}`).popover('hide');
+                    }, 1000);
+                });
+            }
+        });
+    });
+};

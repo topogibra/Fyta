@@ -11,8 +11,9 @@
 }
 
 .content .card-body i .fab,
-.content .far {
+.content .fa-star {
     color: var(--green);
+    height: max-content;
 }
 
 .col-lg-3 {
@@ -120,6 +121,24 @@ img {
 }
 
 .price-inputs label {
+    display: none;
+}
+
+/* popover */
+.popover {
+    margin-top: 1em;
+    background-color: var(--white);
+    font-weight: bold;
+    font-family: inherit;
+    box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.1);
+    border: 1px solid rgba(0,0,0,.1);
+}
+
+.popover-body {
+    color: var(--green);
+}
+
+.popover .arrow  {
     display: none;
 }
 
