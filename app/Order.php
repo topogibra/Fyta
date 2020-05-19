@@ -33,12 +33,18 @@ class Order extends Model
             ->where('order.id', '=', $order_id)
             ->first();
 
-        $address = explode(" ", $information->address);
+        $address =  str_replace("\xc2\xa0",' ',$information->address); 
+        $address = explode(" ", $address);
         $address_size = count($address);
-        $address1 = array_splice($address, 0, $address_size - 2);
-        $information->address = implode(" ", $address1);
-        $information->location = (count($address) - 2) < 0 ? "" : $address[count($address) - 2] . " " . $address[count($address) - 1];
-
+        if ($address_size - 2 <= 0) {
+            $information->address = implode(" ",$address);
+            $information->location = "";
+        } else {
+            $address_aux = $address;
+            $address_aux = array_splice($address_aux, 0, $address_size - 2);
+            $information->address = implode(" ",$address_aux);
+            $information->location = $address[$address_size - 2] . " " . $address[$address_size - 1];
+        }
 
 
         return $information;
