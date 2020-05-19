@@ -61,7 +61,8 @@ CREATE TABLE "order" (
   delivery_address TEXT NOT NULL,
   order_date DATE DEFAULT now() NOT NULL,
   payment_method "payment_method" NOT NULL,
-  id_user INTEGER NOT NULL,
+  username TEXT NOT NULL,
+  id_user INTEGER,
   CONSTRAINT order_pk PRIMARY KEY (id),
   CONSTRAINT order_order_id_uk UNIQUE (shipping_id),
   CONSTRAINT order_user_fk FOREIGN KEY (id_user) REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE SET NULL

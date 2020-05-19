@@ -28,8 +28,7 @@ class Order extends Model
     public static function getOrderInformation($order_id)
     {
         $information = DB::table('order')
-            ->select('order.shipping_id as shipping_id', 'order.delivery_address as address', 'order.order_date as date', 'user.username as name')
-            ->join('user', 'user.id', '=', 'order.id_user')
+            ->select('order.shipping_id as shipping_id', 'order.delivery_address as address', 'order.order_date as date', 'username as name')
             ->where('order.id', '=', $order_id)
             ->first();
 
