@@ -1,32 +1,15 @@
 @import url("pallette.css");
 
-/*banner*/
-
-#main-banner {
-    height: 50vh;
-    margin: 4em 16em;
-    background-image: url("../img/plantas-interior-1.jpg");
-    background-clip: content-box;
-    background-position: 0 50%;
-    background-size: cover;
-}
-
-#main-banner p {
-    font-size: 10vmin;
-    text-shadow: 0.2rem 0.2rem 0.2rem var(--green);
-}
-
-
 /* top_sold  */
 
 .top-sold {
-    margin-top: 7%;
-    margin-bottom: 7%;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .top-sold>h2 {
     text-align: center;
-    padding-bottom: 1em;
+    padding-bottom: 2em;
 }
 
 .top-sold>h2>a {
@@ -41,13 +24,9 @@
     margin: auto;
 }
 
-.top-sold .row .card.product {
-    width: 400px;
-}
-
 .top-sold .product .img-wrapper {
-    height: 300px;
-    width: 300px;
+    height: 200px;
+    width: 200px;
     margin: auto;
 }
 
@@ -59,9 +38,34 @@
     font-size: 1em;
 }
 
-@media (min-width: 425px) {
-    .top-sold>h2 {
-        margin-bottom: 1em;
+.top-sold .container {
+    height: 18em;
+}
+
+.top-sold .container-fluid > .row{
+    padding:0 14em;
+}
+
+@media(max-width: 1300px) {
+    .top-sold .container {
+        height: 15em;
+    }
+    .top-sold .container-fluid > .row{
+        padding:0 8em;
+    }
+}
+
+@media(max-width: 1300px) {
+    .top-sold .container-fluid > .row{
+        padding:0 5em;
+    }
+}
+@media (max-width: 768px) {
+    .top-sold .row .product:nth-child(3), .top-sold .row .product:nth-child(4) {
+        display: none;
+    }
+    .top-sold .container-fluid > .row{
+        padding:0 2em;
     }
 }
 
@@ -74,74 +78,7 @@
     .top-sold .row .card-body {
         padding-top: 0;
     }
-    div#main-banner {
-        height: 200px;
-    }
-}
-
-@media (max-width: 768px) {
-    .top-sold .row .img-wrapper {
-        height: 200px;
-        width: 200px;
-    }
-
-    .top-sold .row {
-        justify-content: center;
-    }
-    
     .top-sold .row .product:not(:first-child) {
         display: none;
-    }
-    
-    footer.row {
-        height: 4em;
-        line-height: unset;
-        display: grid;
-    }
-    footer.row>#copyright,
-    footer.row>.nav {
-        text-align: center;
-        align-content: center;
-        max-width: inherit;
-        width: 100%;
-        margin: 0;
-        justify-content: center;
-        align-items: center;
-    }
-    footer.row>#copyright {
-        font-size: 0.8em;
-        grid-row-start: 2;
-    }
-    footer.row>.nav {
-        font-size: 0.9em;
-    }
-}
-
-@media(max-width: 800px) {
-    .top-sold .row .card.product {
-        flex-basis: 100%;
-    }
-
-    #main-banner {
-        height: 300px;
-        margin: 2em 8%;
-        background-clip: unset;
-    }
-}
-
-@media(min-width: 1000px) {
-    .top-sold .row .card.product {
-        width: 200px;
-        height: 200px;
-    }
-    .top-sold .product .img-wrapper {
-        height: 200px;
-        width: 200px;
-        margin: auto;
-    }
-    .top-sold .container-fluid > .row {
-        padding: 0 18em;
-        justify-content: center;
-        height: 250px;
     }
 }

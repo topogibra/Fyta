@@ -181,7 +181,9 @@ body {
         border: 0px !important;
     }
     .navbar-icons .star,
-    .navbar-icons .login {
+    .navbar-icons .login,
+    .navbar-icons .user,
+    .navbar-icons .cart {
         display: none;
     }
     .navbar-collapse.collapse.show {
@@ -195,9 +197,6 @@ body {
     .navbar-wrapper.click .navbar-categories .container .row {
         margin: auto;
         font-size: 2em;
-    }
-    .cart, .user{
-        display: none;
     }
 }
 
