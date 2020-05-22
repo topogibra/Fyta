@@ -92,6 +92,26 @@ button.col-2 {
     color: var(--white);
 }
 
+
+@media(max-width: 769px) {
+    .shopCartEntry .entry-img{
+        margin-top: 0.2em;
+        width: 100%;
+    }
+    .shopCartEntry .entry-img a{
+        justify-content: center;
+    }
+    .shopCartEntry .entry-img img{
+        margin: auto;    
+        display: block;
+        height: 150px;
+        width: 150px;
+    }
+    .entry-info{
+        width: 100%;
+    }
+
+}
 @media(max-width: 576px) {
     .shopCartEntry {
         padding-top: 0rem;
@@ -116,9 +136,6 @@ button.col-2 {
     .shopCart-total,
     #checkout {
         margin: 2em 1.5rem;
-    }
-    .entry-info {
-        width: 70%;
     }
 }
 

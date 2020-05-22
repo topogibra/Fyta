@@ -1,5 +1,5 @@
 <div class="row justify-content-center border-bottom shopCartEntry">
-    <div class="col-sm-2 entry-img">
+    <div class="col entry-img">
         <a href="/product/{{ $item->id }}">
         <img src={{asset("img/$item->img")}} alt={!!$item->alt!!} class="shopCartProduct-image">
     </a>
