@@ -196,6 +196,9 @@ body {
         margin: auto;
         font-size: 2em;
     }
+    .cart, .user{
+        display: none;
+    }
 }
 
 

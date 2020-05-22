@@ -54,12 +54,29 @@
 
     <div class="container">
         <div class="row">
-            <div class="col user">
-                <i class="far fa-user"></i>
-            </div>
-            <div class="col star">
-                <i class="far fa-star"></i>
-            </div>
+            @auth  
+            @if (User::checkUser() === User::$CUSTOMER)
+                <a href="/profile" class="col muser">
+                    <i class="far fa-user"></i>
+                </a>
+                <a href="/cart" class="col mcart">
+                    <i class="fas fa-shopping-basket"></i>
+                </a>
+            
+            @else
+                <a href="/manager" class="col muser">
+                    <i class="far fa-user"></i>
+                </a>
+                <a href="/product/add" class="col mstar">
+                    <i class="far fa-plus-square"></i>
+                </a>
+            @endif      
+        @endauth
+        @guest
+            <a href="/login" class="col mlogin">
+                <i class="fas fa-user"></i>
+            </a>
+        @endguest
         </div>
     </div>
 </nav>
