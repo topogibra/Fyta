@@ -13,6 +13,7 @@
 
 .form small {
     padding-left: 0.5em;
+    font-size: 1em;
 }
 
 .button {
@@ -51,6 +52,10 @@ input.form-control {
     color: var(--green);
     margin-bottom: 2rem;
     margin-top: 1rem;
+}
+
+.button label{
+    display: none;
 }
 
 @media (min-width: 1500px) {

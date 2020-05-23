@@ -95,6 +95,10 @@
     padding: 1em;
 }
 
+.info-base label, .info-pass{
+    display: none;
+}
+
 @media (min-width: 1440px) {
     .form {
         margin: 3% 20%;
