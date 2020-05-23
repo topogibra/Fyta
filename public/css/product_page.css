@@ -2,8 +2,9 @@
     padding: 0 7%;
 }
 
-.product-img {
-    text-align: center;
+
+.review{
+    margin-top: 0.3em;
 }
 
 .container.title .review {
@@ -16,9 +17,13 @@
     color: black;
 }
 
+.product-img  {
+padding: 0;
+}
+
 .product-img img {
-    height: 300px;
-    width: 300px;
+    height: 350px;
+    width: 350px;
 }
 
 .btn-secondary:not(:disabled):not(.disabled).active:focus,
@@ -35,7 +40,6 @@
 }
 
 #favorites-add {
-    margin-top: 1em;
     color: var(--dark-gray);
     cursor: pointer;
 }
@@ -47,7 +51,8 @@
 
 .container.title .price {
     color: var(--dark-gray);
-    font-size: 1.5em;
+    font-size: 1.25em;
+    margin-top: 1em;
 }
 
 .container.title h6 {
@@ -70,14 +75,11 @@
 div.related-products img {
     height: 200px;
     width: 200px;
+
 }
 
 #buynow {
     border: 1px solid var(--light-gray);
-}
-
-h3 {
-    margin: 1em 0;
 }
 
 .row.product-section {
@@ -104,11 +106,9 @@ h3 {
     font-size: 1.5em;
 }
 
-#reviews {
-    margin-right: 0;
-    margin-left: 0;
+.row.related-section h3 {
+   margin-top:1em;
 }
-
 .row .reviews-title h3 {
     margin: 0 1rem;
 }
@@ -262,7 +262,13 @@ h3 {
     width: 33em;
 }
 
+#favorites-add {
+    margin-top: 0.5em;
+}
 
+.toast{
+    display: none;
+}
 
 
 @media(min-width: 1440px) {
@@ -272,9 +278,22 @@ h3 {
     }
     .container {
         padding: 0;
+    }   
+}
+
+@media(max-width: 1440px) {
+    #favorites-add {
+        margin-top: 1.5em;
     }
-    .review, .view-reviews{
-        margin-top:2em;
+}
+
+@media(max-width: 1200px) {
+    .product-img img {
+        height: 300px;
+        width: 300px;
+    }
+    .product-img{
+        margin-bottom: 1em;
     }
 }
 
@@ -287,9 +306,6 @@ h3 {
 @media(max-width: 950px) {
     #purchase-buttons a {
         margin: 0.5em 0;
-    }
-    #favorites-add {
-        margin-top: 0.5em;
     }
 }
 
@@ -324,6 +340,9 @@ h3 {
     .card .card-text {
         color: var(--dark-gray);
         font-size: 0.8em;
+    }
+    .review{
+        padding-left:0;
     }
 }
 
@@ -373,6 +392,9 @@ h3 {
 }
     .related-products  {
         width:21em;
+    }
+    .stars{
+        padding:0.5em 1em;
     }
 }
 
