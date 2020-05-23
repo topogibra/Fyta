@@ -355,7 +355,7 @@ canvas {
     }
 }
 
-@media(max-width: 425px) {
+@media(max-width: 769px) {
     .profile {
         padding: 0 2%;
     }

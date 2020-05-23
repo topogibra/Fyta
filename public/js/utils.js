@@ -91,6 +91,19 @@ export function buildAccept(action) {
     return container;
 }
 
+export function createProductColumnValue(info, attribute, mdvalue) {
+    const column = document.createElement('div');
+    column.classList.add(...['col-md-' + mdvalue, attribute]);
+    column.textContent = info;
+    return column;
+}
+
+export function createProductHeader(element, mdvalue) {
+    const heading = document.createElement('div');
+    heading.className = 'col-md-'+mdvalue;
+    heading.textContent = element;
+    return heading;
+}
 
 export function createProductColumn(info, attribute) {
     const column = document.createElement('div');
