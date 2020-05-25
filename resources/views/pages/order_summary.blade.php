@@ -7,6 +7,12 @@
         <form action="/checkout-details" method="POST">
             @csrf
             <fieldset>
+
+            <div class="form-group">
+                <label for="deliveryaddress"> Name </label>
+                <input type="text" class="form-control" id="name"  name="name" value={!! $name !!} placeholder="Name">
+            </div>
+
             <div class="form-group">
                 <label for="deliveryaddress"> Delivery Address </label>
                 <input type="text" class="form-control" id="deliveryaddress"  name="delivery" value={!! $address !!} placeholder="Delivery Address">

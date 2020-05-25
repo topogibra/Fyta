@@ -20,12 +20,12 @@ class CheckoutController extends Controller
 
         $user = Auth::user();
         $output = str_replace(' ', '&nbsp;', $user->address);
-        return view('pages.order_summary', ['email' => $user->email, 'address' => $output]);
+        return view('pages.order_summary', ['name'=> $user->username ,'email' => $user->email, 'address' => $output]);
     }
 
     public function saveDetails(Request $request)
     {
-        $request->validate(['delivery' => 'required', 'billing' => 'nullable']);
+        $request->validate(['name' => 'required','delivery' => 'required', 'billing' => 'nullable']);
 
         if (count($request->session()->get('items', [])) == 0) {
             return response('No products in cart!', 400);
@@ -38,7 +38,7 @@ class CheckoutController extends Controller
             $order->billing_address = $request->input('billing');
         }
 
-
+        $order->username = $request->input('name');
         $order->delivery_address = $request->input('delivery');
         $order->payment_method = 'Bank_Transfer';
         $order->shipping_id = uniqid();
