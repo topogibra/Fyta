@@ -164,15 +164,16 @@ class ProductController extends Controller
     {
         $request->validate([
             '*.id' => 'required|numeric|min:1',
-            '*.name' => 'required|string',
-            '*.price' => 'required|numeric|min:1',
             '*.stock' => 'required|numeric|min:1'
         ]);
 
 
         DB::transaction(function () use (&$request) {
             foreach ($request->all() as $item) {
-                $this->updateProductInfo($item);
+                $product = Product::find($item['id']);
+                $this->authorize('update', $product);
+                $product->stock = $item['stock'];
+                $product->save();
             }
         });
 
