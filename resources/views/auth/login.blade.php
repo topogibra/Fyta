@@ -35,6 +35,12 @@
             <a href="/register">Register now</a>
           </small>
       </div>
+      <div class="row register-info justify-content-center">
+          <p>Forgot your password?  </p>
+          <small id="helpId" class=" text-muted">
+            <a href="/password-recovery">Click here</a>
+          </small>
+      </div>
     </div>
   </form>
 </div>

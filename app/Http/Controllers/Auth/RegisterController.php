@@ -50,7 +50,8 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:user',
             'password' => 'required|string|min:6',
             'birthday' => 'required|date',
-            "address" => 'required|string|max:255'
+            "address" => 'required|string|max:255',
+            'security-question' => 'required|string'
         ]);
     }
 
@@ -81,6 +82,7 @@ class RegisterController extends Controller
         $user->address= $data['address'];
         $user->date= $data['birthday'];
         $user->user_role= 'Customer';
+        $user->security_question = $data['security-question'];
 
         $file = Input::file('img');
         if ($file != null){

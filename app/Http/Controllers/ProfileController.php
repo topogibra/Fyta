@@ -41,7 +41,8 @@ class ProfileController extends Controller
             $year = $date->format('Y');
             $month = $date->format('M');
             $day = $date->format('d');
-            $data = ['username' => $user->username, 'email' => $user->email, 'address' => $user->address, 'year' => $year, 'month' => $month, 'day' => $day, 'photo' => $photo];
+            $data = ['username' => $user->username, 'email' => $user->email, 'address' => $user->address,
+                     'year' => $year, 'month' => $month, 'day' => $day, 'photo' => $photo, 'security_question' => $user->security_question];
         } else {
             $data = ['username' => $user->username, 'email' => $user->email, 'photo' => $photo];
         }
@@ -61,4 +62,5 @@ class ProfileController extends Controller
 
         $user->id_image = $img->id;
     }
+
 }

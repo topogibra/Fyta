@@ -60,6 +60,8 @@ export function buildPersonalInfoForm(info, user) {
 
     if (user) {
         buildInput('text', 'address', 'Address', info.address, personalInfoCol);
+        buildInput('text', 'security-question', 'Security Question', info.security_question, personalInfoCol);
+
 
         const fieldSet = document.createElement('fieldset');
         const birthdayHeader = document.createElement('legend');
@@ -109,6 +111,7 @@ export function buildPersonalInfoForm(info, user) {
         buildSelectionColumn("month", months, info.month);
         buildSelectionColumn("year", years, info.year);
     }
+
 
     const passwordInput = document.createElement('div');
     passwordInput.className = "row justify-content-end";

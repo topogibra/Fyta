@@ -4,11 +4,11 @@
 <div class="container" id="page">
   <form action="/register" method="POST" class=".form form justify-content-center" id='registerForm' enctype="multipart/form-data">
     @csrf
-    <div class="row ">
+    <fieldset class="row ">
       <div class="col">
         <h1 class="text-center form-title">Register</h1>
       </div>
-    </div>
+    </fieldset>
     <!--  -->
     <div class="row ">
       <label for="img" class="mx-auto d-block ">
@@ -19,7 +19,7 @@
       </label>
     </div>
     <!-- -->
-    <div class="row form-group ">
+    <fieldset class="row form-group ">
       <div class="col">
         <label for="username">   </label>
         <input type="text" name="username" id="username" class="form-control registerinput" placeholder="Username">
@@ -28,7 +28,7 @@
         <label for="address"></label>
         <input type="text" name="address" id="address" class="form-control registerinput" placeholder="Address">
       </div>
-    </div>
+    </fieldset>
     <!--  -->
     <fieldset>
       <legend> Birthday </legend>
@@ -72,12 +72,16 @@
     </div>
   </fieldset>
     <!--  -->
-    <div class="form-group row ">
+    <fieldset class="form-group row ">
       <div class="col">
         <label for="password">  </label>
         <input type="password" name="password" id="password" class="form-control registerinput" placeholder="Password" >
       </div>
-    </div>
+      <div class="col mt-4">
+        <label for="security-question">What was the name of your first animal? </label>
+        <input type="security-question" name="security-question" id="security-question" class="form-control registerinput" placeholder="Enter your answer here" >
+      </div>
+    </fieldset>
     <!--  -->
     <div class="row ">
       <div class="col ">

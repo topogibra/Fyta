@@ -143,7 +143,7 @@ function validateMaxSize(element) {
 }
 
 function validateMinSize(element) {
-    return element.length > 6;
+    return element.length >= 6;
 }
 
 function validateMoreOne(element) {
