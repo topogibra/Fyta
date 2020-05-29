@@ -6,6 +6,50 @@ let startDate;
 let endDate;
 const canvasRow = document.createElement('div');
 
+const colors = ['rgb(135, 156, 232)', 'rgb(185, 151, 198)',
+    'rgb(130, 77, 153)', 'rgb(78, 121, 196)', 'rgb(87, 162, 172)',
+    'rgb(126, 184, 117)', 'rgb(208, 180, 64)', 'rgb(230, 127, 51)',
+    'rgb(206, 34, 32)', 'rgb(82, 25, 19)'].reverse();
+const fontSize = 20;
+
+function generateGraphs(data, title) {
+
+    const mostSoldCanvas = document.createElement('canvas');
+    const productAggregation = data.map(product => {
+        return {
+            name: product[0].name,
+            sold: product.reduce((acc, el) => (acc ? acc : 0) + el.sold, 0)
+        }
+    });
+
+    new Chart(mostSoldCanvas, {
+        type: 'bar',
+        showTooltips: false,
+        data: {
+            datasets: [{
+                data: productAggregation.map(product => product.sold),
+                backgroundColor: colors,
+            }],
+
+            labels: productAggregation.map(product => product.name)
+        },
+        options: {
+            title: {
+                display: true,
+                text: title,
+                fontSize
+            },
+            legend: {
+                display: false
+            },
+            scales: { yAxes: [{ ticks: { beginAtZero: true } }] }
+        }
+    });
+
+
+
+    return mostSoldCanvas;
+}
 
 function generateDateRow(type) {
 
@@ -34,10 +78,11 @@ function generateDateRow(type) {
         input.textContent = date;
 
 
+
         $(`#${id}`).modal('hide');
         if (startDate && endDate && startDate < endDate) {
-            const mostSold = await request({
-                url: '/statistics/most-sold',
+            const top = await request({
+                url: '/statistics',
                 content: {
                     start: startDate,
                     end: endDate,
@@ -46,49 +91,17 @@ function generateDateRow(type) {
                 method: 'POST'
             });
 
-            const colors = ['rgb(135, 156, 232)', 'rgb(185, 151, 198)',
-                'rgb(130, 77, 153)', 'rgb(78, 121, 196)', 'rgb(87, 162, 172)',
-                'rgb(126, 184, 117)', 'rgb(208, 180, 64)', 'rgb(230, 127, 51)',
-                'rgb(206, 34, 32)', 'rgb(82, 25, 19)'].reverse();
+            const mostSold = top.most_sold;
+            const topViews = top.top_views;
 
-            const mostSoldCanvas = document.createElement('canvas');
-            const evolutionCanvas = document.createElement('canvas');
-            canvasRow.textContent = "";
+
             while (canvasRow.firstElementChild)
                 canvasRow.removeChild(canvasRow.firstElementChild)
+            canvasRow.textContent = "";
 
-            const productAggregation = mostSold.map(product => {
-                return {
-                    name: product[0].name,
-                    sold: product.reduce((acc, el) => (acc ? acc : 0) + el.sold, 0)
-                }
-            });
-            const fontSize = 20;
 
-            new Chart(mostSoldCanvas, {
-                type: 'bar',
-                showTooltips: false,
-                data: {
-                    datasets: [{
-                        data: productAggregation.map(product => product.sold),
-                        backgroundColor: colors,
-                    }],
-
-                    labels: productAggregation.map(product => product.name)
-                },
-                options: {
-                    title: {
-                        display: true,
-                        text: `Most Sold Items between ${startDate} and ${endDate}`,
-                        fontSize
-                    },
-                    legend: {
-                        display: false
-                    },
-                    scales: { yAxes: [{ ticks: { beginAtZero: true } }] }
-                }
-            });
-
+            canvasRow.appendChild(generateGraphs(mostSold, `Most Sold Items between ${startDate} and ${endDate}`));
+            const evolutionCanvas = document.createElement('canvas');
             const monthsSet = new Set();
 
             const dateBegin = new Date(startDate);
@@ -147,8 +160,10 @@ function generateDateRow(type) {
                     responsive: true,
                 }
             });
-            canvasRow.appendChild(mostSoldCanvas);
+
             canvasRow.appendChild(evolutionCanvas);
+
+            canvasRow.appendChild(generateGraphs(topViews, `Most Seen Items`));
         }
     });
     date.appendChild(buildModal("Insert the beginning date of your query", calendar, id));
