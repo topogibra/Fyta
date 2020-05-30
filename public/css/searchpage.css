@@ -50,13 +50,12 @@ img {
 }
 
 .title {
-    margin: 4% 4% 0% 1%;
+    margin: 2% 12%;
 }
 
 .title .breadcrumb {
     background-color: var(--white);
-    margin-left: 18%;
-    padding: 0;
+    padding:0;
     font-size: 1.5em;
 }
 
@@ -67,13 +66,11 @@ img {
 
 .title .row .col:nth-child(2) {
     text-align: end;
-    margin-right: 8%;
 }
 
 .title .row .col:nth-child(1) {
-    margin-left: 4em;
+    text-align: start;
 }
-
 .btn {
     background-color: var(--white);
     color: var(--black);
@@ -142,6 +139,13 @@ img {
     display: none;
 }
 
+@media(min-width: 1700px) {
+    .dropdown {
+       padding-right: 4%;
+    }
+   }
+
+   
 @media (max-width: 2000px) {
     .img-wrapper {
         height: 250px;
@@ -208,9 +212,6 @@ img {
     .title .row .col h4 {
         text-align: center;
         margin: 1em auto;
-    }
-    .title .row .col:nth-child(1) {
-        margin: auto;
     }
     .title .row {
         flex-direction: column;

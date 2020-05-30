@@ -7,7 +7,6 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/search">Search</a></li>
-            <li class="breadcrumb-item active" aria-current="page"></li>
           </ol>
         </nav>
       </div>
@@ -69,7 +68,7 @@
         </ul>
         <div class="price">
           <h5>Price Range</h5>
-          <div class="row price-values">
+          <div class="row price-values justify-content-around">
             <div class="col-5 min">
               <p>1€</p>
             </div>
@@ -77,7 +76,7 @@
               <p>100€</p>
             </div>
           </div>
-          <div class="row price-inputs">
+          <div class="row price-inputs justify-content-around">
             <div class="col-5 min-input">
               <label for="min">Minimum Price:</label>
               <input type="number" class="form-control" id="min" placeholder="1" min="1" max="99">

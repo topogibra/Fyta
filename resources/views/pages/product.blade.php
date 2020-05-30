@@ -5,13 +5,15 @@
 @endsection
 
 @section('header')
-<h3 class="col-md-8 ">
+<h3 class="col-md-8 col-lg-8  ">
     {{$name}}
 </h3>
-<div class="col-md-4 review">
+<div class="col-md-4 col-lg-4 review">
+    <div class="row ">
     <h6>{{$score}}</h6>
     <i class="far fa-star"></i>
     <a class="view-reviews" href="#reviews">View Reviews</a>
+    </div>
 </div>
 
 @endsection
