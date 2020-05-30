@@ -13,6 +13,10 @@ h3 {
     margin-bottom: 1em;
 }
 
+.row{
+    margin-right: 0;
+    margin-left:0;
+}
 .badge {
     background-color: transparent;
     font-weight: 400;
@@ -38,12 +42,15 @@ a.btn {
 #remove-a{
     font-size: 0.8em;
     border: 1px solid red;
-    margin-right:1em;
-    margin-top: 1em;
+    width: 100%;
+    height: 3em;
+    text-align: center;
+    font-size: 0.8em;
+    margin-top: 1.5em;
 }
 #savechanges,
 #add-manager,
-#logout {
+#logout, #logout2 {
     width: 100%;
     height: 3em;
     text-align: center;
@@ -53,10 +60,11 @@ a.btn {
     border: 1px solid var(--light-gray);
 }
 
-#logout {
-    height:2em;
-    padding: 0;
+#logout2{
+    background-color: var(--light-gray);
+    margin-top: 1.5em;
 }
+
 
 #add-manager {
     margin-top: 2em;
@@ -237,7 +245,18 @@ canvas {
     margin-top: 2.5rem;
 }
 
+#logout2{
+    display: none;
+}
+
 @media(max-width: 767px) {
+
+#logout{
+    display: none;
+}
+#logout2{
+    display: block;
+}
     .account-sections {
         padding-top: 0em;
         order: 0;
@@ -359,9 +378,29 @@ canvas {
     .profile {
         padding: 0 2%;
     }
-    #savechanges {
-        width: 100%;
-        font-size: 1em;
+    #savechanges,#logout2,#remove-a{
+        width: 90%;
+    }
+    #remove-a{
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .row .remove-log {
+        width:98%;
+        margin:auto;
+    }
+    #logout2{
+        padding-top: 0.5em;
+    }
+}
+
+@media(max-width: 320px) {
+    #remove-a{
+        padding: 0;
+    }
+    .row .remove-log {
+        width:90%;
+        margin:auto;
     }
 }
 

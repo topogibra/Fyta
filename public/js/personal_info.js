@@ -201,8 +201,20 @@ export default function buildPersonalInfo(info, user) {
         return false;
     });
 
+    const logout = document.createElement('div');
+    logout.className = "col-6";
+    logout.id = "logout-button";
+    const logout_a = document.createElement('a');
+    logout_a.text = "Logout";
+    logout_a.id = "logout2";
+    logout_a.href = "/logout";
+    logout_a.className = "btn rounded-0 btn-lg shadow-none";
+    logout.appendChild(logout_a);
+
+    const row = document.createElement('div');
+    row.className = "row remove-log justify-content-end";
     const remove = document.createElement('div');
-    remove.className = "row justify-content-end";
+    remove.className = "col-md-6 col-6 justify-content-end";
     remove.id = "remove-account";
     const remove_a = document.createElement('a');
     remove_a.text = "Remove Account";
@@ -212,7 +224,13 @@ export default function buildPersonalInfo(info, user) {
     remove_a.setAttribute('data-target', '#removemodal');
     remove_a.className = "btn rounded-0 btn-lg shadow-none";
     remove.appendChild(remove_a);
-    container.appendChild(remove);
+    row.appendChild(logout);
+    row.appendChild(remove);
+    container.appendChild(row);
+
+
+
+
 
     remove_a.addEventListener('click', async (ev) => {
         ev.preventDefault();
