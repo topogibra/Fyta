@@ -4,8 +4,8 @@
         <img src={{asset("img/$item->img")}} alt={!!$item->alt!!} class="shopCartProduct-image">
     </a>
     </div>
-    <div class="col-sm-9 row justify-content-center entry-info">
-        <div class=" col-sm-3 col-6 align-self-center shopCartProduct-name">
+    <div class="col-sm-10 row justify-space-around entry-info">
+        <div class=" col-sm-4 col-6 align-self-center shopCartProduct-name">
             <a href="product/{{$item->id}}" class="name">{{$item->name}}</a>
         </div>
         <div class="col-sm-2 col-6 align-self-center shopCartProduct-per-price">
@@ -19,7 +19,7 @@
         <div class="col-sm-1 col-3 align-self-center shopCartProduct-delete">
         <a href="cart/{{$item->id}}" class="shopCartProduct-trash"><i class=" fas fa-trash"></i></a>
         </div>
-        <div class="col-sm-2 col-6 align-self-center shopCartProduct-total">
+        <div class="col-sm-1 col-6 align-self-center shopCartProduct-total">
         <p class="mb-0 text-right">{{($item->quantity * $item->price)}}€</p>
         </div>
     </div>

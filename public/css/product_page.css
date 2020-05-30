@@ -105,7 +105,7 @@ div.related-products img {
     border: none;
 }
 
-.row.related-section, .row .reviews
+.row.related-section, .row .reviews, .review .row
 {
     margin:auto;
 }
@@ -251,9 +251,6 @@ div.related-products img {
     color: var(--green);
 }
 
-#favorites-add {
-    margin-top: 0.5em;
-}
 
 .toast{
     display: none;
@@ -287,11 +284,15 @@ div.related-products img {
 
 @media(max-width: 767px) {
 
+    #purchase-buttons a {
+        margin: 0 0;
+    }
     .related-products  {
         width:30em;
     }
     .product-img {
         width: 100%;
+        text-align: center;
     }
     .product-img img {
         height: 400px;
@@ -315,7 +316,9 @@ div.related-products img {
     .review{
         padding-left:0;
     }
-}
+    .related-products
+    {margin:auto;}
+  }
 
 @media(max-width: 574px) {
     .related-products  {
@@ -342,6 +345,9 @@ div.related-products img {
     .view-reviews {
         padding-left: 0.25em;
     }
+    .row .reviews-title{
+        margin:auto;
+    }
 }
 
 @media(max-width: 465px) {
@@ -352,16 +358,15 @@ div.related-products img {
     .stars{
         padding:0.5em 1em;
     }
-
-    .row .reviews-title{
-        margin:auto;
-    }
 }
 
 @media(max-width: 320px) {
 
 #form-content{
     width:20em;
+}
+.product-img img {
+    width: 290px;
 }
     .related-products  {
         width:20em;

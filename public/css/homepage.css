@@ -46,6 +46,10 @@
     padding:0 14em;
 }
 
+.product-price p {
+    margin-bottom: 0;
+}
+
 @media(max-width: 1300px) {
     .top-sold .container {
         height: 15em;

@@ -184,11 +184,17 @@ img {
     .col-lg-3:nth-child(1) {
         display: none;
     }
+    .title{
+        margin: 2% 8%;
+    }
 }
 
 @media (max-width: 425px) {
     .card-title h5 {
         font-size: 0.75em;
+    }
+    .title{
+        margin: 2% 6%;
     }
 }
 
@@ -234,7 +240,7 @@ img {
     }
     .searchbuttons #order button,
     .searchbuttons #filter button {
-        width: 80%;
+        width: 90%;
         box-shadow: none;
     }
     .btn-outline-dark:hover {
