@@ -12,20 +12,25 @@ use Illuminate\Support\Facades\DB;
 
 class CheckoutController extends Controller
 {
-    public function details()
+    public function details(Request $request)
     {
         $response = User::validateCustomer();
         if ($response)
             abort($response);
 
+        $item_ids = $request->session()->get('items', []);
+        if (count($item_ids) == 0) {
+            return response('No products in cart to checkout!', 400);
+        }
+
         $user = Auth::user();
-        $output = str_replace(' ', '&nbsp;', $user->address);
-        return view('pages.order_summary', ['name'=> $user->username ,'email' => $user->email, 'address' => $output]);
+        $output = $user->address;
+        return view('pages.order_summary', ['name' => $user->username, 'email' => $user->email, 'address' => $output]);
     }
 
     public function saveDetails(Request $request)
     {
-        $request->validate(['name' => 'required','delivery' => 'required', 'billing' => 'nullable']);
+        $request->validate(['name' => 'required', 'delivery' => 'required', 'billing' => 'nullable']);
 
         if (count($request->session()->get('items', [])) == 0) {
             return response('No products in cart!', 400);
@@ -46,8 +51,8 @@ class CheckoutController extends Controller
         $order->save();
 
         foreach ($request->session()->get('items') as $product => $quantity) {
-            Product::updateStock($product,$quantity);
             $order->products()->attach($product, ['quantity' => $quantity]);
+            Product::updateStock($product, $quantity);
         }
 
         $history = new OrderHistory;
@@ -59,21 +64,70 @@ class CheckoutController extends Controller
         $request->session()->forget('items');
 
         $user_id = Auth::id();
-        if (request()->session()->get('buynow') == null) {
-            Product::deleteShoppingCartIds($user_id);
-        } else
+        if (request()->session()->get('buynow') != null) {
             request()->session()->forget('buynow');
+        }
 
+        Product::deleteShoppingCartIds($user_id);
         return redirect('/order-summary/' . $order->id);
     }
 
-    public function payment()
+    public function confirmCart(Request $request)
     {
         $response = User::validateCustomer();
         if ($response)
             abort($response);
 
-        return view('pages.payment_details');
+        $request->validate(['delivery' => 'required', 'billing' => 'nullable', 'payment' => 'required']);
+
+        $id = Auth::id();
+        $item_ids = $request->session()->get('items', []);
+        if (count($item_ids) == 0) {
+            return response('No products in cart!', 400);
+        }
+
+        if (request()->session()->get('buynow')) {
+            Product::deleteShoppingCartIds($id);
+            reset($item_ids);
+            $product_id = key($item_ids);
+            DB::table('shopping_cart')->insert(
+                [
+                    'id_user' => $id,
+                    'id_product' => $product_id,
+                    'quantity' => $item_ids[$product_id]
+                ]
+
+            );
+        }
+
+        $items = Product::getShoppingCart($id);
+        $sum = 0;
+        foreach ($items as $item) {
+            $sum += $item->quantity * $item->price;
+        }
+
+        return view('pages.confirm_cart', [
+            'delivery' => $request->input('delivery'),
+            'billing' => $request->input('billing'),
+            'items' => $items, 'sum' => $sum,
+            'delivery_fee' => 'Free',
+            'payment' => $request->input('payment'),
+            'paymentPretty' => Order::paymentMethodString($request->input('payment'))
+        ]);
+    }
+
+
+    public function payment(Request $request)
+    {
+        $response = User::validateCustomer();
+        if ($response)
+            abort($response);
+
+        $request->validate(['delivery' => 'required', 'billing' => 'nullable', 'payment' => 'nullable']);
+        $delivery = $request->input('delivery');
+        $billing = $request->input('billing');
+
+        return view('pages.payment_details', ['delivery' => $delivery, 'billing' => $billing, 'payment' => $request->input('payment')]);
     }
 
     public function summary($order_id)
@@ -88,7 +142,7 @@ class CheckoutController extends Controller
         foreach ($products as $product) {
             $sum += $product->quantity * $product->price;
         }
-        return view('pages.checkout_details', ['information' => $information, 'status' => $status, 'sum' => $sum, 'delivery' => 'FREE', 'items' => $products]);
+        return view('pages.checkout_details', ['information' => $information, 'status' => $status, 'sum' => $sum, 'delivery' => 'Free', 'items' => $products]);
     }
 
     public function cart()
