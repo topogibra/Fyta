@@ -1,0 +1,42 @@
+@import url('pallette.css');
+
+.summary{
+  border: 0;
+}
+
+.total{
+  padding-right: 1rem;
+}
+
+.fee{
+  padding-left: 1rem;
+}
+
+.delivery-fee{
+  padding-right: 2.5rem;
+}
+
+.order-total{
+  padding-right: 1.5rem;
+}
+
+.order-details>div{
+  margin: 0;
+}
+
+.order-details>div>p{
+  font-weight: bolder;
+  color: var(--black);
+  
+}
+
+.order-details>div>p>span{
+  font-weight: lighter;
+  color: var(--black);
+}
+
+.order-details{
+  padding-top: 0.5rem;
+  padding-left: 1rem;
+  background-color: var(--lighter-gray);
+}

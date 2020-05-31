@@ -29,12 +29,16 @@ class ShoppingCartController extends Controller
 
         $cart = Product::getQuantityByID($id, $user);
 
+        $items = $request->session()->get('items',[]);
+
         if ($cart != null) {
             $product = Product::find($id);
             $quantity = $quantity + $cart->quantity;
             if ($product->stock <  $quantity)
                 return response('Number of products to add exceed stock', 500);
             Product::updateQuantity($id, $user, $quantity);
+            $items[$id] = $quantity;
+            $request->session()->put('items',$items);
         } else {
             DB::insert('insert into shopping_cart(id_user,id_product,quantity) values (?, ?,?)', [$user, $id, $quantity]);
         }
@@ -42,7 +46,7 @@ class ShoppingCartController extends Controller
         return redirect('/product/' . $id);
     }
 
-    public function deleteCartProduct($id)
+    public function deleteCartProduct(Request $request, $id)
     {
         $role = User::checkUser();
         if ($role == User::$MANAGER)
@@ -50,6 +54,13 @@ class ShoppingCartController extends Controller
 
         $id_user = Auth::id();
         Product::deleteShoppingCartProduct($id_user, $id);
+        $items = $request->session()->get('items',[]);
+
+        if (($key = array_search($id, $items)) !== false) {
+            unset($items[$key]);
+            $request->session()->put('items', $items);
+        }
+
 
         redirect('/cart');
         return response('Sucessfully deleted product!', 200);

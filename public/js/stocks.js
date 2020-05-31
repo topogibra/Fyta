@@ -68,13 +68,7 @@ export default function buildStocks(products) {
     container.appendChild(row);
     let error;
 
-    const changeMode = (nodeCreation) => {
-        ['name', 'price'].forEach(elementClass => {
-            const elements = document.querySelectorAll(`.${elementClass}`);
-            elements.forEach(element => element.replaceWith(nodeCreation(element)));
-        });
-    }
-    col.addEventListener('mousedown', async () => {
+    col.addEventListener('mousedown',async () => {
         if (button.classList.contains('edit')) {
             button.classList.remove('edit');
             button.classList.add('changes');
@@ -86,7 +80,6 @@ export default function buildStocks(products) {
                 node.value = element.textContent;
                 return node;
             };
-            changeMode(generateInputNode);
             document.querySelectorAll('.stock').forEach(stock => {
                 const input = generateInputNode(stock);
                 input.className = "stock";
@@ -112,15 +105,13 @@ export default function buildStocks(products) {
             const stocks = products.map(product => product.id).map(n => {
                 const product = document.querySelector(`#product-${n}`);
                 return {
-                    id: n + 1,
-                    name: product.querySelector('input.name').value,
-                    price: Number(product.querySelector('input.price').value),
+                    id: n,
                     stock: Number(product.querySelector('input.stock').value)
                 }
             });
-            for (let i = 0; i < stocks.length; i++) {
+            for(let i = 0; i < stocks.length; i++){
                 const stock = stocks[i];
-                if (!stock.price || !stock.stock) {
+                if(!stock.stock){
                     error && error.remove();
                     error = buildErrorMessage('', 'Stock and price must be numbers!');
                     row.appendChild(error);
@@ -153,23 +144,6 @@ export default function buildStocks(products) {
                 button.classList.remove('changes');
                 button.classList.add('edit');
                 button.textContent = "Edit"
-
-                document.querySelectorAll('.price').forEach(currentNode => {
-                    const node = document.createElement('div');
-                    node.className = currentNode.className;
-                    node.textContent = currentNode.value;
-                    currentNode.replaceWith(node);
-                });
-
-                document.querySelectorAll('.name').forEach((currentNode, index) => {
-                    const href = document.createElement('a');
-                    href.href = '/product/' + products[index].id;
-                    const node = document.createElement('div');
-                    href.appendChild(node);
-                    href.className = currentNode.className;
-                    node.textContent = currentNode.value;
-                    currentNode.replaceWith(href);
-                });
 
                 document.querySelectorAll('div.stock').forEach(stock => {
                     const text = document.createElement('div');

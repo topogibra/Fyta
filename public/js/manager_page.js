@@ -50,7 +50,7 @@ async function managers(page = 1) {
 
 async function stocks(page = 1) {
     try {
-        const response = await fetchData("manager/stocks");
+        const response = await fetchData("manager/stocks", page);
         const container = buildStocks(response.stocks);
         container.appendChild(
             buildPagination(page, response.pages, (page) => {

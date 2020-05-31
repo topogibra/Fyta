@@ -374,6 +374,12 @@ canvas {
     }
 }
 
+.fa-plus-square {
+    color: var(--green);
+}
+.fa-minus-square {
+    color: var(--red);
+}
 @media(max-width: 769px) {
     .profile {
         padding: 0 2%;

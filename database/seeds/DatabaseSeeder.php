@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
       $user->date = '1920-01-01';
       $user->user_role = 'Customer';
       $user->id_image = 15;
+      $user->security_question = 'Socks';
       $user->save();
       $wishlist = new Wishlist();
       $wishlist->name = 'Favorites';

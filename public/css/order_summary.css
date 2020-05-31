@@ -11,6 +11,10 @@
     padding-top: 2em;
 }
 
+.summary-header .order-status{
+    padding-right: 0;
+}
+
 .summary-header h3 {
     color: var(--green);
     padding-bottom: 1em;
@@ -54,6 +58,14 @@
 
 .summary .header {
     background-color: var(--lighter-gray);
+}
+
+.summary .payment-method{
+    margin: 0;
+}
+
+.order-info > .col >*{
+    padding-left: 1rem;
 }
 
 

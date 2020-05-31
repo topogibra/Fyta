@@ -28,24 +28,9 @@ class Order extends Model
     public static function getOrderInformation($order_id)
     {
         $information = DB::table('order')
-            ->select('order.shipping_id as shipping_id', 'order.delivery_address as address', 'order.order_date as date', 'user.username as name')
-            ->join('user', 'user.id', '=', 'order.id_user')
+            ->select('order.shipping_id as shipping_id', 'order.delivery_address as address', 'order.billing_address as billing', 'order.order_date as date', 'username as name', 'payment_method as payment')
             ->where('order.id', '=', $order_id)
             ->first();
-
-        $address =  str_replace("\xc2\xa0",' ',$information->address); 
-        $address = explode(" ", $address);
-        $address_size = count($address);
-        if ($address_size - 2 <= 0) {
-            $information->address = implode(" ",$address);
-            $information->location = "";
-        } else {
-            $address_aux = $address;
-            $address_aux = array_splice($address_aux, 0, $address_size - 2);
-            $information->address = implode(" ",$address_aux);
-            $information->location = $address[$address_size - 2] . " " . $address[$address_size - 1];
-        }
-
 
         return $information;
     }
@@ -73,5 +58,16 @@ class Order extends Model
                 ')
             ->limit(10)->offset($page * 10)->get()->all();
         return $status;
+    }
+
+    public static function paymentMethodString($paymentMethod){
+        switch($paymentMethod){
+            case "bank_transfer":
+                return "Bank Transfer";
+            case "stripe":
+                return "Stripe";
+            default:
+                return "";
+        }
     }
 }

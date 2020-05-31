@@ -16,7 +16,7 @@ Route::get('home', 'HomeController@render');
 Route::get('about', 'AboutController@render');
 Route::get('checkout-details', 'CheckoutController@details');
 Route::post('checkout-details', 'CheckoutController@saveDetails');
-Route::get('payment-details', 'CheckoutController@payment');
+Route::post('payment-details', 'CheckoutController@payment');
 Route::get('order-summary/{order_id}', 'CheckoutController@summary');
 Route::get('cart', 'CheckoutController@cart');
 Route::get('profile', 'CustomerController@render');
@@ -70,7 +70,10 @@ Route::post('review', 'ReviewController@addReview');
 
 
 // Statistics
-Route::post('statistics/most-sold', 'StatisticsController@most_sold');
+Route::post('statistics', 'StatisticsController@statistics');
+
+//Checkout
+Route::post('confirm-order', 'CheckoutController@confirmCart');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -78,3 +81,8 @@ Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+Route::get('password-recovery', 'Auth\LoginController@passwordRecovery');
+Route::post('password-recovery', 'Auth\LoginController@recoverPassword');
+Route::get('change-password', 'Auth\LoginController@passwordChange');
+Route::post('change-password', 'Auth\LoginController@changePassword');
+
