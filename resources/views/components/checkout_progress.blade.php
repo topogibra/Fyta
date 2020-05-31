@@ -1,32 +1,50 @@
-{{-- <style>
-    .steps .row .col:nth-child({{ $number }}) p:nth-child(1) {
-    background-color: var(--light-gray);
-    }
-</style> --}}
 
-<div class="steps">
-    <div class="row">
-        <div class="col">
-            <div class="row">
-                <p> 1 </p>
-                <p> Order Details </p>
-                <hr >
-            </div>
+<div class="row justify-content-center" id="checkout-breadcrumb">
+    <div class="col">
+        <div class="row">
+            <span class="bread-number 
+            {{ $number == 1 ? 'bread-active' : '' }}
+            ">1</span>
+            <span class="bread-title">Order Details</span>
         </div>
-        <div class="col">
-            <div class="row">
-                <p> 2</p>
-                <p> Payment Details</p>
-                <hr >
-            </div>
+    </div>
+    <div class="col-1">
+        <div class="row">
+            <hr class="bread-separator">
         </div>
-
-        <div class="col">
-            <div class="row">
-                <p> 3</p>
-                <p> Resume</p>
-            </div>
+    </div>
+    <div class="col">
+        <div class="row">
+            <span class="bread-number
+            {{ $number == 2 ? 'bread-active' : '' }}
+            ">2</span>
+            <span class="bread-title">Payment</span>
         </div>
-
+    </div>
+    <div class="col-1">
+        <div class="row">
+            <hr class="bread-separator">
+    </div>
+    </div>
+    <div class="col">
+        <div class="row">
+        <span class="bread-number 
+            {{ $number == 3 ? 'bread-active' : '' }}
+            ">3</span>
+            <span class="bread-title">Confirm Order</span>
+        </div>
+    </div>
+    <div class="col-1">
+        <div class="row">
+            <hr class="bread-separator">
+        </div>
+    </div>
+    <div class="col">
+        <div class="row">
+            <span class="bread-number 
+            {{ $number == 4 ? 'bread-active' : '' }}
+            ">4</span>
+            <span class="bread-title">Resume</span>
+        </div>
     </div>
 </div>

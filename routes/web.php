@@ -16,7 +16,7 @@ Route::get('home', 'HomeController@render');
 Route::get('about', 'AboutController@render');
 Route::get('checkout-details', 'CheckoutController@details');
 Route::post('checkout-details', 'CheckoutController@saveDetails');
-Route::get('payment-details', 'CheckoutController@payment');
+Route::post('payment-details', 'CheckoutController@payment');
 Route::get('order-summary/{order_id}', 'CheckoutController@summary');
 Route::get('cart', 'CheckoutController@cart');
 Route::get('profile', 'CustomerController@render');
@@ -71,6 +71,9 @@ Route::post('review', 'ReviewController@addReview');
 
 // Statistics
 Route::post('statistics', 'StatisticsController@statistics');
+
+//Checkout
+Route::post('confirm-order', 'CheckoutController@confirmCart');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

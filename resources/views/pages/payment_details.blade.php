@@ -1,26 +1,32 @@
-@extends('layouts.app', ['scripts' => [], 'styles' => ['css/payment_method.css', 'css/checkoutprogress.css']])
+@extends('layouts.app', ['scripts' => ['js/payment.js'], 'styles' => ['css/payment_method.css', 'css/checkoutprogress.css']])
 
 @section('content')
     @include('components.checkout_progress', ['number' => 2])
     <div class="payment-method text-nowrap">
         <h3>Payment Method</h3>
         <div class="row options">
-            <a href="#mb" class="col-6">
+        <div class="col-6 payment {{ $payment === 'bank_transfer' ? 'active' :  '' }}">
                 <div class="img-wrapper">
-                    <img src={{asset("img/mb.png")}} alt="mb" class="payment-img img-fluid border">
+                    <img src={{asset("img/mb.png")}} alt="Payment by Bank Transfer" id="bank_transfer" class="payment-img img-fluid border">
                 </div>
-                <div class="name w-100 text-center">Bank Transfer</div>
-            </a>
-            <a href="#stripe" class="col-6">
+                <div class="name w-100 text-center"><span>Bank Transfer</span></div>
+            </div>
+            <div href="" class="col-6 payment {{ $payment === 'stripe' ? 'active' :  '' }} disabled">
                 <div class="img-wrapper ">
-                    <img src={{asset("img/stripe.png")}} alt="stripe" class="payment-img img-fluid border">
+                    <img src={{asset("img/stripe.png")}} alt="Payment by Stripe" id="stripe" class="payment-img img-fluid border">
                 </div>
-                <div class="name text-center">Stripe Payment</div>
-            </a>
+                <div class="name text-center"><span>Stripe Payment</span></div>
+            </div>
         </div>
-        <div class="row buttons lg-content-between sm-space-around">
-            <a type="button" href="/checkout-details" id="back-btn" class="btn rounded-0 btn-lg shadow-none">Back</a>
-            <a type="button" id="next-btn" href="/order-summary" class="btn rounded-0 btn-lg shadow-none">Next</a>
-        </div>
+        <form action="/confirm-order" method="post" id="payment-form">    
+            @csrf
+            <input type="hidden" id="deliveryaddress"  name="delivery" value="{{ $delivery }}">
+            <input type="hidden" id="billingaddress"  name="billing" value="{{ $billing == null ? $delivery : $billing }}">
+            <input type="hidden" id="payment-input" name="payment" value="{{ $payment === null ? "" : $payment}}">
+            <div class="row buttons lg-content-between sm-space-around">
+                <a type="button" href="/checkout-details" id="back-btn" class="btn rounded-0 btn-lg shadow-none">Back</a>
+                <input type="submit" id="next-btn" class="btn rounded-0 btn-lg shadow-none" value="Next">
+            </div>
+        </form>
     </div>
 @endsection

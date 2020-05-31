@@ -7,9 +7,16 @@
     margin-top: 4em;
 }
 
-.summary-header .order-status p {
+.summary-header .order-status p:first-child{
     margin-right: 1em;
+}
+
+.summary-header .order-status p{
     padding-top: 2em;
+}
+
+.summary-header .order-status{
+    padding-right: 0;
 }
 
 .summary-header h3 {
@@ -49,6 +56,14 @@
     background-color: var(--lighter-gray);
 }
 
+.summary .payment-method{
+    margin: 0;
+}
+
+.order-info > .col >*{
+    padding-left: 1rem;
+}
+
 
 /* Order List */
 
@@ -83,6 +98,9 @@
     border: 1px solid var(--black);
 }
 
+#next-btn-row{
+    margin-right: 0.25rem;
+}
 
 /* Order Fee and Price */
 

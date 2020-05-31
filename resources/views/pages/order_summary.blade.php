@@ -4,18 +4,18 @@
     @include('components.checkout_progress', ['number' => 1])
     <div class="form" id="form">
             <h3>Order Details</h3>
-        <form action="/checkout-details" method="POST">
+        <form action="/payment-details" method="POST">
             @csrf
             <fieldset>
 
             <div class="form-group">
                 <label for="deliveryaddress"> Name </label>
-                <input type="text" class="form-control" id="name"  name="name" value={!! $name !!} placeholder="Name">
+                <input type="text" class="form-control" id="name"  name="name" value="{{ $name }} "placeholder="Name">
             </div>
 
             <div class="form-group">
                 <label for="deliveryaddress"> Delivery Address </label>
-                <input type="text" class="form-control" id="deliveryaddress"  name="delivery" value={!! $address !!} placeholder="Delivery Address">
+                <input type="text" class="form-control" id="deliveryaddress"  name="delivery" value="{{ $address }}" placeholder="Delivery Address">
             </div>
             <h6>Billing Address </h6>
 
@@ -25,11 +25,8 @@
                     <label class="form-check-label"  for="checkout">Same Billing Address </label>
                 </div>
             </div>
-            
-
             <div class="form-group">
-                <label for="billingaddress"> </label>
-                <input type="text" class="form-control" id="billingaddress" name="billing" placeholder="Billing Address">
+             <input type="text" class="form-control" id="billingaddress" name="billing" placeholder="Billing Address">
             </div>
             <fieldset>
             @include('components.errors')
