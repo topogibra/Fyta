@@ -5,6 +5,8 @@ import { buildPagination } from "./pagination.js";
 
 const dBegin = document.querySelector("#begin");
 const dEnd = document.querySelector("#end");
+const queryText = document.getElementById("search-available");
+const hideProducts = document.getElementById("after-dates");
 
 let errors;
 const form = document.querySelector("#submit-button");
@@ -46,6 +48,7 @@ const availableProducts = async (pg = 1) => {
     if (!dBegin.value || !dEnd.value) {
         removeAll(productList);
         legend.textContent = "Select a date range to view eligible products";
+        hideProducts.style.display = "none";
         return;
     }
     const valErrors = verifyInput(["begin", "end"], changed);
@@ -55,13 +58,19 @@ const availableProducts = async (pg = 1) => {
         errors = valErrors;
     } else {
         legend.textContent = "Select the eligible products";
-
+        hideProducts.style.display = "block";
         const saleID = document.querySelector("#sale-id").value;
+        
+
         const formContent = {
             begin: dBegin.value,
             end: dEnd.value,
             page: pg,
+            query: queryText.value
         };
+
+        console.log(formContent);
+
         if (saleID != -1) formContent.id = saleID;
 
         const data = await request({
@@ -76,6 +85,8 @@ const availableProducts = async (pg = 1) => {
                 availableProducts(page);
             })
         );
+        
+
     }
 };
 
@@ -83,10 +94,21 @@ dBegin.addEventListener("change", () => {
     changed = true;
     availableProducts();
 });
+
 dEnd.addEventListener("change", () => {
     changed = true;
     availableProducts();
 });
+
+queryText.addEventListener("keydown", (event) => {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+
+        availableProducts();
+        return false;
+    }
+    
+})
 
 document.querySelector("#sales-form").addEventListener("submit", (event) => {
     const valErrors = verifyInput(["begin", "end", "percentage"], changed);
