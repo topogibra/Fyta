@@ -78,3 +78,8 @@ Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+Route::get('password-recovery', 'Auth\LoginController@passwordRecovery');
+Route::post('password-recovery', 'Auth\LoginController@recoverPassword');
+Route::get('change-password', 'Auth\LoginController@passwordChange');
+Route::post('change-password', 'Auth\LoginController@changePassword');
+
