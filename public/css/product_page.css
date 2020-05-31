@@ -207,20 +207,12 @@ div.related-products img {
     width: fit-content;
 }
 
-.number-input input {
-    width: 7em;
-}
-
 .number-input>.col-4 {
     padding-left: 0;
 }
 
 #img {
     display: none;
-}
-
-#form-content {
-    width: 33em;
 }
 
 #form-content .btn-primary {
@@ -361,16 +353,9 @@ div.related-products img {
 }
 
 @media(max-width: 320px) {
-
-#form-content{
-    width:20em;
-}
 .product-img img {
     width: 290px;
 }
-    .related-products  {
-        width:20em;
-    }
 }
 
 

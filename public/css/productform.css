@@ -1,0 +1,56 @@
+.col-lg-5{
+    text-align: center;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+
+.row.product-section{
+    margin: auto;
+    width: 100%;
+}
+
+#form-content label{
+    display: none;
+}
+
+.number-input .col:first-child{
+    padding-left:0;
+}
+
+.number-input:nth-child(2) .col{
+    padding-right:0;
+}
+
+
+.my-2{
+    width:100%;
+}
+
+#name{
+    width:100%;
+}
+
+.textinput {
+    float: left;
+    width: 100%;
+    min-height: 75px;
+    outline: none;
+    resize: none;
+    border: 1px solid grey;
+    height: 10em;
+}
+
+@media(max-width: 769px) {
+    .product-img img {
+        height: 300px;
+        width: 300px;
+    }
+}
+
+@media(max-width: 320px) {
+    .product-img img {
+        height: 300px;
+        width: 290px;
+    }
+}

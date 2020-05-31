@@ -1,4 +1,4 @@
-import { buildModal, buildConfirmation, createProductColumnValue, createProductHeader } from "./utils.js";
+import { buildModal, buildConfirmation, createSalesColumnValue, createProductHeader } from "./utils.js";
 import request from "./request.js";
 import { buildErrorMessage } from "./http_error.js";
 
@@ -23,16 +23,16 @@ export default function buildSales(discounts) {
         row.className = "row table-entry justify-content-between";
         const href = document.createElement("a");
         href.href = "/manager/sales/" + discount.id;
-        href.className = "col-md-2 col-6 name text-center";
+        href.className = "col-md-2 col-2 name text-center";
         const edit = document.createElement("i");
         edit.className = "fas fa-edit";
         href.appendChild(edit);
         row.appendChild(href);
-        row.appendChild(createProductColumnValue(discount.percentage, "percentage",2));
-        row.appendChild(createProductColumnValue(discount.begin, "begin",3));
-        row.appendChild(createProductColumnValue(discount.end, "end",3));
+        row.appendChild(createSalesColumnValue(discount.percentage, "percentage",2,2));
+        row.appendChild(createSalesColumnValue(discount.begin, "begin",3,3));
+        row.appendChild(createSalesColumnValue(discount.end, "end",3,3));
         const col = document.createElement("button");
-        col.classList.add(...["col-md-2", "col-6", "delete"]);
+        col.classList.add(...["col-md-2", "col-2", "delete"]);
         col.type = "button";
         col.setAttribute("data-toggle", "modal");
         const deleteId = `delete-${discount.id}`;
