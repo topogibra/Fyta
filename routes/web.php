@@ -70,7 +70,7 @@ Route::post('review', 'ReviewController@addReview');
 
 
 // Statistics
-Route::post('statistics/most-sold', 'StatisticsController@most_sold');
+Route::post('statistics', 'StatisticsController@statistics');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

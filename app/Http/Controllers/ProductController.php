@@ -35,6 +35,8 @@ class ProductController extends Controller
                 $stock = $stock - $cart->quantity;
         }
 
+        $this->incrementViews($id);
+
         return view('pages.product', [
             'id' => $id,
             'img' => $product->img, 'alt' => $product->alt, 'description' =>  $product->description,
@@ -43,6 +45,12 @@ class ProductController extends Controller
             'reviews' => $reviews,
             'stock' => $stock
         ]);
+    }
+
+    public function incrementViews($id){
+        $product = Product::find($id);
+        $product->views += 1;
+        $product->save();
     }
 
     public function add()
