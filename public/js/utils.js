@@ -91,13 +91,6 @@ export function buildAccept(action) {
     return container;
 }
 
-export function createProductColumnValue(info, attribute, mdvalue) {
-    const column = document.createElement('div');
-    column.classList.add(...['col-md-' + mdvalue, attribute]);
-    column.textContent = info;
-    return column;
-}
-
 export function createProductHeader(element, mdvalue) {
     const heading = document.createElement('div');
     heading.className = 'col-md-'+mdvalue;
@@ -105,16 +98,16 @@ export function createProductHeader(element, mdvalue) {
     return heading;
 }
 
-export function createProductColumn(info, attribute) {
+export function createProductColumn(info, attribute, value) {
     const column = document.createElement('div');
-    column.classList.add(...['col-md-3', 'col-6', attribute]);
+    column.classList.add(...['col-md-' + value, 'col-6', attribute]);
     column.textContent = info;
     return column;
 }
 
-export function createSaleColumn(info, attribute) {
+export function createProductColumnValue(info, attribute, value) {
     const column = document.createElement('div');
-    column.classList.add(...['col-md-2','col-6','text-center',attribute]);
+    column.classList.add(...['col-md-' + value,'col-6','text-center',attribute]);
     column.textContent = info;
     return column;
 }

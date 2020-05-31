@@ -9,9 +9,9 @@ export default function buildStocks(products) {
     header.className = "row header";
 
 
-    header.appendChild(createProductHeader('Product', 4));
-    header.appendChild(createProductHeader('Price', 3));
-    header.appendChild(createProductHeader('Stock', 3));
+    header.appendChild(createProductHeader('Product', 6));
+    header.appendChild(createProductHeader('Price', 2));
+    header.appendChild(createProductHeader('Stock', 2));
     header.appendChild(createProductHeader('Delete', 2));
 
 
@@ -25,10 +25,10 @@ export default function buildStocks(products) {
         const href = document.createElement('a');
         href.href = '/product/' + product.id;
         href.appendChild(name);
-        href.className = "col-md-4 name";
+        href.className = "col-md-6 name";
         row.appendChild(href);
-        row.appendChild(createProductColumnValue(product.price + "€", 'price', 3));
-        row.appendChild(createProductColumnValue(product.stock + "uni", 'stock', 3));
+        row.appendChild(createProductColumnValue(product.price + "€", 'price', 2));
+        row.appendChild(createProductColumnValue(product.stock + "uni", 'stock', 2));
         const col = document.createElement('button');
         col.classList.add(...['col-md-2', 'delete']);
         col.type = "button";

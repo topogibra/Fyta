@@ -13,7 +13,7 @@ h3 {
     margin-bottom: 1em;
 }
 
-.row{
+.profile>.row{
     margin-right: 0;
     margin-left:0;
 }
@@ -386,7 +386,7 @@ canvas {
         padding-left: 0;
     }
     .row .remove-log {
-        width:98%;
+        width:95%;
         margin:auto;
     }
     #logout2{
