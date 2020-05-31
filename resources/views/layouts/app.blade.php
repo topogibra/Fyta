@@ -10,7 +10,7 @@
     <link href={{ asset('css/styles.css') }} rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src= {{ asset('js/jquery-3.4.1.slim.min.js') }} type="module"></script>
-    <script src= {{ asset('js/popper.min.js') }} type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src= {{ asset('js/bootstrap.min.js') }} type="module"></script>
     <script src= {{ asset('js/navbar.js') }} type="module"></script>
     @foreach ($scripts as $script)
