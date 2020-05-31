@@ -10,7 +10,7 @@
                 <label for="begin">Begins at</label>
             </div>
             <div class="col">
-                <input class="col" class="mt-1 d-block" name="begin" id="begin" type="date" value={{ $begin ?? null}} required>
+                <input class="col" class="mt-1 d-block" name="begin" id="begin" type="date" value="{{ $begin ?? null}}" required>
             </div>
         </div>
         <div class="col ">
@@ -18,7 +18,7 @@
                 <label for="end">Ends at</label>
             </div>
             <div class="col">
-                <input class="col" class="mt-1 d-block" name="end" id="end" type="date" value={{ $end ?? null}} required>
+                <input class="col" class="mt-1 d-block" name="end" id="end" type="date" value="{{ $end ?? null}}" required>
             </div>
         </div>
     </div>
@@ -37,9 +37,12 @@
         <div class="my-2 col ">
             <fieldset id="products-sales" name="apply-products" class="col">
                 <legend>Select a date range to view eligible products</legend>
-                <ul id="products-list" class="list-group list-group-flush"> 
-                </ul>
             </fieldset>
+                    <div id="after-dates">
+                        <input type="text" id="search-available" placeholder="Search for a product...">
+                        <ul id="products-list" class="list-group list-group-flush"> 
+                        </ul>
+                    </div>
             <input id="products" name="products" type="hidden">
         </div>
     </div>

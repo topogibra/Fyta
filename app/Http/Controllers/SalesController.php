@@ -106,18 +106,27 @@ class SalesController extends Controller
             'begin' => 'required|date',
             'end' => 'required|date',
             'id' => 'nullable|numeric|min:1',
-            'page' => 'required|numeric|min:0'
+            'page' => 'required|numeric|min:0',
+            'query' => ['string', 'nullable']
         ]);
 
         $begin = $request->input('begin');
         $end = $request->input('end');
         $id = $request->input('id');
         $page = $request->input('page');
+        $query = $request->input('query');
 
         $onGoing = $this->getOnGoingSales($begin, $end);
 
         $unavailableProducts = DB::table('product')
-            ->select('product.id')
+            ->select('product.id');
+
+
+        if($query){
+            $unavailableProducts = $this->SalestextQuery($unavailableProducts,$query);
+        }
+
+        $unavailableProducts = $unavailableProducts 
             ->join('apply_discount', 'apply_discount.id_product', 'product.id')
             ->whereIn('id_discount', $onGoing)
             ->get()
@@ -128,12 +137,24 @@ class SalesController extends Controller
 
         $availableProducts = DB::table('product')
             ->distinct()
-            ->select('product.id', 'name', 'price', 'img_name', 'image.description as alt')
+            ->select('product.id', 'name', 'price', 'img_name', 'image.description as alt');
+        
+        if($query){
+            $availableProducts = $this->SalestextQuery($availableProducts,$query);
+        }
+
+
+        $availableProducts = $availableProducts
             ->join('apply_discount', 'id_product', 'product.id')
             ->join('product_image', 'product_image.id_product', 'product.id')
-            ->join('image', 'image.id', 'product_image.id_image')
-            ->get()
-            ->whereNotIn('id', $unavailableProducts)->all();
+            ->join('image', 'image.id', 'product_image.id_image');
+
+        if($query){
+            $availableProducts = $availableProducts->orderByDesc('ranking');
+        }
+            $availableProducts = $availableProducts->get()
+            ->whereNotIn('id', $unavailableProducts)
+            ->all();
         $availableProducts = array_values($availableProducts);
         $cleanProducts = array_map(function ($product) {
             $data = ['id' => $product->id, 'name' => $product->name, 'price' => $product->price, 'img' => $product->img_name, 'alt' => $product->alt, 'applied' => false];
@@ -220,5 +241,16 @@ class SalesController extends Controller
         DB::commit();
 
         return redirect('/manager/');
+    }
+
+    public function  SalestextQuery($products, $query)
+    {
+        return $products
+            ->addSelect(DB::raw('ts_rank(
+                        setweight(to_tsvector(\'english\', product."name"), \'A\') || 
+                        setweight(to_tsvector(\'english\', product."description"), \'B\'), 
+                        plainto_tsquery(\'english\', ?)
+                    ) AS ranking'))
+            ->setBindings([$query]);
     }
 }
