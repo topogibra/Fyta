@@ -1,4 +1,4 @@
-import { buildModal, buildConfirmation, createProductColumnValue, createProductHeader } from './utils.js'
+import { buildModal, buildConfirmation, createColumnValue, createProductHeader } from './utils.js'
 import request from './request.js';
 import { buildErrorMessage } from './http_error.js';
 
@@ -21,16 +21,16 @@ export default function buildStocks(products) {
         const row = document.createElement('div');
         row.id = `product-${product.id}`
         row.className = "row table-entry";
-        const name = createProductColumnValue(product.name, 'name', 12);
+        const name = createColumnValue(product.name, 'name', 12,12);
         const href = document.createElement('a');
         href.href = '/product/' + product.id;
         href.appendChild(name);
-        href.className = "col-md-6 name";
+        href.className = "col-md-6 col-6 name";
         row.appendChild(href);
-        row.appendChild(createProductColumnValue(product.price + "€", 'price', 2));
-        row.appendChild(createProductColumnValue(product.stock + "uni", 'stock', 2));
+        row.appendChild(createColumnValue(product.price + "€", 'price', 2,6));
+        row.appendChild(createColumnValue(product.stock + "uni", 'stock', 2,6));
         const col = document.createElement('button');
-        col.classList.add(...['col-md-2', 'delete']);
+        col.classList.add(...['col-md-2','col-6', 'delete']);
         col.type = "button";
         col.setAttribute('data-toggle', 'modal');
         const deleteId = `delete-${product.id}`

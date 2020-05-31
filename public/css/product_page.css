@@ -239,10 +239,9 @@ div.related-products img {
     height: 8em;
 }
 
-#form-content h5 {
+#form-content h5,.review {
     color: var(--green);
 }
-
 
 .toast{
     display: none;

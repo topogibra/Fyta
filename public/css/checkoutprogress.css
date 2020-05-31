@@ -37,20 +37,16 @@
 
 /* ----------------------------------- */
 
-@media(max-width:1024px) and (min-width:769px){
+@media(max-width:1300px) and (min-width:1000px){
     #checkout-breadcrumb>.col-1 {
         display: none;
     }
-
-
 }
 
-@media(max-width:768px) {
+@media(max-width:1000px) {
     .bread-title {
         display: none;
     }
-
-
     .bread-separator {
         width: 100%;
     }

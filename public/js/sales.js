@@ -1,4 +1,4 @@
-import { buildModal, buildConfirmation, createSalesColumnValue, createProductHeader } from "./utils.js";
+import { buildModal, buildConfirmation, createColumnValue, createProductHeader } from "./utils.js";
 import request from "./request.js";
 import { buildErrorMessage } from "./http_error.js";
 
@@ -28,9 +28,9 @@ export default function buildSales(discounts) {
         edit.className = "fas fa-edit";
         href.appendChild(edit);
         row.appendChild(href);
-        row.appendChild(createSalesColumnValue(discount.percentage, "percentage",2,2));
-        row.appendChild(createSalesColumnValue(discount.begin, "begin",3,3));
-        row.appendChild(createSalesColumnValue(discount.end, "end",3,3));
+        row.appendChild(createColumnValue(discount.percentage, "percentage",2,2));
+        row.appendChild(createColumnValue(discount.begin, "begin",3,3));
+        row.appendChild(createColumnValue(discount.end, "end",3,3));
         const col = document.createElement("button");
         col.classList.add(...["col-md-2", "col-2", "delete"]);
         col.type = "button";

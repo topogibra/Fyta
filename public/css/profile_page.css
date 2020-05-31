@@ -202,7 +202,6 @@ input {
 
 .delete {
     border: 0;
-    padding: 0;
     background-color: var(--white);
 }
 
@@ -250,7 +249,6 @@ canvas {
 }
 
 @media(max-width: 767px) {
-
 #logout{
     display: none;
 }
@@ -318,7 +316,7 @@ canvas {
         overflow-x: scroll;
         width: 100%;
     }
-    h3 {
+    h3, .profile .container .row .delete{
         text-align: center;
     }
     .profile .col-md-9 {
@@ -332,8 +330,7 @@ canvas {
     .stock {
         order: 1;
     }
-    .profile .container .row .delete,
-    .profile .container .row .name {
+        .profile .container .row .name {
         text-align: left;
     }
     .profile .container .row .stock,

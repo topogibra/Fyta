@@ -113,7 +113,7 @@ export function createProductColumnValue(info, attribute, value) {
 }
 
 
-export function createSalesColumnValue(info, attribute, value, value_default) {
+export function createColumnValue(info, attribute, value, value_default) {
     const column = document.createElement('div');
     column.classList.add(...['col-md-' + value,'col-' + value_default,'text-center',attribute]);
     column.textContent = info;
