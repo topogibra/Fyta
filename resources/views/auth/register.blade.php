@@ -20,7 +20,7 @@
     </div>
     <!-- -->
     <div class="row form-group ">
-      <div class="col info-base">
+      <div class="row info-base">
         <label for="username">   </label>
         <input type="text" name="username" id="username" class="form-control registerinput" placeholder="Username">
         <label for="email">    </label>
@@ -30,7 +30,7 @@
       </div>
     </fieldset>
     <!--  -->
-    <fieldset>
+    <div class="row info-birth">
       <legend> Birthday </legend>
     <!--  -->
     <input name="birthday" type="hidden" value="" id="birthday"/>
@@ -70,20 +70,19 @@
       </div>
 
     </div>
-  </fieldset>
+  </div>
     <!--  -->
-    <div class="form-group row ">
-      <div class="col info-pass">
+      <div class="row info-pass">
         <label for="password">  </label>
         <input type="password" name="password" id="password" class="form-control registerinput" placeholder="Password" >
       </div>
-      <div class="col mt-4">
+
+      <div class="row info-sec">
         <label for="security-question">What was the name of your first animal? </label>
         <input type="security-question" name="security-question" id="security-question" class="form-control registerinput" placeholder="Enter your answer here" >
       </div>
-    </fieldset>
     <!--  -->
-    <div class="row ">
+    <div class="row register">
       <div class="col info-submit">
         <label for="submitbutton"> </label>
         <input type="submit" class="btn rounded-0 btn-lg shadow-none" id="submitbutton" value="Register">

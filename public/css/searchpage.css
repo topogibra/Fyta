@@ -221,6 +221,9 @@ img {
     .card-title a {
         font-size: 0.75em;
     }
+    .card-body .row {
+        margin: 0.20em;
+    }
 }
 
 @media (max-width: 1000px) {

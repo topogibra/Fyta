@@ -77,7 +77,7 @@ export function buildPersonalInfoForm(info, user) {
         form.appendChild(fieldSet);
 
         const birthdayInputs = document.createElement('div');
-        birthdayInputs.className = "row form-group justify-content-center birthday";
+        birthdayInputs.className = "row form-group jjustify-content-between birthday";
         fieldSet.appendChild(birthdayInputs);
         const buildSelectionColumn = (id, options, placeholder) => {
             const optionsCol = document.createElement('div');
@@ -114,7 +114,7 @@ export function buildPersonalInfoForm(info, user) {
 
 
     const passwordInput = document.createElement('div');
-    passwordInput.className = "row justify-content-end";
+    passwordInput.className = "row info-password justify-content-end";
     form.appendChild(passwordInput);
 
     const passwordCol = document.createElement('div');

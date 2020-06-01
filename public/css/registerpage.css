@@ -27,7 +27,7 @@
 }
 
 .row .bd {
-    margin-left: 0;
+    margin-left:1%;
 }
 
 #birthday {
@@ -61,7 +61,7 @@
     height: 3.5em;
 }
 
-.form-group input {
+.form-group input,.info-sec {
     margin-top: 1em;
 }
 
@@ -84,8 +84,23 @@
 .birthday {
     flex-wrap: nowrap;
     margin-bottom: 0;
+    width:100%;
+
 }
 
+.info-birth, .info-pass, .info-base, .info-sec, .register
+{
+    width:100%;
+
+}
+
+.form-group, .info-password{
+    margin-right: 0;
+    margin-left: 0 ;
+}
+.info-submit{
+    padding: 0;
+}
 .container-xl>* {
     margin-left: 2rem;
     margin-right: 2rem;
@@ -95,7 +110,7 @@
     padding: 1em;
 }
 
-.info-base label, .info-pass{
+.info-base label{
     display: none;
 }
 

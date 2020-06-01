@@ -63,8 +63,13 @@ a.btn {
 #logout2{
     background-color: var(--light-gray);
     margin-top: 1.5em;
+     border: 1px solid var(--black);
+     color:var(--black);
 }
 
+.list-group-item{
+    padding:0.75rem 0;
+}
 
 #add-manager {
     margin-top: 2em;
@@ -248,6 +253,11 @@ canvas {
     display: none;
 }
 
+.buttons .col-6:nth-child(2)
+{
+    text-align: end;
+}
+
 @media(max-width: 767px) {
 #logout{
     display: none;
@@ -369,6 +379,10 @@ canvas {
         max-width: 100%;
         flex-basis: 100%;
     }
+    .date-input > div {
+        min-width: 7em;
+        min-height: 2em;
+    }
 }
 
 .fa-plus-square {
@@ -389,7 +403,7 @@ canvas {
         padding-left: 0;
     }
     .row .remove-log {
-        width:95%;
+        width:97%;
         margin:auto;
     }
     #logout2{
@@ -398,6 +412,9 @@ canvas {
 }
 
 @media(max-width: 320px) {
+    .buttons{
+        text-align: center;
+    }
     #remove-a{
         padding: 0;
     }
