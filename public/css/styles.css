@@ -85,7 +85,7 @@ body {
 }
 
 
-@media (max-width: 1050px) {
+@media (max-width: 1040px) {
 .navbar-search>input {
     display: none;
 }

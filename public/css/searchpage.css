@@ -139,6 +139,10 @@ img {
     display: none;
 }
 
+.navbar-search-mobile,.navbar-search-mobile label {
+    display: none;
+}
+
 @media(min-width: 1700px) {
     .dropdown {
        padding-right: 4%;
@@ -170,9 +174,17 @@ img {
 @media (max-width: 1024px) {
     .title .row .col:nth-child(2) {
         text-align: end;
-        margin-right: 11%;
+        margin-right: 0;
+    }
+    .navbar-search-mobile{
+        display: flex;
+        margin:0 7%;
+    }
+    .navbar-search .fa-search{
+        display: none;
     }
 }
+
 
 @media (min-width: 769px) {
     .col-lg-3:nth-child(1) {

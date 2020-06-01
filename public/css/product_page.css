@@ -320,8 +320,8 @@ div.related-products img {
         width: 300px;
         margin-bottom: 2em;
     }
-    .comment>.container>.row {
-        justify-content: center;
+    .reviews{
+        margin: 0 1em;
     }
     .row.comment {
         padding: 0 0.3em;

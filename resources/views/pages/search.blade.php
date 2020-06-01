@@ -1,6 +1,15 @@
 @extends('layouts.app', ['scripts' => ['js/searchpage.js'], 'styles' => ['css/searchpage.css', 'css/pallette.css']])
 
 @section('content')
+  <form class="input-group w-auto mt-1 rounded-pill border border-dark navbar-search-mobile" action="/search" method="GET">
+    <span class="input-group-append">
+        <button type="submit" class="btn border border-right-0">
+            <i aria-hidden="true" class="fas fa-search form-control-feedback"></i>
+        </button>
+    </span>
+    <label for="query">Search for a product...</label>
+    <input class="form-control border-left-0" type="text" id="query" name="query" placeholder="Search for a product...">
+  </form>
   <div class="title">
     <div class="row">
       <div class="col">

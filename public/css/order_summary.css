@@ -46,7 +46,14 @@
 
 .summary .header .order-id {
     font-size: 1.25em;
+    margin-top: 0.5em;
 }
+
+.summary .header .bank-entity {
+    margin-top: 0.5em;
+}
+
+
 
 .summary .header .deliver-address {
     padding: 1em 1em;
@@ -68,6 +75,9 @@
     padding-left: 1rem;
 }
 
+.delivery-fee{
+    margin-top: 0.5em;
+}
 
 /* Order List */
 

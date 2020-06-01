@@ -290,6 +290,11 @@ if (queryText) {
     query.value = queryText;
 }
 
+if (queryText) {
+    const query = document.querySelector(".navbar-search-mobile #query");
+    query.value = queryText;
+}
+
 searchRequest(fetchContent);
 
 //favorites
