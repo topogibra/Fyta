@@ -32,6 +32,10 @@ body {
     padding: 0.5em;
 }
 
+.navbar-icons .star {
+    padding: 0.65em 0.5em 0.25em 0.5em;
+}
+
 .navbar-icons a i {
     font-size: 1.5em;
 }
@@ -71,6 +75,14 @@ body {
     display: none !important;
 }
 
+#nav-user-img {
+    width: 2em;
+    height: 2em;
+    border-color: var(--black);
+    border-radius: 10px;
+    position: relative;
+}
+
 @media (min-width: 770px) {
     .nav-item.divider {
         border-left: 1px solid #c6c6c6;
@@ -99,6 +111,13 @@ body {
 }
 
 @media (max-width: 767px) {
+    #nav-user-img {
+        width: 2em;
+        height: 1.5em;
+        border-color: var(--black);
+        border-radius: 10px;
+        position: relative;
+    }
     .navbar-wrapper {
         display: grid;
         grid-template-columns: auto 2fr 2fr auto auto;

@@ -3,6 +3,9 @@ import request from './request.js'
 import { deleteAccount } from './request.js'
 import { buildModal, buildAccept } from './utils.js';
 
+
+const profileicon = document.querySelector(".navbar-icons a img");
+
 export function buildPersonalInfoForm(info, user) {
     const container = document.createElement('div');
     container.className = "container";
@@ -31,8 +34,10 @@ export function buildPersonalInfoForm(info, user) {
     photo.addEventListener('change', () => {
         if (photo.files && photo.files[0]) {
             const reader = new FileReader();
-            reader.onload = e => (img.src = e.target.result);
-
+            reader.onload = e => {
+                img.src = e.target.result;
+                profileicon.src =  e.target.result;
+            }
             reader.readAsDataURL(photo.files[0]);
         }
     });

@@ -43,6 +43,20 @@ class User extends Authenticatable
         return $this->hasOne('App\Image', 'id','id_image');
     }
 
+    public static function getimage()
+    {
+        $user = Auth::user();
+        $image = DB::table('user')
+                    ->select('image.img_name as img_name')
+                    ->join('image','image.id', '=','user.id_image')
+                        ->where('user.id','=',$user->id)
+                        ->first();
+
+        $image->img_name = "img/" . $image->img_name;
+        return $image->img_name;
+
+    }
+
     public function shoppingCart()
     {
         return $this->belongsToMany('App\Product', 'shopping_cart')->withPivot('quantity');
