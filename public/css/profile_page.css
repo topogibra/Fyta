@@ -13,6 +13,10 @@ h3 {
     margin-bottom: 1em;
 }
 
+.profile>.row{
+    margin-right: 0;
+    margin-left:0;
+}
 .badge {
     background-color: transparent;
     font-weight: 400;
@@ -38,12 +42,15 @@ a.btn {
 #remove-a{
     font-size: 0.8em;
     border: 1px solid red;
-    margin-right:1em;
-    margin-top: 1em;
+    width: 100%;
+    height: 3em;
+    text-align: center;
+    font-size: 0.8em;
+    margin-top: 1.5em;
 }
 #savechanges,
 #add-manager,
-#logout {
+#logout, #logout2 {
     width: 100%;
     height: 3em;
     text-align: center;
@@ -53,9 +60,15 @@ a.btn {
     border: 1px solid var(--light-gray);
 }
 
-#logout {
-    height:2em;
-    padding: 0;
+#logout2{
+    background-color: var(--light-gray);
+    margin-top: 1.5em;
+     border: 1px solid var(--black);
+     color:var(--black);
+}
+
+.list-group-item{
+    padding:0.75rem 0;
 }
 
 #add-manager {
@@ -194,7 +207,6 @@ input {
 
 .delete {
     border: 0;
-    padding: 0;
     background-color: var(--white);
 }
 
@@ -237,7 +249,22 @@ canvas {
     margin-top: 2.5rem;
 }
 
+#logout2{
+    display: none;
+}
+
+.buttons .col-6:nth-child(2)
+{
+    text-align: end;
+}
+
 @media(max-width: 767px) {
+#logout{
+    display: none;
+}
+#logout2{
+    display: block;
+}
     .account-sections {
         padding-top: 0em;
         order: 0;
@@ -299,7 +326,7 @@ canvas {
         overflow-x: scroll;
         width: 100%;
     }
-    h3 {
+    h3, .profile .container .row .delete{
         text-align: center;
     }
     .profile .col-md-9 {
@@ -313,8 +340,7 @@ canvas {
     .stock {
         order: 1;
     }
-    .profile .container .row .delete,
-    .profile .container .row .name {
+        .profile .container .row .name {
         text-align: left;
     }
     .profile .container .row .stock,
@@ -353,23 +379,48 @@ canvas {
         max-width: 100%;
         flex-basis: 100%;
     }
+    .date-input > div {
+        min-width: 7em;
+        min-height: 2em;
+    }
 }
 
 .fa-plus-square {
     color: var(--green);
 }
-
 .fa-minus-square {
     color: var(--red);
 }
-
-@media(max-width: 425px) {
+@media(max-width: 769px) {
     .profile {
         padding: 0 2%;
     }
-    #savechanges {
-        width: 100%;
-        font-size: 1em;
+    #savechanges,#logout2,#remove-a{
+        width: 90%;
+    }
+    #remove-a{
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .row .remove-log {
+        width:97%;
+        margin:auto;
+    }
+    #logout2{
+        padding-top: 0.5em;
+    }
+}
+
+@media(max-width: 320px) {
+    .buttons{
+        text-align: center;
+    }
+    #remove-a{
+        padding: 0;
+    }
+    .row .remove-log {
+        width:90%;
+        margin:auto;
     }
 }
 

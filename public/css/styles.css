@@ -85,7 +85,7 @@ body {
 }
 
 
-@media (max-width: 1050px) {
+@media (max-width: 1040px) {
 .navbar-search>input {
     display: none;
 }
@@ -98,7 +98,7 @@ body {
 }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .navbar-wrapper {
         display: grid;
         grid-template-columns: auto 2fr 2fr auto auto;
@@ -115,7 +115,7 @@ body {
     }
     .navbar-wrapper.click .navbar-light .navbar-toggler-icon {
         font-family: "Font Awesome 5 Pro";
-        font-size: 2.5em;
+        font-size: 2em;
         background-image: none;
         color: white;
     }
@@ -157,7 +157,7 @@ body {
     .navbar-categories .navbar-nav {
         align-items: center;
         padding-top: 1em;
-        font-size: 2em;
+        font-size: 1.5em;
     }
     .navbar-icons {
         grid-row: 1;
@@ -181,12 +181,13 @@ body {
         border: 0px !important;
     }
     .navbar-icons .star,
-    .navbar-icons .login {
+    .navbar-icons .login,
+    .navbar-icons .user,
+    .navbar-icons .cart {
         display: none;
     }
     .navbar-collapse.collapse.show {
         width: 100vw;
-        margin-top: 5em;
     }
     .navbar-wrapper.click .navbar-categories .container {
         margin-top: 7em;

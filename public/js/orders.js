@@ -1,4 +1,4 @@
-import { buildModal, buildConfirmation, createProductColumn } from './utils.js';
+import { buildModal, buildConfirmation, createProductColumnValue,createProductHeader } from './utils.js';
 import request from './request.js';
 
 const stateStatus = {
@@ -12,28 +12,25 @@ export default function buildPendingOrders(orders) {
     const header = document.createElement('div');
     header.className = "row header";
 
-    ['Order #', 'Purchase Date', 'Pending Status', 'Confirm Status'].forEach(element => {
-        const heading = document.createElement('div');
-        heading.className = "col-md-3";
-        heading.textContent = element;
-        header.appendChild(heading);
-    });
-
+    header.appendChild(createProductHeader('Order #', 2));
+    header.appendChild(createProductHeader('Purchase Date', 3));
+    header.appendChild(createProductHeader('Pending Status', 3));
+    header.appendChild(createProductHeader('Confirm Status', 4));
     container.appendChild(header);
 
     orders.forEach(order => {
         const row = document.createElement('div');
         row.className = "row table-entry";
-        const number = createProductColumn(order.number, 'order');
+        const number = createProductColumnValue(order.number, 'order',2);
         const href = document.createElement('a');
-        href.className = "col-md-3 col-6 name";
+        href.className = "col-md-2 col-6 name";
         href.href = '/order/' + order.id;
         href.appendChild(number);
         row.appendChild(href);
-        row.appendChild(createProductColumn(order.date, 'date'));
-        const status = createProductColumn(order.status, 'status');
+        row.appendChild(createProductColumnValue(order.date, 'date',3));
+        const status = createProductColumnValue(order.status, 'status',3);
         row.appendChild(status);
-        const col = createProductColumn('', 'confirm');
+        const col = createProductColumnValue('', 'confirm',4);
         const button = document.createElement('a');
         button.setAttribute('role', 'button');
         button.className = "btn btn-primary confirm-order";

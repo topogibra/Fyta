@@ -1,4 +1,4 @@
-import { buildModal, buildConfirmation, createSaleColumn, removeAll } from "./utils.js";
+import { buildModal, buildConfirmation, createColumnValue, createProductHeader } from "./utils.js";
 import request from "./request.js";
 import { buildErrorMessage } from "./http_error.js";
 
@@ -8,12 +8,12 @@ export default function buildSales(discounts) {
     const header = document.createElement("div");
     header.className = "row header";
 
-    ["Edit", "Discount (%)", "Begins", "Ends", "Delete"].forEach((element) => {
-        const heading = document.createElement("div");
-        heading.className = "col-md-2";
-        heading.textContent = element;
-        header.appendChild(heading);
-    });
+
+    header.appendChild(createProductHeader('Edit', 2));
+    header.appendChild(createProductHeader('Discount (%)', 2));
+    header.appendChild(createProductHeader('Begins', 3));
+    header.appendChild(createProductHeader('Ends', 3));
+    header.appendChild(createProductHeader('Delete', 2));
 
     container.appendChild(header);
     let errors;
@@ -23,16 +23,16 @@ export default function buildSales(discounts) {
         row.className = "row table-entry justify-content-between";
         const href = document.createElement("a");
         href.href = "/manager/sales/" + discount.id;
-        href.className = "col-md-2 col-6 name text-center";
+        href.className = "col-md-2 col-2 name text-center";
         const edit = document.createElement("i");
         edit.className = "fas fa-edit";
         href.appendChild(edit);
         row.appendChild(href);
-        row.appendChild(createSaleColumn(discount.percentage, "percentage"));
-        row.appendChild(createSaleColumn(discount.begin, "begin"));
-        row.appendChild(createSaleColumn(discount.end, "end"));
+        row.appendChild(createColumnValue(discount.percentage, "percentage",2,2));
+        row.appendChild(createColumnValue(discount.begin, "begin",3,3));
+        row.appendChild(createColumnValue(discount.end, "end",3,3));
         const col = document.createElement("button");
-        col.classList.add(...["col-md-2", "col-6", "delete"]);
+        col.classList.add(...["col-md-2", "col-2", "delete"]);
         col.type = "button";
         col.setAttribute("data-toggle", "modal");
         const deleteId = `delete-${discount.id}`;

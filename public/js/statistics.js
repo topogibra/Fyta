@@ -54,7 +54,7 @@ function generateGraphs(data, title) {
 function generateDateRow(type) {
 
     const date = document.createElement('div');
-    date.className = "col";
+    date.className = "col-6 ";
     const id = `${type}-date`;
 
     const startInput = document.createElement('div');
@@ -173,11 +173,10 @@ function generateDateRow(type) {
 export default function buildStatistics() {
     const container = document.createElement('article');
     const row = document.createElement('div');
-    row.className = "row justify-content-between";
+    row.className = "row buttons justify-content-between";
     container.appendChild(row);
     row.appendChild(generateDateRow("Begin"));
     const endCol = generateDateRow("End");
-    endCol.classList.add('d-flex');
     endCol.querySelector('div').classList.add('ml-auto')
     row.appendChild(endCol);
 
