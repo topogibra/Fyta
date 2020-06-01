@@ -290,21 +290,9 @@ if (queryText) {
     query.value = queryText;
 }
 
-if (tag) {
-    const catList = document.querySelector(".col-lg-3 #categories").children;
-    for (let cat of catList) {
-        const label = cat.querySelector(".custom-control-label");
-        if (tag === label.textContent) {
-            const input = cat.querySelector(".custom-control-input");
-            input.checked = true;
-            break;
-        }
-    }
-
-    const crumbSection = document.querySelector(
-        ".title .breadcrumb-item.active"
-    );
-    crumbSection.textContent = tag;
+if (queryText) {
+    const query = document.querySelector(".navbar-search-mobile #query");
+    query.value = queryText;
 }
 
 searchRequest(fetchContent);

@@ -5,16 +5,15 @@
             border: 1px solid var(--light-gray);
         }
 
-        #back-btn {
+        #back-btn, #next-btn {
             background-color: var(--light-gray);
             color: var(--black);
             width: 20%
         }
 
-        #next-btn {
+        #back-btn{
             background-color: var(--green);
             color: var(--white);
-            width: 20%
         }
 
         .active>div>img {
@@ -121,6 +120,11 @@
         }
 
         @media (max-width: 600px) {
+            #back-btn{
+                background-color: var(--green);
+                color: var(--white);
+                width: 50%;
+            }
             .options {
                 flex-direction: column;
                 align-items: center;

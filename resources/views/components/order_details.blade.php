@@ -1,10 +1,6 @@
 <div class="order-summary ">
     <div class="row summary-header">
-        <h3 class="col-6 text-nowrap">Order Summary</h3>
-        <div class="order-status col-6 row justify-content-end">
-            <p class="font-weight-bold text-nowrap">Order Status: </p>
-            <p class="status font-weight-normal">{{ $status->status }}</p>
-        </div>
+        <h3 class="col title text-nowrap">Order Summary</h3>
     </div>
     <div class="container summary">
         <div class="row header justify-space-around">
@@ -13,6 +9,10 @@
                 <div class="order-placed row">
                     <p class="text-nowrap">Placed on:</p>
                     <p class="order-date font-weight-bold text-nowrap">{{ $information->date }}</p>
+                </div>
+                <div class="order-status row">
+                <p class="font-weight-bold text-nowrap">Order Status:</p>
+                    <p class="status font-weight-normal text-nowrap">{{$status->status}}</p>
                 </div>
             </div>
             <div class="col-md-5 col-sm-6 payment-method">
@@ -29,19 +29,21 @@
                 </div>
             </div>
         </div>
+        <div class="products-list">
         @each('components.order_item', $items, 'item')
-            <div class="delivery-fee row justify-content-end">
-                <p class="text-right">Delivery:</p>
-                <p class="fee text-right">{{ $delivery }}</p>
-            </div>
-            <div class="order-total row justify-content-end ">
-                <p class="total text-right">Total Value:</p>
-                <p class="total-value text-right">{{ $sum }} €</p>
-            </div>
-    </div>
+        </div>
+        <div class="delivery-fee row justify-content-end">
+            <p class="text-right">Delivery:</p>
+            <p class="fee text-right">{{$delivery}}</p>
+        </div>
+        <div class="order-total row justify-content-end ">
+            <p class="total text-right">Total Value:</p>
+            <p class="total-value text-right">{{ $sum }} €</p>
+        </div>
     @if($buttons)
         <div class="row buttons sm-space-around justify-content-end" id="next-btn-row">
-            <a href="/home" id="next-btn" class="btn rounded-0 btn-lg shadow-none">Back to Home</a>
+            <a href="/home" id="back-btn" class="btn rounded-0 btn-lg shadow-none">Back to Home</a>
         </div>
     @endif
+</div>
 </div>

@@ -1,4 +1,4 @@
-@extends('layouts.product', ['content' => 'components.product-form', 'method' => $method, 'files' =>  ['scripts' => ['js/product_form.js'], 'styles' => ['css/product_page.css']]])
+@extends('layouts.product', ['content' => 'components.product-form', 'method' => $method, 'files' =>  ['scripts' => ['js/product_form.js'], 'styles' => ['css/product_page.css','css/productform.css']]])
 
 @section('img')
 <div class="my-2" class="product-creation-left">
@@ -31,18 +31,18 @@
         </div>
     </div>
     
-    <div class="row number-input">
-        <div class="col-auto">
+    <div class="row number-input justify-content-between">
+        <div class="col">
             <h5> Price </h5>
             <label for="price"> </label>
             <input class="col" class="mt-1 d-block" name="price" id="price" type="number" step=".01" value={{ $price ?? 0}}>
         </div>
-        <div class="col-auto">
+        <div class="col">
             <h5> Stock </h5>
             <label for="stock"> </label>
             <input class="col" class="mt-1 d-block" name="stock" id="stock" type="number" value={{ $stock ?? 0}}>
         </div>
-        <div class="col-auto">
+        <div class="col">
             <h5>Category</h5>
             <select class="custom-select">
                 @if (isset($category))
@@ -76,7 +76,7 @@
     <div class="row">
         <div class="my-2 product-creation-left" id="create-product-description">
             <h5> Description </h5>
-            <textarea id="description" class="mt-1" name="description" type="text" rows="5", cols="50">{{$description ?? ""}}</textarea>
+            <textarea id="description" class="textinput" name="description" type="text">{{$description ?? ""}}</textarea>
         </div>
     </div>
     @include('components.errors')

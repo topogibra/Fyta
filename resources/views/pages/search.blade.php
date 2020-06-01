@@ -1,13 +1,21 @@
 @extends('layouts.app', ['scripts' => ['js/searchpage.js'], 'styles' => ['css/searchpage.css', 'css/pallette.css']])
 
 @section('content')
+  <form class="input-group w-auto mt-1 rounded-pill border border-dark navbar-search-mobile" action="/search" method="GET">
+    <span class="input-group-append">
+        <button type="submit" class="btn border border-right-0">
+            <i aria-hidden="true" class="fas fa-search form-control-feedback"></i>
+        </button>
+    </span>
+    <label for="query">Search for a product...</label>
+    <input class="form-control border-left-0" type="text" id="query" name="query" placeholder="Search for a product...">
+  </form>
   <div class="title">
     <div class="row">
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/search">Search</a></li>
-            <li class="breadcrumb-item active" aria-current="page"></li>
           </ol>
         </nav>
       </div>
@@ -69,7 +77,7 @@
         </ul>
         <div class="price">
           <h5>Price Range</h5>
-          <div class="row price-values">
+          <div class="row price-values justify-content-around">
             <div class="col-5 min">
               <p>1€</p>
             </div>
@@ -77,7 +85,7 @@
               <p>100€</p>
             </div>
           </div>
-          <div class="row price-inputs">
+          <div class="row price-inputs justify-content-around">
             <div class="col-5 min-input">
               <label for="min">Minimum Price:</label>
               <input type="number" class="form-control" id="min" placeholder="1" min="1" max="99">
