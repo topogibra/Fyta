@@ -56,6 +56,7 @@ class Order extends Model
                                 ')
             ->whereRaw('(select count(*) from order_history where order_history.id_order = "order".id and order_status = \'Processed\' ) = 0
                 ')
+            ->orderBy('order_date', 'desc')
             ->limit(10)->offset($page * 10)->get()->all();
         return $status;
     }
