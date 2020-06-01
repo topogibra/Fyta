@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Null_;
 
 class User extends Authenticatable
 {
@@ -43,15 +44,18 @@ class User extends Authenticatable
         return $this->hasOne('App\Image', 'id','id_image');
     }
 
-    public static function getimage()
+    public static function getImage()
     {
         $user = Auth::user();
         $image = DB::table('user')
                     ->select('image.img_name as img_name')
                     ->join('image','image.id', '=','user.id_image')
-                        ->where('user.id','=',$user->id)
-                        ->first();
+                    ->where('user.id','=',$user->id)
+                    ->first();
 
+        if($image == null)
+            return "img/user.png";
+            
         $image->img_name = "img/" . $image->img_name;
         return $image->img_name;
 
