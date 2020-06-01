@@ -157,7 +157,7 @@ export default function buildPersonalInfo(info, user) {
         ev.preventDefault();
         const validation = ['username', 'email'];
         if (user) {
-            validation.push(...['address', 'day', 'month', 'year']);
+            validation.push(...['address', 'day', 'month', 'year', 'security-question']);
         }
 
         const validationErrors = validateRequirements(validation);

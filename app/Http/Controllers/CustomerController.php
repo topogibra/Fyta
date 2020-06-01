@@ -96,7 +96,8 @@ class CustomerController extends ProfileController
             'username' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
             'birthday' => 'required|date',
-            "address" => 'required|string|max:255'
+            "address" => 'required|string|max:255',
+            'security-question' => 'required|string'
         ]);
 
         if ($validator->fails()) {
@@ -114,6 +115,7 @@ class CustomerController extends ProfileController
         }
         $user->date = $request->input('birthday');
         $user->address = $request->input('address');
+        $user->security_question = $request->input('security-question');
 
         $file = Input::file('photo');
         if ($file != null)
