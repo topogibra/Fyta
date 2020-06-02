@@ -102,38 +102,45 @@ class SalesController extends Controller
 
         DB::beginTransaction();
 
+        
         $request->validate([
             'begin' => 'required|date',
             'end' => 'required|date',
             'id' => 'nullable|numeric|min:1',
             'page' => 'required|numeric|min:0',
-            'query' => ['string', 'nullable']
+            'query' => ['string', 'nullable'],
+            'showSelected' => 'boolean',
+            'productsChecked' => ['array','nullable'],
+            'productsChecked.*' => ['int'],
+            'productsUnchecked' => ['array','nullable'],
+            'productsUnchecked.*' => ['int']
         ]);
+        
 
         $begin = $request->input('begin');
         $end = $request->input('end');
         $id = $request->input('id');
         $page = $request->input('page');
         $query = $request->input('query');
+        $showSelected = $request->input('showSelected');
+        $productsUnchecked = $request->input('productsUnchecked');
+        $productsChecked = $request->input('productsChecked');
+
 
         $onGoing = $this->getOnGoingSales($begin, $end);
 
         $unavailableProducts = DB::table('product')
-            ->select('product.id');
-
-
-        if($query){
-            $unavailableProducts = $this->SalestextQuery($unavailableProducts,$query);
-        }
-
-        $unavailableProducts = $unavailableProducts 
+            ->select('product.id')
             ->join('apply_discount', 'apply_discount.id_product', 'product.id')
             ->whereIn('id_discount', $onGoing)
+            ->whereNotIn('product.id',$productsUnchecked)
             ->get()
             ->all();
         $unavailableProducts = array_map(function ($prod) {
             return $prod->id;
         }, $unavailableProducts);
+
+        $unavailableProducts = array_merge($unavailableProducts,$productsChecked);
 
         $availableProducts = DB::table('product')
             ->distinct()
@@ -161,12 +168,29 @@ class SalesController extends Controller
             return $data;
         }, $availableProducts);
 
-        if ($id) {
+        if ($id && $showSelected) {
             $discount = Discount::find($id);
-            $appliedProducts = $discount->products()
-                ->select('product.id', 'name', 'price', 'img_name', 'image.description as alt')
+            $appliedIds = $discount->products()
+            ->pluck('product.id')->all();
+            $appliedIds = array_merge($appliedIds,$productsChecked);
+            $appliedProducts = DB::table('product')
+                ->select('product.id', 'name', 'price', 'img_name', 'image.description as alt');
+            
+            if($query){
+                $appliedProducts = $this->SalestextQuery($appliedProducts,$query);
+            }
+
+            $appliedProducts = $appliedProducts 
                 ->join('product_image', 'product_image.id_product', 'product.id')
-                ->join('image', 'image.id', 'product_image.id_image')
+                ->join('image', 'image.id', 'product_image.id_image');
+            
+            if($query){
+                $appliedProducts = $appliedProducts->orderByDesc('ranking');
+            }
+               
+            $appliedProducts = $appliedProducts
+                ->whereIn('product.id',$appliedIds)
+                ->whereNotIn('product.id',$productsUnchecked)
                 ->get()
                 ->all();
 
@@ -202,7 +226,11 @@ class SalesController extends Controller
             'percentage' => ['required', 'numeric', 'min:1', 'max:99'],
             'begin' => ['required', 'date'],
             'end' => ['required', 'date'],
-            'products' => ['nullable', 'string']
+            'products' => ['nullable', 'string'],
+            'productsChecked' => ['array','nullable'],
+            'productsChecked.*' => ['int'],
+            'productsUnchecked' => ['array','nullable'],
+            'productsUnchecked.*' => ['int']
         ]);
 
         $id = $request->input('sale-id');
@@ -251,6 +279,6 @@ class SalesController extends Controller
                         setweight(to_tsvector(\'english\', product."description"), \'B\'), 
                         plainto_tsquery(\'english\', ?)
                     ) AS ranking'))
-            ->setBindings([$query]);
+            ->addBinding([$query],'select');
     }
 }

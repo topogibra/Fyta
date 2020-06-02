@@ -58,7 +58,7 @@ Route::get('manager/sale','SalesController@add');
 Route::post('manager/sale','SalesController@create');
 Route::get('manager/sales/{id}','SalesController@edit');
 Route::put('manager/sale','SalesController@update');
-Route::get('manager/sale/products','SalesController@availableProducts');
+Route::post('manager/sale/products','SalesController@availableProducts');
 
 // Wishlists
 Route::get('profile/wishlist', 'CustomerController@wishlist');
