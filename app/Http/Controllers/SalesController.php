@@ -184,11 +184,13 @@ class SalesController extends Controller
             return $data;
         }, $availableProducts);
 
-        if ($id && $showSelected) {
-            $discount = Discount::find($id);
-            $appliedIds = $discount->products()
-            ->pluck('product.id')->all();
-            $appliedIds = array_merge($appliedIds,$productsChecked);
+        if ($showSelected) {
+            $appliedIds = $productsChecked;
+            if($id){
+                $discount = Discount::find($id);
+                $appliedIds = array_merge($appliedIds,$discount->products()
+                ->pluck('product.id')->all());
+            }
             $appliedProducts = DB::table('product')
                 ->select('product.id', 'product.name', 'price', 'img_name', 'image.description as alt');
             
