@@ -12,6 +12,7 @@
         width: 100%;
         margin-right: 0;
         margin-left: 0;
+        margin-top: 2rem;
     }
 
     #legend{
@@ -74,7 +75,7 @@
             display: block;
         }
 
-        .categories-col > *{
+        #category-col{
             display: none;
         }
     }

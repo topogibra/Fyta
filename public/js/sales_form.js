@@ -17,9 +17,11 @@ const hideDiv = document.getElementById("selProducts");
 const form = document.querySelector("#submit-button");
 const showSelected = document.getElementById("showSelected");
 const saleID = document.querySelector("#sale-id").value;
+const filterbutton = document.querySelector("#filter > button");
 const catCheckboxes = document.querySelectorAll(
     "#categories .custom-control-input"
 );
+
 
 let productsChecked = new Set();
 let productsUnchecked = new Set();
@@ -47,6 +49,22 @@ priceinputmax.value = 100;
 let priceinputminoldvalue = 1;
 let priceinputmaxoldvalue = 100;
 
+
+//responsiveness
+const filter = document.getElementById("filter");
+
+const filtericon = document.querySelector("#filter i");
+const filtercontent = document.getElementById('category-col');
+
+filter.addEventListener("click", (event) => {
+    if (filtercontent.style.display == "none") {
+        filtericon.className = "fas fa-chevron-up";
+        filtercontent.style.display = "block";
+    } else {
+        filtericon.className = "fas fa-chevron-down";
+        filtercontent.style.display = "none";
+    }
+});
 
 
 function verifyInput(inputList) {
