@@ -40,6 +40,10 @@
             </fieldset>
                     <div id="after-dates">
                         <input type="text" id="search-available" placeholder="Search for a product...">
+                        <div id="selectedCheckbox">
+                            <label for="showSelected" id="showSelected-label">Show selected products</label>
+                            <input type="checkbox" name="showSelected" id="showSelected" checked="checked">
+                        </div>
                         <ul id="products-list" class="list-group list-group-flush"> 
                         </ul>
                     </div>

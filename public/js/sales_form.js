@@ -1,16 +1,28 @@
-import { validateRequirements, createErrors } from "./http_error.js";
+import {
+    validateRequirements,
+    createErrors
+} from "./http_error.js";
 import request from "./request.js";
-import { removeAll } from "./utils.js";
-import { buildPagination } from "./pagination.js";
+import {
+    removeAll
+} from "./utils.js";
+import {
+    buildPagination
+} from "./pagination.js";
 
 const dBegin = document.querySelector("#begin");
 const dEnd = document.querySelector("#end");
 const queryText = document.getElementById("search-available");
-const hideProducts = document.getElementById("after-dates");
-
-let errors;
+const hideDiv = document.getElementById("after-dates");
 const form = document.querySelector("#submit-button");
+const showSelected = document.getElementById("showSelected");
+
+let productsChecked = new Set();
+let productsUnchecked = new Set();
+
 let changed = false;
+let errors;
+
 
 function verifyInput(inputList) {
     let valErrors = validateRequirements(inputList);
@@ -19,23 +31,19 @@ function verifyInput(inputList) {
         li.textContent = "Begin date must be before End date";
         if (valErrors) valErrors.appendChild(li);
         else
-            valErrors = createErrors([
-                {
-                    id: "Begin date",
-                    message: " must be before End date",
-                },
-            ]);
-    } else if (changed && (new Date(dBegin.value) < new Date().setHours(0,0,0,0) || new Date(dEnd.value) < new Date().setHours(0,0,0,0))) {
+            valErrors = createErrors([{
+                id: "Begin date",
+                message: " must be before End date",
+            }, ]);
+    } else if (changed && (new Date(dBegin.value) < new Date().setHours(0, 0, 0, 0) || new Date(dEnd.value) < new Date().setHours(0, 0, 0, 0))) {
         const li = document.createElement("li");
         li.textContent = "Can't choose a date that has already passed";
         if (valErrors) valErrors.appendChild(li);
         else
-            valErrors = createErrors([
-                {
-                    id: "A date chosen",
-                    message: " can't have passed",
-                },
-            ]);
+            valErrors = createErrors([{
+                id: "A date chosen",
+                message: " can't have passed",
+            }, ]);
     }
 
     errors && errors.remove();
@@ -48,7 +56,7 @@ const availableProducts = async (pg = 1) => {
     if (!dBegin.value || !dEnd.value) {
         removeAll(productList);
         legend.textContent = "Select a date range to view eligible products";
-        hideProducts.style.display = "none";
+        hideDiv.style.display = "none";
         return;
     }
     const valErrors = verifyInput(["begin", "end"], changed);
@@ -58,34 +66,39 @@ const availableProducts = async (pg = 1) => {
         errors = valErrors;
     } else {
         legend.textContent = "Select the eligible products";
-        hideProducts.style.display = "block";
+        hideDiv.style.display = "block";
         const saleID = document.querySelector("#sale-id").value;
-        
+
 
         const formContent = {
             begin: dBegin.value,
             end: dEnd.value,
             page: pg,
-            query: queryText.value
+            query: queryText.value,
+            showSelected: +showSelected.checked,
+            productsChecked: Array.from(productsChecked),
+            productsUnchecked: Array.from(productsUnchecked)
         };
 
         console.log(formContent);
+
 
         if (saleID != -1) formContent.id = saleID;
 
         const data = await request({
             url: "/manager/sale/products",
-            method: "GET",
-            content: formContent,
-        });
+            method: "POST",
+            content: formContent
+        },false);
 
+        console.log(data);
         const container = buildProductsList(data.products);
         container.appendChild(
             buildPagination(pg, data.pages, (page) => {
                 availableProducts(page);
             })
         );
-        
+
 
     }
 };
@@ -100,6 +113,10 @@ dEnd.addEventListener("change", () => {
     availableProducts();
 });
 
+showSelected.addEventListener("change", () => {
+    availableProducts(); 
+});
+
 queryText.addEventListener("keydown", (event) => {
     if (event.keyCode === 13) {
         event.preventDefault();
@@ -107,8 +124,19 @@ queryText.addEventListener("keydown", (event) => {
         availableProducts();
         return false;
     }
-    
+
 })
+
+showSelected.addEventListener("change", (event) => {
+    if (event.target.checked) {
+        console.log("Got checked");
+    } else {
+        console.log("Got Unchecked");
+    }
+});
+
+
+
 
 document.querySelector("#sales-form").addEventListener("submit", (event) => {
     const valErrors = verifyInput(["begin", "end", "percentage"], changed);
@@ -169,6 +197,18 @@ const buildProductsList = (products) => {
         row.appendChild(price);
         item.appendChild(row);
         list.appendChild(item);
+
+        checkbox.addEventListener("change", (e) => {
+            if (e.target.checked) { 
+                productsUnchecked.delete(product.id);
+                productsChecked.add(product.id);
+            } else { 
+                productsChecked.delete(product.id);
+                productsUnchecked.add(product.id);
+            }
+        })
+
+
     });
 
     if (products.length == 0) {
