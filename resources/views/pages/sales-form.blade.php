@@ -33,7 +33,7 @@
     </div>
     <div class="row">
         <fieldset id="products-sales" name="apply-products" class="col">
-            <h5 class="text-center" id="legend">Select a date range to view eligible products</h5>
+            <h4 class="text-center" id="legend">Select a date range to view eligible products</h4>
         </fieldset>
 
     </div>
@@ -43,7 +43,7 @@
     <div class="row" id="selProducts">
         <div id="after-dates" class="col ">  
             <div class="row">
-                <div class="col-lg-4 categories-col">
+                <div class="col-lg-4 categories-col" id="category-col">
                     @include('components.categories')
                 </div>
                 <div class="col">
