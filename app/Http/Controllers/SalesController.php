@@ -113,7 +113,11 @@ class SalesController extends Controller
             'productsChecked' => ['array','nullable'],
             'productsChecked.*' => ['int'],
             'productsUnchecked' => ['array','nullable'],
-            'productsUnchecked.*' => ['int']
+            'productsUnchecked.*' => ['int'],
+            'categories' => ['array','nullable'],
+            'categories.*' => ['string'],
+            'pricemin' => ['numeric'],
+            'pricemax' => ['numeric']
         ]);
         
 
@@ -125,6 +129,9 @@ class SalesController extends Controller
         $showSelected = $request->input('showSelected');
         $productsUnchecked = $request->input('productsUnchecked');
         $productsChecked = $request->input('productsChecked');
+        $categories = $request->input('categories');
+        $pricemin = $request->input('pricemin');
+        $pricemax = $request->input('pricemax');
 
 
         $onGoing = $this->getOnGoingSales($begin, $end);
@@ -144,7 +151,7 @@ class SalesController extends Controller
 
         $availableProducts = DB::table('product')
             ->distinct()
-            ->select('product.id', 'name', 'price', 'img_name', 'image.description as alt');
+            ->select('product.id', 'product.name', 'price', 'img_name', 'image.description as alt');
         
         if($query){
             $availableProducts = $this->SalestextQuery($availableProducts,$query);
@@ -156,10 +163,19 @@ class SalesController extends Controller
             ->join('product_image', 'product_image.id_product', 'product.id')
             ->join('image', 'image.id', 'product_image.id_image');
 
+        if($categories){
+            $availableProducts = $availableProducts
+            ->join('product_tag', 'product_tag.id_product', 'product.id')
+            ->join('tag', 'tag.id', 'product_tag.id_tag')
+            ->whereIn('tag.name', $categories);
+        }
+
         if($query){
             $availableProducts = $availableProducts->orderByDesc('ranking');
         }
-            $availableProducts = $availableProducts->get()
+            $availableProducts = $availableProducts
+            ->whereBetween('price',[$pricemin,$pricemax])
+            ->get()
             ->whereNotIn('id', $unavailableProducts)
             ->all();
         $availableProducts = array_values($availableProducts);
@@ -174,7 +190,7 @@ class SalesController extends Controller
             ->pluck('product.id')->all();
             $appliedIds = array_merge($appliedIds,$productsChecked);
             $appliedProducts = DB::table('product')
-                ->select('product.id', 'name', 'price', 'img_name', 'image.description as alt');
+                ->select('product.id', 'product.name', 'price', 'img_name', 'image.description as alt');
             
             if($query){
                 $appliedProducts = $this->SalestextQuery($appliedProducts,$query);
@@ -183,6 +199,14 @@ class SalesController extends Controller
             $appliedProducts = $appliedProducts 
                 ->join('product_image', 'product_image.id_product', 'product.id')
                 ->join('image', 'image.id', 'product_image.id_image');
+
+            if($categories){
+                $appliedProducts = $appliedProducts
+                    ->join('product_tag', 'product_tag.id_product', 'product.id')
+                    ->join('tag', 'tag.id', 'product_tag.id_tag')
+                    ->whereIn('tag.name', $categories);
+            }
+
             
             if($query){
                 $appliedProducts = $appliedProducts->orderByDesc('ranking');
@@ -190,6 +214,7 @@ class SalesController extends Controller
                
             $appliedProducts = $appliedProducts
                 ->whereIn('product.id',$appliedIds)
+                ->whereBetween('price',[$pricemin,$pricemax])
                 ->whereNotIn('product.id',$productsUnchecked)
                 ->get()
                 ->all();

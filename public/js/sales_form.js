@@ -17,12 +17,36 @@ const hideDiv = document.getElementById("selProducts");
 const form = document.querySelector("#submit-button");
 const showSelected = document.getElementById("showSelected");
 const saleID = document.querySelector("#sale-id").value;
+const catCheckboxes = document.querySelectorAll(
+    "#categories .custom-control-input"
+);
 
 let productsChecked = new Set();
 let productsUnchecked = new Set();
+let productCategories = new Set();
 
 let changed = false;
 let errors;
+//price range control
+const priceinputmin = document.querySelector(
+    ".price .price-inputs .min-input input"
+);
+const priceinputmax = document.querySelector(
+    ".price .price-inputs .max-input input"
+);
+priceinputmin.min = 1;
+priceinputmin.max = 99;
+priceinputmax.min = 2;
+priceinputmax.max = 100;
+
+const pricevaluemin = document.querySelector(".price .price-values .min p");
+const pricevaluemax = document.querySelector(".price .price-values .max p");
+
+priceinputmin.value = 1;
+priceinputmax.value = 100;
+let priceinputminoldvalue = 1;
+let priceinputmaxoldvalue = 100;
+
 
 
 function verifyInput(inputList) {
@@ -68,8 +92,6 @@ const availableProducts = async (pg = 1) => {
     } else {
         legend.textContent = "Select the eligible products";
         hideDiv.style.display = "block";
-        
-
 
         const formContent = {
             begin: dBegin.value,
@@ -78,7 +100,10 @@ const availableProducts = async (pg = 1) => {
             query: queryText.value,
             showSelected: +showSelected.checked,
             productsChecked: Array.from(productsChecked),
-            productsUnchecked: Array.from(productsUnchecked)
+            productsUnchecked: Array.from(productsUnchecked),
+            categories: Array.from(productCategories),
+            pricemin: priceinputminoldvalue,
+            pricemax: priceinputmaxoldvalue
         };
 
         if (saleID != -1) formContent.id = saleID;
@@ -87,7 +112,7 @@ const availableProducts = async (pg = 1) => {
             url: "/manager/sale/products",
             method: "POST",
             content: formContent
-        },false);
+        }, false);
 
         const container = buildProductsList(data.products);
         container.appendChild(
@@ -111,7 +136,7 @@ dEnd.addEventListener("change", () => {
 });
 
 showSelected.addEventListener("change", () => {
-    availableProducts(); 
+    availableProducts();
 });
 
 queryText.addEventListener("keydown", (event) => {
@@ -122,14 +147,21 @@ queryText.addEventListener("keydown", (event) => {
         return false;
     }
 
-})
+});
 
-showSelected.addEventListener("change", (event) => {
-    if (event.target.checked) {
-        console.log("Got checked");
-    } else {
-        console.log("Got Unchecked");
-    }
+
+
+
+catCheckboxes.forEach((element) => {
+
+    element.addEventListener("change", (event) => {
+        if (event.target.checked) {
+            productCategories.add(event.target.id);
+        } else {
+            productCategories.delete(event.target.id);
+        }
+        availableProducts();
+    });
 });
 
 
@@ -164,7 +196,7 @@ form.addEventListener("click", async (event) => {
         content: formContent
     }, false);
 
-   
+
     if (data.status == 200) {
         window.location.replace("/manager");
     }
@@ -211,10 +243,10 @@ const buildProductsList = (products) => {
         list.appendChild(item);
 
         checkbox.addEventListener("change", (e) => {
-            if (e.target.checked) { 
+            if (e.target.checked) {
                 productsUnchecked.delete(product.id);
                 productsChecked.add(product.id);
-            } else { 
+            } else {
                 productsChecked.delete(product.id);
                 productsUnchecked.add(product.id);
             }
@@ -231,3 +263,36 @@ const buildProductsList = (products) => {
 };
 
 if (dBegin.value && dEnd.value) availableProducts();
+
+function priceInputHandler() {
+    if (priceinputmin.valueAsNumber >= priceinputmax.valueAsNumber) {
+        if (priceinputmin.valueAsNumber == priceinputminoldvalue) {
+            priceinputmin.value =
+                priceinputmin.valueAsNumber == 1 ?
+                priceinputmin.valueAsNumber :
+                priceinputmax.valueAsNumber - 1;
+        } else if (priceinputmax.valueAsNumber == priceinputmaxoldvalue) {
+            priceinputmax.value =
+                priceinputmax.valueAsNumber == 100 ?
+                priceinputmax.valueAsNumber :
+                priceinputmin.valueAsNumber + 1;
+        }
+    }
+
+    if (priceinputmin.value == 0) priceinputmin.value = 1;
+    if (priceinputmax.value == 0) priceinputmax.value = 100;
+
+    pricevaluemin.textContent = priceinputmin.value + "€";
+    pricevaluemax.textContent = priceinputmax.value + "€";
+    priceinputminoldvalue = priceinputmin.valueAsNumber;
+    priceinputmaxoldvalue = priceinputmax.valueAsNumber;
+
+    availableProducts();
+}
+
+priceinputmin.addEventListener("input", priceInputHandler, false);
+
+priceinputmax.addEventListener("input", priceInputHandler, false);
+
+
+
