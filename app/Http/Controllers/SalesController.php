@@ -104,20 +104,20 @@ class SalesController extends Controller
 
         
         $request->validate([
-            'begin' => 'required|date',
-            'end' => 'required|date',
-            'id' => 'nullable|numeric|min:1',
-            'page' => 'required|numeric|min:0',
+            'begin' => ['required','date'],
+            'end' =>[ 'required','date'],
+            'id' => ['nullable','numeric','min:1'],
+            'page' => ['required','numeric','min:0'],
             'query' => ['string', 'nullable'],
-            'showSelected' => 'boolean',
+            'showSelected' => ['boolean'],
             'productsChecked' => ['array','nullable'],
             'productsChecked.*' => ['int'],
             'productsUnchecked' => ['array','nullable'],
             'productsUnchecked.*' => ['int'],
             'categories' => ['array','nullable'],
             'categories.*' => ['string'],
-            'pricemin' => ['numeric'],
-            'pricemax' => ['numeric']
+            'pricemin' => ['required','numeric'],
+            'pricemax' => ['required','numeric']
         ]);
         
 
@@ -127,8 +127,8 @@ class SalesController extends Controller
         $page = $request->input('page');
         $query = $request->input('query');
         $showSelected = $request->input('showSelected');
-        $productsUnchecked = $request->input('productsUnchecked');
-        $productsChecked = $request->input('productsChecked');
+        $productsUnchecked = ($request->input('productsUnchecked') === null ? [] : $request->input('productsUnchecked'));
+        $productsChecked =   ($request->input('productsChecked') === null ?   [] : $request->input('productsChecked') );
         $categories = $request->input('categories');
         $pricemin = $request->input('pricemin');
         $pricemax = $request->input('pricemax');
@@ -274,8 +274,8 @@ class SalesController extends Controller
         $percentage = $request->input('percentage');
         $begin = $request->input('begin');
         $end = $request->input('end');
-        $productsChecked = $request->input('productsChecked');
-        $productsUnchecked = $request->input('productsUnchecked');
+        $productsUnchecked = ($request->input('productsUnchecked') === null ? [] : $request->input('productsUnchecked'));
+        $productsChecked =   ($request->input('productsChecked') === null ?   [] : $request->input('productsChecked') );
         
         if ($begin > $end)
             return response()->json(['message' => 'Begin date can\'t be after End date'], 400);
@@ -299,7 +299,7 @@ class SalesController extends Controller
 
         DB::commit();
 
-        return response(200);
+        return response()->json(['message' => 'Sale updated with success'],200);
     }
 
     public function  SalestextQuery($products, $query)
