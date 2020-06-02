@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
       $manager->password_hash = bcrypt('rootroot');
       $manager->date = '1920-01-01';
       $manager->user_role = 'Manager';
-      $manager->id_image = 15;
+      $manager->id_image = 81;
       $manager->save();
       $user = new User();
       $user->username = 'johndoe';
@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
       $user->password_hash = bcrypt('johndoe');
       $user->date = '1920-01-01';
       $user->user_role = 'Customer';
-      $user->id_image = 15;
+      $user->id_image = 81;
       $user->security_question = 'Socks';
       $user->save();
       $wishlist = new Wishlist();

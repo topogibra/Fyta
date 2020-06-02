@@ -60,7 +60,7 @@ CREATE TABLE "order" (
   shipping_id TEXT NOT NULL,
   billing_address TEXT,
   delivery_address TEXT NOT NULL,
-  order_date DATE DEFAULT now() NOT NULL,
+  order_date TIMESTAMP DEFAULT DATE_TRUNC('second', NOW()) NOT NULL,
   payment_method "payment_method" NOT NULL,
   username TEXT NOT NULL,
   id_user INTEGER,
@@ -84,7 +84,7 @@ CREATE TABLE review (
   id_order INTEGER NOT NULL,
   "description" TEXT,
   rating INTEGER NOT NULL,
-  review_date DATE DEFAULT now() NOT NULL,
+  review_date TIMESTAMP DEFAULT DATE_TRUNC('second', NOW()) NOT NULL,
   CONSTRAINT review_rating_check CHECK (
     rating >= 1
     AND rating <= 5
@@ -96,7 +96,7 @@ CREATE TABLE review (
 DROP TABLE IF EXISTS order_history CASCADE;
 CREATE TABLE order_history (
   id SERIAL,
-  "date" DATE DEFAULT now() NOT NULL,
+  "date" TIMESTAMP DEFAULT  DATE_TRUNC('second', NOW()) NOT NULL,
   id_order INTEGER NOT NULL,
   order_status "order_status" NOT NULL,
   CONSTRAINT order_history_pk PRIMARY KEY (id),
@@ -183,7 +183,7 @@ CREATE TABLE ticket (
 DROP TABLE IF EXISTS ticket_message CASCADE;
 CREATE TABLE ticket_message (
   id SERIAL,
-  sent_date DATE NOT NULL,
+  sent_date TIMESTAMP NOT NULL,
   "message" TEXT NOT NULL,
   id_ticket INTEGER NOT NULL,
   id_user INTEGER NOT NULL,
@@ -194,7 +194,7 @@ CREATE TABLE ticket_message (
 DROP TABLE IF EXISTS ticket_history CASCADE;
 CREATE TABLE ticket_history (
   id SERIAL,
-  "date" DATE DEFAULT now() NOT NULL,
+  "date" TIMESTAMP DEFAULT DATE_TRUNC('second', NOW()) NOT NULL,
   ticket_status "ticket_status" NOT NULL,
   id_ticket INTEGER,
   CONSTRAINT ticket_history_pk PRIMARY KEY (id),
@@ -213,7 +213,7 @@ CREATE TABLE user_removal (
   id SERIAL,
   reason TEXT NOT NULL,
   username TEXT NOT NULL,
-  removed_at DATE DEFAULT now() NOT NULL,
+  removed_at TIMESTAMP DEFAULT DATE_TRUNC('second', NOW()) NOT NULL,
   CONSTRAINT user_removal_pk PRIMARY KEY (id)
 );
 -- Triggers
@@ -344,473 +344,156 @@ CREATE INDEX product_fts ON product USING GIN (
 
 
 --R18
-INSERT INTO "image" (img_name,"description") VALUES ('orquideas.jpg','Rose Orchid');
-INSERT INTO "image" (img_name,"description") VALUES ('vaso.jpg','XPR Vase');
-INSERT INTO "image" (img_name,"description") VALUES ('bonsai2.jpg','Bonsai CRT');
-INSERT INTO "image" (img_name,"description") VALUES ('tulipas.jpg','Orange Tulips');
-INSERT INTO "image" (img_name,"description") VALUES ('meatrose_indoor.jpg','Meat Rose');
-INSERT INTO "image" (img_name,"description") VALUES ('reddahlia_indoor.jpg','Red Dahlias');
-INSERT INTO "image" (img_name,"description") VALUES ('pinktulips_indoor.jpg','Pink Tulips');
-INSERT INTO "image" (img_name,"description") VALUES ('sativa_indoor.jpg','Sativa Prime');
-INSERT INTO "image" (img_name,"description") VALUES ('greenpalm_outdoor.jpg','Green Palm Tree');
-INSERT INTO "image" (img_name,"description") VALUES ('lavender_outdoor.jpg','Lavender Premium');
-INSERT INTO "image" (img_name,"description") VALUES ('mohammad-faruque-AgYOuy8kA7M-unsplash.jpg','Mohammad Faruque');
-INSERT INTO "image" (img_name,"description") VALUES ('dannie_almir.jpg','Dannie Almir');
-INSERT INTO "image" (img_name,"description") VALUES ('simone.jpeg','Simone Biles');
-INSERT INTO "image" (img_name,"description") VALUES ('sisay_jeremiah_small.jpg','Sisay Jeremiah');
+--Indoor plants
+INSERT INTO "image" (img_name,"description") VALUES ('orquideas.jpg','Rose Orchid'),('bonsai2.jpg','Bonsai CRT'),('tulipas.jpg','Orange Tulips'),('meatrose_indoor.jpg','Meat Rose');
+INSERT INTO "image" (img_name,"description") VALUES ('pinktulips_indoor.jpg','Pink Tulips'),('sativa_indoor.jpg','Sativa Prime'),('bulb_bonsai.jpg','Bulbous Bonsai'),('reddahlia_indoor.jpg','Red Dahlias');
+--Outdoor plants
+INSERT INTO "image" (img_name,"description") VALUES ('greenpalm_outdoor.jpg','Green Palm Tree'),('lavender_outdoor.jpg','Lavender Premium'),('pondlilies_outdoor.jpg','White Pond Lilies'),('sunflower_outdoor.jpg','Golden Sunflowers');
+INSERT INTO "image" (img_name,"description") VALUES ('hydrangeas_outdoor.jpg','Lilac Hydrangeas'),('succulent_outdoor.jpg','Green Succulents'),('pinkcaladium_outdoor.jpg','Pink Caladium'),('redroses_outdoor.jpg','Red Roses');
+--Tools
+INSERT INTO "image" (img_name,"description") VALUES ('gloves_tool.jpg','Gardening Gloves'),('mower_tool.jpg','Lawn Mower'),('grass_cutter.jpg','Grass Cutter'),('green_trowel.jpg','Green Trowel');
+INSERT INTO "image" (img_name,"description") VALUES ('red_cutters.jpg','Small Red Scissors'),('toolkit.jpg','Gardening Toolkit'),('watering_can.jpg','Green Water Can - 12l');
+--Vases
+INSERT INTO "image" (img_name,"description") VALUES ('vaso.jpg','XPR Vase'),('babyblue_vase.jpg','Baby Blue Vase'),('blueceramic_vase.jpg','Traditional Ceramic Vase'),('blackplastic_vase.jpg','Black Vase');
+INSERT INTO "image" (img_name,"description") VALUES ('beige_vase.jpg','Beige Ceramic Vase'),('greenglass_vase.jpg','Green Glass Vase'),('pink_vase.jpg','Pink Bright Vase');
+
+--users
+INSERT INTO "image" (img_name,"description") VALUES ('sisay_jeremiah_small.jpg','Sisay Jeremiah'),('dannie_almir.jpg','Dannie Almir'),('mohammad-faruque-AgYOuy8kA7M-unsplash.jpg','Mohammad Faruque'),('simone.jpeg','Simone Biles'),('josh_miller.jpg','Josh Miller');
+INSERT INTO "image" (img_name,"description") VALUES ('kelly_mahagan.jpg','Kelly Mahagan'),('suzana_constancia.jpg','Suzana Constancia'),('savingcountrysinceborn.jpg','Ellie Black'),('nadal.jpg','Thomas'),('frederique_cousteau.jpg','Frederique Cousteau');
+
+INSERT INTO "image" (img_name,"description") VALUES ('marius_ciocirlan11.jpg','Marius Ciocirlan'),('seth-doyle12.jpg','Seth Doyle'),('girl-13.jpg','Ramona Martinez'),('girl-14.jpg','Meghan'),('boy-15.jpg','Robert Muchamore');
+INSERT INTO "image" (img_name,"description") VALUES ('boy-16.jpg','Timothy Donald'),('jessica-felicio-17.jpg','Jessica Felicio'),('milada-vigerova-18.jpg','Milada Vigerova'),('emily-sea-19.jpg','Emily Sea'),('boy-20.jpg','Hiram');
+
+INSERT INTO "image" (img_name,"description") VALUES ('boy-21.jpg','Cadman Lilac'),('girl-22.jpg','Beatrice'),('girl-23.jpg','Mercedes'),('boy-24.jpg','Amir'),('boy-25.jpg','Nell ONeil');
+INSERT INTO "image" (img_name,"description") VALUES ('girl-26.jpg','Holly Frax'),('nicolas-horn-27.jpg','Nicolas Horn'),('clem-onojeghuo-28.jpg','Clem Onojeghuo'),('daniel-pascoa-29.jpg','Daniel Pascoa'),('boy-30.jpg','Gavin Mohall');
+
+INSERT INTO "image" (img_name,"description") VALUES ('lucas-lenzi-4-31.jpg','Lucas Lenzi'),('hannah-busing-32.jpg','Hannah Busing'),('raquel-santana-33.jpg','Raquel Santana'),('girl-34.jpg','Chantale'),('nikola-jelenkovic-35.jpg','Nikola Jelenkovic');
+INSERT INTO "image" (img_name,"description") VALUES ('billie-36.jpg','Billie Jean'),('mika-37.jpg','Mika'),('girl-38.jpg','Aretha Frank'),('girl-39.jpg','Xena'),('boy-40.jpg','Chandler Bong');
+
+INSERT INTO "image" (img_name,"description") VALUES ('roman-stetskov-41.jpg','Roman Stetskov'),('boy-42.jpg','Drew Barry'),('leighann-blackwood-43.jpg','Leighann Blackwood'),('girl-44.jpg','Inga'),('girl-45.jpg','Anika');
+INSERT INTO "image" (img_name,"description") VALUES ('girl-46.jpg','Alexis'),('ishan-seefromthesky-47.jpg','Ishan Seefrom'),('girl-48.jpg','Colette Raquelette'),('simon-berger-49.jpg','Simon Berger'),('jorge-saavedra-50.jpg','Jorge Saavedra');
+
+--special
 INSERT INTO "image" (img_name,"description") VALUES ('kitty.jpg','The best kitty');
 
 
 --R01
-INSERT INTO product ("name","description",price,stock,views) VALUES ('Erica carnea White',
-'This variety will provide you with white flowers and plenty of interest in your garden or on your patio long after other 
-flowers have faded and the garden takes on a somewhat barren look. Not as fussy with soil as their counterparts, 
-they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,50,100),
-                                                                   ('Amaryllis Floris Hekker',
-'Hippeastrum Amaryllis Floris Hekker is an excellent variety to help brighten up your home. It produces plenty of large 
-velvety-red blooms with deep dark red centres.It’s a great variety for an eye-catching display in your home or as a memorable
-gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,50,150),
-                                                                    ('Mini Lemon Tree',
-'This cold resistant Lemon tree is highly decorative providing year round interest with its glossy evergreen leaves, 
-pretty fragrant flowers and edible fruit.These miniature trees are easy to care for and ideal for on a sunny windowsill indoors, 
-they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
-                                                                    ('Mini Phalaenopsis Purple',
-'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,50,450),
-                                                                    ('Crassula perforata Giant Form',
-'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
-Jade plants make great housewarming gifts as they are often called the money plant 
-or dollar plant, because they were once thought to bring good luck to their owners.',14.00,50,451),
-                                                                    ('Aloes mitriformis fluorescent',
-'This dwarf version of Aloe has strong sturdy leaves arranged in rosettes with fine yellow-white serrations.
-It is useful for many skin conditions as it eases pain and reduces inflammation.
-Aloe also makes a great houseplant, it is very easy to grow and will thrive on any sunny windowsill 
-with the minimum of effort.',20.00,50,450),
-                                                                    ('Gardenia jasminoides',
-'This beautiful plant is perfect for both indoors and out. The lovely rose-like flowers in ivory-white emit a heavy scent 
-perfuming your living room or patio. In the language of flowers gardenia signifies ‘secret love’ 
-and represents purity, refinement and peace.',14.00,50,784),
-                                                                    ('Mini Apple Tree Malus Red Spur',
-'Harvest your own delicious apples from this fine self-fertile mini apple tree. It produces full sized tasty
- fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,50,364),
-                                                                    ('Aquilegia Spring Magic Blue',
-'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
-The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
-They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.',22.00,50,123),
-                                                                    ('Climbing Rose New Dawn',
-'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
-silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
-This vigorous climber flourishes in both sun or partial shade and its attractive dark green glossy foliage has 
-a good disease resistance.',65.00,50,1204);
-INSERT INTO product ("name","description",price,stock,views) VALUES ('Erica carnea White',
-'This variety will provide you with white flowers and plenty of interest in your garden or on your patio long after other 
-flowers have faded and the garden takes on a somewhat barren look. Not as fussy with soil as their counterparts, 
-they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,50,100),
-                                                                   ('Amaryllis Floris Hekker',
-'Hippeastrum Amaryllis Floris Hekker is an excellent variety to help brighten up your home. It produces plenty of large 
-velvety-red blooms with deep dark red centres.It’s a great variety for an eye-catching display in your home or as a memorable
-gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,50,150),
-                                                                    ('Mini Lemon Tree',
-'This cold resistant Lemon tree is highly decorative providing year round interest with its glossy evergreen leaves, 
-pretty fragrant flowers and edible fruit.These miniature trees are easy to care for and ideal for on a sunny windowsill indoors, 
-they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
-                                                                    ('Mini Phalaenopsis Purple',
-'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,50,450),
-                                                                    ('Crassula perforata Giant Form',
-'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
-Jade plants make great housewarming gifts as they are often called the money plant 
-or dollar plant, because they were once thought to bring good luck to their owners.',14.00,50,451),
-                                                                    ('Aloes mitriformis fluorescent',
-'This dwarf version of Aloe has strong sturdy leaves arranged in rosettes with fine yellow-white serrations.
-It is useful for many skin conditions as it eases pain and reduces inflammation.
-Aloe also makes a great houseplant, it is very easy to grow and will thrive on any sunny windowsill 
-with the minimum of effort.',20.00,50,450),
-                                                                    ('Gardenia jasminoides',
-'This beautiful plant is perfect for both indoors and out. The lovely rose-like flowers in ivory-white emit a heavy scent 
-perfuming your living room or patio. In the language of flowers gardenia signifies ‘secret love’ 
-and represents purity, refinement and peace.',14.00,50,784),
-                                                                    ('Mini Apple Tree Malus Red Spur',
-'Harvest your own delicious apples from this fine self-fertile mini apple tree. It produces full sized tasty
- fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,50,364),
-                                                                    ('Aquilegia Spring Magic Blue',
-'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
-The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
-They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.',22.00,50,123),
-                                                                    ('Climbing Rose New Dawn',
-'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
-silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
-This vigorous climber flourishes in both sun or partial shade and its attractive dark green glossy foliage has 
-a good disease resistance.',65.00,50,1204);
-INSERT INTO product ("name","description",price,stock,views) VALUES ('Erica carnea White',
-'This variety will provide you with white flowers and plenty of interest in your garden or on your patio long after other 
-flowers have faded and the garden takes on a somewhat barren look. Not as fussy with soil as their counterparts, 
-they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,50,100),
-                                                                   ('Amaryllis Floris Hekker',
-'Hippeastrum Amaryllis Floris Hekker is an excellent variety to help brighten up your home. It produces plenty of large 
-velvety-red blooms with deep dark red centres.It’s a great variety for an eye-catching display in your home or as a memorable
-gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,50,150),
-                                                                    ('Mini Lemon Tree',
-'This cold resistant Lemon tree is highly decorative providing year round interest with its glossy evergreen leaves, 
-pretty fragrant flowers and edible fruit.These miniature trees are easy to care for and ideal for on a sunny windowsill indoors, 
-they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
-                                                                    ('Mini Phalaenopsis Purple',
-'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,50,450),
-                                                                    ('Crassula perforata Giant Form',
-'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
-Jade plants make great housewarming gifts as they are often called the money plant 
-or dollar plant, because they were once thought to bring good luck to their owners.',14.00,50,451),
-                                                                    ('Aloes mitriformis fluorescent',
-'This dwarf version of Aloe has strong sturdy leaves arranged in rosettes with fine yellow-white serrations.
-It is useful for many skin conditions as it eases pain and reduces inflammation.
-Aloe also makes a great houseplant, it is very easy to grow and will thrive on any sunny windowsill 
-with the minimum of effort.',20.00,50,450),
-                                                                    ('Gardenia jasminoides',
-'This beautiful plant is perfect for both indoors and out. The lovely rose-like flowers in ivory-white emit a heavy scent 
-perfuming your living room or patio. In the language of flowers gardenia signifies ‘secret love’ 
-and represents purity, refinement and peace.',14.00,50,784),
-                                                                    ('Mini Apple Tree Malus Red Spur',
-'Harvest your own delicious apples from this fine self-fertile mini apple tree. It produces full sized tasty
- fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,50,364),
-                                                                    ('Aquilegia Spring Magic Blue',
-'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
-The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
-They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.',22.00,50,123),
-                                                                    ('Climbing Rose New Dawn',
-'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
-silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
-This vigorous climber flourishes in both sun or partial shade and its attractive dark green glossy foliage has 
-a good disease resistance.',65.00,50,1204);
-INSERT INTO product ("name","description",price,stock,views) VALUES ('Erica carnea White',
-'This variety will provide you with white flowers and plenty of interest in your garden or on your patio long after other 
-flowers have faded and the garden takes on a somewhat barren look. Not as fussy with soil as their counterparts, 
-they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,50,100),
-                                                                   ('Amaryllis Floris Hekker',
-'Hippeastrum Amaryllis Floris Hekker is an excellent variety to help brighten up your home. It produces plenty of large 
-velvety-red blooms with deep dark red centres.It’s a great variety for an eye-catching display in your home or as a memorable
-gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,50,150),
-                                                                    ('Mini Lemon Tree',
-'This cold resistant Lemon tree is highly decorative providing year round interest with its glossy evergreen leaves, 
-pretty fragrant flowers and edible fruit.These miniature trees are easy to care for and ideal for on a sunny windowsill indoors, 
-they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
-                                                                    ('Mini Phalaenopsis Purple',
-'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,50,450),
-                                                                    ('Crassula perforata Giant Form',
-'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
-Jade plants make great housewarming gifts as they are often called the money plant 
-or dollar plant, because they were once thought to bring good luck to their owners.',14.00,50,451),
-                                                                    ('Aloes mitriformis fluorescent',
-'This dwarf version of Aloe has strong sturdy leaves arranged in rosettes with fine yellow-white serrations.
-It is useful for many skin conditions as it eases pain and reduces inflammation.
-Aloe also makes a great houseplant, it is very easy to grow and will thrive on any sunny windowsill 
-with the minimum of effort.',20.00,50,450),
-                                                                    ('Gardenia jasminoides',
-'This beautiful plant is perfect for both indoors and out. The lovely rose-like flowers in ivory-white emit a heavy scent 
-perfuming your living room or patio. In the language of flowers gardenia signifies ‘secret love’ 
-and represents purity, refinement and peace.',14.00,50,784),
-                                                                    ('Mini Apple Tree Malus Red Spur',
-'Harvest your own delicious apples from this fine self-fertile mini apple tree. It produces full sized tasty
- fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,50,364),
-                                                                    ('Aquilegia Spring Magic Blue',
-'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
-The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
-They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.',22.00,50,123),
-                                                                    ('Climbing Rose New Dawn',
-'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
-silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
-This vigorous climber flourishes in both sun or partial shade and its attractive dark green glossy foliage has 
-a good disease resistance.',65.00,50,1204);
-INSERT INTO product ("name","description",price,stock,views) VALUES ('Erica carnea White',
-'This variety will provide you with white flowers and plenty of interest in your garden or on your patio long after other 
-flowers have faded and the garden takes on a somewhat barren look. Not as fussy with soil as their counterparts, 
-they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,50,100),
-                                                                   ('Amaryllis Floris Hekker',
-'Hippeastrum Amaryllis Floris Hekker is an excellent variety to help brighten up your home. It produces plenty of large 
-velvety-red blooms with deep dark red centres.It’s a great variety for an eye-catching display in your home or as a memorable
-gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,50,150),
-                                                                    ('Mini Lemon Tree',
-'This cold resistant Lemon tree is highly decorative providing year round interest with its glossy evergreen leaves, 
-pretty fragrant flowers and edible fruit.These miniature trees are easy to care for and ideal for on a sunny windowsill indoors, 
-they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
-                                                                    ('Mini Phalaenopsis Purple',
-'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,50,450),
-                                                                    ('Crassula perforata Giant Form',
-'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
-Jade plants make great housewarming gifts as they are often called the money plant 
-or dollar plant, because they were once thought to bring good luck to their owners.',14.00,50,451),
-                                                                    ('Aloes mitriformis fluorescent',
-'This dwarf version of Aloe has strong sturdy leaves arranged in rosettes with fine yellow-white serrations.
-It is useful for many skin conditions as it eases pain and reduces inflammation.
-Aloe also makes a great houseplant, it is very easy to grow and will thrive on any sunny windowsill 
-with the minimum of effort.',20.00,50,450),
-                                                                    ('Gardenia jasminoides',
-'This beautiful plant is perfect for both indoors and out. The lovely rose-like flowers in ivory-white emit a heavy scent 
-perfuming your living room or patio. In the language of flowers gardenia signifies ‘secret love’ 
-and represents purity, refinement and peace.',14.00,50,784),
-                                                                    ('Mini Apple Tree Malus Red Spur',
-'Harvest your own delicious apples from this fine self-fertile mini apple tree. It produces full sized tasty
- fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,50,364),
-                                                                    ('Aquilegia Spring Magic Blue',
-'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
-The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
-They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.',22.00,50,123),
-                                                                    ('Climbing Rose New Dawn',
-'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
-silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
-This vigorous climber flourishes in both sun or partial shade and its attractive dark green glossy foliage has 
-a good disease resistance.',65.00,50,1204);
-INSERT INTO product ("name","description",price,stock,views) VALUES ('Erica carnea White',
-'This variety will provide you with white flowers and plenty of interest in your garden or on your patio long after other 
-flowers have faded and the garden takes on a somewhat barren look. Not as fussy with soil as their counterparts, 
-they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,50,100),
-                                                                   ('Amaryllis Floris Hekker',
-'Hippeastrum Amaryllis Floris Hekker is an excellent variety to help brighten up your home. It produces plenty of large 
-velvety-red blooms with deep dark red centres.It’s a great variety for an eye-catching display in your home or as a memorable
-gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,50,150),
-                                                                    ('Mini Lemon Tree',
-'This cold resistant Lemon tree is highly decorative providing year round interest with its glossy evergreen leaves, 
-pretty fragrant flowers and edible fruit.These miniature trees are easy to care for and ideal for on a sunny windowsill indoors, 
-they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
-                                                                    ('Mini Phalaenopsis Purple',
-'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,50,450),
-                                                                    ('Crassula perforata Giant Form',
-'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
-Jade plants make great housewarming gifts as they are often called the money plant 
-or dollar plant, because they were once thought to bring good luck to their owners.',14.00,50,451),
-                                                                    ('Aloes mitriformis fluorescent',
-'This dwarf version of Aloe has strong sturdy leaves arranged in rosettes with fine yellow-white serrations.
-It is useful for many skin conditions as it eases pain and reduces inflammation.
-Aloe also makes a great houseplant, it is very easy to grow and will thrive on any sunny windowsill 
-with the minimum of effort.',20.00,50,450),
-                                                                    ('Gardenia jasminoides',
-'This beautiful plant is perfect for both indoors and out. The lovely rose-like flowers in ivory-white emit a heavy scent 
-perfuming your living room or patio. In the language of flowers gardenia signifies ‘secret love’ 
-and represents purity, refinement and peace.',14.00,50,784),
-                                                                    ('Mini Apple Tree Malus Red Spur',
-'Harvest your own delicious apples from this fine self-fertile mini apple tree. It produces full sized tasty
- fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,50,364),
-                                                                    ('Aquilegia Spring Magic Blue',
-'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
-The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
-They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.',22.00,50,123),
-                                                                    ('Climbing Rose New Dawn',
-'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
-silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
-This vigorous climber flourishes in both sun or partial shade and its attractive dark green glossy foliage has 
-a good disease resistance.',65.00,50,1204);
-INSERT INTO product ("name","description",price,stock,views) VALUES ('Erica carnea White',
-'This variety will provide you with white flowers and plenty of interest in your garden or on your patio long after other 
-flowers have faded and the garden takes on a somewhat barren look. Not as fussy with soil as their counterparts, 
-they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,50,100),
-                                                                   ('Amaryllis Floris Hekker',
-'Hippeastrum Amaryllis Floris Hekker is an excellent variety to help brighten up your home. It produces plenty of large 
-velvety-red blooms with deep dark red centres.It’s a great variety for an eye-catching display in your home or as a memorable
-gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,50,150),
-                                                                    ('Mini Lemon Tree',
-'This cold resistant Lemon tree is highly decorative providing year round interest with its glossy evergreen leaves, 
-pretty fragrant flowers and edible fruit.These miniature trees are easy to care for and ideal for on a sunny windowsill indoors, 
-they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
-                                                                    ('Mini Phalaenopsis Purple',
-'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,50,450),
-                                                                    ('Crassula perforata Giant Form',
-'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
-Jade plants make great housewarming gifts as they are often called the money plant 
-or dollar plant, because they were once thought to bring good luck to their owners.',14.00,50,451),
-                                                                    ('Aloes mitriformis fluorescent',
-'This dwarf version of Aloe has strong sturdy leaves arranged in rosettes with fine yellow-white serrations.
-It is useful for many skin conditions as it eases pain and reduces inflammation.
-Aloe also makes a great houseplant, it is very easy to grow and will thrive on any sunny windowsill 
-with the minimum of effort.',20.00,50,450),
-                                                                    ('Gardenia jasminoides',
-'This beautiful plant is perfect for both indoors and out. The lovely rose-like flowers in ivory-white emit a heavy scent 
-perfuming your living room or patio. In the language of flowers gardenia signifies ‘secret love’ 
-and represents purity, refinement and peace.',14.00,50,784),
-                                                                    ('Mini Apple Tree Malus Red Spur',
-'Harvest your own delicious apples from this fine self-fertile mini apple tree. It produces full sized tasty
- fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,50,364),
-                                                                    ('Aquilegia Spring Magic Blue',
-'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
-The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
-They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.',22.00,50,123),
-                                                                    ('Climbing Rose New Dawn',
-'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
-silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
-This vigorous climber flourishes in both sun or partial shade and its attractive dark green glossy foliage has 
-a good disease resistance.',65.00,50,1204);
-INSERT INTO product ("name","description",price,stock,views) VALUES ('Erica carnea White',
-'This variety will provide you with white flowers and plenty of interest in your garden or on your patio long after other 
-flowers have faded and the garden takes on a somewhat barren look. Not as fussy with soil as their counterparts, 
-they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,50,100),
-                                                                   ('Amaryllis Floris Hekker',
-'Hippeastrum Amaryllis Floris Hekker is an excellent variety to help brighten up your home. It produces plenty of large 
-velvety-red blooms with deep dark red centres.It’s a great variety for an eye-catching display in your home or as a memorable
-gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,50,150),
-                                                                    ('Mini Lemon Tree',
-'This cold resistant Lemon tree is highly decorative providing year round interest with its glossy evergreen leaves, 
-pretty fragrant flowers and edible fruit.These miniature trees are easy to care for and ideal for on a sunny windowsill indoors, 
-they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
-                                                                    ('Mini Phalaenopsis Purple',
-'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,50,450),
-                                                                    ('Crassula perforata Giant Form',
-'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
-Jade plants make great housewarming gifts as they are often called the money plant 
-or dollar plant, because they were once thought to bring good luck to their owners.',14.00,50,451),
-                                                                    ('Aloes mitriformis fluorescent',
-'This dwarf version of Aloe has strong sturdy leaves arranged in rosettes with fine yellow-white serrations.
-It is useful for many skin conditions as it eases pain and reduces inflammation.
-Aloe also makes a great houseplant, it is very easy to grow and will thrive on any sunny windowsill 
-with the minimum of effort.',20.00,50,450),
-                                                                    ('Gardenia jasminoides',
-'This beautiful plant is perfect for both indoors and out. The lovely rose-like flowers in ivory-white emit a heavy scent 
-perfuming your living room or patio. In the language of flowers gardenia signifies ‘secret love’ 
-and represents purity, refinement and peace.',14.00,50,784),
-                                                                    ('Mini Apple Tree Malus Red Spur',
-'Harvest your own delicious apples from this fine self-fertile mini apple tree. It produces full sized tasty
- fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,50,364),
-                                                                    ('Aquilegia Spring Magic Blue',
-'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
-The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
-They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.',22.00,50,123),
-                                                                    ('Climbing Rose New Dawn',
-'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
-silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
-This vigorous climber flourishes in both sun or partial shade and its attractive dark green glossy foliage has 
-a good disease resistance.',65.00,50,1204);
-INSERT INTO product ("name","description",price,stock,views) VALUES ('Erica carnea White',
-'This variety will provide you with white flowers and plenty of interest in your garden or on your patio long after other 
-flowers have faded and the garden takes on a somewhat barren look. Not as fussy with soil as their counterparts, 
-they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,50,100),
-                                                                   ('Amaryllis Floris Hekker',
-'Hippeastrum Amaryllis Floris Hekker is an excellent variety to help brighten up your home. It produces plenty of large 
-velvety-red blooms with deep dark red centres.It’s a great variety for an eye-catching display in your home or as a memorable
-gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,50,150),
-                                                                    ('Mini Lemon Tree',
-'This cold resistant Lemon tree is highly decorative providing year round interest with its glossy evergreen leaves, 
-pretty fragrant flowers and edible fruit.These miniature trees are easy to care for and ideal for on a sunny windowsill indoors, 
-they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
-                                                                    ('Mini Phalaenopsis Purple',
-'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,50,450),
-                                                                    ('Crassula perforata Giant Form',
-'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
-Jade plants make great housewarming gifts as they are often called the money plant 
-or dollar plant, because they were once thought to bring good luck to their owners.',14.00,50,451),
-                                                                    ('Aloes mitriformis fluorescent',
-'This dwarf version of Aloe has strong sturdy leaves arranged in rosettes with fine yellow-white serrations.
-It is useful for many skin conditions as it eases pain and reduces inflammation.
-Aloe also makes a great houseplant, it is very easy to grow and will thrive on any sunny windowsill 
-with the minimum of effort.',20.00,50,450),
-                                                                    ('Gardenia jasminoides',
-'This beautiful plant is perfect for both indoors and out. The lovely rose-like flowers in ivory-white emit a heavy scent 
-perfuming your living room or patio. In the language of flowers gardenia signifies ‘secret love’ 
-and represents purity, refinement and peace.',14.00,50,784),
-                                                                    ('Mini Apple Tree Malus Red Spur',
-'Harvest your own delicious apples from this fine self-fertile mini apple tree. It produces full sized tasty
- fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,50,364),
-                                                                    ('Aquilegia Spring Magic Blue',
-'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
-The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
-They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.',22.00,50,123),
-                                                                    ('Climbing Rose New Dawn',
-'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
-silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
-This vigorous climber flourishes in both sun or partial shade and its attractive dark green glossy foliage has 
-a good disease resistance.',65.00,50,1204);
-INSERT INTO product ("name","description",price,stock,views) VALUES ('Erica carnea White',
-'This variety will provide you with white flowers and plenty of interest in your garden or on your patio long after other 
-flowers have faded and the garden takes on a somewhat barren look. Not as fussy with soil as their counterparts, 
-they will thrive in any well drained soil and form a low maintenance ground cover plant.',16.00,50,100),
-                                                                   ('Amaryllis Floris Hekker',
-'Hippeastrum Amaryllis Floris Hekker is an excellent variety to help brighten up your home. It produces plenty of large 
-velvety-red blooms with deep dark red centres.It’s a great variety for an eye-catching display in your home or as a memorable
-gift for a very special person. Plant your Amaryllis 8 weeks before you would like them to bloom!',18.00,50,150),
-                                                                    ('Mini Lemon Tree',
-'This cold resistant Lemon tree is highly decorative providing year round interest with its glossy evergreen leaves, 
-pretty fragrant flowers and edible fruit.These miniature trees are easy to care for and ideal for on a sunny windowsill indoors, 
-they can also be moved outdoors once temperatures are above freezing. ',26.00,50,650),
-                                                                    ('Mini Phalaenopsis Purple',
-'This New Miniature Phalaenopsis is so unusual and so cute. It arrives in flower making a wonderful gift. 
-The long lasting dark Purple flowers make them perfect as centrepieces.',30.00,50,450),
-                                                                    ('Crassula perforata Giant Form',
-'Crassula perforata Giant Form is a rare succulent plant with pretty bluish red tips which sets off the grey/blue foliage beautifully. 
-Jade plants make great housewarming gifts as they are often called the money plant 
-or dollar plant, because they were once thought to bring good luck to their owners.',14.00,50,451),
-                                                                    ('Aloes mitriformis fluorescent',
-'This dwarf version of Aloe has strong sturdy leaves arranged in rosettes with fine yellow-white serrations.
-It is useful for many skin conditions as it eases pain and reduces inflammation.
-Aloe also makes a great houseplant, it is very easy to grow and will thrive on any sunny windowsill 
-with the minimum of effort.',20.00,50,450),
-                                                                    ('Gardenia jasminoides',
-'This beautiful plant is perfect for both indoors and out. The lovely rose-like flowers in ivory-white emit a heavy scent 
-perfuming your living room or patio. In the language of flowers gardenia signifies ‘secret love’ 
-and represents purity, refinement and peace.',14.00,50,784),
-                                                                    ('Mini Apple Tree Malus Red Spur',
-'Harvest your own delicious apples from this fine self-fertile mini apple tree. It produces full sized tasty
- fruit and makes an impressive display on your patio, decking, or just in the garden.',36.00,50,364),
-                                                                    ('Aquilegia Spring Magic Blue',
-'Aquilegia or Columbines produce fabulous shaped flowers which will be the talking point of your neighbours.
-The dainty blooms with elegant spurs are exquisite and will come back to grace your garden year after year.
-They are hardy, grow in sun or partial shade and are suitable for your herbaceous borders or for planters on your patio or decking.',22.00,50,123),
-                                                                    ('Climbing Rose New Dawn',
-'Climbing rose New Dawn is thought by many to be one of the best repeat-flowering climbing rose, producing medium sized, 
-silvery blush-pink semi-double blossoms in attractive clusters with a sweet fruity fragrance all summer long.  
-This vigorous climber flourishes in both sun or partial shade and its attractive dark green glossy foliage has 
-a good disease resistance.',65.50,50,1204);
+INSERT INTO product ("name","description",price,stock,views) VALUES ('Rose Orchids',
+'Every plant lover has one. These rose orchids are grown in eco-friendly growing facilities in the US and brought to you as fresh as the day they left. 
+This beautiful and elegant flower looks good in any house and anywhere in the house. Bring life to your home with one or more of our precious Rose Orchids',51.99,50,350),
+                                                                   ('Bonsai CRT',
+'How long have you wanted a bonsai tree at home? Are you only seeing it now? It does not matter because here and now you have the opportunity to become a bonsai owner and take care of this magnificent plant.
+Shipping directly from China, where the art of Bonsai originated first, we provide you a great experience of the oriental culture. Let it fill your heart and soul with joy and peace.',60.00,50,500),
+                                                                    ('Orange Tulips Assorted',
+'Spray your place with colour with this assorted of gorgeous orange toned tulips. These tulips are great for adding warmth to spring border displays. 
+Best placed in sunny spots with well-drained soils, these are sure to give life to your garden or indoors. Each order contains 20 stems of Orange Tulips.',46.50,50,450),
+                                                                    ('"Meat" Rose',
+'This funny looking flower sures gives a special touch to your place. Also known as Tiger Rose, this red and white rose hybrid will give your guests a lot to talk about!
+Each order contains 10 stems of "Meat" Roses',30.00,50,450),
+                                                                    ('Pink Tulips',
+'Coming straight from the fields of Holland, we proudly present to you these fresh pink tulips. Full of brightness and liveliness, give a new life to your home with these tulips.
+Each order contains 20 stems of Pink Tulips',30.00,50,380),
+                                                                    ('Sativa Prime',
+'Freshly grown in the mountains of California, this plant is meant to take you to the clouds. Sometimes used as a medicine, this plant gives your place a relaxed vibe and you feel
+ the weight of the world coming off your shoulders. Besides the multiple health benefits, it also looks great and has an amazing scent.',40.00,50,10000),
+                                                                    ('Bulbous Bonsai',
+'This customized bonsai with bulbs gives a very exotic touch to your home. It is low maintenance so you will not have the usual trouble taking care of it. 
+Feel the soul of the bonsai at your house',68.00,50,640),
+                                                                    ('Red Dahlias',
+'Feel the vivacity of the Dahlia! This beautiful flower needs little description, and make up for great addition to any garden indoor or outdoor. Each order contains 20 stems.',36.00,50,364),
+                                                                    ('Green Palm Tree',
+'If you need to give a "big" exotic touch to your garden, what is better than one of our palm trees? They are resistant to almost any weather and thrive with low resources.',120.00,50,200),
+                                                                    ('Lavender Premium',
+'There is almost no one that have never smelled the lovely lavender. Besides being such a pretty flower, the scent of the lavender washes any room of bad vibes. Each order contains 40 stems',30.00,50,700);
+INSERT INTO product ("name","description",price,stock,views) VALUES ('White Pond Lilies',
+'These exclusive pond white lilies give life to any garden or pond. They are pretty and petite, fitting in the smallest ponds or aquariums. Each order contains 10 stems.',30.00,50,200),
+                                                                   ('Golden Sunflowers',
+'Pay a homage to the sun with these magnificent sunflowers. Bred from the best seeds, this flower light a bright sunshine on your life. Each order contains 20 stems.',25.00,50,400),
+                                                                    ('Lilac Hydrangeas',
+'Remember those cute flowers you saw at your local gardens? These Hydrangeas are sure to take you back in time. Look good in any garden and give them a great scent. Each order contains 15 stems',35.00,50,300),
+                                                                    ('Green Succulent',
+'These hot climate succulents are fit to any place you want. Very low maintenance and resistant, they are a great addition to your garden.',30.00,50,450),
+                                                                    ('Pink Caladium',
+'This exotic plant will give your home a special touch. This pink Caladium adds color and joy to your life.',45.00,50,500),
+                                                                    ('Red Roses',
+'The flower of passion. The Rose has been a symbol of passion and love for ages and you can have it blooming in your farden. With such an amazing shade of red and incredible scent you are sure to be satisfied. Each order contains 30 stems.',75.00,50,750),
+                                                                    ('Gardening Gloves',
+'These practical gloves will be a great assistance will attending to your garden. Made of resistant materials and very lightweight, your hands will thanking you for it.',15.00,50,784),
+                                                                    ('Lawn Mower',
+'If you need a clean and smooth cut in your garden grass this mower is just the right one for you. Eco friendly and high performance, long hours of cutting grass are a thing of the past.',85.00,50,364),
+                                                                    ('Grass Cutter',
+'This slick grass cutter will make your life much easier cutting grass. Power effiecient and eco-friendly, make your spot, spotless.',22.00,50,123),
+                                                                    ('Green Trowel',
+'Every gardener needs one. This trowel is the basic tool to build your garden. Very resistant and light weight.',8.00,50,100);
+INSERT INTO product ("name","description",price,stock,views) VALUES ('Small Red Scissors',
+'Make sure you put your personal touch into every part of your garden of plant by using this nifty small scissors. They are tough and easy to use, and for sure you will make great use of it making your plants looking perfect.',16.00,50,260),
+                                                                   ('Gardening Toolkit',
+'This toolkit is a must have! From shovels to brushes and rakes this kit will make your life easier tidying your garden. What you see is what you get, no parts are sold separately',69.99,50,150),
+                                                                    ('Green Water Can',
+'Do not forget to water your plants! With this nice water can of 12 liters (3.17 gallons) you can fresh every corner of your garden and water your plants comfortably.',12.00,50,450),
+                                                                    ('XPR Vase',
+'This modern vase is a great addition to your home or even your office. Holds small plants and is very resistant.',20.00,50,450),
+                                                                    ('Baby Blue Vase',
+'This baby blue vase gives you a sense of calm and serenity that alongside with your favorite plant will make you much more chill. A great purchase!',22.00,50,451),
+                                                                    ('Traditional Ceramic Vase',
+'This cute ceramic vase besides being very pretty is quite light, so you do not have to worry about carrying it around. Make your friends jealous with this fine piece of ceramic!',30.00,50,450),
+                                                                    ('Black Vase',
+'This minimalistic vase has one job and it does not fail at that. Very light and robust, this small vase is great to have at your home or office.',14.00,50,784),
+                                                                    ('Beige Ceramic Vase',
+'Make your home a little bit more your home with this great beige ceramic vase. Very polished and resistant, will adapt to your style easily and while being very adequate to your plants.',36.00,50,364),
+                                                                    ('Green Glass Vase',
+'This is a great glass vase. It is both appealing aesthetically and practically. Give your place a more natural look with this vase and you will find a plant that fits there quite easily!',40.00,50,123),
+                                                                    ('Pink Bright Vase',
+'This is it. The vase to have. The Pink Bright Vase is just what you need to bring back the spark to your home. Everytime you shine a light at it, it will give back 10x the shine. 
+Any plant fits well here, and for sure is a good fit for you!',30.00,50,1204);
 
 --R06
-INSERT INTO "user" (username,email,password_hash,date,address,id_image,user_role, security_question) VALUES ('Matthew','ornare.placerat@lacus.ca','EXC99JNT5UG','1977-07-26','Ap 246-7207 Vehicula Av. Porto Portugal',11,'Customer', 'security'),('Tyler','dui.augue.eu@mauris.edu','DQR69AKS4AN','1959-03-25','Ap #673-3696 Eu Rd. Porto Portugal',13,'Customer', 'security'),('Ramona','ipsum.dolor.sit@pedesagittis.net','QLH53AQM1GB','1978-03-08','871-7115 Ipsum Avenue Porto Portugal',11,'Customer', 'security'),('Anastasia','euismod.enim@malesuadamalesuadaInteger.com','YFW89UCF3SL','1992-06-02','Ap #266-9713 Dictum St. Porto Portugal',11,'Customer', 'security'),('Evan','Integer.urna.Vivamus@tinciduntcongue.com','NLJ80SXS0IT','1959-01-06',NULL,13,'Manager', 'security'),('Susan','et@Namconsequatdolor.net','DCF76XOM2LF','1973-03-09','610 Sit Street Porto Portugal',13,'Customer', 'security'),('Aubrey','lorem.lorem.luctus@malesuadamalesuada.com','UYH86DBE5AO','1965-09-22','8542 Felis Street Porto Portugal',11,'Customer', 'security'),('Lila','augue@nonummy.com','ZFO91FKM3PW','1958-07-16','P.O. Box 368, 9339 Nec Av. Porto Portugal',11,'Customer', 'security'),('Thomas','Aliquam.nisl@tempus.edu','UBX41RXJ6TR','1983-01-02','P.O. Box 378, 8174 Montes, St. Porto Portugal',12,'Customer', 'security'),('Quinn','sed.turpis.nec@massa.edu','QUJ75PFJ8XQ','1992-11-27','Ap #580-1755 Duis Rd. Porto Portugal',11,'Customer', 'security');
-INSERT INTO "user" (username,email,password_hash,date,address,id_image,user_role, security_question) VALUES ('Grady','odio.Aliquam@mauris.ca','YGV62ZCW8PT','1983-05-22','Ap #330-8894 Mauris Av. Calgary Canada',12,'Customer', 'security'),('Connor','turpis@Vestibulumante.edu','VDJ99XDB1HB','1963-08-01','208-733 Eu Road Calgary Canada',12,'Customer', 'security'),('Wanda','elementum@imperdietornare.com','VGM70CET0PF','1988-09-03','Ap #307-3111 Lacus Road Calgary Canada',14,'Customer', 'security'),('Meghan','turpis.vitae.purus@ornareliberoat.org','QWN24FLS7ZK','1984-10-15','P.O. Box 351, 5494 Eu Road Calgary Canada',13,'Customer', 'security'),('Robert','iaculis.odio@diamluctus.org','VZQ49ZMX0XP','1978-07-31','850-6268 Mus. Av. Calgary Canada',11,'Customer', 'security'),('Timothy','lorem.eu@rutrum.com','KAJ46IHH4MW','1998-05-31','8469 Dapibus Rd. Calgary Canada',12,'Customer', 'security'),('Hanna','vestibulum@nislsemconsequat.com','WBY34RDA1JD','1996-07-29','P.O. Box 540, 5258 Ac Avenue Calgary Canada',13,'Customer', 'security'),('Lacy','nec@Aenean.com','ZSX18GFY4QZ','1969-09-26','311-8126 Malesuada Rd. Calgary Canada',11,'Customer', 'security'),('Halee','Vestibulum.ante.ipsum@Nam.edu','DRA20BWZ8QM','1979-06-13','788-3392 Tristique Avenue Calgary Canada',12,'Customer', 'security'),('Hiram','est.tempor.bibendum@acurnaUt.net','KPV70LDI2HI','1963-06-30',NULL,11,'Manager', 'security');
-INSERT INTO "user" (username,email,password_hash,date,address,id_image,user_role, security_question) VALUES ('Cadman','sem.molestie@euismodmauris.ca','KEF98ZCJ7FV','1959-02-12','7617 Dapibus St. London UK',12,'Customer', 'security'),('Beatrice','quis.massa@blanditNam.net','ZDR52ODL3ED','1992-01-06','Ap #199-4090 Phasellus Ave London UK',12,'Customer', 'security'),('Mercedes','augue.ut@vitae.edu','EEF67SCU2KC','1980-04-15','458-5797 Ante Rd. London UK',13,'Customer', 'security'),('Amir','nulla.Integer@nibhlaciniaorci.ca','IOE44HJI2BK','1997-10-26','P.O. Box 784, 942 Cursus, Rd. London UK',11,'Customer', 'security'),('Nell','Donec@porttitor.co.uk','IVG25OUV4HC','1977-01-01','753-5549 Libero Rd. London UK',11,'Customer', 'security'),('Holly','Curabitur.consequat.lectus@arcuVestibulumante.net','QLM92CIL0KM','1976-06-20',NULL,11,'Manager', 'security'),('Tanner','sit.amet@maurisa.org','RQT58NPW9HI','1957-05-25','Ap #631-9220 Vestibulum Avenue London UK',14,'Customer', 'security'),('Noel','mattis@dolor.net','TGC59MYY6NV','1971-08-04',NULL,14,'Manager', 'security'),('Paul','volutpat.Nulla@gravidaPraesent.co.uk','NSJ55HTS3EX','1982-02-25','Ap #779-5525 Aliquam Av. London UK',14,'Customer', 'security'),('Gavin','adipiscing@ac.edu','DTC90IMH3KC','1966-09-08','P.O. Box 140, 3716 Integer Street London UK',11,'Customer', 'security');
-INSERT INTO "user" (username,email,password_hash,date,address,id_image,user_role, security_question) VALUES ('Hamish','commodo.ipsum@turpis.net','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1980-04-16',NULL,13,'Manager', 'security'),('Hayley','Nullam.vitae.diam@arcuCurabitur.edu','STI70FDI0TF','1981-02-26','P.O. Box 617, 6889 Elementum Rd. Madrid Spain',13,'Customer', 'security'),('Claire','Maecenas@liberoat.net','RET54FPJ5YE','1975-12-29','8772 Ac Rd. Madrid Spain',12,'Customer', 'security'),('Chantale','eu@ametnullaDonec.ca','YAR72XIN0BF','1961-03-20','433-9413 Proin Road Madrid Spain',13,'Customer', 'security'),('Ivan','Curabitur.dictum.Phasellus@amet.com','XYL49XWT8DP','1956-11-11','917-9728 Enim. Avenue Madrid Spain',13,'Customer', 'security'),('Hollee','felis.eget@maurisSuspendissealiquet.ca','UAJ47OTQ4NK','1973-03-18','799-4928 At, St. Madrid Spain',13,'Customer', 'security'),('Elmo','faucibus.Morbi.vehicula@eleifendnon.ca','PPP57OLD0VJ','1977-01-30','Ap #607-4184 Tortor, St. Madrid Spain',14,'Customer', 'security'),('Aretha','ultricies.ligula.Nullam@ut.net','TZM95HCA8EQ','1984-12-25','P.O. Box 807, 5205 Massa Ave Madrid Spain',11,'Customer', 'security'),('Xena','malesuada@Maecenasliberoest.org','IEK77HBS3MK','1976-12-15','Ap #432-5930 Praesent Av. Madrid Spain',11,'Customer', 'security'),('Chandler','vestibulum.massa.rutrum@turpisnonenim.ca','DHV35ZMG1LC','1991-12-25',NULL,12,'Manager', 'security');
-INSERT INTO "user" (username,email,password_hash,date,address,id_image,user_role, security_question) VALUES ('Theodore','hymenaeos@sitametdapibus.com','HRP05LOE3AK','1989-12-14','Ap #588-6898 Mauris St. Florence Italy',11,'Customer', 'security'),('Drew','ullamcorper.nisl@semut.org','JME98EEP2NA','1963-01-31','858-2361 Risus Rd. Florence Italy',11,'Customer', 'security'),('Genevieve','dictum@nonenim.ca','KOJ65TLH0HT','1972-02-18','3512 Vel Rd. Florence Italy',13,'Customer', 'security'),('Inga','orci@velpedeblandit.edu','VFO04UBU7SL','1958-02-13','9015 Lacinia. Avenue Florence Italy',13,'Customer', 'security'),('Anika','sem.mollis.dui@convallisligulaDonec.org','MLN77TZH4AI','1968-05-07','5373 Eu, St. Florence Italy',11,'Customer', 'security'),('Alexis','nisl.Maecenas.malesuada@esttempor.com','LEE70FAA7JB','1992-09-01',NULL,13,'Manager', 'security'),('Aidan','Duis.a.mi@Nullam.ca','QOJ73UUY8MC','1977-03-28','152-7120 Tincidunt Rd. Florence Italy',14,'Customer', 'security'),('Colette','nisi@loremtristiquealiquet.com','NXF43SER6FZ','1963-07-03','Ap #748-3754 Amet, Rd. Florence Italy',13,'Customer', 'security'),('Guy','auctor.ullamcorper@Crasegetnisi.edu','FWW36HLI7CO','1975-12-15','419-6046 Ante. St. Florence Italy',14,'Customer', 'security'),('Cade','aptent.taciti@magnaSedeu.ca','YUH55ZCV0NY','2000-07-06','9554 Montes, St. Florence Italy',12,'Customer', 'security');
+INSERT INTO "user" (username,email,password_hash,date,address,id_image,user_role, security_question) VALUES ('Sisay Jeremiah','ornare.placerat@lacus.ca','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1990-07-26','Ap 246-7207 Vehicula Av. Porto Portugal',31,'Customer', 'security'),('Dannie Almir','dui.augue.eu@mauris.edu','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1981-03-25','Ap #673-3696 Eu Rd. Porto Portugal',32,'Customer', 'security'),('Mohammad Faruque','ipsum.dolor.sit@pedesagittis.net','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1993-03-08','871-7115 Ipsum Avenue Porto Portugal',33,'Customer', 'security'),('Simone Biles','euismod.enim@malesuadamalesuadaInteger.com','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1992-06-02','Ap #266-9713 Dictum St. Porto Portugal',34,'Customer', 'security'),('Josh Miller','Integer.urna.Vivamus@tinciduntcongue.com','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','2017-03-06',NULL,35,'Manager', 'security'),('Kelly Mahagan','et@Namconsequatdolor.net','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1999-03-09','610 Sit Street Porto Portugal',36,'Customer', 'security'),('Suzana Constancia','lorem.lorem.luctus@malesuadamalesuada.com','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1988-09-22','8542 Felis Street Porto Portugal',37,'Customer', 'security'),('Ellie Black','augue@nonummy.com','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1995-07-16','P.O. Box 368, 9339 Nec Av. Porto Portugal',38,'Customer', 'security'),('Thomas','Aliquam.nisl@tempus.edu','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1983-01-02','P.O. Box 378, 8174 Montes, St. Porto Portugal',39,'Customer', 'security'),('Frederique Cousteau','sed.turpis.nec@massa.edu','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1992-11-27','Ap #580-1755 Duis Rd. Porto Portugal',40,'Customer', 'security');
+INSERT INTO "user" (username,email,password_hash,date,address,id_image,user_role, security_question) VALUES ('Marius Ciocirlan','odio.Aliquam@mauris.ca','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1983-05-22','Ap #330-8894 Mauris Av. Calgary Canada',41,'Customer', 'security'),('Seth Doyle','turpis@Vestibulumante.edu','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1982-08-01','208-733 Eu Road Calgary Canada',42,'Customer', 'security'),('Ramona Martinez','elementum@imperdietornare.com','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1984-09-03','Ap #307-3111 Lacus Road Calgary Canada',43,'Customer', 'security'),('Meghan','turpis.vitae.purus@ornareliberoat.org','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1994-10-15','P.O. Box 351, 5494 Eu Road Calgary Canada',44,'Customer', 'security'),('Robert Muchamore','iaculis.odio@diamluctus.org','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1989-07-31','850-6268 Mus. Av. Calgary Canada',45,'Customer', 'security'),('Timothy Donald','lorem.eu@rutrum.com','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1998-05-31','8469 Dapibus Rd. Calgary Canada',46,'Customer', 'security'),('Jessica Felicio','vestibulum@nislsemconsequat.com','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1996-07-29','P.O. Box 540, 5258 Ac Avenue Calgary Canada',47,'Customer', 'security'),('Milada Vigerova','nec@Aenean.com','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1987-09-26','311-8126 Malesuada Rd. Calgary Canada',48,'Customer', 'security'),('Emily Sea','Vestibulum.ante.ipsum@Nam.edu','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1987-06-13','788-3392 Tristique Avenue Calgary Canada',49,'Customer', 'security'),('Hiram','est.tempor.bibendum@acurnaUt.net','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','2018-01-30',NULL,50,'Manager', 'security');
+INSERT INTO "user" (username,email,password_hash,date,address,id_image,user_role, security_question) VALUES ('Cadman Lilac','sem.molestie@euismodmauris.ca','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1960-02-12','7617 Dapibus St. London UK',51,'Customer', 'security'),('Beatrice','quis.massa@blanditNam.net','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1980-01-06','Ap #199-4090 Phasellus Ave London UK',52,'Customer', 'security'),('Mercedes','augue.ut@vitae.edu','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1990-04-15','458-5797 Ante Rd. London UK',53,'Customer', 'security'),('Amir','nulla.Integer@nibhlaciniaorci.ca','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1997-10-26','P.O. Box 784, 942 Cursus, Rd. London UK',54,'Customer', 'security'),('Nell ONeil','Donec@porttitor.co.uk','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1991-01-01','753-5549 Libero Rd. London UK',55,'Customer', 'security'),('Holly Frax','Curabitur.consequat.lectus@arcuVestibulumante.net','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','2018-01-30',NULL,56,'Manager', 'security'),('Nicolas Horn','sit.amet@maurisa.org','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1985-05-25','Ap #631-9220 Vestibulum Avenue London UK',57,'Customer', 'security'),('Clem Onojeghuo','mattis@dolor.net','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','2019-04-04',NULL,58,'Manager', 'security'),('Daniel Pascoa','volutpat.Nulla@gravidaPraesent.co.uk','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1982-02-25','Ap #779-5525 Aliquam Av. London UK',59,'Customer', 'security'),('Gavin Mohall','adipiscing@ac.edu','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1986-09-08','P.O. Box 140, 3716 Integer Street London UK',60,'Customer', 'security');
+INSERT INTO "user" (username,email,password_hash,date,address,id_image,user_role, security_question) VALUES ('Lucas Lenzi','commodo.ipsum@turpis.net','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','2017-02-16',NULL,61,'Manager', 'security'),('Hannah Busing','Nullam.vitae.diam@arcuCurabitur.edu','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1981-02-26','P.O. Box 617, 6889 Elementum Rd. Madrid Spain',62,'Customer', 'security'),('Raquel Santana','Maecenas@liberoat.net','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1995-12-29','8772 Ac Rd. Madrid Spain',63,'Customer', 'security'),('Chantale','eu@ametnullaDonec.ca','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1981-03-20','433-9413 Proin Road Madrid Spain',64,'Customer', 'security'),('Nikola Jelenkovic','Curabitur.dictum.Phasellus@amet.com','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1956-11-11','917-9728 Enim. Avenue Madrid Spain',65,'Customer', 'security'),('Billie Jean','felis.eget@maurisSuspendissealiquet.ca','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1973-03-18','799-4928 At, St. Madrid Spain',66,'Customer', 'security'),('Elmo','faucibus.Morbi.vehicula@eleifendnon.ca','PPP57OLD0VJ','1977-01-30','Ap #607-4184 Tortor, St. Madrid Spain',37,'Customer', 'security'),('Aretha Frank','ultricies.ligula.Nullam@ut.net','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1984-12-25','P.O. Box 807, 5205 Massa Ave Madrid Spain',68,'Customer', 'security'),('Xena','malesuada@Maecenasliberoest.org','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1976-12-15','Ap #432-5930 Praesent Av. Madrid Spain',69,'Customer', 'security'),('Chandler Bong','vestibulum.massa.rutrum@turpisnonenim.ca','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','2019-06-25',NULL,70,'Manager', 'security');
+INSERT INTO "user" (username,email,password_hash,date,address,id_image,user_role, security_question) VALUES ('Roman Stetskov','hymenaeos@sitametdapibus.com','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1989-12-14','Ap #588-6898 Mauris St. Florence Italy',71,'Customer', 'security'),('Drew Barry','ullamcorper.nisl@semut.org','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1963-01-31','858-2361 Risus Rd. Florence Italy',72,'Customer', 'security'),('Leighann Blackwood','dictum@nonenim.ca','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1972-02-18','3512 Vel Rd. Florence Italy',73,'Customer', 'security'),('Inga','orci@velpedeblandit.edu','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1958-02-13','9015 Lacinia. Avenue Florence Italy',74,'Customer', 'security'),('Anika','sem.mollis.dui@convallisligulaDonec.org','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1968-05-07','5373 Eu, St. Florence Italy',75,'Customer', 'security'),('Alexis','nisl.Maecenas.malesuada@esttempor.com','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','2020-01-15',NULL,76,'Manager', 'security'),('Ishan Seemfrom','Duis.a.mi@Nullam.ca','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1977-03-28','152-7120 Tincidunt Rd. Florence Italy',77,'Customer', 'security'),('Colette Raquelette','nisi@loremtristiquealiquet.com','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1963-07-03','Ap #748-3754 Amet, Rd. Florence Italy',78,'Customer', 'security'),('Simon Berger','auctor.ullamcorper@Crasegetnisi.edu','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','1975-12-15','419-6046 Ante. St. Florence Italy',79,'Customer', 'security'),('Jorge Saavedra','aptent.taciti@magnaSedeu.ca','$2y$10$i3XKoROiGm.SzBpBWHpLXOVMvDjOWecSmgpGySS3OX472ji.flof2','2000-07-06','9554 Montes, St. Florence Italy',80,'Customer', 'security');
 
 --R02
-INSERT INTO "order" (shipping_id,billing_address,delivery_address,order_date,payment_method,username,id_user) VALUES ('72207','Ap #804-5785 Ipsum St.','Ap #498-7968 Magna St.','2020-05-01 01:53:08','Stripe','Knapp',8),('90640','P.O. Box 326, 2203 Ligula St.','P.O. Box 740, 885 Sapien, St.','2019-07-20 08:52:04','Stripe','Ortega',39),('70568','P.O. Box 531, 4107 Lorem St.','656-6263 Nonummy. St.','2020-01-01 07:35:17','Bank_Transfer','Meyer',15),('77602','P.O. Box 940, 1673 Risus. St.','386-3860 Neque Road','2020-03-29 11:24:30','Bank_Transfer','Fernandez',36),('95170','P.O. Box 624, 5229 Etiam Ave','966-8624 Sapien. St.','2019-12-23 03:45:48','Stripe','Carson',25),('22008','Ap #333-6584 Iaculis Ave','P.O. Box 120, 1817 Gravida. Road','2019-12-05 17:03:12','Bank_Transfer','Wheeler',8),('72974','Ap #588-7253 Ac Rd.','Ap #389-2684 Nullam Ave','2020-04-03 10:32:35','Bank_Transfer','Henry',16),('36919','636-1515 Mus. Ave','Ap #494-1114 Iaculis Rd.','2019-08-13 14:54:33','Stripe','Villarreal',35),('05767','832-171 Diam Rd.','P.O. Box 584, 5275 Nunc. Avenue','2020-02-28 01:12:54','Bank_Transfer','Mckinney',5),('24148','866-8552 A St.','152-5553 Fringilla, Rd.','2019-11-09 04:18:41','Stripe','Porter',45);
-INSERT INTO "order" (shipping_id,billing_address,delivery_address,order_date,payment_method,username,id_user) VALUES ('38417','663-5664 Nisi St.','6935 In St.','2019-11-10 09:07:58','Bank_Transfer','Parker',24),('42722','749-5742 Duis St.','P.O. Box 751, 2942 Nec Street','2019-10-21 06:16:35','Stripe','Pate',12),('46449','P.O. Box 474, 5779 Vestibulum St.','Ap #647-7054 Pharetra. St.','2020-03-11 22:32:19','Stripe','Garcia',10),('53946','7660 Lacus. St.','P.O. Box 985, 2548 Sapien, Street','2020-02-25 09:32:02','Bank_Transfer','Osborn',29),('00862','P.O. Box 502, 1114 Massa. St.','Ap #541-9392 Posuere Street','2020-05-05 10:43:38','Stripe','Conner',14),('83071','Ap #672-6516 Primis Street','758-9485 Metus Road','2020-04-27 07:09:25','Bank_Transfer','Osborn',37),('46556','2721 Vitae, Rd.','5057 Lacus. Ave','2019-09-26 22:47:56','Bank_Transfer','Chapman',36),('85931','P.O. Box 527, 6325 Dolor St.','Ap #267-5620 Non, Ave','2020-01-12 05:53:45','Bank_Transfer','Buck',18),('49290','1013 Cursus St.','768-294 Malesuada Road','2019-11-10 10:07:13','Bank_Transfer','Mcleod',15),('79874','P.O. Box 391, 9278 Erat Ave','Ap #425-4914 Dictum Road','2020-02-15 03:46:27','Bank_Transfer','Brock',9);
-INSERT INTO "order" (shipping_id,billing_address,delivery_address,order_date,payment_method,username,id_user) VALUES ('25253','808-8296 Pede. Av.','834-8881 Rhoncus. Av.','2020-05-05 18:57:21','Stripe','Jordan',33),('65635','413 Augue Av.','P.O. Box 335, 331 Pede Road','2019-11-05 11:13:44','Bank_Transfer','Hutchinson',2),('24862','Ap #937-8669 Purus, Rd.','7073 Volutpat. Avenue','2019-11-30 07:56:37','Stripe','Pearson',10),('69855','P.O. Box 645, 5084 Mauris St.','185-7644 Leo. St.','2019-07-09 19:57:29','Stripe','Casey',12),('10073','P.O. Box 774, 9986 Nunc. Rd.','Ap #313-2415 Eu, Rd.','2019-09-09 02:04:38','Bank_Transfer','Pearson',47),('33734','5439 Vitae, St.','262-9030 Diam. Rd.','2019-09-07 03:20:24','Bank_Transfer','Freeman',17),('74925','P.O. Box 129, 3106 Turpis. St.','3183 Semper, Rd.','2019-06-23 09:57:00','Bank_Transfer','Gomez',26),('71264','Ap #693-4486 Ipsum St.','P.O. Box 729, 6144 A Ave','2019-06-15 00:56:41','Stripe','Byers',38),('16568','Ap #505-9014 Blandit Road','Ap #757-1987 Senectus St.','2020-03-09 14:34:51','Bank_Transfer','Stevenson',43),('98684','P.O. Box 233, 5000 Metus. St.','Ap #484-1384 Montes, Av.','2020-05-03 03:23:18','Stripe','Wheeler',48);
-INSERT INTO "order" (shipping_id,billing_address,delivery_address,order_date,payment_method,username,id_user) VALUES ('77818','8890 Vitae Rd.','669-1839 Ut Rd.','2019-08-03 10:56:03','Bank_Transfer','Steele',28),('38806','5281 Lectus Ave','P.O. Box 188, 2763 Sed Rd.','2020-01-28 21:23:09','Stripe','Espinoza',20),('45551','Ap #207-6881 Sed St.','P.O. Box 963, 8042 Nec St.','2020-02-13 12:37:59','Stripe','Fletcher',36),('19755','P.O. Box 627, 8412 Auctor Rd.','Ap #638-9105 Mattis. Rd.','2019-09-04 17:06:47','Bank_Transfer','Austin',25),('96537','Ap #366-379 Ante, Road','Ap #904-687 Nulla St.','2019-07-30 06:25:21','Stripe','Clayton',39),('00848','787-3817 Tortor St.','9866 Ac Av.','2019-10-27 22:40:48','Stripe','Duran',39),('75120','323-9959 Ante Ave','Ap #290-367 Mi St.','2020-04-12 11:00:45','Bank_Transfer','Patel',2),('63752','8314 Egestas, Rd.','Ap #493-4139 Interdum. St.','2019-10-20 11:18:35','Stripe','Steele',14),('68156','652-7338 Magna. Avenue','P.O. Box 444, 2624 Malesuada Street','2020-02-17 23:05:39','Bank_Transfer','Blake',35),('15523','200-5826 Libero St.','822 Arcu. Rd.','2019-12-03 22:28:18','Stripe','Mueller',44);
-INSERT INTO "order" (shipping_id,billing_address,delivery_address,order_date,payment_method,username,id_user) VALUES ('01821','P.O. Box 549, 1723 Pellentesque, Road','826-6927 Luctus, Av.','2020-01-27 03:40:06','Stripe','Rosa',43),('72105','4433 Pellentesque Avenue','P.O. Box 673, 3761 Tincidunt St.','2020-04-16 14:43:35','Bank_Transfer','Dotson',3),('15337','P.O. Box 422, 1052 Justo Rd.','797-7604 Metus. St.','2019-12-17 04:15:37','Bank_Transfer','Ross',38),('70002','Ap #268-3136 Id, Road','P.O. Box 956, 7723 Enim Ave','2020-03-14 05:32:52','Stripe','Patton',15),('98693','4529 Tempus Ave','658-3075 Laoreet St.','2020-04-03 01:22:33','Bank_Transfer','Cannon',39),('64673','877 Ut St.','2538 A Ave','2019-10-04 04:41:11','Bank_Transfer','Hammond',13),('91126','1232 Sem Rd.','P.O. Box 286, 837 Sit Road','2020-01-20 09:00:22','Stripe','Logan',38),('49007','2312 Sapien, Avenue','P.O. Box 136, 5457 Odio Av.','2020-01-14 10:02:10','Stripe','Fernandez',33),('06275','420-683 Dolor. Ave','P.O. Box 345, 1726 Sit Rd.','2019-10-13 11:50:37','Bank_Transfer','Hendrix',39),('14294','P.O. Box 597, 4022 Placerat, St.','636-9587 Aenean Ave','2019-10-31 20:56:11','Stripe','Ashley',43);
-INSERT INTO "order" (shipping_id,billing_address,delivery_address,order_date,payment_method,username,id_user) VALUES ('06679','490-4639 Auctor. St.','8979 Dictum Ave','2019-07-19 07:11:40','Stripe','Frye',13),('29068','Ap #709-7379 Tincidunt St.','P.O. Box 880, 6213 Tincidunt Rd.','2019-07-08 22:32:23','Stripe','Neal',18),('61833','726-2327 Tempus Street','902-9490 Blandit St.','2019-06-28 11:01:18','Bank_Transfer','Gilmore',42),('16357','559-463 Duis Rd.','Ap #739-3403 Diam Road','2020-03-01 17:44:46','Stripe','Sanford',40),('52898','264-1056 In Rd.','P.O. Box 252, 3951 Eu Rd.','2020-04-20 01:31:48','Stripe','Torres',41),('73206','663-2634 Molestie Rd.','P.O. Box 912, 9657 Ipsum St.','2019-08-25 20:12:33','Bank_Transfer','Cannon',20),('01179','Ap #111-1021 Integer Av.','556-8333 Est Rd.','2020-05-12 23:08:07','Stripe','Fuentes',40),('46920','915-321 Erat Street','Ap #604-3753 Hendrerit St.','2019-11-09 10:10:10','Stripe','Bass',43),('09256','8985 Sed, Road','P.O. Box 649, 9039 Magna. Av.','2019-07-21 20:50:54','Bank_Transfer','Lindsay',4),('02593','777-1498 Eget Av.','619-4469 Amet Ave','2019-06-19 22:08:40','Bank_Transfer','Wilkinson',16);
-INSERT INTO "order" (shipping_id,billing_address,delivery_address,order_date,payment_method,username,id_user) VALUES ('21212','427 Laoreet Street','P.O. Box 684, 2210 Orci Av.','2019-08-07 05:24:33','Stripe','Harris',9),('89356','656-3973 Libero Rd.','P.O. Box 450, 1085 Id Road','2020-04-05 08:08:32','Bank_Transfer','Carey',48),('19482','P.O. Box 648, 1638 Natoque Street','P.O. Box 714, 5255 Vulputate, St.','2019-05-25 13:44:18','Stripe','Landry',28),('13961','P.O. Box 411, 5128 Id St.','P.O. Box 461, 424 Faucibus Av.','2020-04-06 05:40:09','Stripe','Schneider',34),('98323','Ap #761-8916 Sem, Rd.','P.O. Box 430, 1892 Pellentesque Av.','2019-12-26 06:40:16','Stripe','House',33),('40745','Ap #729-6069 Sagittis St.','P.O. Box 791, 962 Donec Street','2019-06-12 01:04:26','Stripe','Turner',36),('29422','P.O. Box 943, 1848 Amet, Road','P.O. Box 458, 691 Interdum. Rd.','2020-04-27 13:38:17','Bank_Transfer','Koch',28),('27717','318 Vestibulum Rd.','588-5678 Nec, Av.','2019-11-05 04:32:42','Bank_Transfer','Hyde',7),('17255','P.O. Box 184, 6267 Pretium St.','Ap #929-1737 Posuere St.','2019-07-24 23:53:06','Stripe','Vincent',46),('70069','7974 Amet Rd.','Ap #893-7487 Adipiscing Av.','2020-01-06 07:39:01','Bank_Transfer','Crawford',38);
-INSERT INTO "order" (shipping_id,billing_address,delivery_address,order_date,payment_method,username,id_user) VALUES ('52791','P.O. Box 391, 4565 Aliquam Rd.','Ap #956-2280 Lectus St.','2019-07-22 02:04:27','Stripe','White',14),('44074','4848 Donec Ave','3950 Magnis St.','2019-11-01 02:01:34','Bank_Transfer','Barron',14),('67785','286-3766 Consectetuer St.','P.O. Box 832, 7954 Turpis Av.','2020-04-21 12:12:20','Bank_Transfer','Luna',9),('19134','P.O. Box 897, 7038 Enim Avenue','P.O. Box 629, 2560 Id Street','2019-10-01 00:12:46','Bank_Transfer','Crosby',3),('22337','P.O. Box 182, 5383 Gravida Street','5409 Dolor, Rd.','2020-02-26 04:45:53','Bank_Transfer','Dillard',49),('98438','Ap #147-8594 Nulla Rd.','P.O. Box 923, 3704 Ut Av.','2019-09-08 21:53:32','Stripe','Romero',37),('53056','8011 Suspendisse Avenue','6634 Cursus Rd.','2019-07-28 06:28:28','Bank_Transfer','Waller',22),('75291','723-3961 Tempor Road','387-7460 Neque Rd.','2019-06-16 02:07:38','Stripe','Rasmussen',29),('95654','5818 Ligula. Rd.','Ap #359-7518 Id, St.','2019-11-23 09:11:33','Stripe','Finley',24),('38587','Ap #962-3933 Nisl. Avenue','Ap #313-5442 Nunc St.','2020-05-12 01:46:53','Stripe','Wagner',39);
-INSERT INTO "order" (shipping_id,billing_address,delivery_address,order_date,payment_method,username,id_user) VALUES ('98748','Ap #606-1079 Hendrerit. Ave','589-3564 Elit Rd.','2019-10-26 06:10:49','Bank_Transfer','Atkins',16),('44636','1359 Vestibulum Road','P.O. Box 576, 235 Libero Av.','2019-12-10 00:09:55','Stripe','Mcfarland',41),('95229','8618 Sed, St.','546-4535 Morbi St.','2019-11-08 19:45:08','Stripe','Morse',1),('92565','Ap #920-9311 Morbi Road','Ap #386-4205 Eget Ave','2019-08-25 16:42:09','Stripe','Ratliff',1),('25229','2280 Accumsan Rd.','P.O. Box 939, 7867 Lorem, Rd.','2019-08-23 05:27:11','Bank_Transfer','Warren',34),('48789','P.O. Box 381, 3113 Sed Street','9747 Arcu. Road','2019-09-26 04:38:10','Bank_Transfer','Foley',3),('43677','2556 Fermentum Avenue','P.O. Box 582, 3566 Odio. Av.','2020-01-07 11:24:22','Stripe','Reid',42),('27275','Ap #289-9273 In, St.','5060 Ligula Ave','2020-04-22 00:56:16','Bank_Transfer','Dejesus',47),('54968','758-6382 Non, Rd.','514-4972 Lorem St.','2019-12-29 11:27:29','Bank_Transfer','Ferguson',33),('20282','982-542 Risus, Ave','Ap #461-4408 Vitae Rd.','2019-08-11 07:53:29','Stripe','Barron',10);
-INSERT INTO "order" (shipping_id,billing_address,delivery_address,order_date,payment_method,username,id_user) VALUES ('64606','9797 Tortor Av.','Ap #749-4052 Quisque Rd.','2019-09-26 02:32:25','Stripe','Clayton',48),('44054','P.O. Box 426, 2107 Non, Rd.','P.O. Box 742, 5239 Integer Street','2019-07-18 03:50:53','Bank_Transfer','Lee',25),('35731','P.O. Box 807, 7056 Pharetra Av.','298-7029 Amet, Street','2020-04-04 05:42:24','Bank_Transfer','Banks',11),('59757','437-3262 Vel Road','P.O. Box 316, 4116 Est Avenue','2019-11-04 03:02:52','Stripe','Murray',7),('15847','895-6474 Nisi. St.','890-4570 Tellus Ave','2020-02-06 13:04:46','Stripe','Warner',10),('52375','146-4672 Vulputate, St.','Ap #540-7754 Ligula. St.','2019-06-06 04:54:29','Stripe','Juarez',22),('06304','516-1365 Sit Rd.','P.O. Box 773, 851 Enim Rd.','2020-04-09 11:15:31','Bank_Transfer','Mcdowell',5),('13026','P.O. Box 512, 5802 Arcu. Ave','P.O. Box 777, 9292 Sit Rd.','2019-09-10 22:11:12','Stripe','Haley',35),('79790','693-3841 Faucibus Avenue','873-4960 Lectus St.','2019-12-07 04:19:06','Stripe','Carpenter',20),('45162','P.O. Box 249, 9237 Vestibulum Av.','P.O. Box 426, 6361 Cras Rd.','2020-01-29 08:39:21','Stripe','Morgan',20);
+INSERT INTO "order" (shipping_id,billing_address,delivery_address,order_date,payment_method,username,id_user) VALUES ('5ed5092ae5177','Ap #804-5785 Ipsum St.','Ap #498-7968 Magna St.','2020-05-01 01:53:08','Bank_Transfer','Knapp',8),('5ed5092ae5198','P.O. Box 326, 2203 Ligula St.','P.O. Box 740, 885 Sapien, St.','2019-07-20 08:52:04','Bank_Transfer','Ortega',39),('5ed5092ae51a9','P.O. Box 531, 4107 Lorem St.','656-6263 Nonummy. St.','2020-01-01 07:35:17','Bank_Transfer','Meyer',15),('5ed5092ae51ba','P.O. Box 940, 1673 Risus. St.','386-3860 Neque Road','2020-03-29 11:24:30','Bank_Transfer','Fernandez',36),('5ed5092ae51cb','P.O. Box 624, 5229 Etiam Ave','966-8624 Sapien. St.','2019-12-23 03:45:48','Bank_Transfer','Carson',25),('5ed5092ae51db','Ap #333-6584 Iaculis Ave','P.O. Box 120, 1817 Gravida. Road','2019-12-05 17:03:12','Bank_Transfer','Wheeler',8),('5ed5092ae51fe','Ap #588-7253 Ac Rd.','Ap #389-2684 Nullam Ave','2020-04-03 10:32:35','Bank_Transfer','Henry',16),('5ed5092ae520f','636-1515 Mus. Ave','Ap #494-1114 Iaculis Rd.','2019-08-13 14:54:33','Bank_Transfer','Villarreal',35),('5ed5092ae5240','832-171 Diam Rd.','P.O. Box 584, 5275 Nunc. Avenue','2020-02-28 01:12:54','Bank_Transfer','Mckinney',4),('5ed5092ae5261','866-8552 A St.','152-5553 Fringilla, Rd.','2019-11-09 04:18:41','Bank_Transfer','Porter',45);
+INSERT INTO "order" (shipping_id,billing_address,delivery_address,order_date,payment_method,username,id_user) VALUES ('5ed5092ae518a','663-5664 Nisi St.','6935 In St.','2019-11-10 09:07:58','Bank_Transfer','Parker',24),('5ed5092ae519a','749-5742 Duis St.','P.O. Box 751, 2942 Nec Street','2019-10-21 06:16:35','Bank_Transfer','Pate',12),('5ed5092ae51ab','P.O. Box 474, 5779 Vestibulum St.','Ap #647-7054 Pharetra. St.','2020-03-11 22:32:19','Bank_Transfer','Garcia',10),('5ed5092ae51bc','7660 Lacus. St.','P.O. Box 985, 2548 Sapien, Street','2020-02-25 09:32:02','Bank_Transfer','Osborn',29),('5ed5092ae51cc','P.O. Box 502, 1114 Massa. St.','Ap #541-9392 Posuere Street','2020-05-05 10:43:38','Bank_Transfer','Conner',14),('5ed5092ae51dd','Ap #672-6516 Primis Street','758-9485 Metus Road','2020-04-27 07:09:25','Bank_Transfer','Osborn',37),('5ed5092ae5200','2721 Vitae, Rd.','5057 Lacus. Ave','2019-09-26 22:47:56','Bank_Transfer','Chapman',36),('5ed5092ae5210','P.O. Box 527, 6325 Dolor St.','Ap #267-5620 Non, Ave','2020-01-12 05:53:45','Bank_Transfer','Buck',18),('5ed5092ae523d','1013 Cursus St.','768-294 Malesuada Road','2019-11-10 10:07:13','Bank_Transfer','Mcleod',15),('5ed5092ae524d','P.O. Box 391, 9278 Erat Ave','Ap #425-4914 Dictum Road','2020-02-15 03:46:27','Bank_Transfer','Brock',9);
+INSERT INTO "order" (shipping_id,billing_address,delivery_address,order_date,payment_method,username,id_user) VALUES ('5ed5092ae518c','808-8296 Pede. Av.','834-8881 Rhoncus. Av.','2020-05-05 18:57:21','Bank_Transfer','Jordan',33),('5ed5092ae519c','413 Augue Av.','P.O. Box 335, 331 Pede Road','2019-11-05 11:13:44','Bank_Transfer','Hutchinson',2),('5ed5092ae51ac','Ap #937-8669 Purus, Rd.','7073 Volutpat. Avenue','2019-11-30 07:56:37','Bank_Transfer','Pearson',10),('5ed5092ae51bd','P.O. Box 645, 5084 Mauris St.','185-7644 Leo. St.','2019-07-09 19:57:29','Bank_Transfer','Casey',12),('5ed5092ae51ce','P.O. Box 774, 9986 Nunc. Rd.','Ap #313-2415 Eu, Rd.','2019-09-09 02:04:38','Bank_Transfer','Pearson',47),('5ed5092ae51df','5439 Vitae, St.','262-9030 Diam. Rd.','2019-09-07 03:20:24','Bank_Transfer','Freeman',17),('5ed5092ae5202','P.O. Box 129, 3106 Turpis. St.','3183 Semper, Rd.','2019-06-23 09:57:00','Bank_Transfer','Gomez',25),('5ed5092ae5212','Ap #693-4486 Ipsum St.','P.O. Box 729, 6144 A Ave','2019-06-15 00:56:41','Bank_Transfer','Byers',38),('5ed5092ae5236','Ap #505-9014 Blandit Road','Ap #757-1987 Senectus St.','2020-03-09 14:34:51','Bank_Transfer','Stevenson',43),('5ed5092ae524a','P.O. Box 233, 5000 Metus. St.','Ap #484-1384 Montes, Av.','2020-05-03 03:23:18','Bank_Transfer','Wheeler',48);
+INSERT INTO "order" (shipping_id,billing_address,delivery_address,order_date,payment_method,username,id_user) VALUES ('5ed5092ae518e','8890 Vitae Rd.','669-1839 Ut Rd.','2019-08-03 10:56:03','Bank_Transfer','Steele',29),('5ed5092ae519d','5281 Lectus Ave','P.O. Box 188, 2763 Sed Rd.','2020-01-28 21:23:09','Bank_Transfer','Espinoza',21),('5ed5092ae51ae','Ap #207-6881 Sed St.','P.O. Box 963, 8042 Nec St.','2020-02-13 12:37:59','Bank_Transfer','Fletcher',36),('5ed5092ae51bf','P.O. Box 627, 8412 Auctor Rd.','Ap #638-9105 Mattis. Rd.','2019-09-04 17:06:47','Bank_Transfer','Austin',25),('5ed5092ae51d0','Ap #366-379 Ante, Road','Ap #904-687 Nulla St.','2019-07-30 06:25:21','Bank_Transfer','Clayton',39),('5ed5092ae51e0','787-3817 Tortor St.','9866 Ac Av.','2019-10-27 22:40:48','Bank_Transfer','Duran',39),('5ed5092ae5203','323-9959 Ante Ave','Ap #290-367 Mi St.','2020-04-12 11:00:45','Bank_Transfer','Patel',2),('5ed5092ae5228','8314 Egestas, Rd.','Ap #493-4139 Interdum. St.','2019-10-20 11:18:35','Bank_Transfer','Steele',14),('5ed5092ae5264','652-7338 Magna. Avenue','P.O. Box 444, 2624 Malesuada Street','2020-02-17 23:05:39','Bank_Transfer','Blake',35),('5ed5092ae5247','200-5826 Libero St.','822 Arcu. Rd.','2019-12-03 22:28:18','Bank_Transfer','Mueller',44);
+INSERT INTO "order" (shipping_id,billing_address,delivery_address,order_date,payment_method,username,id_user) VALUES ('5ed5092ae5190','P.O. Box 549, 1723 Pellentesque, Road','826-6927 Luctus, Av.','2020-01-27 03:40:06','Bank_Transfer','Rosa',43),('5ed5092ae519f','4433 Pellentesque Avenue','P.O. Box 673, 3761 Tincidunt St.','2020-04-16 14:43:35','Bank_Transfer','Dotson',3),('5ed5092ae51b0','P.O. Box 422, 1052 Justo Rd.','797-7604 Metus. St.','2019-12-17 04:15:37','Bank_Transfer','Ross',38),('5ed5092ae51c1','Ap #268-3136 Id, Road','P.O. Box 956, 7723 Enim Ave','2020-03-14 05:32:52','Bank_Transfer','Patton',15),('5ed5092ae51d1','4529 Tempus Ave','658-3075 Laoreet St.','2020-04-03 01:22:33','Bank_Transfer','Cannon',39),('5ed5092ae51e4','877 Ut St.','2538 A Ave','2019-10-04 04:41:11','Bank_Transfer','Hammond',13),('5ed5092ae5205','1232 Sem Rd.','P.O. Box 286, 837 Sit Road','2020-01-20 09:00:22','Bank_Transfer','Logan',38),('5ed5092ae522a','2312 Sapien, Avenue','P.O. Box 136, 5457 Odio Av.','2020-01-14 10:02:10','Bank_Transfer','Fernandez',33),('5ed5092ae5238','420-683 Dolor. Ave','P.O. Box 345, 1726 Sit Rd.','2019-10-13 11:50:37','Bank_Transfer','Hendrix',39),('5ed5092ae5248','P.O. Box 597, 4022 Placerat, St.','636-9587 Aenean Ave','2019-10-31 20:56:11','Bank_Transfer','Ashley',43);
+INSERT INTO "order" (shipping_id,billing_address,delivery_address,order_date,payment_method,username,id_user) VALUES ('5ed5092ae5192','490-4639 Auctor. St.','8979 Dictum Ave','2019-07-19 07:11:40','Bank_Transfer','Frye',13),('5ed5092ae51a1','Ap #709-7379 Tincidunt St.','P.O. Box 880, 6213 Tincidunt Rd.','2019-07-08 22:32:23','Bank_Transfer','Neal',18),('5ed5092ae51b1','726-2327 Tempus Street','902-9490 Blandit St.','2019-06-28 11:01:18','Bank_Transfer','Gilmore',42),('5ed5092ae51c2','559-463 Duis Rd.','Ap #739-3403 Diam Road','2020-03-01 17:44:46','Bank_Transfer','Sanford',41),('5ed5092ae51d3','264-1056 In Rd.','P.O. Box 252, 3951 Eu Rd.','2020-04-20 01:31:48','Bank_Transfer','Torres',41),('5ed5092ae51f6','663-2634 Molestie Rd.','P.O. Box 912, 9657 Ipsum St.','2019-08-25 20:12:33','Bank_Transfer','Cannon',21),('5ed5092ae5206','Ap #111-1021 Integer Av.','556-8333 Est Rd.','2020-05-12 23:08:07','Bank_Transfer','Fuentes',41),('5ed5092ae522c','915-321 Erat Street','Ap #604-3753 Hendrerit St.','2019-11-09 10:10:10','Bank_Transfer','Bass',43),('5ed5092ae5235','8985 Sed, Road','P.O. Box 649, 9039 Magna. Av.','2019-07-21 20:50:54','Bank_Transfer','Lindsay',4),('5ed5092ae5245','777-1498 Eget Av.','619-4469 Amet Ave','2019-06-19 22:08:40','Bank_Transfer','Wilkinson',16);
+INSERT INTO "order" (shipping_id,billing_address,delivery_address,order_date,payment_method,username,id_user) VALUES ('5ed50c4f5aa1f','427 Laoreet Street','P.O. Box 684, 2210 Orci Av.','2019-08-07 05:24:33','Bank_Transfer','Harris',9),('5ed5092ae51a2','656-3973 Libero Rd.','P.O. Box 450, 1085 Id Road','2020-04-05 08:08:32','Bank_Transfer','Carey',48),('5ed5092ae51b3','P.O. Box 648, 1638 Natoque Street','P.O. Box 714, 5255 Vulputate, St.','2019-05-25 13:44:18','Bank_Transfer','Landry',27),('5ed5092ae51c4','P.O. Box 411, 5128 Id St.','P.O. Box 461, 424 Faucibus Av.','2020-04-06 05:40:09','Bank_Transfer','Schneider',34),('5ed5092ae51d5','Ap #761-8916 Sem, Rd.','P.O. Box 430, 1892 Pellentesque Av.','2019-12-26 06:40:16','Bank_Transfer','House',33),('5ed5092ae51f8','Ap #729-6069 Sagittis St.','P.O. Box 791, 962 Donec Street','2019-06-12 01:04:26','Bank_Transfer','Turner',36),('5ed5092ae5208','P.O. Box 943, 1848 Amet, Road','P.O. Box 458, 691 Interdum. Rd.','2020-04-27 13:38:17','Bank_Transfer','Koch',27),('5ed5092ae522e','318 Vestibulum Rd.','588-5678 Nec, Av.','2019-11-05 04:32:42','Bank_Transfer','Hyde',7),('5ed5092ae5242','P.O. Box 184, 6267 Pretium St.','Ap #929-1737 Posuere St.','2019-07-24 23:53:06','Bank_Transfer','Vincent',45),('5ed5092ae5263','7974 Amet Rd.','Ap #893-7487 Adipiscing Av.','2020-01-06 07:39:01','Bank_Transfer','Crawford',38);
+INSERT INTO "order" (shipping_id,billing_address,delivery_address,order_date,payment_method,username,id_user) VALUES ('5ed5092ae5193','P.O. Box 391, 4565 Aliquam Rd.','Ap #956-2280 Lectus St.','2019-07-22 02:04:27','Bank_Transfer','White',14),('5ed5092ae51a4','4848 Donec Ave','3950 Magnis St.','2019-11-01 02:01:34','Bank_Transfer','Barron',14),('5ed5092ae51b5','286-3766 Consectetuer St.','P.O. Box 832, 7954 Turpis Av.','2020-04-21 12:12:20','Bank_Transfer','Luna',9),('5ed5092ae51c6','P.O. Box 897, 7038 Enim Avenue','P.O. Box 629, 2560 Id Street','2019-10-01 00:12:46','Bank_Transfer','Crosby',3),('5ed5092ae51d6','P.O. Box 182, 5383 Gravida Street','5409 Dolor, Rd.','2020-02-26 04:45:53','Bank_Transfer','Dillard',49),('5ed5092ae51f9','Ap #147-8594 Nulla Rd.','P.O. Box 923, 3704 Ut Av.','2019-09-08 21:53:32','Bank_Transfer','Romero',37),('5ed5092ae520a','8011 Suspendisse Avenue','6634 Cursus Rd.','2019-07-28 06:28:28','Bank_Transfer','Waller',22),('5ed5092ae522f','723-3961 Tempor Road','387-7460 Neque Rd.','2019-06-16 02:07:38','Bank_Transfer','Rasmussen',29),('5ed5092ae523e','5818 Ligula. Rd.','Ap #359-7518 Id, St.','2019-11-23 09:11:33','Bank_Transfer','Finley',24),('5ed5092ae524c','Ap #962-3933 Nisl. Avenue','Ap #313-5442 Nunc St.','2020-05-12 01:46:53','Bank_Transfer','Wagner',39);
+INSERT INTO "order" (shipping_id,billing_address,delivery_address,order_date,payment_method,username,id_user) VALUES ('5ed5092ae5195','Ap #606-1079 Hendrerit. Ave','589-3564 Elit Rd.','2019-10-26 06:10:49','Bank_Transfer','Atkins',16),('5ed5092ae51a6','1359 Vestibulum Road','P.O. Box 576, 235 Libero Av.','2019-12-10 00:09:55','Bank_Transfer','Mcfarland',41),('5ed5092ae51b6','8618 Sed, St.','546-4535 Morbi St.','2019-11-08 19:45:08','Bank_Transfer','Morse',1),('5ed5092ae51c7','Ap #920-9311 Morbi Road','Ap #386-4205 Eget Ave','2019-08-25 16:42:09','Bank_Transfer','Ratliff',1),('5ed5092ae51d8','2280 Accumsan Rd.','P.O. Box 939, 7867 Lorem, Rd.','2019-08-23 05:27:11','Bank_Transfer','Warren',34),('5ed5092ae51fb','P.O. Box 381, 3113 Sed Street','9747 Arcu. Road','2019-09-26 04:38:10','Bank_Transfer','Foley',3),('5ed5092ae520b','2556 Fermentum Avenue','P.O. Box 582, 3566 Odio. Av.','2020-01-07 11:24:22','Bank_Transfer','Reid',42),('5ed5092ae5231','Ap #289-9273 In, St.','5060 Ligula Ave','2020-04-22 00:56:16','Bank_Transfer','Dejesus',47),('5ed5092ae5239','758-6382 Non, Rd.','514-4972 Lorem St.','2019-12-29 11:27:29','Bank_Transfer','Ferguson',33),('5ed5092ae5243','982-542 Risus, Ave','Ap #461-4408 Vitae Rd.','2019-08-11 07:53:29','Bank_Transfer','Barron',10);
+INSERT INTO "order" (shipping_id,billing_address,delivery_address,order_date,payment_method,username,id_user) VALUES ('5ed5092ae5197','9797 Tortor Av.','Ap #749-4052 Quisque Rd.','2019-09-26 02:32:25','Bank_Transfer','Clayton',48),('5ed5092ae51a7','P.O. Box 426, 2107 Non, Rd.','P.O. Box 742, 5239 Integer Street','2019-07-18 03:50:53','Bank_Transfer','Lee',25),('5ed5092ae51b8','P.O. Box 807, 7056 Pharetra Av.','298-7029 Amet, Street','2020-04-04 05:42:24','Bank_Transfer','Banks',11),('5ed5092ae51c9','437-3262 Vel Road','P.O. Box 316, 4116 Est Avenue','2019-11-04 03:02:52','Bank_Transfer','Murray',7),('5ed5092ae51da','895-6474 Nisi. St.','890-4570 Tellus Ave','2020-02-06 13:04:46','Bank_Transfer','Warner',10),('5ed5092ae51fd','146-4672 Vulputate, St.','Ap #540-7754 Ligula. St.','2019-06-06 04:54:29','Bank_Transfer','Juarez',22),('5ed5092ae520d','516-1365 Sit Rd.','P.O. Box 773, 851 Enim Rd.','2020-04-09 11:15:31','Bank_Transfer','Mcdowell',6),('5ed5092ae5233','P.O. Box 512, 5802 Arcu. Ave','P.O. Box 777, 9292 Sit Rd.','2019-09-10 22:11:12','Bank_Transfer','Haley',35),('5ed5092ae523b','693-3841 Faucibus Avenue','873-4960 Lectus St.','2019-12-07 04:19:06','Bank_Transfer','Carpenter',19),('5ed5092ae524f','P.O. Box 249, 9237 Vestibulum Av.','P.O. Box 426, 6361 Cras Rd.','2020-01-29 08:39:21','Bank_Transfer','Morgan',19);
 
 --R03
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (16,40,2),(71,44,7),(86,16,12),(54,79,8),(2,99,5),(84,41,16),(22,77,19),(53,3,19),(93,35,13),(70,42,15);
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (4,92,13),(42,44,12),(87,70,3),(29,90,10),(87,68,4),(34,87,18),(83,13,1),(68,84,6),(43,38,7),(31,66,20);
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (22,98,19),(38,49,18),(57,77,14),(20,58,18),(59,55,6),(39,4,15),(52,38,15),(34,86,1),(98,38,8),(32,34,11);
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (95,28,3),(75,31,3),(96,77,5),(91,66,7),(34,68,9),(36,55,19),(86,56,10),(52,14,12),(15,4,8),(48,36,8);
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (13,40,3),(62,50,5),(46,77,11),(78,47,8),(99,40,7),(67,21,13),(28,33,18),(7,31,14),(16,84,7),(69,17,12);
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (37,83,9),(56,49,18),(99,78,19),(40,68,3),(26,39,6),(97,9,9),(65,41,12),(72,90,3),(30,16,8),(12,52,5);
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (20,93,19),(51,4,11),(59,13,9),(36,70,4),(85,82,12),(10,89,9),(90,43,12),(5,81,15),(48,78,18),(69,19,7);
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (74,38,7),(55,68,9),(42,40,2),(57,12,15),(49,25,11),(61,3,9),(27,31,12),(88,77,4),(29,35,6),(24,34,14);
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (41,39,1),(1,39,6),(27,98,6),(83,50,11),(96,14,16),(30,8,14),(90,76,14),(3,87,20),(56,50,15),(69,57,6);
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (57,98,5),(24,75,19),(71,100,6),(100,96,7),(6,74,18),(15,64,18),(91,48,9),(87,85,7),(15,67,3),(16,34,2), (16, 39, 1);
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (63,1,6),(97,2,2),(4,3,10),(17,4,9),(37,5,1),(24,6,8),(47,7,4),(13,8,5),(57,9,1),(2,10,5);
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (28,11,3),(56,13,1),(12,14,9),(54,15,2),(24,16,1),(34,17,10),(73,18,9),(87,19,10),(54,20,1);
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (21,21,3),(9,22,3),(52,23,10),(78,24,2),(64,25,10),(74,26,2),(58,27,1),(30,28,3),(62,29,6),(11,30,5);
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (62,31,4),(21,32,8),(84,33,8),(37,34,8),(53,35,8),(74,36,9),(91,37,1),(32,38,5),(55,39,10),(1,40,8);
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (68,41,4),(8,42,10),(32,43,1),(43,44,9),(84,45,2),(60,46,8),(76,47,10),(87,48,3),(41,49,8),(87,50,7);
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (61,51,10),(41,52,5),(63,53,7),(80,54,7),(33,55,10),(70,56,7),(25,57,6),(9,58,8),(95,59,9),(98,60,4);
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (83,61,3),(92,62,8),(84,63,5),(75,64,8),(93,65,5),(5,66,8),(56,67,10),(90,68,3),(53,69,8),(50,70,5);
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (3,71,8),(91,72,5),(21,73,3),(60,74,4),(1,75,6),(63,76,6),(17,77,7),(87,78,5),(41,79,10),(14,80,3);
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (53,81,8),(29,82,9),(84,83,6),(15,84,4),(16,85,7),(15,86,8),(73,87,4),(93,88,4),(13,89,2),(16,90,5);
-INSERT INTO product_order (id_product,id_order,quantity) VALUES (33,91,4),(24,92,8),(2,93,1),(20,94,8),(20,95,4),(22,96,2),(72,97,10),(60,98,6),(41,99,6),(27,100,10);
+INSERT INTO product_order (id_product,id_order,quantity) VALUES (16,40,2),(2,99,5),(24,41,16),(22,77,19),(6,1,2),(1,56,1);
+INSERT INTO product_order (id_product,id_order,quantity) VALUES (4,92,13),(29,90,10),(9,2,4),(15,5,2),(26,7,1),(2,59,1);
+INSERT INTO product_order (id_product,id_order,quantity) VALUES (22,98,19),(20,58,18),(1,9,1),(2,12,2),(3,13,1),(3,60,1);
+INSERT INTO product_order (id_product,id_order,quantity) VALUES (15,4,8),(4,15,1),(5,17,2),(6,18,1),(7,19,2),(4,61,1);
+INSERT INTO product_order (id_product,id_order,quantity) VALUES (13,40,3),(28,33,18),(7,31,14),(16,84,7),(8,20,1),(5,62,1);
+INSERT INTO product_order (id_product,id_order,quantity) VALUES (26,39,6),(30,16,8),(12,52,5),(9,23,2),(10,24,1),(6,63,1);
+INSERT INTO product_order (id_product,id_order,quantity) VALUES (20,93,19),(10,89,9),(5,81,15),(11,25,2),(12,26,1),(7,65,1);
+INSERT INTO product_order (id_product,id_order,quantity) VALUES (27,31,12),(29,35,6),(24,34,14),(13,27,1),(14,29,2),(8,68,1);
+INSERT INTO product_order (id_product,id_order,quantity) VALUES (1,39,6),(27,98,6),(30,8,14),(3,87,20),(15,36,1),(9,69,1);
+INSERT INTO product_order (id_product,id_order,quantity) VALUES (24,75,19),(6,74,18),(15,64,18),(15,67,3),(16,34,2),(10,70,1);
+INSERT INTO product_order (id_product,id_order,quantity) VALUES (4,3,10),(17,4,9),(24,6,8),(13,8,5),(2,10,5),(11,72,1);
+INSERT INTO product_order (id_product,id_order,quantity) VALUES (28,11,3),(12,14,9),(24,16,1),(16,39,1),(17,37,2),(12,76,1);
+INSERT INTO product_order (id_product,id_order,quantity) VALUES (21,21,3),(9,22,3),(30,28,3),(11,30,5),(18,38,1),(13,78,1);
+INSERT INTO product_order (id_product,id_order,quantity) VALUES (21,32,8),(1,40,8),(19,43,1),(20,44,1),(21,45,2),(14,79,1);
+INSERT INTO product_order (id_product,id_order,quantity) VALUES (8,42,10),(22,46,1),(23,47,1),(24,48,2),(25,49,1),(15,83,1);
+INSERT INTO product_order (id_product,id_order,quantity) VALUES (25,57,6),(9,58,8),(26,50,1),(27,51,1),(28,53,1),(16,88,1);
+INSERT INTO product_order (id_product,id_order,quantity) VALUES (5,66,8),(29,54,1),(30,55,2),(16,90,5),(27,100,10),(17,91,1);
+INSERT INTO product_order (id_product,id_order,quantity) VALUES (3,71,8),(21,73,3),(1,75,6),(17,77,7),(14,80,3),(18,97,1);
+INSERT INTO product_order (id_product,id_order,quantity) VALUES (29,82,9),(15,84,4),(16,85,7),(15,86,8),(13,89,2),(19,30,2);
+INSERT INTO product_order (id_product,id_order,quantity) VALUES (24,92,8),(2,93,1),(20,94,8),(20,95,4),(22,96,2),(25,100,1);
 
 --R04
-INSERT INTO review (id_product,id_order,description,rating,review_date) VALUES (16,40,'Loved this lovely plant! Very easy to take care',5,'2020-06-20 14:41:10'),(20,93,'Loved this lovely plant! Very easy to take care',5,'2020-06-20 14:41:10'),(20,58,'Really happy to try out this brand, great products and costumer support!',1,'2020-06-23 14:41:10'),(57,12,'Great product!',3,'2020-06-20 14:41:10');
-INSERT INTO review (id_product,id_order,description,rating,review_date) VALUES (16,84,'Kinda dissapointed with the plant quality',4,'2020-06-20 14:41:10'),(42,40,'Really happy to try out this brand, great products and costumer support!',2,'2020-06-25 14:41:10'),(48,78,'Loved this lovely plant! Very easy to take care',1,'2020-06-25 14:41:10'),(69,17,'Loved this lovely plant! Very easy to take care',2,'2020-06-20 14:41:10');
-INSERT INTO review (id_product,id_order,description,rating,review_date) VALUES (71,44,'Really happy to try out this brand, great products and costumer support!',5,'2020-06-03 14:41:10'),(16,34,'Kinda dissapointed with the plant quality',1,'2020-06-12 14:41:10'),(57,98,'Loved this lovely plant! Very easy to take care',1,'2020-06-20 14:41:10'),(69,19,'Really happy to try out this brand, great products and costumer support!',2,'2020-06-11 14:41:10');
-INSERT INTO review (id_product,id_order,description,rating,review_date) VALUES (46,77,'Really happy to try out this brand, great products and costumer support!',5,'2020-06-20 14:41:10'),(59,55,'Kinda dissapointed with the plant quality',4,'2020-06-14 14:41:10'),(57,77,'Kinda dissapointed with the plant quality',3,'2020-06-14 14:41:10'),(69,57,'Really happy to try out this brand, great products and costumer support!',5,'2020-06-12 14:41:10');
-INSERT INTO review (id_product,id_order,description,rating,review_date) VALUES (59,13,'Really happy to try out this brand, great products and costumer support!',2,'2020-06-20 14:41:10'),(42,44,'Loved this lovely plant! Very easy to take care',3,'2020-06-20 14:41:10'),(71,100,'Great product!',4,'2020-06-23 14:41:10'),(16,39,'Loved this lovely plant! Very easy to take care',2,'2020-06-04 14:41:10');
-
+INSERT INTO review (id_product,id_order,description,rating,review_date) VALUES (6,1,'Bro, what an amazing plant! 5/7 guaranteed',5,'2020-05-08 14:59:14'),(15,4,'This Caladium is incredibly. So vivacious!',5,'2020-03-30 08:16:58'),(24,16,'Very slippery!',3,'2020-04-30 23:52:05'),(6,18,'This exquisite plant quite lives up to the expectations. Well done, indeed.',5,'2020-01-12 17:34:37');
+INSERT INTO review (id_product,id_order,description,rating,review_date) VALUES (21,21,'Quite handy and resistant, needs strength though',4,'2020-05-13 16:36:50'),(21,32,'They broke after 5 days of usage. Disapprove.',2,'2020-02-02 21:46:47'),(24,34,'This vase is great',5,'2019-09-14 23:05:00'),(16,34,'Kinda disappointed with the plant quality',1,'2020-06-12 14:41:10');
+INSERT INTO review (id_product,id_order,description,rating,review_date) VALUES (16,39,'Very fragile and not as pretty! FAKE!',2,'2020-06-04 14:41:10'),(16,40,'Loved this lovely plant! Very easy to take care',5,'2020-06-20 14:41:10'),(25,49,'Not as big as I expected',4,'2019-11-08 09:28:59'),(12,52,'I order this sunflower but when it arrived it was dead. Did you not tell the delivery guys to give it light?',1,'2019-08-09 10:22:33');
+INSERT INTO review (id_product,id_order,description,rating,review_date) VALUES (25,57,'Excellent vase!',5,'2020-05-15 19:19:15'),(20,58,'Really happy to try out this brand, great products and costumer support!',1,'2020-06-23 14:41:10'),(6,63,'I thought this was fake, but totally wasnt. Great product and great service, very nice guys!',5,'2019-06-07 15:56:35'),(6,74,'Very good.',5,'2019-10-02 09:43:51');
+INSERT INTO review (id_product,id_order,description,rating,review_date) VALUES (24,75,'A little less bright than i expected but still good',4,'2020-03-12 10:25:50'),(16,84,'Kinda dissapointed with the plant quality',4,'2020-06-20 14:41:10'),(20,93,'Loved this lovely plant! Very easy to take care',5,'2020-06-20 14:41:10'),(25,100,'This is light gray!',4,'2020-02-18 18:13:03');
 
 --R05
 INSERT INTO "order_history" (date,id_order,order_status) VALUES ('2019-04-30 13:59:14',1,'Ready_for_Shipping'),('2019-02-05 13:01:42',2,'Processed'),('2019-12-16 13:40:37',3,'Awaiting_Payment'),('2019-01-03 04:16:58',4,'Ready_for_Shipping'),('2019-04-11 13:04:18',5,'Ready_for_Shipping'),('2019-09-08 03:05:35',6,'Processed'),('2019-05-29 07:28:16',7,'Awaiting_Payment'),('2019-01-02 00:09:57',8,'Processed'),('2019-04-06 09:40:03',9,'Processed'),('2019-01-25 13:07:57',10,'Awaiting_Payment');
@@ -825,35 +508,35 @@ INSERT INTO "order_history" (date,id_order,order_status) VALUES ('2019-09-05 03:
 INSERT INTO "order_history" (date,id_order,order_status) VALUES ('2019-11-24 11:43:09',91,'Awaiting_Payment'),('2019-01-19 04:54:47',92,'Processed'),('2019-05-28 10:42:34',93,'Ready_for_Shipping'),('2019-06-12 20:18:59',94,'Awaiting_Payment'),('2019-07-28 12:18:18',95,'Processed'),('2019-08-11 20:23:10',96,'Ready_for_Shipping'),('2019-11-18 10:34:23',97,'Processed'),('2019-04-27 00:29:44',98,'Processed'),('2019-05-07 05:39:15',99,'Ready_for_Shipping'),('2019-10-18 16:13:03',100,'Processed');
 
 --R07
-INSERT INTO wishlist (name,id_user) VALUES (' Flowers ',23),(' Accessories',20),(' Accessories',23),(' Vases ',23),(' Vases ',38),(' Tulips ',8),('Orchids ',29),(' Flowers ',17),('Orchids ',44),(' Flowers ',22);
+INSERT INTO wishlist (name,id_user) VALUES (' Flowers ',23),(' Accessories',23),(' Vases ',23),(' Vases ',38),(' Tulips ',8),('Orchids ',29),(' Flowers ',17),('Orchids ',44),(' Flowers ',22);
 INSERT INTO wishlist (name,id_user) VALUES (' Accessories',32),(' Accessories',14),(' Accessories',16),(' Vases ',17),(' Flowers ',32),(' Tulips ',10),(' Flowers ',22),('Orchids ',33),(' Vases ',32),(' Tulips ',48);
-INSERT INTO wishlist (name,id_user) VALUES ('Orchids ',12),('Orchids ',48),('Orchids ',36),(' Tulips ',46),(' Vases ',3),('Orchids ',39),(' Flowers ',4),('Orchids ',37),(' Accessories',30),('Orchids ',32);
-INSERT INTO wishlist (name,id_user) VALUES (' Accessories',43),(' Tulips ',26),(' Flowers ',14),(' Accessories',46),(' Vases ',16),(' Tulips ',40),(' Accessories',12),(' Accessories',20),(' Accessories',22),('Orchids ',42);
+INSERT INTO wishlist (name,id_user) VALUES ('Orchids ',12),('Orchids ',48),('Orchids ',36),(' Vases ',3),('Orchids ',39),(' Flowers ',4),('Orchids ',37),(' Accessories',30),('Orchids ',32);
+INSERT INTO wishlist (name,id_user) VALUES (' Accessories',43),(' Flowers ',14),(' Vases ',16),(' Accessories',12),(' Accessories',22),('Orchids ',42);
 INSERT INTO wishlist (name,id_user) VALUES (' Flowers ',38),('Orchids ',49),('Orchids ',21),(' Tulips ',7),('Orchids ',2),('Orchids ',35),(' Flowers ',3),(' Accessories',21),(' Flowers ',6),(' Flowers ',24);
 
 --R08
-INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (32,20),(25,32),(31,18),(65,21),(93,18),(45,26),(77,20),(1,5),(60,8),(59,14);
-INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (93,27),(15,24),(5,15),(55,21),(17,33),(24,4),(53,38),(34,3),(18,23),(23,31);
-INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (78,39),(64,3),(26,34),(65,2),(28,8),(89,22),(93,17),(96,38),(7,17),(21,4);
-INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (85,14),(17,29),(81,9),(46,16),(51,6),(84,40),(2,22),(71,14),(16,25),(19,34);
-INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (92,12),(85,17),(30,23),(81,31),(23,29),(55,25),(91,14),(93,21),(34,28),(11,18);
-INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (69,33),(14,8),(4,28),(87,20),(85,31),(21,16),(39,3),(50,2),(9,10),(5,31);
-INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (15,16),(2,17),(67,16),(53,20),(29,4),(96,10),(92,21),(52,32),(51,8),(86,6);
-INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (94,36),(27,4),(94,19),(22,40),(69,7),(45,5),(36,10),(57,11),(31,36),(39,16);
-INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (42,17),(30,36),(53,4),(42,28),(85,15),(27,27),(91,25),(90,16),(99,37),(86,31);
-INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (15,38),(75,3),(45,24),(60,24),(77,12),(48,28),(15,33),(69,34),(17,10),(20,15);
+INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (25,32),(1,5),(3,1),(6,3),(8,2),(10,12);
+INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (15,24),(5,15),(17,33),(24,4),(18,23),(23,31);
+INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (26,34),(28,8),(7,17),(21,4),(12,34);
+INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (17,29),(2,22),(16,25),(19,34),(20,11),(30,18);
+INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (30,23),(23,29),(11,18),(1,8);
+INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (14,8),(4,28),(21,16),(9,10),(5,31),(28,19);
+INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (15,16),(2,17),(29,4),(2,35),(3,25),(4,10);
+INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (27,4),(22,40),(23,40),(4,27),(1,32),(5,13);
+INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (30,36),(27,27),(17,13),(10,23),(6,39),(3,6);
+INSERT INTO wishlist_product (id_product,id_wishlist) VALUES (15,38),(15,33),(17,10),(20,15),(4,7),(24,9);
 
 --R09
-INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (43,70,10),(2,44,14),(1,38,17),(21,14,11),(40,68,15),(22,81,20),(24,35,19),(27,87,11),(24,8,7),(2,20,9);
-INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (37,6,9),(17,98,18),(21,12,12),(48,85,18),(48,49,20),(17,49,4),(25,13,8),(41,18,20),(29,36,14),(20,9,20);
-INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (25,35,12),(11,12,10),(46,60,5),(32,36,4),(11,96,1),(12,47,17),(27,55,7),(48,86,1),(26,88,9),(43,96,17);
-INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (19,55,8),(38,45,1),(13,1,1),(29,78,19),(23,84,6),(46,43,20),(50,93,10),(13,56,16),(22,24,18),(18,18,17);
-INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (20,65,3),(46,59,10),(45,3,16),(12,16,8),(15,17,10),(33,98,9),(4,87,9),(50,60,6),(9,37,17),(33,1,15);
-INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (17,95,8),(36,43,6),(44,18,6),(38,12,4),(30,25,15),(14,98,16),(48,82,8),(8,27,8),(20,50,1),(25,5,6);
-INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (7,68,11),(22,11,2),(25,51,20),(8,72,5),(47,72,3),(7,50,12),(41,33,1),(25,54,11),(37,1,10),(24,43,18);
-INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (39,75,2),(6,100,1),(2,16,11),(16,78,1),(46,14,3),(15,29,19),(5,97,10),(8,18,6),(45,36,11),(31,36,6);
-INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (27,56,8),(45,62,12),(38,83,6),(33,34,11),(40,30,1),(49,64,11),(8,52,16),(10,92,15),(29,98,15),(10,29,6);
-INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (7,72,3),(44,19,1),(35,96,14),(23,57,10),(37,35,20),(14,48,18),(34,55,4),(40,66,17),(32,73,14),(35,93,11);
+INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (21,14,11),(24,8,7),(2,20,9),(12,2,1),(45,4,2),(30,7,1);
+INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (37,6,9),(21,12,12),(25,13,8),(41,18,20),(21,9,20),(14,10,1);
+INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (11,12,10),(41,15,2),(3,21,1),(4,22,1),(6,23,1),(6,26,1);
+INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (44,18,6),(38,12,4),(30,25,15),(8,27,8),(25,5,6),(50,28,1);
+INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (45,3,16),(12,16,8),(15,17,10),(33,1,15),(11,2,1),(15,27,1);
+INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (2,16,11),(45,14,3),(15,29,19),(8,18,6),(8,16,1),(9,13,2);
+INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (13,1,1),(22,24,18),(18,18,17),(4,19,1),(7,26,1),(43,12,1);
+INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (22,11,2),(37,1,10),(43,22,1),(32,10,1),(24,21,2),(38,15,1);
+INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (41,30,1),(10,29,6),(14,14,1),(29,5,1),(50,14,1),(41,29,2);
+INSERT INTO shopping_cart (id_user,id_product,quantity) VALUES (44,19,1),(4,18,1),(11,11,1),(22,30,1),(35,23,1),(47,2,1);
 
 --R10
 INSERT INTO discount ("percentage",date_begin,date_end) VALUES (96,'2018-04-11','2018-05-21'),(88,'2019-02-25','2019-07-26'),(2,'2020-01-11','2020-02-02'),(88,'2020-04-03','2020-05-09');
@@ -868,71 +551,57 @@ INSERT INTO discount_code (id_discount,code) VALUES (20,'Noelani'),(9,'Ralph'),(
 
 --R12
 INSERT INTO apply_discount (id_product,id_discount) VALUES (2,2),(3,20),(6,18),(10,1),(21,4);
-INSERT INTO apply_discount (id_product,id_discount) VALUES (1,11),(95,8),(34,1),(55,11),(49,18);
-INSERT INTO apply_discount (id_product,id_discount) VALUES (84,10),(96,17),(20,9),(63,8),(27,14);
-INSERT INTO apply_discount (id_product,id_discount) VALUES (35,14),(26,20),(28,11),(13,6),(78,10);
-INSERT INTO apply_discount (id_product,id_discount) VALUES (66,15),(64,17),(34,2),(18,11),(83,12);
-INSERT INTO apply_discount (id_product,id_discount) VALUES (73,15),(81,11),(59,20),(90,16),(89,16);
-INSERT INTO apply_discount (id_product,id_discount) VALUES (30,10),(60,20),(39,4),(29,11),(44,3);
-INSERT INTO apply_discount (id_product,id_discount) VALUES (94,4),(99,8),(37,14),(25,7),(36,18);
-INSERT INTO apply_discount (id_product,id_discount) VALUES (32,11),(88,15),(27,20),(51,18),(91,14);
-INSERT INTO apply_discount (id_product,id_discount) VALUES (87,18),(46,8),(66,4),(82,7),(76,11);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (1,11),(1,3),(2,3),(3,3),(4,4);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (17,9),(27,14),(5,5),(10,6),(13,7);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (26,20),(28,11),(14,6),(3,7),(18,8);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (18,11),(30,12),(29,12),(28,13),(23,13);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (30,10),(29,11),(26,15),(8,16),(24,17);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (25,7),(23,19),(22,19),(21,19),(20,19);
+INSERT INTO apply_discount (id_product,id_discount) VALUES (27,20),(19,4),(7,6),(28,20),(8,2);
 
 --R13
 INSERT INTO tag ("name") VALUES ('Indoor'),('Outdoor'),('Vases'),('Tools');
-INSERT INTO tag ("name") VALUES ('Orchid'),('Tulips'),('Bonsai'),('Dahlias');
-INSERT INTO tag ("name") VALUES ('Green'),('Pink'),('Red'),('Yellow'),('Deals');
+INSERT INTO tag ("name") VALUES ('Orchid'),('Tulips'),('Bonsai'),('Rose');
+INSERT INTO tag ("name") VALUES ('Green'),('Pink'),('Red'),('Yellow');
 
 
 --R14
-INSERT INTO product_tag (id_tag,id_product) VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11),(1,12),(1,13),(1,14),(1,15),(1,16),(1,17),(1,18),(1,19),(1,20),(1,21),(1,22),(1,23),(1,24),(1,25);
-INSERT INTO product_tag (id_tag,id_product) VALUES (2,26),(2,27),(2,28),(2,29),(2,30),(2,31),(2,32),(2,33),(2,34),(2,35),(2,36),(2,37),(2,38),(2,39),(2,40),(2,41),(2,42),(2,43),(2,44),(2,45),(2,46),(2,47),(2,48),(2,49),(2,50);
-INSERT INTO product_tag (id_tag,id_product) VALUES (3,51),(3,52),(3,53),(3,54),(3,55),(3,56),(3,57),(3,58),(3,59),(3,60),(3,61),(3,62),(3,63),(3,64),(3,65),(3,66),(3,67),(3,68),(3,69),(3,70),(3,71),(3,72),(3,73),(3,74),(3,75);
-INSERT INTO product_tag (id_tag,id_product) VALUES (4,76),(4,77),(4,78),(4,79),(4,80),(4,81),(4,82),(4,83),(4,84),(4,85),(4,86),(4,87),(4,88),(4,89),(4,90),(4,91),(4,92),(4,93),(4,94),(4,95),(4,96),(4,97),(4,98),(4,99),(4,100);
+INSERT INTO product_tag (id_tag,id_product) VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8);
+INSERT INTO product_tag (id_tag,id_product) VALUES (2,9),(2,10),(2,11),(2,12),(2,13),(2,14),(2,15),(2,16);
+INSERT INTO product_tag (id_tag,id_product) VALUES (3,24),(3,25),(3,26),(3,27),(3,28),(3,29),(3,30);
+INSERT INTO product_tag (id_tag,id_product) VALUES (4,17),(4,18),(4,19),(4,20),(4,21),(4,22),(4,23);
 
-INSERT INTO product_tag (id_tag,id_product) VALUES (5,1),(5,2),(5,3),(5,4),(5,5),(5,6),(5,7),(5,8),(5,9),(5,10),(5,11),(5,12),(5,13),(5,14),(5,15),(5,16),(5,17),(5,18),(5,19),(5,20),(5,21),(5,22),(5,23),(5,24),(5,25);
-INSERT INTO product_tag (id_tag,id_product) VALUES (6,26),(6,27),(6,28),(6,29),(6,30),(6,31),(6,32),(6,33),(6,34),(6,35),(6,36),(6,37),(6,38),(6,39),(6,40),(6,41),(6,42),(6,43),(6,44),(6,45),(6,46),(6,47),(6,48),(6,49),(6,50);
-INSERT INTO product_tag (id_tag,id_product) VALUES (7,51),(7,52),(7,53),(7,54),(7,55),(7,56),(7,57),(7,58),(7,59),(7,60),(7,61),(7,62),(7,63),(7,64),(7,65),(7,66),(7,67),(7,68),(7,69),(7,70),(7,71),(7,72),(7,73),(7,74),(7,75);
-INSERT INTO product_tag (id_tag,id_product) VALUES (8,76),(8,77),(8,78),(8,79),(8,80),(8,81),(8,82),(8,83),(8,84),(8,85),(8,86),(8,87),(8,88),(8,89),(8,90),(8,91),(8,92),(8,93),(8,94),(8,95),(8,96),(8,97),(8,98),(8,99),(8,100);
+INSERT INTO product_tag (id_tag,id_product) VALUES (5,1),(6,3),(6,5),(7,2),(7,7),(8,4),(8,16);
+INSERT INTO product_tag (id_tag,id_product) VALUES (9,6),(9,2),(9,7),(9,9),(9,14),(9,20),(9,22),(9,29);
+INSERT INTO product_tag (id_tag,id_product) VALUES (10,1),(10,5),(10,15),(10,30);
+INSERT INTO product_tag (id_tag,id_product) VALUES (11,4),(11,8),(11,16),(11,21),(12,12);
 
-INSERT INTO product_tag (id_tag,id_product) VALUES (9,1),(9,2),(9,3),(9,4),(9,5),(9,6),(9,7),(9,8),(9,9),(9,10),(9,11),(9,12),(9,13),(9,14),(9,15),(9,16),(9,17),(9,18),(9,19),(9,20),(9,21),(9,22),(9,23),(9,24),(9,25);
-INSERT INTO product_tag (id_tag,id_product) VALUES (10,26),(10,27),(10,28),(10,29),(10,30),(10,31),(10,32),(10,33),(10,34),(10,35),(10,36),(10,37),(10,38),(10,39),(10,40),(10,41),(10,42),(10,43),(10,44),(10,45),(10,46),(10,47),(10,48),(10,49),(10,50);
-INSERT INTO product_tag (id_tag,id_product) VALUES (11,51),(11,52),(11,53),(11,54),(11,55),(11,56),(11,57),(11,58),(11,59),(11,60),(11,61),(11,62),(11,63),(11,64),(11,65),(11,66),(11,67),(11,68),(11,69),(11,70),(11,71),(11,72),(11,73),(11,74),(11,75);
-INSERT INTO product_tag (id_tag,id_product) VALUES (12,76),(12,77),(12,78),(12,79),(12,80),(12,81),(12,82),(12,83),(12,84),(12,85),(12,86),(12,87),(12,88),(12,89),(12,90),(12,91),(12,92),(12,93),(12,94),(12,95),(12,96),(12,97),(12,98),(12,99),(12,100);
 
-INSERT INTO product_tag (id_tag,id_product) VALUES (13,76),(13,77),(13,78),(13,79),(13,80),(13,81),(13,82),(13,83),(13,84),(13,85),(13,86),(13,87),(13,88),(13,89),(13,90),(13,91),(13,92),(13,93),(13,94),(13,95),(13,96),(13,97),(13,98),(13,99),(13,100);
+
 --R15
-INSERT INTO ticket (ticket_type,id_user) VALUES ('Faulty_Delivery',18),('Product_Complaint',1),('Faulty_Delivery',5),('Faulty_Delivery',8);
+INSERT INTO ticket (ticket_type,id_user) VALUES ('Faulty_Delivery',18),('Product_Complaint',1),('Faulty_Delivery',8);
 INSERT INTO ticket (ticket_type,id_user) VALUES ('Faulty_Delivery',9),('Payment_Error',8),('Payment_Error',8),('Payment_Error',11);
 
 --R16
 INSERT INTO ticket_message (sent_date,"message",id_ticket,id_user) VALUES ('2019-06-27 06:48:10','I cought the delivery man throwing my package at the door. It was a bonsai. I want my money back. NOW.',4,8);
 INSERT INTO ticket_message (sent_date,"message",id_ticket,id_user) VALUES ('2019-09-27 20:36:10','Im waiting for my delivery for a thousand days now, just give me my money back...',5,9);
 INSERT INTO ticket_message (sent_date,"message",id_ticket,id_user) VALUES ('2019-01-09 10:50:51','I got my orqid last wek and its already ded. Found later that u shud water it... y isnt on the package that shud water it???!!!',2,1);
-INSERT INTO ticket_message (sent_date,"message",id_ticket,id_user) VALUES ('2019-10-28 10:13:18','My Plant arrived at my house wrapped in bubble-wrap. Who hired that packager?.. I demand imediate restitution of my money!',3,5);
 INSERT INTO ticket_message (sent_date,"message",id_ticket,id_user) VALUES ('2019-05-28 11:09:46','My Plant came in a box. It was dead. WTH IS WRONG WITH YOU PEOPLE????',1,18);
 INSERT INTO ticket_message (sent_date,"message",id_ticket,id_user) VALUES ('2019-01-12 08:32:52','My reference expired and paid after. Now it demands the payment again. HELL NO. Give me my order or give me back my money.',6,8);
-INSERT INTO ticket_message (sent_date,"message",id_ticket,id_user) VALUES ('2019-10-16 11:28:11','Stripe is down. I dont trust bank references. Please fix this issue.',8,11);
-INSERT INTO ticket_message (sent_date,"message",id_ticket,id_user) VALUES ('2019-09-19 16:00:17','Dude, I read sprite on phone and I like order a bunch of bottles, like, weird way of payment but ok, i guess you guys need it. But the order didnt ship it, then i realize it saidStripe... Can i pay with bottles of soda now??? PS: Pls keep selling that sativa, the best i ever had bros!',7,8);
+INSERT INTO ticket_message (sent_date,"message",id_ticket,id_user) VALUES ('2019-10-16 11:28:11','Stripe is down. I dont trust bank references. Please fix this issue.',7,11);
+INSERT INTO ticket_message (sent_date,"message",id_ticket,id_user) VALUES ('2019-09-19 16:00:17','Dude, I read sprite on phone and I like order a bunch of bottles, like, weird way of payment but ok, i guess you guys need it. But the order didnt ship it, then i realize it said Stripe... Can i pay with bottles of soda now??? PS: Pls keep selling that sativa, the best i ever had bros!',7,8);
 
 --R17
-INSERT INTO ticket_history ("date",ticket_status,id_ticket) VALUES ('2019-06-24 23:00:54','In_Progress',5),('2019-09-28 07:59:42','In_Progress',8);
+INSERT INTO ticket_history ("date",ticket_status,id_ticket) VALUES ('2019-06-24 23:00:54','In_Progress',5);
 INSERT INTO ticket_history ("date",ticket_status,id_ticket) VALUES ('2019-01-09 10:50:51','Opened',4),('2019-11-01 23:49:25','Closed',1);
-INSERT INTO ticket_history ("date",ticket_status,id_ticket) VALUES ('2019-05-29 11:09:46','Opened',8),('2019-01-13 07:57:42','In_Progress',7);
+INSERT INTO ticket_history ("date",ticket_status,id_ticket) VALUES ('2019-01-13 07:57:42','In_Progress',7);
 INSERT INTO ticket_history ("date",ticket_status,id_ticket) VALUES ('2019-10-18 15:14:24','Closed',5),('2019-09-19 16:00:17','Opened',4);
 
 
 --R19
-INSERT INTO product_image (id_product,id_image) VALUES (1,7),(2,4),(3,1),(4,8),(5,6),(6,7),(7,4),(8,6),(9,6),(10,3);
-INSERT INTO product_image (id_product,id_image) VALUES (11,9),(12,6),(13,1),(14,7),(15,2),(16,7),(17,8),(18,4),(19,10),(20,4);
-INSERT INTO product_image (id_product,id_image) VALUES (21,9),(22,7),(23,9),(24,2),(25,6),(26,3),(27,1),(28,1),(29,6),(30,8);
-INSERT INTO product_image (id_product,id_image) VALUES (31,3),(32,4),(33,3),(34,5),(35,5),(36,3),(37,1),(38,8),(39,9),(40,9);
-INSERT INTO product_image (id_product,id_image) VALUES (41,4),(42,5),(43,2),(44,2),(45,9),(46,6),(47,3),(48,3),(49,8),(50,8);
-INSERT INTO product_image (id_product,id_image) VALUES (51,8),(52,4),(53,9),(54,3),(55,8),(56,8),(57,5),(58,1),(59,1),(60,3);
-INSERT INTO product_image (id_product,id_image) VALUES (61,8),(62,10),(63,9),(64,1),(65,6),(66,3),(67,10),(68,9),(69,1),(70,10);
-INSERT INTO product_image (id_product,id_image) VALUES (71,7),(72,10),(73,9),(74,9),(75,5),(76,6),(77,4),(78,10),(79,3),(80,1);
-INSERT INTO product_image (id_product,id_image) VALUES (81,1),(82,5),(83,8),(84,4),(85,5),(86,2),(87,8),(88,8),(89,6),(90,5);
-INSERT INTO product_image (id_product,id_image) VALUES (91,6),(92,4),(93,6),(94,7),(95,6),(96,5),(97,9),(98,1),(99,1),(100,6);
+INSERT INTO product_image (id_product,id_image) VALUES (1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(10,10);
+INSERT INTO product_image (id_product,id_image) VALUES (11,11),(12,12),(13,13),(14,14),(15,15),(16,16),(17,17),(18,18),(19,19),(20,20);
+INSERT INTO product_image (id_product,id_image) VALUES (21,21),(22,22),(23,23),(24,24),(25,25),(26,26),(27,27),(28,28),(29,29),(30,30);
 
 --R20
 INSERT INTO user_removal (reason,username,removed_at) VALUES ('i just wanted to buy a gift for my vegan gf','whatever123123','2019-04-19 05:29:18');
