@@ -12,12 +12,16 @@ class SearchController extends Controller
 
     public function render()
     {
+        return view('pages.search', $this->getTagsAndSizes() );
+    }
+
+    public static function getTagsAndSizes(){
         $tags = DB::table('tag')
             ->select('name', 'id')
             ->limit(10)
             ->get();
 
-        return view('pages.search', ['categories' => $tags, 'sizes' =>  array("<0.5kg", "0.5-1.5kg", "1.5kg-3kg", "3kg-5kg", "5kg-10kg", "10kg-20kg", ">20kg")]);
+        return ['categories' => $tags, 'sizes' =>  array("<0.5kg", "0.5-1.5kg", "1.5kg-3kg", "3kg-5kg", "5kg-10kg", "10kg-20kg", ">20kg")];
     }
 
     public function fullSearch(Request $request)

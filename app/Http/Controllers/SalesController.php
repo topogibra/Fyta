@@ -55,7 +55,7 @@ class SalesController extends Controller
 
         return view('pages.sales-form', [
             'method' => 'POST'
-        ]);
+        ] + SearchController::getTagsAndSizes());
     }
 
     public function create(Request $request)
@@ -74,7 +74,7 @@ class SalesController extends Controller
             'begin' => $discount->date_begin,
             'end' => $discount->date_end,
             'id' => $discount->id
-        ]);
+        ]+ SearchController::getTagsAndSizes());
     }
 
     public function update(Request $request)
@@ -205,8 +205,9 @@ class SalesController extends Controller
         DB::commit();
 
         $nProds = count($cleanProducts);
-        $cleanProducts = array_splice($cleanProducts, 5 * ($page - 1), 5);
-        return ['products' => $cleanProducts, 'pages' => ceil($nProds / 5)];
+        $n_per_page = 11; 
+        $cleanProducts = array_splice($cleanProducts, $n_per_page * ($page - 1), $n_per_page);
+        return ['products' => $cleanProducts, 'pages' => ceil($nProds / $n_per_page)];
     }
 
     public function getOnGoingSales($begin, $end)

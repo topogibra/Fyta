@@ -13,7 +13,7 @@ import {
 const dBegin = document.querySelector("#begin");
 const dEnd = document.querySelector("#end");
 const queryText = document.getElementById("search-available");
-const hideDiv = document.getElementById("after-dates");
+const hideDiv = document.getElementById("selProducts");
 const form = document.querySelector("#submit-button");
 const showSelected = document.getElementById("showSelected");
 const saleID = document.querySelector("#sale-id").value;
@@ -52,7 +52,7 @@ function verifyInput(inputList) {
 }
 
 const availableProducts = async (pg = 1) => {
-    const legend = document.querySelector("#products-sales legend");
+    const legend = document.getElementById("legend");
     const productList = document.querySelector("#products-list");
     if (!dBegin.value || !dEnd.value) {
         removeAll(productList);
