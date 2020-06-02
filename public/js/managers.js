@@ -13,6 +13,7 @@ export default function buildManagers(managers) {
         const photo = document.createElement('div');
         const img = document.createElement('img');
         img.src = manager.photo;
+        img.alt = `${manager.name}'s Photo`
         photo.appendChild(img);
         row.appendChild(photo);
 
@@ -45,7 +46,7 @@ export default function buildManagers(managers) {
             else
                 document.getElementById('managers-page').dispatchEvent(new Event('mousedown'));
             return result;
-        }), deleteId);
+        }), deleteId, deleteId+"Label");
 
         container.appendChild(modal);
         const icon = document.createElement('i');
@@ -83,7 +84,7 @@ export default function buildManagers(managers) {
         username: "",
         email: "",
         photo: "img/user.png"
-    }), managerId, true);
+    }), managerId, managerId+"Label");
 
 
     const form = modal.querySelector('form');

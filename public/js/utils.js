@@ -4,14 +4,14 @@ export function removeAll(node){
     }
 }
 
-export function buildModal(pageName, modalContent, modalId) {
+export function buildModal(pageName, modalContent, modalId, label = "addManagerLabel") {
     const modal = document.createElement('div');
     modal.id = modalId;
     modal.style.display = "none";
     modal.className = "modal fade";
     modal.tabIndex = -1;
     modal.setAttribute('role', 'dialog');
-    modal.setAttribute('aria-labelledby', 'addManagerLabel');
+    modal.setAttribute('aria-labelledby', label);
     modal.setAttribute('aria-hidden', 'true');
     const dialog = document.createElement('div');
     dialog.className = "modal-dialog";
@@ -25,7 +25,7 @@ export function buildModal(pageName, modalContent, modalId) {
     content.appendChild(header);
     const title = document.createElement('h5');
     title.className = "modal-title";
-    title.id = "addManagerLabel";
+    title.id = label;
     title.textContent = pageName;
     header.appendChild(title);
     const closeButton = document.createElement('button');

@@ -7,8 +7,8 @@
             <i aria-hidden="true" class="fas fa-search form-control-feedback"></i>
         </button>
     </span>
-    <label for="query">Search for a product...</label>
-    <input class="form-control border-left-0" type="text" id="query" name="query" placeholder="Search for a product...">
+    <label for="mobile-query">Search for a product...</label>
+    <input class="form-control border-left-0" type="text" id="mobile-query" name="query" placeholder="Search for a product...">
   </form>
   <div class="title">
     <div class="row">

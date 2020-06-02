@@ -31,13 +31,13 @@
       </div>
       <div class="row register-info justify-content-center">
           <p>Don't have an account yet?  </p>
-          <small id="helpId" class=" text-muted">
+          <small class="text-muted">
             <a href="/register">Register now</a>
           </small>
       </div>
       <div class="row register-info justify-content-center">
           <p>Forgot your password?  </p>
-          <small id="helpId" class=" text-muted">
+          <small class="text-muted">
             <a href="/password-recovery">Click here</a>
           </small>
       </div>

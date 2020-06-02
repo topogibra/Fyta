@@ -151,7 +151,6 @@ function buildSearchResults(products) {
     parentContainer.id = "results";
     parentContainer.className = "col-lg-8 align-self-start";
     const container = document.createElement("div");
-    container.id = "results";
     container.className =
         "row row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2";
 
@@ -189,7 +188,6 @@ function buildSearchResults(products) {
             if (product.favorite) fav.className = "fas fa-star";
             else fav.className = "far fa-star";
             fav.id = product.id;
-            fav.setAttribute("date-toggle", "popover");
             fav.setAttribute("data-placement", "right");
             fav.setAttribute("aria-atomic", "true");
             fav.setAttribute("aria-live", "assertive");
@@ -291,7 +289,7 @@ if (queryText) {
 }
 
 if (queryText) {
-    const query = document.querySelector(".navbar-search-mobile #query");
+    const query = document.querySelector(".navbar-search-mobile #mobile-query");
     query.value = queryText;
 }
 

@@ -74,11 +74,11 @@ export function buildPersonalInfoForm(info, user) {
         fieldSet.appendChild(birthdayHeader);
         const birthdayCol = document.createElement('div');
         birthdayCol.className = "col-12";
-        birthdayHeader.appendChild(birthdayCol);
+        fieldSet.appendChild(birthdayCol);
         const heading = document.createElement('h4');
         heading.id = "birthday";
         heading.textContent = "Birthday";
-        birthdayHeader.appendChild(heading);
+        fieldSet.appendChild(heading);
         form.appendChild(fieldSet);
 
         const birthdayInputs = document.createElement('div');
@@ -157,7 +157,7 @@ export default function buildPersonalInfo(info, user) {
         ev.preventDefault();
         const validation = ['username', 'email'];
         if (user) {
-            validation.push(...['address', 'day', 'month', 'year']);
+            validation.push(...['address', 'day', 'month', 'year', 'security-question']);
         }
 
         const validationErrors = validateRequirements(validation);

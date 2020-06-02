@@ -1,4 +1,4 @@
-<article class="row comment">
+<div class="row comment">
     <div class="container w-100">
         <div class="row">
             <div class="col-md-3 col-sm-4">
@@ -21,4 +21,4 @@
             {{ $review->description }}
         </p>
     </div>
-</article>
+</div>

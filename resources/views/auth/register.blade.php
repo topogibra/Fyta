@@ -30,47 +30,47 @@
       </div>
     </fieldset>
     <!--  -->
-    <div class="row info-birth">
+    <fieldset class="row info-birth">
       <legend> Birthday </legend>
     <!--  -->
-    <input name="birthday" type="hidden" value="" id="birthday"/>
-    <div class="row form-group  birthday">
-      <div class="col ">
-        <select class="custom-select custom-select-sm registerinput registerSelect" name="day" id="day">
-          <option selected class="text-muted optionplaceholder" hidden>Day</option>
-         @for ($i = 1; $i <= 31; $i++)
-          <option value={{$i}}>{{$i}}</option>
-         @endfor
-        </select>
-      </div>
-      <div class="col ">
-        <select class="custom-select custom-select-sm registerinput registerSelect" name="month" id="month">
-          <option selected class="text-muted optionplaceholder" hidden>Month</option>
-          <option value="1">January</option>
-          <option value="2">February</option>
-          <option value="3">March</option>
-          <option value="4">April</option>
-          <option value="5">May</option>
-          <option value="6">June</option>
-          <option value="7">July</option>
-          <option value="8">August</option>
-          <option value="9">September</option>
-          <option value="10">October</option>
-          <option value="11">November</option>
-          <option value="12">December</option>
-        </select>
-      </div>
-      <div class="col ">
-        <select class="custom-select custom-select-sm registerinput registerSelect" name="year" id="year">
-          <option selected class="text-muted optionplaceholder" hidden>Year</option>
-         @for ($i = date("Y"); $i >= 1920; $i--)
-          <option value={{$i}}>{{$i}}</option>
-         @endfor
-        </select>
-      </div>
+      <input name="birthday" type="hidden" value="" id="birthday"/>
+      <div class="row form-group  birthday">
+        <div class="col ">
+          <select class="custom-select custom-select-sm registerinput registerSelect" name="day" id="day">
+            <option selected class="text-muted optionplaceholder" hidden>Day</option>
+          @for ($i = 1; $i <= 31; $i++)
+            <option value={{$i}}>{{$i}}</option>
+          @endfor
+          </select>
+        </div>
+        <div class="col ">
+          <select class="custom-select custom-select-sm registerinput registerSelect" name="month" id="month">
+            <option selected class="text-muted optionplaceholder" hidden>Month</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+          </select>
+        </div>
+        <div class="col ">
+          <select class="custom-select custom-select-sm registerinput registerSelect" name="year" id="year">
+            <option selected class="text-muted option placeholder" hidden>Year</option>
+          @for ($i = date("Y"); $i >= 1920; $i--)
+            <option value={{$i}}>{{$i}}</option>
+          @endfor
+          </select>
+        </div>
 
-    </div>
-  </div>
+      </div>
+    </fieldset>
     <!--  -->
       <div class="row info-pass">
         <label for="password">  </label>
@@ -79,7 +79,7 @@
 
       <div class="row info-sec">
         <label for="security-question">What was the name of your first animal? </label>
-        <input type="security-question" name="security-question" id="security-question" class="form-control registerinput" placeholder="Enter your answer here" >
+        <input type="text" name="security-question" id="security-question" class="form-control registerinput" placeholder="Enter your answer here" >
       </div>
     <!--  -->
     <div class="row register">

@@ -56,7 +56,7 @@ export default function buildSales(discounts) {
                     container.appendChild(buildErrorMessage(e.status, e.message));
                 }
             }),
-            deleteId
+            deleteId, deleteId + "Label"
         );
 
         if (errors) {

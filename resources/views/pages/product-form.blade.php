@@ -48,7 +48,7 @@
                 @if (isset($category))
                     <option value={{ $category }}> {{ $category }} </option>
                 @else
-                    <option selected disabled></option>
+                    <option selected disabled>Select an option</option>
                 @endif
                 @foreach ($categories as $item)
                     <option value={{ $item }}> {{ $item }} </option>
@@ -76,7 +76,7 @@
     <div class="row">
         <div class="my-2 product-creation-left" id="create-product-description">
             <h5> Description </h5>
-            <textarea id="description" class="textinput" name="description" type="text">{{$description ?? ""}}</textarea>
+            <textarea id="description" class="textinput" name="description">{{$description ?? ""}}</textarea>
         </div>
     </div>
     @include('components.errors')
