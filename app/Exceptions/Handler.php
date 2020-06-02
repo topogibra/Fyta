@@ -50,7 +50,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if ($this->isHttpException($exception)) {
-            return response()->view('errors.error_page', ['status' => $exception->getStatusCode() == 404]);
+            return response()->view('errors.error_page', ['status' => $exception->getStatusCode()]);
         }
         if ($exception instanceof MethodNotAllowedException) {
             return abort('404');

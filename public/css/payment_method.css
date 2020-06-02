@@ -1,193 +1,193 @@
-        @import url('pallette.css');
-        /* Payment Method */
+@import url('pallette.css');
+/* Payment Method */
 
-        a.btn {
-            border: 1px solid var(--light-gray);
-        }
+a.btn {
+    border: 1px solid var(--light-gray);
+}
 
-        #back-btn, #next-btn {
-            background-color: var(--light-gray);
-            color: var(--black);
-            width: 20%
-        }
+#back-btn, #next-btn {
+    background-color: var(--light-gray);
+    color: var(--black);
+    width: 20%
+}
 
-        #back-btn{
-            background-color: var(--green);
-            color: var(--white);
-        }
+#back-btn{
+    background-color: var(--green);
+    color: var(--white);
+}
 
-        .active>div>img {
-            outline: 6px solid var(--green);
-        }
+.active>div>img {
+    outline: 6px solid var(--green);
+}
 
-        .active>.name>span {
-            text-decoration-color: var(--green);
-            text-decoration: underline;
-            color: var(--green);
-        }
+.active>.name>span {
+    text-decoration-color: var(--green);
+    text-decoration: underline;
+    color: var(--green);
+}
 
-        .payment.disabled > .img-wrapper {
-            opacity: 0.4;
-            filter: alpha(opacity=40);
-        }
+.payment.disabled > .img-wrapper {
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
 
-        .payment.disabled>.name {
-            opacity: 0.4;
-            filter: alpha(opacity=40);
-        }
+.payment.disabled>.name {
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
 
-        .payment-method h3 {
-            color: var(--green);
-            padding-bottom: 2em;
-            text-align: start;
-        }
-        .options .img-wrapper {
-            height: 200px;
-            width: 200px;
-            margin: auto;
-            border-color: var(--light-gray);
-        }
+.payment-method h3 {
+    color: var(--green);
+    padding-bottom: 2em;
+    text-align: start;
+}
+.options .img-wrapper {
+    height: 200px;
+    width: 200px;
+    margin: auto;
+    border-color: var(--light-gray);
+}
 
-        .payment-method {
-            margin: 2em 20%;
-        }
+.payment-method {
+    margin: 2em 20%;
+}
 
-        .options {
-            position: relative;
-            padding: 2em 0;
-        }
+.options {
+    position: relative;
+    padding: 2em 0;
+}
 
-        .options>.col-6 {
-            position: static;
-            padding-left: 0;
-            padding-right: 0;
-        }
+.options>.col-6 {
+    position: static;
+    padding-left: 0;
+    padding-right: 0;
+}
 
-        .options>a.col-6:link,
-        .options>a.col-6:visited {
-            color: var(--green);
-        }
+.options>a.col-6:link,
+.options>a.col-6:visited {
+    color: var(--green);
+}
 
-        .options>.col-6:nth-child(2):before {
-            content: "";
-            border-left: 1px solid var(--light-gray);
-            position: absolute;
-            top: 0;
-            bottom: 0;
-        }
+.options>.col-6:nth-child(2):before {
+    content: "";
+    border-left: 1px solid var(--light-gray);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
 
-        .col-padding {
-            padding: 0 15px;
-        }
+.col-padding {
+    padding: 0 15px;
+}
 
-        .options .payment-img {
-            height: 100%;
-            width: auto;
-        }
+.options .payment-img {
+    height: 100%;
+    width: auto;
+}
 
-        .options .name {
-            padding-top: 1em;
-            text-decoration: none;
-            color: var(--black);
-        }
+.options .name {
+    padding-top: 1em;
+    text-decoration: none;
+    color: var(--black);
+}
 
-        .payment-method .buttons {
-            padding-top: 5em;
-        }
+.payment-method .buttons {
+    padding-top: 5em;
+}
 
-        .lg-content-between {
-            justify-content: space-between;
-        }
+.lg-content-between {
+    justify-content: space-between;
+}
 
-        @media (max-width: 1024px) {
-            .options .name {
-                font-size: 1.25em;
-            }
-        }
+@media (max-width: 1024px) {
+    .options .name {
+        font-size: 1.25em;
+    }
+}
 
-        @media (max-width: 768px) {
-            .payment-method {
-                margin: 2em 5%;
-            }
+@media (max-width: 768px) {
+    .payment-method {
+        margin: 2em 5%;
+    }
 
-            .payment-method .buttons {
-                justify-content: space-around;
-            }
+    .payment-method .buttons {
+        justify-content: space-around;
+    }
 
-            .sm-space-around {
-                justify-content: space-around;
-            }
-        }
+    .sm-space-around {
+        justify-content: space-around;
+    }
+}
 
-        @media (max-width: 600px) {
-            #back-btn{
-                background-color: var(--green);
-                color: var(--white);
-                width: 50%;
-            }
-            .options {
-                flex-direction: column;
-                align-items: center;
-            }
+@media (max-width: 600px) {
+    #back-btn{
+        background-color: var(--green);
+        color: var(--white);
+        width: 50%;
+    }
+    .options {
+        flex-direction: column;
+        align-items: center;
+    }
 
-            .options>.col-6 {
-                margin-bottom: 1em;
-                max-width: unset;
-            }
+    .options>.col-6 {
+        margin-bottom: 1em;
+        max-width: unset;
+    }
 
-            .options>.col-6:nth-child(2):before {
-                border-left: 0;
-            }
+    .options>.col-6:nth-child(2):before {
+        border-left: 0;
+    }
 
-            .options>.col-6:nth-child(2) {
-                border-top: 1px solid var(--light-gray);
-                padding-top: 1em;
-            }
+    .options>.col-6:nth-child(2) {
+        border-top: 1px solid var(--light-gray);
+        padding-top: 1em;
+    }
 
-            .payment-method h3 {
-                text-align: center;
-                padding-bottom: 1em;
-            }
-        }
+    .payment-method h3 {
+        text-align: center;
+        padding-bottom: 1em;
+    }
+}
 
-        @media (max-width: 425px) {
-            #back-btn {
-                width: 40%
-            }
+@media (max-width: 425px) {
+    #back-btn {
+        width: 40%
+    }
 
-            #next-btn {
-                width: 40%
-            }
-        }
+    #next-btn {
+        width: 40%
+    }
+}
 
-        @media (max-width: 360px) {
-            .buttons {
-                padding-top: 0;
-                flex-wrap: nowrap;
-                height: 75%;
-                font-size: 1em;
-            }
+@media (max-width: 360px) {
+    .buttons {
+        padding-top: 0;
+        flex-wrap: nowrap;
+        height: 75%;
+        font-size: 1em;
+    }
 
-            #back-btn {
-                margin-right: 1em;
-            }
+    #back-btn {
+        margin-right: 1em;
+    }
 
-            .btn {
-                height: 100%;
-            }
+    .btn {
+        height: 100%;
+    }
 
-            .options>.col-6:nth-child(2) {
-                border-top: 0;
-                padding-top: 0;
-            }
+    .options>.col-6:nth-child(2) {
+        border-top: 0;
+        padding-top: 0;
+    }
 
-            .options>.col-6:nth-child(2) .img-wrapper {
-                border-top: 1px solid var(--light-gray);
-                padding-top: 1em;
-            }
+    .options>.col-6:nth-child(2) .img-wrapper {
+        border-top: 1px solid var(--light-gray);
+        padding-top: 1em;
+    }
 
-            .options>.col-6:nth-child(2) .img-wrapper .payment-img {
-                width: 100%;
-                height: auto;
-            }
-        }
+    .options>.col-6:nth-child(2) .img-wrapper .payment-img {
+        width: 100%;
+        height: auto;
+    }
+}
