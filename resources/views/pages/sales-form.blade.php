@@ -52,7 +52,7 @@
     </div>
     @include('components.errors')
     <div class="row" id="submit-button">
-        <button type="submit" class="btn btn-primary mx-auto d-block mt-1" >Submit</button>
+        <button type="button" class="btn btn-primary mx-auto d-block mt-1" >Submit</button>
     </div>
 </div>
 @endsection

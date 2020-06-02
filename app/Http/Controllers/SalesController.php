@@ -221,19 +221,19 @@ class SalesController extends Controller
 
     public function upsertSale(Request $request, $insert)
     {
+        
         $request->validate([
-            'sale-id' => ['required', 'numeric', 'min:-1'],
-            'percentage' => ['required', 'numeric', 'min:1', 'max:99'],
             'begin' => ['required', 'date'],
             'end' => ['required', 'date'],
-            'products' => ['nullable', 'string'],
+            'id' => ['required', 'numeric', 'min:-1'],
+            'percentage' => ['required', 'numeric', 'min:1', 'max:99'],
             'productsChecked' => ['array','nullable'],
             'productsChecked.*' => ['int'],
             'productsUnchecked' => ['array','nullable'],
             'productsUnchecked.*' => ['int']
         ]);
 
-        $id = $request->input('sale-id');
+        $id = $request->input('id');
 
         DB::beginTransaction();
 
@@ -241,17 +241,19 @@ class SalesController extends Controller
             $discount = new Discount();
         else
             $discount = Discount::find($id);
+        
         $this->authorize('upsert', $discount);
-
-
+        
+        
         $percentage = $request->input('percentage');
         $begin = $request->input('begin');
         $end = $request->input('end');
-        $products = $request->input('products');
-
+        $productsChecked = $request->input('productsChecked');
+        $productsUnchecked = $request->input('productsUnchecked');
+        
         if ($begin > $end)
             return response()->json(['message' => 'Begin date can\'t be after End date'], 400);
-
+        
 
         $discount->percentage = $percentage;
         $discount->date_begin = $begin;
@@ -259,16 +261,19 @@ class SalesController extends Controller
         $onGoing = $this->getOnGoingSales($begin, $end); //get sales onGoing before creating
         $discount->save();
 
-        $discount->products()->detach();
 
-        if ($products) {
-            $products = preg_split('/,/', $products);
-            $this->updateProductsList($discount->id, $products, $onGoing);
+        $discount->products()->detach($productsUnchecked);
+
+
+
+        if ($productsChecked) {
+            $this->updateProductsList($discount->id, $productsChecked, $onGoing);
         }
+
 
         DB::commit();
 
-        return redirect('/manager/');
+        return response(200);
     }
 
     public function  SalestextQuery($products, $query)

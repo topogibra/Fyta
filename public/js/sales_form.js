@@ -16,6 +16,7 @@ const queryText = document.getElementById("search-available");
 const hideDiv = document.getElementById("after-dates");
 const form = document.querySelector("#submit-button");
 const showSelected = document.getElementById("showSelected");
+const saleID = document.querySelector("#sale-id").value;
 
 let productsChecked = new Set();
 let productsUnchecked = new Set();
@@ -67,7 +68,7 @@ const availableProducts = async (pg = 1) => {
     } else {
         legend.textContent = "Select the eligible products";
         hideDiv.style.display = "block";
-        const saleID = document.querySelector("#sale-id").value;
+        
 
 
         const formContent = {
@@ -80,9 +81,6 @@ const availableProducts = async (pg = 1) => {
             productsUnchecked: Array.from(productsUnchecked)
         };
 
-        console.log(formContent);
-
-
         if (saleID != -1) formContent.id = saleID;
 
         const data = await request({
@@ -91,7 +89,6 @@ const availableProducts = async (pg = 1) => {
             content: formContent
         },false);
 
-        console.log(data);
         const container = buildProductsList(data.products);
         container.appendChild(
             buildPagination(pg, data.pages, (page) => {
@@ -138,24 +135,39 @@ showSelected.addEventListener("change", (event) => {
 
 
 
-document.querySelector("#sales-form").addEventListener("submit", (event) => {
+form.addEventListener("click", async (event) => {
     const valErrors = verifyInput(["begin", "end", "percentage"], changed);
+    const _method = document.getElementsByName("_method")[0].value;
+    const percentage = document.getElementById("percentage").value;
+    event.preventDefault();
     if (valErrors) {
         form.prepend(valErrors);
-        event.preventDefault();
         errors = valErrors;
+        return false;
     }
 
-    const list = document.querySelector("#products-list");
-    const items = list.children;
-    let productsApplied = [];
-    for (let i = 0; i < items.length; i++) {
-        const checkbox = items[i].querySelector(".custom-control-input");
-        if (checkbox && checkbox.checked)
-            productsApplied.push(parseInt(checkbox.id));
-    }
+    const formContent = {
+        begin: dBegin.value,
+        end: dEnd.value,
+        percentage: parseInt(percentage),
+        productsChecked: Array.from(productsChecked),
+        productsUnchecked: Array.from(productsUnchecked)
+    };
 
-    event.target.products.value = productsApplied.join(",");
+    formContent.id = parseInt(saleID);
+
+    console.log(formContent);
+
+    const data = await request({
+        url: "/manager/sale",
+        method: _method,
+        content: formContent
+    }, false);
+
+   
+    if (data.status == 200) {
+        window.location.replace("/manager");
+    }
 });
 
 const buildProductsList = (products) => {
