@@ -57,7 +57,7 @@
             @auth  
             @if (User::checkUser() === User::$CUSTOMER)
                 <a href="/profile" class="col muser">
-                    <i class="far fa-user"></i>
+                    <img class="mx-auto d-block img-fluid rounded-circle border border-dark rounded" alt="User Image" id="nav-user-img" src={{asset(User::getImage())}}>
                 </a>
                 <a href="/cart" class="col mcart">
                     <i class="fas fa-shopping-basket"></i>
