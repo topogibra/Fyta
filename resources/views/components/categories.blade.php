@@ -3,10 +3,6 @@
   <ul id="categories" class="list-group list-group-flush">
     @each('components.search_categories', $categories, 'category')
   </ul>
-  <h5>Size</h5>
-  <ul id="sizes" class="list-group list-group-flush">
-      @each('components.search_sizes', $sizes, 'size')
-  </ul>
   <div class="price">
     <h5>Price Range</h5>
     <div class="row price-values">

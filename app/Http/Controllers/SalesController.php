@@ -230,7 +230,7 @@ class SalesController extends Controller
         DB::commit();
 
         $nProds = count($cleanProducts);
-        $n_per_page = 11; 
+        $n_per_page = 7; 
         $cleanProducts = array_splice($cleanProducts, $n_per_page * ($page - 1), $n_per_page);
         return ['products' => $cleanProducts, 'pages' => ceil($nProds / $n_per_page)];
     }
