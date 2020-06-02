@@ -16,6 +16,7 @@ export default function buildProductRow(items){
         img.className = "card-img-top product-image img-fluid border border-dark";
         img.src = item.img;
         imgWrapper.appendChild(img);
+        img.alt = item.name;
         card.appendChild(imgWrapper);
 
         const cardBody = document.createElement('div');

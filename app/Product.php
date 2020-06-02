@@ -240,6 +240,8 @@ class Product extends Model
             ->limit(3)
             ->get()
             ->all();
+
+        // for()
     }
 
     public static function getSalePrice($id, $date = null)

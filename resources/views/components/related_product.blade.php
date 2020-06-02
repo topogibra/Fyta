@@ -1,7 +1,7 @@
 <article class="col-10 col-md-4 col-sm-10">
     <div class="card align-items-center">
         <a href="/product/{{ $item->id }}">
-            <img class="border border-dark" src={{asset("img/$item->img")}} alt={{ "$item->description" }}>
+            <img class="border border-dark" src={{asset("img/$item->img")}} alt={!! $item->description !!}>
         </a>
         <div class="card-body row">
             <a href="/product/{{ $item->id }}">

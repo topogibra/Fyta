@@ -166,7 +166,7 @@ function generateDateRow(type) {
             canvasRow.appendChild(generateGraphs(topViews, `Most Seen Items`));
         }
     });
-    date.appendChild(buildModal("Insert the beginning date of your query", calendar, id));
+    date.appendChild(buildModal("Insert the beginning date of your query", calendar, id, id + "Label"));
     return date;
 }
 

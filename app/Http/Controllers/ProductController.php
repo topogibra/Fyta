@@ -24,8 +24,10 @@ class ProductController extends Controller
         $reviews = $feedback == null ? [] : $feedback->reviews;
         $score = $feedback == null ? 0 : round($feedback->score);
         $related_products = Product::getRelatedProducts($id);
-        foreach($related_products as $rel)
+        foreach($related_products as $rel){
             $rel->sale_price = Product::getSalePrice($rel->id);
+            $rel->description = nl2br(str_replace(" ", "&nbsp;", $rel->description));;
+        }
             
         $stock = $product->stock;
 

@@ -74,11 +74,11 @@ export function buildPersonalInfoForm(info, user) {
         fieldSet.appendChild(birthdayHeader);
         const birthdayCol = document.createElement('div');
         birthdayCol.className = "col-12";
-        birthdayHeader.appendChild(birthdayCol);
+        fieldSet.appendChild(birthdayCol);
         const heading = document.createElement('h4');
         heading.id = "birthday";
         heading.textContent = "Birthday";
-        birthdayHeader.appendChild(heading);
+        fieldSet.appendChild(heading);
         form.appendChild(fieldSet);
 
         const birthdayInputs = document.createElement('div');

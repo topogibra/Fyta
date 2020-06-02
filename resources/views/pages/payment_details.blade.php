@@ -11,7 +11,7 @@
                 </div>
                 <div class="name w-100 text-center"><span>Bank Transfer</span></div>
             </div>
-            <div href="" class="col-6 payment {{ $payment === 'stripe' ? 'active' :  '' }} disabled">
+            <div class="col-6 payment {{ $payment === 'stripe' ? 'active' :  '' }} disabled">
                 <div class="img-wrapper ">
                     <img src={{asset("img/stripe.png")}} alt="Payment by Stripe" id="stripe" class="payment-img img-fluid border">
                 </div>
@@ -24,7 +24,7 @@
             <input type="hidden" id="billingaddress"  name="billing" value="{{ $billing == null ? $delivery : $billing }}">
             <input type="hidden" id="payment-input" name="payment" value="{{ $payment === null ? "" : $payment}}">
             <div class="row buttons lg-content-between sm-space-around">
-                <a type="button" href="/checkout-details" id="back-btn" class="btn rounded-0 btn-lg shadow-none">Back</a>
+                <a role="button" href="/checkout-details" id="back-btn" class="btn rounded-0 btn-lg shadow-none">Back</a>
                 <input type="submit" id="next-btn" class="btn rounded-0 btn-lg shadow-none" value="Next">
             </div>
         </form>

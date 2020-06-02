@@ -61,7 +61,7 @@ export default function buildPendingOrders(orders) {
                 button.textContent = stateStatus[status.textContent];
             }
             return result;
-        }), deleteId)
+        }), deleteId, deleteId + "Label")
         container.appendChild(modal);
         col.appendChild(button);
         row.appendChild(col);

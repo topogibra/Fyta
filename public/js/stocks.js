@@ -47,7 +47,7 @@ export default function buildStocks(products) {
                 throw { status: result.status, message: 'Failed to delete, please try again later.' }
             row.remove();
             return result;
-        }), deleteId)
+        }), deleteId, deleteId+"Label")
         container.appendChild(modal);
         col.appendChild(icon);
         row.appendChild(col);
