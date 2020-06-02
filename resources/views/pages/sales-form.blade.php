@@ -31,6 +31,7 @@
             </div>
         </div>
     </div>
+    @include('components.errors')
     <div class="row">
         <fieldset id="products-sales" name="apply-products" class="col">
             <h4 class="text-center" id="legend">Select a date range to view eligible products</h4>
@@ -69,7 +70,6 @@
             <input id="products" name="products" type="hidden">
         </div>
     </div>
-    @include('components.errors')
     <div class="row" id="submit-button">
         <button type="button" class="btn btn-primary mx-auto d-block mt-1" >Submit</button>
     </div>

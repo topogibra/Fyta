@@ -23,9 +23,9 @@ const catCheckboxes = document.querySelectorAll(
 );
 
 
-let productsChecked = new Set();
-let productsUnchecked = new Set();
-let productCategories = new Set();
+const productsChecked = new Set();
+const productsUnchecked = new Set();
+const productCategories = new Set();
 
 let changed = false;
 let errors;
@@ -99,7 +99,8 @@ const availableProducts = async (pg = 1) => {
     if (!dBegin.value || !dEnd.value) {
         removeAll(productList);
         legend.textContent = "Select a date range to view eligible products";
-        hideDiv.style.display = "none";
+        hideDiv.classList.remove("d-block");
+        hideDiv.classList.add("d-none");
         return;
     }
     const valErrors = verifyInput(["begin", "end"], changed);
@@ -109,7 +110,8 @@ const availableProducts = async (pg = 1) => {
         errors = valErrors;
     } else {
         legend.textContent = "Select the eligible products";
-        hideDiv.style.display = "block";
+        hideDiv.classList.add("d-block");
+        hideDiv.classList.remove("d-none");
 
         const formContent = {
             begin: dBegin.value,
