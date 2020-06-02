@@ -54,9 +54,9 @@ Route::delete('customer/{username}','CustomerController@delete');
 //Sales
 Route::get('manager/sales','SalesController@sales');
 Route::delete('manager/sales/{id}','SalesController@delete');
+Route::get('manager/sales/{id}','SalesController@edit');
 Route::get('manager/sale','SalesController@add');
 Route::post('manager/sale','SalesController@create');
-Route::get('manager/sales/{id}','SalesController@edit');
 Route::put('manager/sale','SalesController@update');
 Route::post('manager/sale/products','SalesController@availableProducts');
 
