@@ -84,6 +84,7 @@ button.col-2 {
 
 .shopCartProduct-total {
     padding-right: 0;
+    padding-left: 0;
 }
 
 #checkout_btn {

@@ -12,16 +12,16 @@ export default function buildPendingOrders(orders) {
     const header = document.createElement('div');
     header.className = "row header";
 
-    header.appendChild(createProductHeader('Order #', 2));
+    header.appendChild(createProductHeader('Order #', 3));
     header.appendChild(createProductHeader('Purchase Date', 3));
     header.appendChild(createProductHeader('Pending Status', 3));
-    header.appendChild(createProductHeader('Confirm Status', 4));
+    header.appendChild(createProductHeader('Confirm Status', 3));
     container.appendChild(header);
 
     orders.forEach(order => {
         const row = document.createElement('div');
         row.className = "row table-entry";
-        const number = createProductColumnValue(order.number, 'order',2);
+        const number = createProductColumnValue(order.number, 'order',3);
         const href = document.createElement('a');
         href.className = "col-md-2 col-6 name";
         href.href = '/order/' + order.id;
@@ -30,7 +30,7 @@ export default function buildPendingOrders(orders) {
         row.appendChild(createProductColumnValue(order.date, 'date',3));
         const status = createProductColumnValue(order.status, 'status',3);
         row.appendChild(status);
-        const col = createProductColumnValue('', 'confirm',4);
+        const col = createProductColumnValue('', 'confirm',3);
         const button = document.createElement('a');
         button.setAttribute('role', 'button');
         button.className = "btn btn-primary confirm-order";

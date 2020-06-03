@@ -80,7 +80,11 @@
 }
 
 /* Order List */
-
+.order-details, .shopCartEntry
+{
+    margin-left: 0;
+    margin-right: 0;
+}
 .row .col-md-8 {
     margin: 1em 0;
 }
