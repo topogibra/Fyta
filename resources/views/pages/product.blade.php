@@ -66,10 +66,8 @@
                     @else
                         <i class="far fa-star"></i>
                     @endif
-                @else
-                    <i class="far fa-star"></i>
-                @endif
                 <span>Add to Favourites</span>
+                @endif
             </div>
             <div class="toast" id="myToast" role="alert" aria-live="assertive" aria-atomic="true"  >
                 <div class="toast-body">

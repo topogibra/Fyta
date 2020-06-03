@@ -202,7 +202,8 @@ body {
     .navbar-icons .star,
     .navbar-icons .login,
     .navbar-icons .user,
-    .navbar-icons .cart {
+    .navbar-icons .cart,
+    .navbar-icons .square  {
         display: none;
     }
     .navbar-collapse.collapse.show {
