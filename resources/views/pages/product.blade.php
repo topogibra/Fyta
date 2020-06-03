@@ -1,4 +1,4 @@
-@extends('layouts.product', ['content' => 'components.product-page', 'files' =>  ['scripts' => ['js/product_page.js','js/request.js','js/review.js'], 'styles' => ['css/product_page.css'], 'title' => 'Product Page']])
+@extends('layouts.product', ['content' => 'components.product-page', 'files' =>  ['scripts' => ['js/product_page.js','js/request.js','js/review.js'], 'styles' => ['css/product_page.css'], 'title' => $name]])
 
 @section('img')
     <img class="border" src={{asset("img/$img")}} alt={!! $alt !!}>
