@@ -1,4 +1,4 @@
-@extends('layouts.product', ['content' => 'components.sales-form', 'method' => $method, 'files' =>  ['scripts' => ['js/sales_form.js'], 'styles' => ['css/product_page.css','css/styles.css','css/searchpage.css','css/sale_page.css']]])
+@extends('layouts.product', ['content' => 'components.sales-form', 'method' => $method, 'files' =>  ['scripts' => ['js/sales_form.js'], 'styles' => ['css/product_page.css','css/styles.css','css/searchpage.css','css/sale_page.css', 'title' => 'Sales Page']]])
 
 @section('sales-page-content')
 <div class="container justify-content-center" id="form-content">

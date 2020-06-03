@@ -1,4 +1,4 @@
-@extends('layouts.app', ['scripts' => ['js/searchpage.js'], 'styles' => ['css/searchpage.css', 'css/pallette.css','css/categories.css']])
+@extends('layouts.app', ['scripts' => ['js/searchpage.js'], 'styles' => ['css/searchpage.css', 'css/pallette.css','css/categories.css'], 'title' => 'Search Page'])
 
 @section('content')
   <form class="input-group w-auto mt-1 rounded-pill border border-dark navbar-search-mobile" action="/search" method="GET">

@@ -1,4 +1,4 @@
-@extends('layouts.app', ['scripts' => ['js/login.js'], 'styles' => ['css/loginpage.css']])
+@extends('layouts.app', ['scripts' => ['js/login.js'], 'styles' => ['css/loginpage.css'], 'title' => 'Login'])
 
 
 @section('content')

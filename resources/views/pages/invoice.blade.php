@@ -1,4 +1,4 @@
-@extends('layouts.app', ['scripts' => [], 'styles' => ['css/order_summary.css']])
+@extends('layouts.app', ['scripts' => [], 'styles' => ['css/order_summary.css'], 'title' => 'Invoice'])
 
 @section('content')
     @include('components.order_details',  ['order_number' => $information->shipping_id, 'date' => $information->date, 'name' => $information->name, 'address' => $information->address,'billing' => $information->billing, 'sum' => $sum, 'delivery'=> $delivery ,'items' => $items, 'buttons' => False])

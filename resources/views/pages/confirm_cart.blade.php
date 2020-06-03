@@ -1,4 +1,4 @@
-@extends('layouts.app',['scripts' =>['js/shopping_cart.js'],'styles'=>['css/order_summary.css','css/payment_method.css','css/shopping_cart_page.css','css/checkoutprogress.css','css/confirm_cart.css']])
+@extends('layouts.app',['scripts' =>['js/shopping_cart.js'],'styles'=>['css/order_summary.css','css/payment_method.css','css/shopping_cart_page.css','css/checkoutprogress.css','css/confirm_cart.css'], 'title' => 'Confirm Order'])
 
 
 @section('content')
