@@ -1,4 +1,4 @@
-@extends('layouts.app', ['scripts' => ['js/searchpage.js'], 'styles' => ['css/searchpage.css', 'css/pallette.css']])
+@extends('layouts.app', ['scripts' => ['js/searchpage.js'], 'styles' => ['css/searchpage.css', 'css/pallette.css','css/categories.css']])
 
 @section('content')
   <form class="input-group w-auto mt-1 rounded-pill border border-dark navbar-search-mobile" action="/search" method="GET">
@@ -55,47 +55,15 @@
               </div>
             </div>
           </div>
-          <div id="filter">
-            <button type="button" class="btn btn-outline-dark">Filters
-              <i class="fas fa-chevron-down"></i>
-            </button>
-          </div>
+          @include('components.filterButton')
         </div>
       </div>
     </div>
   </div>
   <div class="content">
     <div class="row justify-content-between" id="parent">
-      <div class="col-lg-3 ">
-        <h5>Categories</h5>
-        <ul id="categories" class="list-group list-group-flush">
-          @each('components.search_categories', $categories, 'category')
-        </ul>
-        <h5>Size</h5>
-        <ul id="sizes" class="list-group list-group-flush">
-            @each('components.search_sizes', $sizes, 'size')
-        </ul>
-        <div class="price">
-          <h5>Price Range</h5>
-          <div class="row price-values justify-content-around">
-            <div class="col-5 min">
-              <p>1€</p>
-            </div>
-            <div class="col-5 max">
-              <p>100€</p>
-            </div>
-          </div>
-          <div class="row price-inputs justify-content-around">
-            <div class="col-5 min-input">
-              <label for="min">Minimum Price:</label>
-              <input type="number" class="form-control" id="min" placeholder="1" min="1" max="99">
-            </div>
-            <div class="col-5 max-input">
-              <label for="max">Maximum Price:</label>
-              <input type="number" class="form-control" id="max" placeholder="100" min="2" max="100">
-            </div>
-          </div>
-        </div>
+      <div class="col-lg-3 categories-col">
+        @include('components.categories')
       </div>
       <div class="col-lg-8">
         <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2"></div>

@@ -55,7 +55,7 @@ class SalesController extends Controller
 
         return view('pages.sales-form', [
             'method' => 'POST'
-        ]);
+        ] + SearchController::getTagsAndSizes());
     }
 
     public function create(Request $request)
@@ -74,7 +74,7 @@ class SalesController extends Controller
             'begin' => $discount->date_begin,
             'end' => $discount->date_end,
             'id' => $discount->id
-        ]);
+        ]+ SearchController::getTagsAndSizes());
     }
 
     public function update(Request $request)
@@ -102,17 +102,37 @@ class SalesController extends Controller
 
         DB::beginTransaction();
 
+        
         $request->validate([
-            'begin' => 'required|date',
-            'end' => 'required|date',
-            'id' => 'nullable|numeric|min:1',
-            'page' => 'required|numeric|min:0'
+            'begin' => ['required','date'],
+            'end' =>[ 'required','date'],
+            'id' => ['nullable','numeric','min:1'],
+            'page' => ['required','numeric','min:0'],
+            'query' => ['string', 'nullable'],
+            'showSelected' => ['boolean'],
+            'productsChecked' => ['array','nullable'],
+            'productsChecked.*' => ['int'],
+            'productsUnchecked' => ['array','nullable'],
+            'productsUnchecked.*' => ['int'],
+            'categories' => ['array','nullable'],
+            'categories.*' => ['string'],
+            'pricemin' => ['required','numeric'],
+            'pricemax' => ['required','numeric']
         ]);
+        
 
         $begin = $request->input('begin');
         $end = $request->input('end');
         $id = $request->input('id');
         $page = $request->input('page');
+        $query = $request->input('query');
+        $showSelected = $request->input('showSelected');
+        $productsUnchecked = ($request->input('productsUnchecked') === null ? [] : $request->input('productsUnchecked'));
+        $productsChecked =   ($request->input('productsChecked') === null ?   [] : $request->input('productsChecked') );
+        $categories = $request->input('categories');
+        $pricemin = $request->input('pricemin');
+        $pricemax = $request->input('pricemax');
+
 
         $onGoing = $this->getOnGoingSales($begin, $end);
 
@@ -120,32 +140,84 @@ class SalesController extends Controller
             ->select('product.id')
             ->join('apply_discount', 'apply_discount.id_product', 'product.id')
             ->whereIn('id_discount', $onGoing)
+            ->whereNotIn('product.id',$productsUnchecked)
             ->get()
             ->all();
         $unavailableProducts = array_map(function ($prod) {
             return $prod->id;
         }, $unavailableProducts);
 
+        $unavailableProducts = array_merge($unavailableProducts,$productsChecked);
+
         $availableProducts = DB::table('product')
             ->distinct()
-            ->select('product.id', 'name', 'price', 'img_name', 'image.description as alt')
+            ->select('product.id', 'product.name', 'price', 'img_name', 'image.description as alt');
+        
+        if($query){
+            $availableProducts = $this->SalestextQuery($availableProducts,$query);
+        }
+
+
+        $availableProducts = $availableProducts
             ->join('apply_discount', 'id_product', 'product.id')
             ->join('product_image', 'product_image.id_product', 'product.id')
-            ->join('image', 'image.id', 'product_image.id_image')
+            ->join('image', 'image.id', 'product_image.id_image');
+
+        if($categories){
+            $availableProducts = $availableProducts
+            ->join('product_tag', 'product_tag.id_product', 'product.id')
+            ->join('tag', 'tag.id', 'product_tag.id_tag')
+            ->whereIn('tag.name', $categories);
+        }
+
+        if($query){
+            $availableProducts = $availableProducts->orderByDesc('ranking');
+        }
+            $availableProducts = $availableProducts
+            ->whereBetween('price',[$pricemin,$pricemax])
             ->get()
-            ->whereNotIn('id', $unavailableProducts)->all();
+            ->whereNotIn('id', $unavailableProducts)
+            ->all();
         $availableProducts = array_values($availableProducts);
         $cleanProducts = array_map(function ($product) {
             $data = ['id' => $product->id, 'name' => $product->name, 'price' => $product->price, 'img' => $product->img_name, 'alt' => $product->alt, 'applied' => false];
             return $data;
         }, $availableProducts);
 
-        if ($id) {
-            $discount = Discount::find($id);
-            $appliedProducts = $discount->products()
-                ->select('product.id', 'name', 'price', 'img_name', 'image.description as alt')
+        if ($showSelected) {
+            $appliedIds = $productsChecked;
+            if($id){
+                $discount = Discount::find($id);
+                $appliedIds = array_merge($appliedIds,$discount->products()
+                ->pluck('product.id')->all());
+            }
+            $appliedProducts = DB::table('product')
+                ->select('product.id', 'product.name', 'price', 'img_name', 'image.description as alt');
+            
+            if($query){
+                $appliedProducts = $this->SalestextQuery($appliedProducts,$query);
+            }
+
+            $appliedProducts = $appliedProducts 
                 ->join('product_image', 'product_image.id_product', 'product.id')
-                ->join('image', 'image.id', 'product_image.id_image')
+                ->join('image', 'image.id', 'product_image.id_image');
+
+            if($categories){
+                $appliedProducts = $appliedProducts
+                    ->join('product_tag', 'product_tag.id_product', 'product.id')
+                    ->join('tag', 'tag.id', 'product_tag.id_tag')
+                    ->whereIn('tag.name', $categories);
+            }
+
+            
+            if($query){
+                $appliedProducts = $appliedProducts->orderByDesc('ranking');
+            }
+               
+            $appliedProducts = $appliedProducts
+                ->whereIn('product.id',$appliedIds)
+                ->whereBetween('price',[$pricemin,$pricemax])
+                ->whereNotIn('product.id',$productsUnchecked)
                 ->get()
                 ->all();
 
@@ -160,8 +232,9 @@ class SalesController extends Controller
         DB::commit();
 
         $nProds = count($cleanProducts);
-        $cleanProducts = array_splice($cleanProducts, 5 * ($page - 1), 5);
-        return ['products' => $cleanProducts, 'pages' => ceil($nProds / 5)];
+        $n_per_page = 7; 
+        $cleanProducts = array_splice($cleanProducts, $n_per_page * ($page - 1), $n_per_page);
+        return ['products' => $cleanProducts, 'pages' => ceil($nProds / $n_per_page)];
     }
 
     public function getOnGoingSales($begin, $end)
@@ -176,15 +249,19 @@ class SalesController extends Controller
 
     public function upsertSale(Request $request, $insert)
     {
+        
         $request->validate([
-            'sale-id' => ['required', 'numeric', 'min:-1'],
-            'percentage' => ['required', 'numeric', 'min:1', 'max:99'],
             'begin' => ['required', 'date'],
             'end' => ['required', 'date'],
-            'products' => ['nullable', 'string']
+            'id' => ['required', 'numeric', 'min:-1'],
+            'percentage' => ['required', 'numeric', 'min:1', 'max:99'],
+            'productsChecked' => ['array','nullable'],
+            'productsChecked.*' => ['int'],
+            'productsUnchecked' => ['array','nullable'],
+            'productsUnchecked.*' => ['int']
         ]);
 
-        $id = $request->input('sale-id');
+        $id = $request->input('id');
 
         DB::beginTransaction();
 
@@ -192,17 +269,19 @@ class SalesController extends Controller
             $discount = new Discount();
         else
             $discount = Discount::find($id);
+        
         $this->authorize('upsert', $discount);
-
-
+        
+        
         $percentage = $request->input('percentage');
         $begin = $request->input('begin');
         $end = $request->input('end');
-        $products = $request->input('products');
-
+        $productsUnchecked = ($request->input('productsUnchecked') === null ? [] : $request->input('productsUnchecked'));
+        $productsChecked =   ($request->input('productsChecked') === null ?   [] : $request->input('productsChecked') );
+        
         if ($begin > $end)
             return response()->json(['message' => 'Begin date can\'t be after End date'], 400);
-
+        
 
         $discount->percentage = $percentage;
         $discount->date_begin = $begin;
@@ -210,15 +289,29 @@ class SalesController extends Controller
         $onGoing = $this->getOnGoingSales($begin, $end); //get sales onGoing before creating
         $discount->save();
 
-        $discount->products()->detach();
 
-        if ($products) {
-            $products = preg_split('/,/', $products);
-            $this->updateProductsList($discount->id, $products, $onGoing);
+        $discount->products()->detach($productsUnchecked);
+
+
+
+        if ($productsChecked) {
+            $this->updateProductsList($discount->id, $productsChecked, $onGoing);
         }
+
 
         DB::commit();
 
-        return redirect('/manager/');
+        return response()->json(['message' => 'Sale updated with success'],200);
+    }
+
+    public function  SalestextQuery($products, $query)
+    {
+        return $products
+            ->addSelect(DB::raw('ts_rank(
+                        setweight(to_tsvector(\'english\', product."name"), \'A\') || 
+                        setweight(to_tsvector(\'english\', product."description"), \'B\'), 
+                        plainto_tsquery(\'english\', ?)
+                    ) AS ranking'))
+            ->addBinding([$query],'select');
     }
 }

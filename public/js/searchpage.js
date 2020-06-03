@@ -118,16 +118,6 @@ function retrieveSearchForm() {
         }
     }
 
-    const sizeList = document.querySelector(".col-lg-3 #sizes").children;
-    const sizes = [];
-    for (let size of sizeList) {
-        const checkbox = size.querySelector(".custom-control-input");
-        if (checkbox.checked) {
-            const label = size.querySelector(".custom-control-label");
-            sizes.push(label.textContent);
-        }
-    }
-
     const minPrice = document.querySelector(
         ".col-lg-3 .price .price-inputs #min"
     ).valueAsNumber;
@@ -138,7 +128,6 @@ function retrieveSearchForm() {
     const data = {
         query: queryText,
         tags: categories,
-        sizes: sizes,
         minPrice: minPrice,
         maxPrice: maxPrice,
     };

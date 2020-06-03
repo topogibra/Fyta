@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Discount;
 use App\User;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -11,7 +12,7 @@ class SalesPolicy
 {
     use HandlesAuthorization;
 
-    public function upsert(User $user)
+    public function upsert(User $user,Discount $discount)
     {
         return Auth::check() && $user->user_role == User::$MANAGER;
     }
