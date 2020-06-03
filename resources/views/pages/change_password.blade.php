@@ -1,4 +1,4 @@
-@extends('layouts.app', ['scripts' => ['js/register.js'], 'styles' => ['css/registerpage.css']])
+@extends('layouts.app', ['scripts' => ['js/register.js'], 'styles' => ['css/registerpage.css'], 'title' => 'Change Password'])
 
 @section('content')
 <div class="container" id="page">

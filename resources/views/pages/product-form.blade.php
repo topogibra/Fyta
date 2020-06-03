@@ -1,4 +1,4 @@
-@extends('layouts.product', ['content' => 'components.product-form', 'method' => $method, 'files' =>  ['scripts' => ['js/product_form.js'], 'styles' => ['css/product_page.css','css/productform.css']]])
+@extends('layouts.product', ['content' => 'components.product-form', 'method' => $method, 'files' =>  ['scripts' => ['js/product_form.js'], 'styles' => ['css/product_page.css','css/productform.css'], 'title' => 'Product Creation']])
 
 @section('img')
 <div class="my-2" class="product-creation-left">

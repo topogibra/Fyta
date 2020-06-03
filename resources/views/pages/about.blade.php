@@ -1,4 +1,4 @@
-@extends('layouts.app', ['scripts' => [], 'styles' => ['css/aboutus.css']])
+@extends('layouts.app', ['scripts' => [], 'styles' => ['css/aboutus.css'], 'title' => 'About Us'])
 
 @section('content')
 <div class="aboutus">
