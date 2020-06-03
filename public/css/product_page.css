@@ -247,6 +247,10 @@ div.related-products img {
     display: none;
 }
 
+.related-section h3{
+    width:100%;
+}
+
 @media(max-width: 1200px) {
     .product-img img {
         height: 300px;

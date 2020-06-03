@@ -1,4 +1,4 @@
-@extends('layouts.product', ['content' => 'components.product-page', 'files' =>  ['scripts' => ['js/product_page.js','js/request.js','js/review.js'], 'styles' => ['css/product_page.css']]])
+@extends('layouts.product', ['content' => 'components.product-page', 'files' =>  ['scripts' => ['js/product_page.js','js/request.js','js/review.js'], 'styles' => ['css/product_page.css'], 'title' => $name]])
 
 @section('img')
     <img class="border" src={{asset("img/$img")}} alt={!! $alt !!}>
@@ -66,10 +66,8 @@
                     @else
                         <i class="far fa-star"></i>
                     @endif
-                @else
-                    <i class="far fa-star"></i>
-                @endif
                 <span>Add to Favourites</span>
+                @endif
             </div>
             <div class="toast" id="myToast" role="alert" aria-live="assertive" aria-atomic="true"  >
                 <div class="toast-body">

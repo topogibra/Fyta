@@ -1,4 +1,4 @@
-@extends('layouts.app', ['scripts' => ['js/checkout.js'], 'styles' => ['css/orderdetails.css', 'css/checkoutprogress.css']])
+@extends('layouts.app', ['scripts' => ['js/checkout.js'], 'styles' => ['css/orderdetails.css', 'css/checkoutprogress.css'], 'title' => 'Order Summary'])
 
 @section('content')
     @include('components.checkout_progress', ['number' => 1])

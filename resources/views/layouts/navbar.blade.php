@@ -7,7 +7,7 @@
     @auth  
         @if (User::checkUser() === User::$CUSTOMER)
             <a href="/profile" class="user">
-                <img class="mx-auto d-block img-fluid rounded-circle border border-dark rounded" alt="User Image" id="nav-user-img" src={{asset(User::getImage())}}>
+                <img class="mx-auto d-block img-fluid rounded-circle border border-dark rounded nav-user-img" alt="User Image" src={{asset(User::getImage())}}>
             </a>
             <a href="/cart" class="cart">
                 <i class="fas fa-shopping-basket"></i>
@@ -15,9 +15,9 @@
         
         @else
             <a href="/manager" class="user">
-                <img class="mx-auto d-block img-fluid rounded-circle border border-dark rounded" alt="User Image" id="nav-user-img" src={{asset(User::getImage())}}>
+                <img class="mx-auto d-block img-fluid rounded-circle border border-dark rounded nav-user-img" alt="User Image" src={{asset(User::getImage())}}>
             </a>
-            <a href="/product/add" class="star">
+            <a href="/product/add" class="square">
                 <i class="far fa-plus-square"></i>
             </a>
         @endif      
@@ -46,9 +46,6 @@
             <li class="nav-item  divider">
                 <a class="nav-link" href="/search?section=Tools">Tools</a>
             </li>
-            <li class="nav-item  divider">
-                <a class="nav-link" href="/search?section=Deals">Deals</a>
-            </li>
         </ul>
     </div>
 
@@ -57,7 +54,7 @@
             @auth  
             @if (User::checkUser() === User::$CUSTOMER)
                 <a href="/profile" class="col muser">
-                    <img class="mx-auto d-block img-fluid rounded-circle border border-dark rounded" alt="User Image" id="nav-user-img" src={{asset(User::getImage())}}>
+                    <img class="mx-auto d-block img-fluid rounded-circle border border-dark rounded nav-user-img" alt="User Image" src={{asset(User::getImage())}}>
                 </a>
                 <a href="/cart" class="col mcart">
                     <i class="fas fa-shopping-basket"></i>
@@ -65,7 +62,7 @@
             
             @else
                 <a href="/manager" class="col muser">
-                    <img class="mx-auto d-block img-fluid rounded-circle border border-dark rounded" alt="User Image" id="nav-user-img" src={{asset(User::getImage())}}>
+                    <img class="mx-auto d-block img-fluid rounded-circle border border-dark rounded nav-user-img" alt="User Image" src={{asset(User::getImage())}}>
                 </a>
                 <a href="/product/add" class="col mstar">
                     <i class="far fa-plus-square"></i>

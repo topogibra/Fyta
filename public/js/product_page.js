@@ -52,8 +52,14 @@ addFavorites && addFavorites.addEventListener('mousedown', async(event) => {
 let errors;
 let addShoppingCart = document.getElementById('addbasket');
 let qtity = document.getElementById('numItems');
-let dropChildren = document.querySelector('.overflow-auto').children;
-let stock = document.querySelector('.overflow-auto').children.length;
+let drop = document.querySelector('.overflow-auto');
+let dropChildren;
+let stock;
+if(drop != null)
+{
+    dropChildren = drop.children;
+    stock = dropChildren.length;
+}
 
 if (qtity) {
     let value = parseInt(qtity.innerText);

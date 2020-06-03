@@ -75,7 +75,7 @@ body {
     display: none !important;
 }
 
-#nav-user-img {
+.nav-user-img {
     width: 2em;
     height: 2em;
     border-color: var(--black);
@@ -111,7 +111,7 @@ body {
 }
 
 @media (max-width: 767px) {
-    #nav-user-img {
+    .nav-user-img {
         width: 2em;
         height: 1.5em;
         border-color: var(--black);
@@ -202,7 +202,8 @@ body {
     .navbar-icons .star,
     .navbar-icons .login,
     .navbar-icons .user,
-    .navbar-icons .cart {
+    .navbar-icons .cart,
+    .navbar-icons .square  {
         display: none;
     }
     .navbar-collapse.collapse.show {

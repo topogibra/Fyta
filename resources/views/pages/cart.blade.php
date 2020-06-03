@@ -1,4 +1,4 @@
-@extends('layouts.app', ['scripts' => ['js/shopping_cart.js'], 'styles' => ['css/shopping_cart_page.css']])
+@extends('layouts.app', ['scripts' => ['js/shopping_cart.js'], 'styles' => ['css/shopping_cart_page.css'], 'title' => 'Shopping Cart'])
 
 @section('content')
 <div class="container">
